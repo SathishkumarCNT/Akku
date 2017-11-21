@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite guice-stage="DEVELOPMENT" name="Failed suite [AKKU_Sanity]">
+  <test name="Edit Information(failed)">
+    <parameter name="browser" value="W_chrome"/>
+    <parameter name="Environment" value="http://pre-prod.akku.work/"/>
+    <classes>
+      <class name="com.app.akku.work.TestCases.AKKU_09_Editpwdinformation">
+        <methods>
+          <include name="AK_32_ChangeNewPasswordtoOldPassword" invocation-numbers="0"/>
+          <include name="teardown"/>
+          <include name="setup"/>
+          <include name="tearDown"/>
+        </methods>
+      </class> <!-- com.app.akku.work.TestCases.AKKU_09_Editpwdinformation -->
+    </classes>
+  </test> <!-- Edit Information(failed) -->
+  <test name="User Management(failed)">
+    <parameter name="browser" value="W_chrome"/>
+    <parameter name="Environment" value="http://pre-prod.akku.work/"/>
+    <classes>
+      <class name="com.app.akku.work.TestCases.AKKU_33_Edit_Delete_Suspend_Activity_Users">
+        <methods>
+          <include name="Akku_41_ChangePasswordinNextLogin" invocation-numbers="0"/>
+          <include name="setup"/>
+          <include name="teardown"/>
+          <include name="tearDown"/>
+        </methods>
+      </class> <!-- com.app.akku.work.TestCases.AKKU_33_Edit_Delete_Suspend_Activity_Users -->
+    </classes>
+  </test> <!-- User Management(failed) -->
+</suite> <!-- Failed suite [AKKU_Sanity] -->

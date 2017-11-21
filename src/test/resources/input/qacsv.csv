@@ -1,0 +1,3 @@
+email,firstname,lastname,password,role
+qacsv@demo.cloudnowtech.com,QA,TestUser1,password1,user
+qacsv01@demo.cloudnowtech.com,QATest,TestUser2,password2,Admin

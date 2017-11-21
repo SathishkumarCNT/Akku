@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite guice-stage="DEVELOPMENT" name="Failed suite [Sanity_TestSuite]">
+  <test name="Upload CSV(failed)">
+    <parameter name="browser" value="W_chrome"/>
+    <parameter name="Environment" value="http://pre-prod.akku.work/"/>
+    <classes>
+      <class name="com.app.akku.work.TestCases.AK_52_Create_Edit_Delete_Assign_OU">
+        <methods>
+          <include name="AK_52_AddValidNewOUwithParentCNT"/>
+          <include name="teardown"/>
+          <include name="setup"/>
+          <include name="tearDown"/>
+        </methods>
+      </class> <!-- com.app.akku.work.TestCases.AK_52_Create_Edit_Delete_Assign_OU -->
+    </classes>
+  </test> <!-- Upload CSV(failed) -->
+</suite> <!-- Failed suite [Sanity_TestSuite] -->

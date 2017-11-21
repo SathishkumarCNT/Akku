@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<!-- Specify the test suite name -->
+<suite name="AKKU_Sanity" verbose="1" annotations="JDK">
+
+	<!-- Browser Types -->
+	<!-- U_firefox -->
+	<!-- M_firefox -->
+	<!-- W_firefox -->
+	<!-- U_chrome -->
+	<!-- M_chrome -->
+	<!-- W_chrome -->
+	<!-- IE -->
+	<!-- Edge -->
+
+	<test name="Login and logout in Chrome" preserve-order="true">
+
+		<parameter name="browser" value="W_chrome" />
+		<parameter name="Environment" value="http://pre-prod.akku.work/" />
+
+		<classes>
+			<class name="com.app.akku.work.TestCases.AKKU_01_LoginANDlogout">
+				<methods>
+					<include name="AK_01_ValidLogin" />
+					<include name="AK_02_LoginWithValidEmailAndInvalidPassword" />
+					<include name="AK_03_LoginwithValidUserNameandEmptyPassword" />
+					<include name="AK_04_LoginwithinvalidUsernameandinvalidPassword" />
+					<include name="AK_05_LoginwithemptyUsernameandValidPassword" />
+				</methods>
+			</class>
+		</classes>
+	</test>
+
+	<test name="Edit Information" preserve-order="true">
+
+		<parameter name="browser" value="W_chrome" />
+		<parameter name="Environment" value="http://pre-prod.akku.work/" />
+
+		<classes>
+			<class name="com.app.akku.work.TestCases.AKKU_09_Editpwdinformation">
+				<methods>
+
+					<include name="AK_6_VerificationofUserInfoinHomepageEditInfopage" />
+					<include name="AK_8_UpdateNewPasswordwithoutenteringOldpassword" />
+					<include name="AK_10_UpdateNewPasswordwithinvalidConfirmpassword" />
+					<include name="AK_11_UpdateNewPasswordwithenteringinvalidOldpassword" />
+					<include name="AK_12_UpdateNewPasswordWithEmptyPwdEmptyConfirmPwd" />
+					<include name="AK_13_UpdatepasswordwithoutmatchingwithPasswordpolicy" />
+					<include name="AK_14_UpdateNewPasswordWithSamevalueofnewpwdConfirmpwd" />
+					<include name="AK_9_ChangeOldPasswordtoNewPassword" />
+					<include name="AK_32_ChangeNewPasswordtoOldPassword" />
+				</methods>
+			</class>
+		</classes>
+	</test>
+
+	<test name="Site Blocking" preserve-order="true">
+
+		<parameter name="browser" value="W_chrome" />
+		<parameter name="Environment" value="http://pre-prod.akku.work/" />
+
+		<classes>
+			<class name="com.app.akku.work.TestCases.AKKU_26_Siteblocking">
+				<methods>
+
+					<include name="AKKU_22_Add_DuplicateSiteUrlandvalidSiteDes" />
+					<include name="AKKU_23_SiteBlockingwithoutUrlAndDescription" />
+					<include name="AKKU_24_SiteBlocking_InvalidUrlFormat" />
+					<include name="AKKU_25_SiteBlockingwithoutUrlDescription" />
+					<include name="AKKU_26_siteBlock" />
+					<include name="AKKU_27_EditwithoutSiteUrlandDescription" />
+					<include name="AKKU_28_EditDuplicateSiteUrlandvalidSiteDescription" />
+					<include name="AKKU_29_EditwithoutUrlDescription" />
+					<include name="AKKU_30_EditsiteBlockwithvalidurlanddescription" />
+					<include name="AKKU_31_EditinvalidSiteUrlandvalidSiteDescription" />
+					<include name="AKKU_32_DeleteSiteUrlandvalidSiteDescription" />
+
+				</methods>
+			</class>
+		</classes>
+	</test>
+
+	<test name="Password Policy" preserve-order="true">
+
+		<parameter name="browser" value="W_chrome" />
+		<parameter name="Environment" value="http://pre-prod.akku.work/" />
+
+		<classes>
+			<class name="com.app.akku.work.TestCases.AKKU_15_PasswordPolicy">
+				<methods>
+
+					<include
+						name="AKKU_15_UpdatePasswordpolicbyselectingonePasswordComplexity" />
+					<include
+						name="AKKU_16_UpdatePasswordpolicbyselectingdifferentPasswordComplexity" />
+					<include name="AKKU_18_PasswordLengthwithinvaliddata" />
+					<include name="AKKU_19_PasswordLengthwithvaliddata" />
+					<include name="AKKU_20_Enable_ExpirationofPassword" />
+					<include name="AKKU_21_Disable_ExpirationofPassword" />
+					<include name="Updateoldpasswordpolicy" />
+
+				</methods>
+			</class>
+		</classes>
+	</test>
+
+	<test name="User Management" preserve-order="true">
+
+		<parameter name="browser" value="W_chrome" />
+		<parameter name="Environment" value="http://pre-prod.akku.work/" />
+
+		<classes>
+			<class
+				name="com.app.akku.work.TestCases.AKKU_33_Edit_Delete_Suspend_Activity_Users">
+				<methods>
+
+					<include name="Akku_33_EditUsermanagementwithvaliddata" />
+					<include name="Akku_34_EditUsermanagementwithEmptyEmailId" />
+					<include name="Akku_35_EditUsermanagementwithinvaliddata" />
+					<include name="Akku_36_SuspendUserfromUserManagementgrid" />
+					<include name="Akku_37_DeleteUserfromUserManagementgrid" />
+					<include name="Akku_38_Resetwithinvalidpasswordpolicy" />
+					<include name="Akku_39_Resetwithdifferentconfirmpwd" />
+					<include name="Akku_40_Resetwithvalidpwd" />
+					<include name="Akku_41_ChangePasswordinNextLogin" />
+					<include name="Akku_42_Searchuserfromuserlistusingvalidkeyword" />
+					<include name="Akku_43_Searchuserfromuserlistusinginvalidkeyword" />
+					<include name="Akku_44_Userlistcountbasedonshowdropdown" />
+					<include name="Akku_45_UserdetailsbyselectingFullNameLinkText" />
+					<include name="Akku_46_VerifyLastLogindatetimeinuserList" />
+					<include name="Akku_50_VerifyActionbuttondisplay" />
+
+				</methods>
+			</class>
+		</classes>
+	</test>
+
+	<test name="CSV_File_Upload">
+		<parameter name="browser" value="W_chrome" />
+		<parameter name="Environment" value="http://pre-prod.akku.work/" />
+		<classes>
+			<class name="com.app.akku.work.TestCases.AKKU_48_Uploadcsvfile">
+				<methods>
+					<include name="AK_39_AddBulkUserfromUploadfilewithValidData" />
+					<include name="AK_34_AddBulkUserfromUploadfileCSVwithInvalidData" />
+				</methods>
+			</class>
+		</classes>
+	</test>
+
+	<test name="Add User Via G-Suite" preserve-order="true">
+
+		<parameter name="browser" value="W_chrome" />
+		<parameter name="Environment" value="http://pre-prod.akku.work/" />
+
+		<classes>
+			<class name="com.app.akku.work.TestCases.AKKU_49_AdduserViaGSuite">
+				<methods>
+					<include name="AK_41_AddUserViaGSuite" />
+
+				</methods>
+			</class>
+		</classes>
+	</test>
+
+	<test name="Edit User" preserve-order="true">
+
+		<parameter name="browser" value="W_chrome" />
+		<parameter name="Environment" value="http://pre-prod.akku.work/" />
+
+		<classes>
+			<class name="com.app.akku.work.TestCases.AKKU_47_AddsingleuserManually">
+				<methods>
+
+					<include name="AK_46_AddUsersManually" />
+
+
+				</methods>
+			</class>
+		</classes>
+	</test>
+
+</suite>

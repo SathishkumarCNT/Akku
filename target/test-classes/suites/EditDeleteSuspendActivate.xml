@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<!-- Specify the test suite name -->
+
+<suite name="AKKU_TestSuite"  annotations="JDK">
+	
+	<test name="Edit User" preserve-order="true">
+	
+	<parameter name="browser" value="W_chrome"/>
+  	<parameter name="Environment" value="http://pre-prod.akku.work/" />
+  	
+  	    <classes>
+			<class name="com.app.akku.work.TestCases.AKKU_33_Edit_Delete_Suspend_Activity_Users">
+				<methods>
+
+<include name="Akku_41_ChangePasswordinNextLogin"/>
+					<!-- <include name="Akku_33_EditUsermanagementwithvaliddata" />
+					<include name="Akku_34_EditUsermanagementwithEmptyEmailId"/>
+					<include name="Akku_35_EditUsermanagementwithinvaliddata"/>
+					<include name="Akku_36_SuspendUserfromUserManagementgrid" />
+					<include name="Akku_37_DeleteUserfromUserManagementgrid"/>
+					<include name="Akku_38_Resetwithinvalidpasswordpolicy"/>
+					<include name="Akku_39_Resetwithdifferentconfirmpwd"/>
+					<include name="Akku_40_Resetwithvalidpwd"/>
+					<include name="Akku_41_ChangePasswordinNextLogin"/>
+					<include name="Akku_42_Searchuserfromuserlistusingvalidkeyword"/>
+					<include name="Akku_43_Searchuserfromuserlistusinginvalidkeyword"/>
+					<include name="Akku_44_Userlistcountbasedonshowdropdown"/>
+					<include name="Akku_45_UserdetailsbyselectingFullNameLinkText"/>
+					<include name="Akku_46_VerifyLastLogindatetimeinuserList"/>
+					<include name="Akku_50_VerifyActionbuttondisplay"/>	 -->			
+
+				</methods>
+			</class>
+		</classes>
+  	</test> 
+  	
+</suite>

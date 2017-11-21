@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite guice-stage="DEVELOPMENT" name="Failed suite [Regression_TestSuite]">
+  <test name="HRBFX_UI(failed)">
+    <parameter name="browser" value="chrome"/>
+    <classes>
+      <class name="com.app.akku.work.TestCases.Applitools">
+        <methods>
+          <include name="teardown"/>
+          <include name="setup"/>
+          <include name="tearDown"/>
+          <include name="HRBX_COM"/>
+        </methods>
+      </class> <!-- com.app.akku.work.TestCases.Applitools -->
+    </classes>
+  </test> <!-- HRBFX_UI(failed) -->
+</suite> <!-- Failed suite [Regression_TestSuite] -->
