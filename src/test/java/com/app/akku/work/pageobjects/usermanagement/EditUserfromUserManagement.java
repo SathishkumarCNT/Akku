@@ -975,31 +975,20 @@ driver.navigate().refresh();
 	}
 
 	public void Clicksearchbutton() throws Exception {
-		try {
+		
 
 			System.out.println("Trying to Click Search button ");
-			// click(By.xpath(prop.getAppProperty("Akku_UserManagement_Search_dropdown_xpath")));
+			click(By.xpath(prop.getAppProperty("Akku_UserManagement_Search_dropdown_xpath")));
 
-			driver.findElement(By.xpath("//*[@id='search']")).click();
+			//driver.findElement(By.xpath("//*[@id='search']")).click();
 
 			System.out.println(" We Think We Clicked Search button");
 
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+	
 
 	}
 	
-	public void clickonAppManagement() throws Exception {
-
-		System.out.println("Trying to Click on App Management button...");
-		
 	
-		click(By.partialLinkText(prop.getAppProperty("Home_AppManagement_btn_xpath")));
-
-		System.out.println("We think we Click on App Management button...");
-	}
 	
 
 }

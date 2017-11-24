@@ -9,6 +9,7 @@ import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 import com.app.akku.work.common.Browser_Setup;
+import com.app.akku.work.common.Retry;
 import com.app.akku.work.common.TestLinkIntegration;
 import com.app.akku.work.common.poi_Reader_e;
 
@@ -88,7 +89,7 @@ public class AKKU_09_Editpwdinformation extends Browser_Setup {
 		return testData;
 	}
 	
-	@Test(dataProvider = "EditPwd_Details")
+	@Test(dataProvider = "EditPwd_Details", retryAnalyzer = Retry.class)
 	public void AK_06_VerificationofUserInfoinHomepageEditInfopage(String email, String password, String Oldpassword,
 			String Newpassword, String Confnewpassword) throws Exception {
 				
@@ -125,7 +126,7 @@ public class AKKU_09_Editpwdinformation extends Browser_Setup {
 
 		}
 	}
-	@Test(dataProvider = "EditPwd_DetailswithInvalidoldpassword")
+	@Test(dataProvider = "EditPwd_DetailswithInvalidoldpassword", retryAnalyzer = Retry.class)
 	public void AK_08_UpdateNewPasswordwithoutenteringOldpassword(String email, String password, String Oldpassword,
 			String Newpassword, String Confnewpassword) throws Exception {
 
@@ -169,7 +170,7 @@ public class AKKU_09_Editpwdinformation extends Browser_Setup {
 		}
 
 	}
-	@Test(dataProvider = "EditPwd_Details")
+	@Test(dataProvider = "EditPwd_Details", retryAnalyzer = Retry.class)
 	public void AK_09_ChangeOldPasswordtoNewPassword(String email, String password, String Oldpassword, String Newpassword, String Confnewpassword)
 			throws Exception {
 
@@ -212,7 +213,7 @@ public class AKKU_09_Editpwdinformation extends Browser_Setup {
 
 	}
 	
-	@Test(dataProvider = "EditPwdChanged_Details")
+	@Test(dataProvider = "EditPwdChanged_Details", retryAnalyzer = Retry.class)
 	public void AK_32_ChangeNewPasswordtoOldPassword(String email, String password, String Oldpassword, String Newpassword, String Confnewpassword)
 			throws Exception {
 
@@ -254,7 +255,7 @@ public class AKKU_09_Editpwdinformation extends Browser_Setup {
 
 	}
 
-	@Test(dataProvider = "EditPwd_DetailswithInvalidConfirmpassword")
+	@Test(dataProvider = "EditPwd_DetailswithInvalidConfirmpassword", retryAnalyzer = Retry.class)
 	public void AK_10_UpdateNewPasswordwithinvalidConfirmpassword(String email, String password, String Oldpassword,
 			String Newpassword, String Confnewpassword) throws Exception {
 
@@ -299,7 +300,7 @@ public class AKKU_09_Editpwdinformation extends Browser_Setup {
 
 	}
 
-	@Test(dataProvider = "EditPwd_DetailswithInvalidoldpassword")
+	@Test(dataProvider = "EditPwd_DetailswithInvalidoldpassword", retryAnalyzer = Retry.class)
 	public void AK_11_UpdateNewPasswordwithenteringinvalidOldpassword(String email, String password, String Oldpassword,
 			String Newpassword, String Confnewpassword) throws Exception {
 
@@ -346,7 +347,7 @@ public class AKKU_09_Editpwdinformation extends Browser_Setup {
 	}
 	
 	
-	@Test(dataProvider = "EditPwd_DetailswithInvalidConfirmpassword")
+	@Test(dataProvider = "EditPwd_DetailswithInvalidConfirmpassword", retryAnalyzer = Retry.class)
 		public void AK_12_UpdateNewPasswordWithEmptyPwdEmptyConfirmPwd(String email, String password, String Oldpassword,
 			String Newpassword, String Confnewpassword) throws Exception {
 
@@ -389,7 +390,7 @@ public class AKKU_09_Editpwdinformation extends Browser_Setup {
 
 	}
 
-	@Test(dataProvider = "EditPwd_DetailswithPassworNotmatchPolicy")
+	@Test(dataProvider = "EditPwd_DetailswithPassworNotmatchPolicy", retryAnalyzer = Retry.class)
 	public void AK_13_UpdatepasswordwithoutmatchingwithPasswordpolicy(String email, String password, String Oldpassword,	String Newpassword, String Confnewpassword) throws Exception {
 
 		try {
@@ -434,7 +435,7 @@ public class AKKU_09_Editpwdinformation extends Browser_Setup {
 
 	}
 	
-	@Test(dataProvider = "EditPwd_DetailswithPassworNotmatchPolicy")
+	@Test(dataProvider = "EditPwd_DetailswithPassworNotmatchPolicy", retryAnalyzer = Retry.class)
 	public void AK_14_UpdateNewPasswordWithSamevalueofnewpwdConfirmpwd(String email, String password, String Oldpassword,	String Newpassword, String Confnewpassword) throws Exception {
 
 		try {

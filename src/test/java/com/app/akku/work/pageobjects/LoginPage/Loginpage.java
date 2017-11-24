@@ -17,16 +17,23 @@ public class Loginpage extends Keywords {
 	public void loginpageTitle()throws Exception
 	{
 		
-		System.out.println("Trying to Validating Url Title");
+		try {
+			System.out.println("Trying to Validating Url Title");
+			
+			String actual_msg=driver.getTitle();
+			String expect="Akku1 - Security and Privacy";		
+			
+Assert.assertEquals(actual_msg, expect);	
+			
+			System.out.println(actual_msg);
+			
+
+			System.out.println("We think we Validated Url Title");
+		} catch (AssertionError e) {
+			// TODO Auto-generated catch block
+			throw e;
+		}
 		
-		String actual_msg=driver.getTitle();
-		String expect="Akku - Security and Privacy";		
-		
-		Assert.assertEquals(actual_msg, expect);		
-		
-		System.out.println(actual_msg);
-		
-		System.out.println("We think we Validated Url Title");
 							
 	}	
 	
@@ -36,24 +43,33 @@ public class Loginpage extends Keywords {
 		System.out.println(message);
 	} 
 	
-	public void inputemailerrormsgvalidation() {
+	public void inputemailerrormsgvalidation() throws Exception {
 		
 		String message = driver.findElement(By.xpath("//input[@type='email']")).getAttribute("validationMessage");
 		System.out.println(message);
+		
 	}
 	
 	public void EmailANDPwdErrorValidation()throws Exception
 	{
 	
-		System.out.println("Trying to Validating Error message of Invalid Email & Pwsd");
+		try {
+			System.out.println("Trying to Validating Error message of Invalid Email & Pwsd");
+						
+			String actual_msg= driver.findElement(By.id("error")).getText();
+			String expect="Invalid Username Or Password";		
+			
+			System.out.println(actual_msg);
+			System.out.println(expect);
+			Assert.assertEquals(actual_msg, expect);
+		} catch (AssertionError e) {
+			// TODO Auto-generated catch block
+			throw new Exception("Verification in User Name get Failed");
+		}		
+		
+		        
 		
 				
-		String actual_msg= driver.findElement(By.id("error")).getText();
-		String expect="Invalid Username Or Password";		
-		
-		Assert.assertEquals(actual_msg, expect);		
-		
-		System.out.println("We think we Validated Error message of Invalid Email & Pwsd");		
 				
 	}	
 	
@@ -69,8 +85,8 @@ public class Loginpage extends Keywords {
 	public void typepassword(String password) throws Exception {
 		
 		System.out.println("Trying to Enter Password in the text field...");
-		
-					
+	
+		Thread.sleep(2000);
 		type(By.xpath(prop.getAppProperty("Login_pwd_xpath")),password);
 				
 		System.out.println("We think we Entered Password in text field...");
@@ -79,16 +95,19 @@ public class Loginpage extends Keywords {
 	public void clickLogin() throws Exception{
 		
 		
-		System.out.println("Trying to Click on Login button...");
-				
-		click(By.xpath(prop.getAppProperty("Login_login_bnt_xpath")));	
 		
-		System.out.println("We think we Clicked on Login button...");
-	}
+			System.out.println("Trying to Click on Login button...");
+					
+			click(By.xpath(prop.getAppProperty("Login_login_bnt_xpath")));	
+			
+			System.out.println("We think we Clicked on Login button...");
+			
+		}
+	
 	
 	public void clickLogout() throws Exception{
-		
-		try {
+		try{
+	
 			System.out.println("Trying to Click on logout button...");
 					
 			click(By.xpath(prop.getAppProperty("Home_logout_btn_xpath")));
@@ -98,33 +117,36 @@ public class Loginpage extends Keywords {
 			
 			Assert.assertEquals(actual_msg, expect);
 			
+		
 			System.out.println("We think we Clicked on logout button...");
-		} catch (Exception e) {
-			do{// TODO Auto-generated catch block
-			e.printStackTrace();
-			break;
-		}
-			while(true);	
-		}		
+			
+	} catch (AssertionError e) {
+		// TODO Auto-generated catch block
+		throw new Exception("Verification in User Name get Failed");
+	}		
+		
 	}
 		
-	public void validatedloggedinUserDetailsEmailID(String email){
-
-		System.out.println("Trying to Validate Loggedin User Ac details...");
-
-		boolean Actual = driver.getPageSource().contains(email);
-	
-		boolean expect=true;	
-
-		Assert.assertEquals(Actual, expect);	
-
-		System.out.println("We think we Validate Loggedin User Ac details...");
-	
-
-	}
-	public void verifyloggedinFnameineditinfo() {
+	public void validatedloggedinUserDetailsEmailID(String email) throws Exception{
 
 		try {
+			System.out.println("Trying to Validate Loggedin User Ac details...");
+
+			boolean Actual = driver.getPageSource().contains(email);
+
+			boolean expect=true;	
+			Assert.assertEquals(Actual, expect);
+			System.out.println("We think we Validate Loggedin User Ac details...");
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			throw new Exception("Verification in User Name get Failed");
+		}
+	
+	}
+	
+	public void verifyloggedinFnameineditinfo()throws Exception {
+try {
+	
 
 			System.out.println("Trying to Validate Loggedin User First Name in Edit Info...");
 
@@ -135,19 +157,21 @@ public class Loginpage extends Keywords {
 			System.out.println(expect);
 
 			Assert.assertEquals(Actual, expect);
+			
+			
 
 			System.out.println("We think we Validate Loggedin First Name details in Edit Info...");
 
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+	} catch (AssertionError e) {
+		// TODO Auto-generated catch block
+		throw new Exception("Verification in User Name get Failed");
+	}	
 
 	}
 	
-	public void verifyloggedinLnameineditinfo() {
+	public void verifyloggedinLnameineditinfo() throws Exception{
 
-		try {
+	try {
 
 			System.out.println("Trying to Validate Loggedin User Last Name in Edit Info...");
 
@@ -158,25 +182,38 @@ public class Loginpage extends Keywords {
 			System.out.println(expect);
 
 			Assert.assertEquals(Actual, expect);
+			
+		
+
 
 			System.out.println("We think we Validate Logged in User Last Name  in Edit Info...");
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
+	} catch (AssertionError e) {
+		// TODO Auto-generated catch block
+		throw new Exception("Verification in User Name get Failed");
+	}	
 	}
 	
-	public void verifyloggedinUserFNameAndLName() {
+	public void verifyloggedinUserFNameAndLName() throws Exception {
 
-		System.out.println("Trying to Validate Loggedin User Ac details...");
-
-		boolean Actual = driver.getPageSource().contains("Mallikarjuna Reddy");
-
-		boolean expect = true;	
 		
-		Assert.assertEquals(Actual, expect);	
+			try {
+				System.out.println("Trying to Validate Loggedin User Ac details...");
 
-		System.out.println("We think we Validate Loggedin User FName And LName...");
+				boolean Actual = driver.getPageSource().contains("Mallikarjuna Reddy");
+
+				boolean expect = true;	
+
+				Assert.assertEquals(Actual, expect);
+				System.out.println("We think we Validate Loggedin User FName And LName...");
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				
+				throw new Exception("Verification in User Name get Failed");
+				
+				
+				
+			}
+			
+		
 	}
 }

@@ -15,7 +15,7 @@
 
 	<test name="Login and logout in Chrome" preserve-order="true">
 
-		<parameter name="browser" value="W_chrome" />
+		<parameter name="browser" value="U_chrome" />
 		<parameter name="Environment" value="http://pre-prod.akku.work/" />
 
 		<classes>
@@ -33,7 +33,7 @@
 
 	<test name="Edit Information" preserve-order="true">
 
-		<parameter name="browser" value="W_chrome" />
+		<parameter name="browser" value="U_chrome" />
 		<parameter name="Environment" value="http://pre-prod.akku.work/" />
 
 		<classes>
@@ -56,7 +56,7 @@
 
 	<test name="Site Blocking" preserve-order="true">
 
-		<parameter name="browser" value="W_chrome" />
+		<parameter name="browser" value="U_chrome" />
 		<parameter name="Environment" value="http://pre-prod.akku.work/" />
 
 		<classes>
@@ -82,7 +82,7 @@
 
 	<test name="Password Policy" preserve-order="true">
 
-		<parameter name="browser" value="W_chrome" />
+		<parameter name="browser" value="U_chrome" />
 		<parameter name="Environment" value="http://pre-prod.akku.work/" />
 
 		<classes>
@@ -106,7 +106,7 @@
 
 	<test name="User Management" preserve-order="true">
 
-		<parameter name="browser" value="W_chrome" />
+		<parameter name="browser" value="U_chrome" />
 		<parameter name="Environment" value="http://pre-prod.akku.work/" />
 
 		<classes>
@@ -136,7 +136,7 @@
 	</test>
 
 	<test name="CSV_File_Upload">
-		<parameter name="browser" value="W_chrome" />
+		<parameter name="browser" value="U_chrome" />
 		<parameter name="Environment" value="http://pre-prod.akku.work/" />
 		<classes>
 			<class name="com.app.akku.work.TestCases.AKKU_48_Uploadcsvfile">
@@ -150,7 +150,7 @@
 
 	<test name="Add User Via G-Suite" preserve-order="true">
 
-		<parameter name="browser" value="W_chrome" />
+		<parameter name="browser" value="U_chrome" />
 		<parameter name="Environment" value="http://pre-prod.akku.work/" />
 
 		<classes>
@@ -165,7 +165,7 @@
 
 	<test name="Edit User" preserve-order="true">
 
-		<parameter name="browser" value="W_chrome" />
+		<parameter name="browser" value="U_chrome" />
 		<parameter name="Environment" value="http://pre-prod.akku.work/" />
 
 		<classes>

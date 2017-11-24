@@ -10,6 +10,7 @@ import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 import com.app.akku.work.common.Browser_Setup;
+import com.app.akku.work.common.Retry;
 import com.app.akku.work.common.TestLinkIntegration;
 import com.app.akku.work.common.poi_Reader_e;
 import com.app.akku.work.keywords.Keywords;
@@ -73,7 +74,7 @@ public class AKKU_26_Siteblocking extends Browser_Setup {
 		return testData;
 	}
 
-	@Test(dataProvider = "DuplicateUrl")
+	@Test(dataProvider = "DuplicateUrl", retryAnalyzer = Retry.class)
 	public void AK_21_AddDuplicateSiteUrlwithvalidSiteDescription(String email, String password, String siteURl,
 			String siteDescription) throws Exception
 
@@ -106,6 +107,7 @@ public class AKKU_26_Siteblocking extends Browser_Setup {
 			
 			System.out.println("####################################################################");
 			result = TestLinkAPIResults.TEST_PASSED;
+			notes = "Test Case Pass Successfully";
 			TestLinkIntegration.reportResult(testProject, testPlan, AK_21, build, notes, result);
 			
 		} catch (Exception e) {
@@ -121,7 +123,7 @@ public class AKKU_26_Siteblocking extends Browser_Setup {
 	}
 	
 
-	@Test(dataProvider = "SiteBlockingLogin_Details")
+	@Test(dataProvider = "SiteBlockingLogin_Details", retryAnalyzer = Retry.class)
 	public void AK_22_ClickonAddSitewithoutEnteringanyDatainUrlDesctextfield(String email, String password, String siteURl,
 			String siteDescription) throws Exception {
 

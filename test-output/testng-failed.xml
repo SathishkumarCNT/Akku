@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite guice-stage="DEVELOPMENT" name="Failed suite [AKKU_TestSuite]">
-  <test name="Edit User(failed)">
-    <parameter name="browser" value="W_chrome"/>
+<suite guice-stage="DEVELOPMENT" name="Failed suite [AKKU_Sanity]">
+  <test name="Login and logout in Chrome(failed)">
+    <parameter name="browser" value="W_Chrome"/>
     <parameter name="Environment" value="http://pre-prod.akku.work/"/>
     <classes>
-      <class name="com.app.akku.work.TestCases.AKKU_47_AddsingleuserManually">
+      <class name="com.app.akku.work.TestCases.AKKU_01_LoginANDlogout">
         <methods>
-          <include name="addAdmin" invocation-numbers="0"/>
-          <include name="setup"/>
-          <include name="tearDown"/>
           <include name="teardown"/>
+          <include name="tearDown"/>
+          <include name="AK_01" invocation-numbers="0"/>
+          <include name="setup"/>
         </methods>
-      </class> <!-- com.app.akku.work.TestCases.AKKU_47_AddsingleuserManually -->
+      </class> <!-- com.app.akku.work.TestCases.AKKU_01_LoginANDlogout -->
     </classes>
-  </test> <!-- Edit User(failed) -->
-</suite> <!-- Failed suite [AKKU_TestSuite] -->
+  </test> <!-- Login and logout in Chrome(failed) -->
+</suite> <!-- Failed suite [AKKU_Sanity] -->

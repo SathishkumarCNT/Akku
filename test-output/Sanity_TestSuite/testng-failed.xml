@@ -7,7 +7,7 @@
     <classes>
       <class name="com.app.akku.work.TestCases.AK_52_Create_Edit_Delete_Assign_OU">
         <methods>
-          <include name="AK_52_AddValidNewOUwithParentCNT"/>
+          <include name="AK_58_DeleteOUinOUManagementpage" invocation-numbers="0"/>
           <include name="teardown"/>
           <include name="setup"/>
           <include name="tearDown"/>

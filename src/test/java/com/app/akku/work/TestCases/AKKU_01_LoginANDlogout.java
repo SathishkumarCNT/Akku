@@ -1,6 +1,7 @@
 package com.app.akku.work.TestCases;
 
 
+import org.testng.ITestNGMethod;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterTest;
@@ -62,24 +63,28 @@ public class AKKU_01_LoginANDlogout extends Browser_Setup {
 		return testData;
 	}
 
+	
+	
 	@Test(dataProvider = "Login_Details", retryAnalyzer = Retry.class)
-	//@Test(dataProvider = "Login_Details")
 	public void AK_01_ValidLogin(String email, String password) throws Exception {
 		try {
-
+			
+			Thread.sleep(5000);
 			loginpage.loginpageTitle();
+			
 			loginpage.typeUseremail(email);
+			Thread.sleep(3000);
 			loginpage.typepassword(password);
+			Thread.sleep(5000);
 			loginpage.clickLogin();
 			Thread.sleep(2000);
 			loginpage.validatedloggedinUserDetailsEmailID(email);
 			loginpage.verifyloggedinUserFNameAndLName();
             loginpage.clickLogout();
-            
-            
-
+          
 			System.out.println("####################################################################");
 			result = TestLinkAPIResults.TEST_PASSED;
+			notes = getOSBrowserDetails();
 
 		} catch (Exception e) {
 
@@ -115,6 +120,7 @@ public class AKKU_01_LoginANDlogout extends Browser_Setup {
 
 			System.out.println("####################################################################");
 			result = TestLinkAPIResults.TEST_PASSED;
+			notes = getOSBrowserDetails();
 
 		} catch (Exception e) {
 
@@ -147,6 +153,7 @@ public class AKKU_01_LoginANDlogout extends Browser_Setup {
 
 			System.out.println("####################################################################");
 			result = TestLinkAPIResults.TEST_PASSED;
+			notes = getOSBrowserDetails();
 
 		} catch (Exception e) {
 
@@ -180,6 +187,7 @@ public class AKKU_01_LoginANDlogout extends Browser_Setup {
 
 			System.out.println("####################################################################");
 			result = TestLinkAPIResults.TEST_PASSED;
+			notes = getOSBrowserDetails();
 
 		} catch (Exception e) {
 
@@ -211,6 +219,7 @@ public class AKKU_01_LoginANDlogout extends Browser_Setup {
 
 			System.out.println("####################################################################");
 			result = TestLinkAPIResults.TEST_PASSED;
+			notes = getOSBrowserDetails();
 
 		} catch (Exception e) {
 
@@ -239,6 +248,8 @@ public class AKKU_01_LoginANDlogout extends Browser_Setup {
 			if (result.getStatus() == ITestResult.SUCCESS) {
 				System.out.println("Test case passed");
 								driver.quit();
+						
+							    
 
 			} else if (result.getStatus() == ITestResult.FAILURE) {
 
@@ -246,6 +257,8 @@ public class AKKU_01_LoginANDlogout extends Browser_Setup {
 
 				System.out.println("Test case Failed & Screenshot taken in Tear Down method");
 				driver.quit();
+				
+			
 				
 
 			} else if (result.getStatus() == ITestResult.SKIP) {

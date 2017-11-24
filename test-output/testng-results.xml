@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results skipped="0" failed="1" ignored="1" total="2" passed="0">
+<testng-results skipped="0" failed="1" ignored="4" total="5" passed="0">
   <reporter-output>
   </reporter-output>
-  <suite name="AKKU_TestSuite" duration-ms="32083" started-at="2017-11-21T09:38:43Z" finished-at="2017-11-21T09:39:16Z">
+  <suite name="AKKU_Sanity" duration-ms="17992" started-at="2017-11-24T10:13:47Z" finished-at="2017-11-24T10:14:05Z">
     <groups>
     </groups>
-    <test name="Edit User" duration-ms="32083" started-at="2017-11-21T09:38:43Z" finished-at="2017-11-21T09:39:16Z">
-      <class name="com.app.akku.work.TestCases.AKKU_47_AddsingleuserManually">
-        <test-method status="PASS" signature="setup(java.lang.String, java.lang.String)[pri:0, instance:com.app.akku.work.TestCases.AKKU_47_AddsingleuserManually@5a8e6209]" name="setup" is-config="true" duration-ms="25964" started-at="2017-11-21T15:08:44Z" finished-at="2017-11-21T15:09:10Z">
+    <test name="Login and logout in Chrome" duration-ms="17992" started-at="2017-11-24T10:13:47Z" finished-at="2017-11-24T10:14:05Z">
+      <class name="com.app.akku.work.TestCases.AKKU_01_LoginANDlogout">
+        <test-method status="PASS" signature="setup(java.lang.String, java.lang.String)[pri:0, instance:com.app.akku.work.TestCases.AKKU_01_LoginANDlogout@4b4523f8]" name="setup" is-config="true" duration-ms="6068" started-at="2017-11-24T15:43:48Z" finished-at="2017-11-24T15:43:54Z">
           <params>
             <param index="0">
               <value>
@@ -16,14 +16,14 @@
             </param>
             <param index="1">
               <value>
-                <![CDATA[W_chrome]]>
+                <![CDATA[W_Chrome]]>
               </value>
             </param>
           </params>
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setup -->
-        <test-method status="FAIL" signature="addAdmin(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String)[pri:0, instance:com.app.akku.work.TestCases.AKKU_47_AddsingleuserManually@5a8e6209]" name="addAdmin" duration-ms="4353" started-at="2017-11-21T15:09:10Z" data-provider="Confirm_And_Add_User" finished-at="2017-11-21T15:09:14Z">
+        <test-method status="FAIL" signature="AK_01(java.lang.String, java.lang.String)[pri:0, instance:com.app.akku.work.TestCases.AKKU_01_LoginANDlogout@4b4523f8]" name="AK_01" duration-ms="10323" started-at="2017-11-24T15:43:54Z" data-provider="Login_Details" finished-at="2017-11-24T15:44:04Z">
           <params>
             <param index="0">
               <value>
@@ -35,36 +35,19 @@
                 <![CDATA[password1]]>
               </value>
             </param>
-            <param index="2">
-              <value>
-                <![CDATA[Test]]>
-              </value>
-            </param>
-            <param index="3">
-              <value>
-                <![CDATA[Automation]]>
-              </value>
-            </param>
-            <param index="4">
-              <value>
-                <![CDATA[password1]]>
-              </value>
-            </param>
           </params>
-          <exception class="java.lang.AssertionError">
+          <exception class="testlink.api.java.client.TestLinkAPIException">
             <message>
-              <![CDATA[expected [true] but found [false]]]>
+              <![CDATA[The required parameter status was not provided by the caller.]]>
             </message>
             <full-stacktrace>
-              <![CDATA[java.lang.AssertionError: expected [true] but found [false]
-	at org.testng.Assert.fail(Assert.java:93)
-	at org.testng.Assert.failNotEquals(Assert.java:512)
-	at org.testng.Assert.assertEqualsImpl(Assert.java:134)
-	at org.testng.Assert.assertEquals(Assert.java:115)
-	at org.testng.Assert.assertEquals(Assert.java:304)
-	at org.testng.Assert.assertEquals(Assert.java:314)
-	at com.app.akku.work.pageobjects.LoginPage.Loginpage.validatedloggedinUserDetailsEmailID(Loginpage.java:119)
-	at com.app.akku.work.TestCases.AKKU_47_AddsingleuserManually.addAdmin(AKKU_47_AddsingleuserManually.java:105)
+              <![CDATA[testlink.api.java.client.TestLinkAPIException: The required parameter status was not provided by the caller.
+	at testlink.api.java.client.TestLinkAPIClient.setParam(TestLinkAPIClient.java:1310)
+	at testlink.api.java.client.TestLinkAPIClient.reportTestCaseResult(TestLinkAPIClient.java:281)
+	at testlink.api.java.client.TestLinkAPIClient.reportTestCaseResult(TestLinkAPIClient.java:246)
+	at testlink.api.java.client.TestLinkAPIClient.reportTestCaseResult(TestLinkAPIClient.java:217)
+	at com.app.akku.work.common.TestLinkIntegration.reportResult(TestLinkIntegration.java:16)
+	at com.app.akku.work.TestCases.AKKU_01_LoginANDlogout.AK_01(AKKU_01_LoginANDlogout.java:101)
 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -92,26 +75,26 @@
 	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:76)
 ]]>
             </full-stacktrace>
-          </exception> <!-- java.lang.AssertionError -->
+          </exception> <!-- testlink.api.java.client.TestLinkAPIException -->
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- addAdmin -->
-        <test-method status="PASS" signature="tearDown(org.testng.ITestResult)[pri:0, instance:com.app.akku.work.TestCases.AKKU_47_AddsingleuserManually@5a8e6209]" name="tearDown" is-config="true" duration-ms="1142" started-at="2017-11-21T15:09:14Z" finished-at="2017-11-21T15:09:16Z">
+        </test-method> <!-- AK_01 -->
+        <test-method status="PASS" signature="tearDown(org.testng.ITestResult)[pri:0, instance:com.app.akku.work.TestCases.AKKU_01_LoginANDlogout@4b4523f8]" name="tearDown" is-config="true" duration-ms="1010" started-at="2017-11-24T15:44:04Z" finished-at="2017-11-24T15:44:05Z">
           <params>
             <param index="0">
               <value>
-                <![CDATA[[TestResult name=addAdmin status=FAILURE method=AKKU_47_AddsingleuserManually.addAdmin(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String)[pri:0, instance:com.app.akku.work.TestCases.AKKU_47_AddsingleuserManually@5a8e6209] output={null}]]]>
+                <![CDATA[[TestResult name=AK_01 status=FAILURE method=AKKU_01_LoginANDlogout.AK_01(java.lang.String, java.lang.String)[pri:0, instance:com.app.akku.work.TestCases.AKKU_01_LoginANDlogout@4b4523f8] output={null}]]]>
               </value>
             </param>
           </params>
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearDown -->
-        <test-method status="PASS" signature="teardown()[pri:0, instance:com.app.akku.work.TestCases.AKKU_47_AddsingleuserManually@5a8e6209]" name="teardown" is-config="true" duration-ms="1" started-at="2017-11-21T15:09:16Z" finished-at="2017-11-21T15:09:16Z">
+        <test-method status="PASS" signature="teardown()[pri:0, instance:com.app.akku.work.TestCases.AKKU_01_LoginANDlogout@4b4523f8]" name="teardown" is-config="true" duration-ms="1" started-at="2017-11-24T15:44:05Z" finished-at="2017-11-24T15:44:05Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- teardown -->
-      </class> <!-- com.app.akku.work.TestCases.AKKU_47_AddsingleuserManually -->
-    </test> <!-- Edit User -->
-  </suite> <!-- AKKU_TestSuite -->
+      </class> <!-- com.app.akku.work.TestCases.AKKU_01_LoginANDlogout -->
+    </test> <!-- Login and logout in Chrome -->
+  </suite> <!-- AKKU_Sanity -->
 </testng-results>

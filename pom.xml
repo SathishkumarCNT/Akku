@@ -36,7 +36,7 @@
 				<version>2.20.1</version>
 				<configuration>
 					<suiteXmlFiles>
-						<suiteXmlFile>${project.basedir}src/test/resources/suites/Regression.xml</suiteXmlFile>
+						<suiteXmlFile>${project.basedir}src/test/resources/suites/Login.xml</suiteXmlFile>
 					</suiteXmlFiles>
 				</configuration>
 			</plugin>
@@ -108,11 +108,11 @@
 			<artifactId>testlink-api-client</artifactId>
 			<version>2.0</version>
 		</dependency><!-- https://mvnrepository.com/artifact/net.sourceforge.htmlunit/htmlunit-core-js -->
-		<dependency>
+		<!-- <dependency>
 			<groupId>net.sourceforge.htmlunit</groupId>
 			<artifactId>htmlunit-core-js</artifactId>
-			<version>2.27</version>
-		</dependency>
+			<version>2.28</version>
+		</dependency> -->
 		<dependency>
 			<groupId>org.seleniumhq.selenium</groupId>
 			<artifactId>selenium-java</artifactId>

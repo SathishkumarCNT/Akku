@@ -7,6 +7,7 @@ import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 import com.app.akku.work.common.Browser_Setup;
+import com.app.akku.work.common.Retry;
 import com.app.akku.work.common.TestLinkIntegration;
 import com.app.akku.work.common.poi_Reader_e;
 import com.app.akku.work.keywords.Keywords;
@@ -41,7 +42,7 @@ public class AKKU_15_PasswordPolicy extends Browser_Setup {
 		return testData;
 	}
 
-	@Test(dataProvider = "SiteBlockingLogin_Details")
+	@Test(dataProvider = "SiteBlockingLogin_Details", retryAnalyzer = Retry.class)
 	public void AK_15_UpdatePwdpolicybyselectingonlyonePwdComplexity(String email, String password,
 			String siteURl, String siteDescription) throws Exception
 
@@ -77,7 +78,7 @@ public class AKKU_15_PasswordPolicy extends Browser_Setup {
 
 	}
 
-	@Test(dataProvider = "SiteBlockingLogin_Details")
+	@Test(dataProvider = "SiteBlockingLogin_Details", retryAnalyzer = Retry.class)
 	public void AK_16_UpdatePwdpolicybyselectingmorethanonePwdComplexity(String email, String password,
 			String siteURl, String siteDescription) throws Exception
 

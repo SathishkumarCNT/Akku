@@ -16,6 +16,7 @@ import java.util.Set;
 import org.apache.commons.io.FileUtils;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Capabilities;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.OutputType;
@@ -24,6 +25,7 @@ import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
@@ -642,4 +644,62 @@ public class Keywords {
 		}
 		
 	}
+	
+	public void selectByindexvalue(By object,int value) throws Exception {
+		try{
+			Select select = new Select(driver.findElement(object));
+			select.selectByIndex(value);
+			Thread.sleep(1000);
+		}catch(Exception e)
+		{
+			
+			throw e;
+			
+		}
+		
+	}
+	
+	public void selectall(By object) throws Exception {
+		try{
+			Select select = new Select(driver.findElement(object));
+			select.getAllSelectedOptions();
+			Thread.sleep(1000);
+		}catch(Exception e)
+		{
+			
+			throw e;
+			
+		}
+		
+	}
+	
+	public void readfromlist(By object) throws Exception {
+		try{
+			WebElement listbox =(driver.findElement(object));
+			
+			Select select = new Select(listbox);
+			String Value = select.getFirstSelectedOption().getAttribute("value");
+			
+			System.out.println(Value);
+			Thread.sleep(1000);
+		}catch(Exception e)
+		{
+			
+			throw e;
+			
+		}
+		
+	}
+public void keytype(By object, Keys data) throws Exception {
+		
+		try{
+			driver.findElement(object).sendKeys(data);
+			}
+		catch(Exception e)
+		{
+			String exp=object.toString();
+			
+		}
+	}
+	
 }
