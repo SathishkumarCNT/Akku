@@ -1,7 +1,6 @@
 package com.app.akku.work.TestCases;
 
 
-import org.testng.ITestNGMethod;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterTest;
@@ -63,15 +62,14 @@ public class AKKU_01_LoginANDlogout extends Browser_Setup {
 		return testData;
 	}
 
-	
-	
-	@Test(dataProvider = "Login_Details", retryAnalyzer = Retry.class)
+	// @Test(dataProvider = "Login_Details", retryAnalyzer = Retry.class)
+	@Test(dataProvider = "Login_Details")
 	public void AK_01_ValidLogin(String email, String password) throws Exception {
 		try {
-			
+
 			Thread.sleep(5000);
 			loginpage.loginpageTitle();
-			
+
 			loginpage.typeUseremail(email);
 			Thread.sleep(3000);
 			loginpage.typepassword(password);
@@ -80,8 +78,8 @@ public class AKKU_01_LoginANDlogout extends Browser_Setup {
 			Thread.sleep(2000);
 			loginpage.validatedloggedinUserDetailsEmailID(email);
 			loginpage.verifyloggedinUserFNameAndLName();
-            loginpage.clickLogout();
-          
+			loginpage.clickLogout();
+
 			System.out.println("####################################################################");
 			result = TestLinkAPIResults.TEST_PASSED;
 			notes = getOSBrowserDetails();
@@ -98,14 +96,13 @@ public class AKKU_01_LoginANDlogout extends Browser_Setup {
 			TestLinkIntegration.reportResult(testProject, testPlan, AK_01, build, notes, result);
 
 		}
-		
-		
+
 	}
 
-	@Test(dataProvider = "Invalid_LoginPwdDetails", retryAnalyzer = Retry.class)
+	//@Test(dataProvider = "Invalid_LoginPwdDetails", retryAnalyzer = Retry.class)
+	@Test(dataProvider = "Invalid_LoginPwdDetails")
 	public void AK_02_LoginWithValidEmailAndInvalidPassword(String email, String password) throws Exception {
-		
-		
+
 		try {
 			System.out.println("Inside of loginwithvalidEmailANDinvalidPWD");
 			loginpage.typeUseremail(email);
@@ -134,11 +131,11 @@ public class AKKU_01_LoginANDlogout extends Browser_Setup {
 			TestLinkIntegration.reportResult(testProject, testPlan, AK_02, build, notes, result);
 
 		}
-		
-		
+
 	}
 
-	@Test(dataProvider = "Login_Details", retryAnalyzer = Retry.class)
+	//@Test(dataProvider = "Login_Details", retryAnalyzer = Retry.class)
+	@Test(dataProvider = "Login_Details")
 	public void AK_03_LoginwithValidUserNameandEmptyPassword(String email, String password) throws Exception {
 
 		try {
@@ -164,14 +161,14 @@ public class AKKU_01_LoginANDlogout extends Browser_Setup {
 		} finally {
 
 			System.out.println("Updating TestCase Execution Status in TestLink");
-			TestLinkIntegration.reportResult(testProject, testPlan,AK_03, build, notes, result);
+			TestLinkIntegration.reportResult(testProject, testPlan, AK_03, build, notes, result);
 
 		}
 
 	}
 
-
-	@Test(dataProvider = "Invalid_LoginDetails", retryAnalyzer = Retry.class)
+	//@Test(dataProvider = "Invalid_LoginDetails", retryAnalyzer = Retry.class)
+	@Test(dataProvider = "Invalid_LoginDetails")
 	public void AK_04_LoginwithinvalidUsernameandinvalidPassword(String email, String password) throws Exception {
 		try {
 
@@ -198,12 +195,13 @@ public class AKKU_01_LoginANDlogout extends Browser_Setup {
 		} finally {
 
 			System.out.println("Updating TestCase Execution Status in TestLink");
-			TestLinkIntegration.reportResult(testProject, testPlan,AK_04, build, notes, result);
+			TestLinkIntegration.reportResult(testProject, testPlan, AK_04, build, notes, result);
 
 		}
 	}
-	
-	@Test(dataProvider = "Login_Details", retryAnalyzer = Retry.class)
+
+	//@Test(dataProvider = "Login_Details", retryAnalyzer = Retry.class)
+	@Test(dataProvider = "Login_Details")
 	public void AK_05_LoginwithemptyUsernameandValidPassword(String email, String password) throws Exception {
 
 		try {
@@ -230,7 +228,7 @@ public class AKKU_01_LoginANDlogout extends Browser_Setup {
 		} finally {
 
 			System.out.println("Updating TestCase Execution Status in TestLink");
-			TestLinkIntegration.reportResult(testProject, testPlan,AK_05, build, notes, result);
+			TestLinkIntegration.reportResult(testProject, testPlan, AK_05, build, notes, result);
 
 		}
 	}
@@ -247,9 +245,7 @@ public class AKKU_01_LoginANDlogout extends Browser_Setup {
 		try {
 			if (result.getStatus() == ITestResult.SUCCESS) {
 				System.out.println("Test case passed");
-								driver.quit();
-						
-							    
+				driver.quit();
 
 			} else if (result.getStatus() == ITestResult.FAILURE) {
 
@@ -257,17 +253,13 @@ public class AKKU_01_LoginANDlogout extends Browser_Setup {
 
 				System.out.println("Test case Failed & Screenshot taken in Tear Down method");
 				driver.quit();
-				
-			
-				
 
 			} else if (result.getStatus() == ITestResult.SKIP) {
 
 				Keywords.captureScreenShot(driver);
 
 				System.out.println("Test case Skipped");
-				
-				
+
 				driver.quit();
 			}
 		} catch (Exception e) {
@@ -288,8 +280,5 @@ public class AKKU_01_LoginANDlogout extends Browser_Setup {
 		System.out.println("Test Execution Finished");
 
 	}
-	
-	
-	
-	
+
 }
