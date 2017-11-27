@@ -649,8 +649,6 @@ public class AK_52_Create_Edit_Delete_Assign_OU extends Browser_Setup {
 			Thread.sleep(2000);
 			oumangement.clickOUmanagementBtn();
 			oumangement.ClickExpandbtn();
-
-			// oumangement.ClickexpandonParentOu(ParentOU);
 			Thread.sleep(2000);
 			oumangement.ClickdeleteonOu(ParentOU);
 			Thread.sleep(2000);
@@ -667,6 +665,9 @@ public class AK_52_Create_Edit_Delete_Assign_OU extends Browser_Setup {
 
 		}
 	}
+	
+	
+	
 
 	@AfterMethod
 	public void tearDown(ITestResult result) {

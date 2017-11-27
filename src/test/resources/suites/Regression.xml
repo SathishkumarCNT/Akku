@@ -63,17 +63,27 @@
 			<class name="com.app.akku.work.TestCases.AKKU_26_Siteblocking">
 				<methods>
 
-					<include name="AKKU_22_Add_DuplicateSiteUrlandvalidSiteDes" />
-					<include name="AKKU_23_SiteBlockingwithoutUrlAndDescription" />
-					<include name="AKKU_24_SiteBlocking_InvalidUrlFormat" />
-					<include name="AKKU_25_SiteBlockingwithoutUrlDescription" />
-					<include name="AKKU_26_siteBlock" />
-					<include name="AKKU_27_EditwithoutSiteUrlandDescription" />
-					<include name="AKKU_28_EditDuplicateSiteUrlandvalidSiteDescription" />
-					<include name="AKKU_29_EditwithoutUrlDescription" />
-					<include name="AKKU_30_EditsiteBlockwithvalidurlanddescription" />
-					<include name="AKKU_31_EditinvalidSiteUrlandvalidSiteDescription" />
-					<include name="AKKU_32_DeleteSiteUrlandvalidSiteDescription" />
+
+
+					<include name="AK_21_AddDuplicateSiteUrlwithvalidSiteDescription" />
+					<include
+						name="AK_22_ClickonAddSitewithoutEnteringanyDatainUrlDesctextfield" />
+					<include
+						name="AK_23_AddInvalidSiteUrlandvalidSiteDescriptioninSiteBlocking" />
+					<include
+						name="AK_24_AddValidSiteUrlandInvalidSiteDescriptioninSiteBlocking" />
+					<include name="AK_25_BlockingaSitewithValidSitedetails" />
+					<include
+						name="AK_26_EditSiteDetailsandsaveitbyRemovingurlDescriptiondetails" />
+					<include
+						name="AK_27_EditSiteDetailsandsaveitbyDuplicateurlValidDescriptiondetails" />
+					<include
+						name="AK_28_EditSiteDetailsandsaveitbyvalidsiteurlemptysiteDescription" />
+					<include
+						name="AK_29_EditSiteDetailsandsaveitbyvalidsiteurlvalidsiteDescription" />
+					<include
+						name="AK_30_EditSiteDetailsandsaveitbyInvalidsiteurlvalidsiteDescription" />
+					<include name="AK_31_DeleteOneSiteURLfromsiteBlockedlist" />
 
 				</methods>
 			</class>
@@ -114,22 +124,24 @@
 				name="com.app.akku.work.TestCases.AKKU_33_Edit_Delete_Suspend_Activity_Users">
 				<methods>
 
-					<include name="Akku_33_EditUsermanagementwithvaliddata" />
-					<include name="Akku_34_EditUsermanagementwithEmptyEmailId" />
-					<include name="Akku_35_EditUsermanagementwithinvaliddata" />
-					<include name="Akku_36_SuspendUserfromUserManagementgrid" />
-					<include name="Akku_37_DeleteUserfromUserManagementgrid" />
-					<include name="Akku_38_Resetwithinvalidpasswordpolicy" />
-					<include name="Akku_39_Resetwithdifferentconfirmpwd" />
-					<include name="Akku_40_Resetwithvalidpwd" />
-					<include name="Akku_41_ChangePasswordinNextLogin" />
-					<include name="Akku_42_Searchuserfromuserlistusingvalidkeyword" />
-					<include name="Akku_43_Searchuserfromuserlistusinginvalidkeyword" />
-					<include name="Akku_44_Userlistcountbasedonshowdropdown" />
-					<include name="Akku_45_UserdetailsbyselectingFullNameLinkText" />
-					<include name="Akku_46_VerifyLastLogindatetimeinuserList" />
-					<include name="Akku_50_VerifyActionbuttondisplay" />
 
+					<include
+						name="AK_33_EditUserinformationinuserManagementpagewithvaliddata" />
+					<include name="AK_35_EditUserDetailsinUserManagementpagewithInvaliddata" />
+					<include name="AK_36_EditUserDetailswithinvalidEmailIDformat" />
+					<include name="AK_37_SuspendUserfromUserManagementpage" />
+					<include name="AK_38_DeleteUserfromUserManagementpage" />
+					<include name="AK_40_ResetUserPasswordwithinvalidpasswordpolicy" />
+					<include name="AK_42_ResetNewpasswordwithnotmatchingwithConfirmPassword" />
+					<include name="AK_43_ResetPasswordfromUserListwithvalidpassword" />
+					<include name="AK_45_ResetPasswordandChangePasswordinNextLogin" />
+					<include name="AK_47_Searchuserfromuserlistusingvalidkeyword" />
+					<include name="AK_48_Searchuserfromuserlistusinginvalidkeyword" />
+					<include name="AK_51_UserlistcountinapagebasedonShowCountselected" />
+					<include name="AK_50_ViewUserdetailsbyselectingFullNameLinkText" />
+					<include name="AK_49_VerifyLastLogindatetimeinuserList" />
+					<include
+						name="AK_44_SelectmultipleuserfromuserlistandVerifyActionbuttons" />
 				</methods>
 			</class>
 		</classes>
