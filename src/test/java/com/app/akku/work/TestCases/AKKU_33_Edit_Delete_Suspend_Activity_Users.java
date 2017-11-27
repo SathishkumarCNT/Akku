@@ -14,25 +14,24 @@ import com.app.akku.work.keywords.Keywords;
 import testlink.api.java.client.TestLinkAPIResults;
 
 public class AKKU_33_Edit_Delete_Suspend_Activity_Users extends Browser_Setup {
-	
-	
+
 	String testProject = "AkkuAppTC";
 	String testPlan = "AutomateManualTC";
 	String AK_33 = "Edit User information in user Management page with valid data";
-String AK_35 = "Edit User Details in User Management page with Invalid data";
-String AK_36 = "Edit User Details with invalid Email ID format";
-String AK_37 = "Suspend User from User Management page";
-String AK_38 = "Delete User from User Management page";
-String AK_40 = "Reset User Password with invalid password policy";
-String AK_42 = "Reset New password with not matching with Confirm Password";
-String AK_43 = "Reset Password from User List with valid password";
-String AK_44 = "Select multiple user from user list and Verify Action buttons";
-String AK_45 = "Reset Password and Change Password in Next Login";
-String AK_47 = "Search user from user list using valid keyword";
-String AK_48 = "Search user from user list using invalid keyword";
-String AK_49 = "Verify Last Login date & time in user List";
-String AK_50 = "View User details, by selecting Full Name Link Text";
-String AK_51 = "User list count in a page, based on Show Count selected";
+	String AK_35 = "Edit User Details in User Management page with Invalid data";
+	String AK_36 = "Edit User Details with invalid Email ID format";
+	String AK_37 = "Suspend User from User Management page";
+	String AK_38 = "Delete User from User Management page";
+	String AK_40 = "Reset User Password with invalid password policy";
+	String AK_42 = "Reset New password with not matching with Confirm Password";
+	String AK_43 = "Reset Password from User List with valid password";
+	String AK_44 = "Select multiple user from user list and Verify Action buttons";
+	String AK_45 = "Reset Password and Change Password in Next Login";
+	String AK_47 = "Search user from user list using valid keyword";
+	String AK_48 = "Search user from user list using invalid keyword";
+	String AK_49 = "Verify Last Login date & time in user List";
+	String AK_50 = "View User details, by selecting Full Name Link Text";
+	String AK_51 = "User list count in a page, based on Show Count selected";
 	String build = "Build1";
 	String notes = null;
 	String result = null;
@@ -110,10 +109,9 @@ String AK_51 = "User list count in a page, based on Show Count selected";
 	}
 
 	@Test(dataProvider = "Edit_with_Valid_Data")
-	public void Akku_33_EditUsermanagementwithvaliddata(String email, String password, String Fname, String Lname,
+	public void AK_33_EditUserinformationinuserManagementpagewithvaliddata(String email, String password, String Fname, String Lname,
 			String NewEmail) throws Exception {
-		
-		
+
 		try {
 			loginpage.loginpageTitle();
 
@@ -141,16 +139,14 @@ String AK_51 = "User list count in a page, based on Show Count selected";
 			editinfo.closeAlertpopup();
 			loginpage.clickLogout();
 
-			loginpage.clickLogout();
-			
 			System.out.println("####################################################################");
 			result = TestLinkAPIResults.TEST_PASSED;
-			
+
 		} catch (Exception e) {
 			result = TestLinkAPIResults.TEST_FAILED;
 			notes = e.getMessage();
 			e.printStackTrace();
-		}finally {
+		} finally {
 
 			System.out.println("Updating TestCase Execution Status in TestLink");
 			TestLinkIntegration.reportResult(testProject, testPlan, AK_33, build, notes, result);
@@ -159,7 +155,7 @@ String AK_51 = "User list count in a page, based on Show Count selected";
 	}
 
 	@Test(dataProvider = "Edit_with_Invalid_Data")
-	public void Akku_34_EditUsermanagementwithEmptyEmailId(String email, String password, String Fname, String Lname,
+	public void AK_35_EditUserDetailsinUserManagementpagewithInvaliddata(String email, String password, String Fname, String Lname,
 			String NewEmail) throws Exception {
 
 		try {
@@ -216,12 +212,12 @@ String AK_51 = "User list count in a page, based on Show Count selected";
 			loginpage.clickLogout();
 			System.out.println("####################################################################");
 			result = TestLinkAPIResults.TEST_PASSED;
-			
+
 		} catch (Exception e) {
 			result = TestLinkAPIResults.TEST_FAILED;
 			notes = e.getMessage();
 			e.printStackTrace();
-		}finally {
+		} finally {
 
 			System.out.println("Updating TestCase Execution Status in TestLink");
 			TestLinkIntegration.reportResult(testProject, testPlan, AK_35, build, notes, result);
@@ -231,7 +227,7 @@ String AK_51 = "User list count in a page, based on Show Count selected";
 	}
 
 	@Test(dataProvider = "Edit_with_Valid_Data")
-	public void Akku_35_EditUsermanagementwithinvaliddata(String email, String password, String Fname, String Lname,
+	public void AK_36_EditUserDetailswithinvalidEmailIDformat(String email, String password, String Fname, String Lname,
 			String NewEmail) throws Exception {
 
 		try {
@@ -259,12 +255,12 @@ String AK_51 = "User list count in a page, based on Show Count selected";
 			loginpage.clickLogout();
 			System.out.println("####################################################################");
 			result = TestLinkAPIResults.TEST_PASSED;
-			
+
 		} catch (Exception e) {
 			result = TestLinkAPIResults.TEST_FAILED;
 			notes = e.getMessage();
 			e.printStackTrace();
-		}finally {
+		} finally {
 
 			System.out.println("Updating TestCase Execution Status in TestLink");
 			TestLinkIntegration.reportResult(testProject, testPlan, AK_36, build, notes, result);
@@ -273,7 +269,7 @@ String AK_51 = "User list count in a page, based on Show Count selected";
 	}
 
 	@Test(dataProvider = "Edit_with_Valid_Data")
-	public void Akku_36_SuspendUserfromUserManagementgrid(String email, String password, String Fname, String Lname,
+	public void AK_37_SuspendUserfromUserManagementpage(String email, String password, String Fname, String Lname,
 			String NewEmail) throws Exception {
 
 		try {
@@ -291,7 +287,7 @@ String AK_51 = "User list count in a page, based on Show Count selected";
 			loginpage.verifyloggedinUserFNameAndLName();
 
 			usermanagement.clickUsermanagementBtn();
-			
+
 			editUser.clickonSuspendbtninusermanagement();
 			editUser.AcceptSuspendbtninusermanagement();
 			editUser.ValidateSuspendusermsg();
@@ -299,12 +295,12 @@ String AK_51 = "User list count in a page, based on Show Count selected";
 			loginpage.clickLogout();
 			System.out.println("####################################################################");
 			result = TestLinkAPIResults.TEST_PASSED;
-			
+
 		} catch (Exception e) {
 			result = TestLinkAPIResults.TEST_FAILED;
 			notes = e.getMessage();
 			e.printStackTrace();
-		}finally {
+		} finally {
 
 			System.out.println("Updating TestCase Execution Status in TestLink");
 			TestLinkIntegration.reportResult(testProject, testPlan, AK_37, build, notes, result);
@@ -314,7 +310,7 @@ String AK_51 = "User list count in a page, based on Show Count selected";
 	}
 
 	@Test(dataProvider = "Edit_with_Valid_Data")
-	public void Akku_37_DeleteUserfromUserManagementgrid(String email, String password, String Fname, String Lname,
+	public void AK_38_DeleteUserfromUserManagementpage(String email, String password, String Fname, String Lname,
 			String NewEmail) throws Exception {
 
 		try {
@@ -339,12 +335,12 @@ String AK_51 = "User list count in a page, based on Show Count selected";
 			loginpage.clickLogout();
 			System.out.println("####################################################################");
 			result = TestLinkAPIResults.TEST_PASSED;
-			
+
 		} catch (Exception e) {
 			result = TestLinkAPIResults.TEST_FAILED;
 			notes = e.getMessage();
 			e.printStackTrace();
-		}finally {
+		} finally {
 
 			System.out.println("Updating TestCase Execution Status in TestLink");
 			TestLinkIntegration.reportResult(testProject, testPlan, AK_38, build, notes, result);
@@ -354,7 +350,7 @@ String AK_51 = "User list count in a page, based on Show Count selected";
 	}
 
 	@Test(dataProvider = "EditPwd_DetailswithPassworNotmatchPolicy")
-	public void Akku_38_Resetwithinvalidpasswordpolicy(String email, String password, String Oldpassword,
+	public void AK_40_ResetUserPasswordwithinvalidpasswordpolicy(String email, String password, String Oldpassword,
 			String Newpassword, String Confnewpassword) throws Exception {
 
 		try {
@@ -378,17 +374,15 @@ String AK_51 = "User list count in a page, based on Show Count selected";
 			editUser.Validateerormsg();
 
 			loginpage.clickLogout();
-			
-			
+
 			System.out.println("####################################################################");
 			result = TestLinkAPIResults.TEST_PASSED;
-			
-			
+
 		} catch (Exception e) {
 			result = TestLinkAPIResults.TEST_FAILED;
 			notes = e.getMessage();
 			e.printStackTrace();
-		}finally {
+		} finally {
 
 			System.out.println("Updating TestCase Execution Status in TestLink");
 			TestLinkIntegration.reportResult(testProject, testPlan, AK_40, build, notes, result);
@@ -398,7 +392,7 @@ String AK_51 = "User list count in a page, based on Show Count selected";
 	}
 
 	@Test(dataProvider = "EditPwd_DInvalidConfirmpassword_Details")
-	public void Akku_39_Resetwithdifferentconfirmpwd(String email, String password, String Oldpassword,
+	public void AK_42_ResetNewpasswordwithnotmatchingwithConfirmPassword(String email, String password, String Oldpassword,
 			String Newpassword, String Confnewpassword) throws Exception {
 
 		try {
@@ -422,17 +416,15 @@ String AK_51 = "User list count in a page, based on Show Count selected";
 			editUser.Validateerormsgforcompwdnotmatch();
 
 			loginpage.clickLogout();
-			
-			
+
 			System.out.println("####################################################################");
 			result = TestLinkAPIResults.TEST_PASSED;
-			
-			
+
 		} catch (Exception e) {
 			result = TestLinkAPIResults.TEST_FAILED;
 			notes = e.getMessage();
 			e.printStackTrace();
-		}finally {
+		} finally {
 
 			System.out.println("Updating TestCase Execution Status in TestLink");
 			TestLinkIntegration.reportResult(testProject, testPlan, AK_42, build, notes, result);
@@ -442,7 +434,7 @@ String AK_51 = "User list count in a page, based on Show Count selected";
 	}
 
 	@Test(dataProvider = "EditPwd_validpassword_Details")
-	public void Akku_40_Resetwithvalidpwd(String email, String password, String Oldpassword, String Newpassword,
+	public void AK_43_ResetPasswordfromUserListwithvalidpassword(String email, String password, String Oldpassword, String Newpassword,
 			String Confnewpassword) throws Exception {
 
 		try {
@@ -466,18 +458,15 @@ String AK_51 = "User list count in a page, based on Show Count selected";
 			editUser.ValidateSuccessfullyresetmsg();
 
 			loginpage.clickLogout();
-			
-			
+
 			System.out.println("####################################################################");
 			result = TestLinkAPIResults.TEST_PASSED;
-			
-			
-			
+
 		} catch (Exception e) {
 			result = TestLinkAPIResults.TEST_FAILED;
 			notes = e.getMessage();
 			e.printStackTrace();
-		}finally {
+		} finally {
 
 			System.out.println("Updating TestCase Execution Status in TestLink");
 			TestLinkIntegration.reportResult(testProject, testPlan, AK_43, build, notes, result);
@@ -487,7 +476,7 @@ String AK_51 = "User list count in a page, based on Show Count selected";
 	}
 
 	@Test(dataProvider = "EditPwd_Changepwdinnextlogin_Details")
-	public void Akku_41_ChangePasswordinNextLogin(String email, String password, String Oldpassword, String NewEmail,
+	public void AK_45_ResetPasswordandChangePasswordinNextLogin(String email, String password, String Oldpassword, String NewEmail,
 			String Newpassword, String Confnewpassword) throws Exception {
 
 		try {
@@ -512,6 +501,7 @@ String AK_51 = "User list count in a page, based on Show Count selected";
 			editUser.ResetbtnClick();
 			editUser.ValidateSuccessfullyresetmsg();
 			loginpage.clickLogout();
+
 			loginpage.typeUseremail(NewEmail);
 			loginpage.typepassword(Newpassword);
 			loginpage.clickLogin();
@@ -528,19 +518,15 @@ String AK_51 = "User list count in a page, based on Show Count selected";
 			loginpage.clickLogin();
 			loginpage.validatedloggedinUserDetailsEmailID(NewEmail);
 			loginpage.clickLogout();
-			
-			
+
 			System.out.println("####################################################################");
 			result = TestLinkAPIResults.TEST_PASSED;
-			
-			
-			
-	
+
 		} catch (Exception e) {
 			result = TestLinkAPIResults.TEST_FAILED;
 			notes = e.getMessage();
 			e.printStackTrace();
-		}finally {
+		} finally {
 
 			System.out.println("Updating TestCase Execution Status in TestLink");
 			TestLinkIntegration.reportResult(testProject, testPlan, AK_45, build, notes, result);
@@ -549,7 +535,7 @@ String AK_51 = "User list count in a page, based on Show Count selected";
 	}
 
 	@Test(dataProvider = "SearchKeywordingridwithvaliddata")
-	public void Akku_42_Searchuserfromuserlistusingvalidkeyword(String email, String password, String Fname,
+	public void AK_47_Searchuserfromuserlistusingvalidkeyword(String email, String password, String Fname,
 			String Lname, String SearchKey) throws Exception {
 
 		try {
@@ -574,17 +560,15 @@ String AK_51 = "User list count in a page, based on Show Count selected";
 			Thread.sleep(5000);
 
 			loginpage.clickLogout();
-			
-			
+
 			System.out.println("####################################################################");
 			result = TestLinkAPIResults.TEST_PASSED;
-			
-			
+
 		} catch (Exception e) {
 			result = TestLinkAPIResults.TEST_FAILED;
 			notes = e.getMessage();
 			e.printStackTrace();
-		}finally {
+		} finally {
 
 			System.out.println("Updating TestCase Execution Status in TestLink");
 			TestLinkIntegration.reportResult(testProject, testPlan, AK_47, build, notes, result);
@@ -594,7 +578,7 @@ String AK_51 = "User list count in a page, based on Show Count selected";
 	}
 
 	@Test(dataProvider = "SearchKeywordingridwithinvaliddata")
-	public void Akku_43_Searchuserfromuserlistusinginvalidkeyword(String email, String password, String Fname,
+	public void AK_48_Searchuserfromuserlistusinginvalidkeyword(String email, String password, String Fname,
 			String Lname, String SearchKey) throws Exception {
 
 		try {
@@ -619,17 +603,15 @@ String AK_51 = "User list count in a page, based on Show Count selected";
 			Thread.sleep(5000);
 
 			loginpage.clickLogout();
-			
-			
+
 			System.out.println("####################################################################");
 			result = TestLinkAPIResults.TEST_PASSED;
-			
-			
+
 		} catch (Exception e) {
 			result = TestLinkAPIResults.TEST_FAILED;
 			notes = e.getMessage();
 			e.printStackTrace();
-		}finally {
+		} finally {
 
 			System.out.println("Updating TestCase Execution Status in TestLink");
 			TestLinkIntegration.reportResult(testProject, testPlan, AK_48, build, notes, result);
@@ -639,7 +621,7 @@ String AK_51 = "User list count in a page, based on Show Count selected";
 	}
 
 	@Test(dataProvider = "SearchKeywordingridwithinvaliddata")
-	public void Akku_44_Userlistcountbasedonshowdropdown(String email, String password, String Fname, String Lname,
+	public void AK_51_UserlistcountinapagebasedonShowCountselected(String email, String password, String Fname, String Lname,
 			String SearchKey) throws Exception {
 
 		try {
@@ -663,16 +645,15 @@ String AK_51 = "User list count in a page, based on Show Count selected";
 			Thread.sleep(5000);
 
 			loginpage.clickLogout();
-			
+
 			System.out.println("####################################################################");
 			result = TestLinkAPIResults.TEST_PASSED;
-			
-			
+
 		} catch (Exception e) {
 			result = TestLinkAPIResults.TEST_FAILED;
 			notes = e.getMessage();
 			e.printStackTrace();
-		}finally {
+		} finally {
 
 			System.out.println("Updating TestCase Execution Status in TestLink");
 			TestLinkIntegration.reportResult(testProject, testPlan, AK_51, build, notes, result);
@@ -682,7 +663,7 @@ String AK_51 = "User list count in a page, based on Show Count selected";
 	}
 
 	@Test(dataProvider = "SearchKeywordingridwithvaliddata")
-	public void Akku_45_UserdetailsbyselectingFullNameLinkText(String email, String password, String Fname,
+	public void AK_50_ViewUserdetailsbyselectingFullNameLinkText(String email, String password, String Fname,
 			String Lname, String SearchKey) throws Exception {
 
 		try {
@@ -710,16 +691,15 @@ String AK_51 = "User list count in a page, based on Show Count selected";
 			Thread.sleep(3000);
 
 			loginpage.clickLogout();
-			
+
 			System.out.println("####################################################################");
 			result = TestLinkAPIResults.TEST_PASSED;
-			
-			
+
 		} catch (Exception e) {
 			result = TestLinkAPIResults.TEST_FAILED;
 			notes = e.getMessage();
 			e.printStackTrace();
-		}finally {
+		} finally {
 
 			System.out.println("Updating TestCase Execution Status in TestLink");
 			TestLinkIntegration.reportResult(testProject, testPlan, AK_50, build, notes, result);
@@ -729,7 +709,7 @@ String AK_51 = "User list count in a page, based on Show Count selected";
 	}
 
 	@Test(dataProvider = "EditPwd_Changepwdinnextlogin_Details")
-	public void Akku_46_VerifyLastLogindatetimeinuserList(String email, String password, String Oldpassword,
+	public void AK_49_VerifyLastLogindatetimeinuserList(String email, String password, String Oldpassword,
 			String NewEmail, String Newpassword, String Confnewpassword) throws Exception {
 
 		try {
@@ -751,16 +731,15 @@ String AK_51 = "User list count in a page, based on Show Count selected";
 			Thread.sleep(3000);
 
 			loginpage.clickLogout();
-			
+
 			System.out.println("####################################################################");
 			result = TestLinkAPIResults.TEST_PASSED;
-			
-			
+
 		} catch (Exception e) {
 			result = TestLinkAPIResults.TEST_FAILED;
 			notes = e.getMessage();
 			e.printStackTrace();
-		}finally {
+		} finally {
 
 			System.out.println("Updating TestCase Execution Status in TestLink");
 			TestLinkIntegration.reportResult(testProject, testPlan, AK_49, build, notes, result);
@@ -769,7 +748,7 @@ String AK_51 = "User list count in a page, based on Show Count selected";
 	}
 
 	@Test(dataProvider = "EditPwd_Changepwdinnextlogin_Details")
-	public void Akku_50_VerifyActionbuttondisplay(String email, String password, String Oldpassword, String NewEmail,
+	public void AK_44_SelectmultipleuserfromuserlistandVerifyActionbuttons(String email, String password, String Oldpassword, String NewEmail,
 			String Newpassword, String Confnewpassword) throws Exception {
 
 		try {
@@ -813,16 +792,15 @@ String AK_51 = "User list count in a page, based on Show Count selected";
 			Thread.sleep(3000);
 
 			loginpage.clickLogout();
-			
+
 			System.out.println("####################################################################");
 			result = TestLinkAPIResults.TEST_PASSED;
-			
-			
+
 		} catch (Exception e) {
 			result = TestLinkAPIResults.TEST_FAILED;
 			notes = e.getMessage();
 			e.printStackTrace();
-		}finally {
+		} finally {
 
 			System.out.println("Updating TestCase Execution Status in TestLink");
 			TestLinkIntegration.reportResult(testProject, testPlan, AK_44, build, notes, result);

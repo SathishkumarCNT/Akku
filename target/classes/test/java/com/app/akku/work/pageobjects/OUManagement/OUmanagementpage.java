@@ -114,10 +114,6 @@ public class OUmanagementpage extends Keywords {
 			System.out.println("Trying to Click OU Name...");
 
 			Thread.sleep(3000);
-			boolean A = driver.findElement(By.xpath("//a[contains(text(),'DemoFN')]/../div/button[1]/i")).isDisplayed();
-			System.out.println(A);
-
-			Thread.sleep(3000);
 
 			driver.findElement(By.xpath("//a[contains(text(),'" + NewOu + "')]/../div/button[1]")).click();
 
