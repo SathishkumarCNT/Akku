@@ -22,6 +22,8 @@
 					<include name="AK_12_UpdateNewPasswordWithEmptyPwdEmptyConfirmPwd"/>		
 					<include name="AK_13_UpdatepasswordwithoutmatchingwithPasswordpolicy"/>
 					<include name="AK_14_UpdateNewPasswordWithSamevalueofnewpwdConfirmpwd"/> -->
+					
+					
 				
 				</methods>
 			</class>

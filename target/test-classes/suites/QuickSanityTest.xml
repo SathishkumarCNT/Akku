@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+
+<!-- Specify the test suite name -->
+<suite name="Quick Sanity" verbose="1" annotations="JDK">
+
+	<!-- Browser Types -->
+	<!-- U_firefox -->
+	<!-- M_firefox -->
+	<!-- W_firefox -->
+	<!-- U_chrome -->
+	<!-- M_chrome -->
+	<!-- W_chrome -->
+	<!-- IE -->
+	<!-- Edge -->
+
+	<test name="Login and logout in Chrome" preserve-order="true">
+
+		<parameter name="browser" value="U_chrome" />
+		<parameter name="Environment" value="http://pre-prod.akku.work/" />
+
+		<classes>
+			<class name="com.app.akku.work.TestCases.AKKU_01_LoginANDlogout">
+				<methods>
+
+					<include name="AK_03_LoginwithValidUserNameandEmptyPassword" />
+					<include name="AK_04_LoginwithinvalidUsernameandinvalidPassword" />
+
+				</methods>
+			</class>
+		</classes>
+	</test>
+
+	<test name="Edit Information" preserve-order="true">
+
+		<parameter name="browser" value="U_chrome" />
+		<parameter name="Environment" value="http://pre-prod.akku.work/" />
+
+		<classes>
+			<class name="com.app.akku.work.TestCases.AKKU_09_Editpwdinformation">
+				<methods>
+
+					<include name="AK_8_UpdateNewPasswordwithoutenteringOldpassword" />
+					<include name="AK_9_ChangeOldPasswordtoNewPassword" />
+					<include name="AK_32_ChangeNewPasswordtoOldPassword" />
+					<include name="AK_12_UpdateNewPasswordWithEmptyPwdEmptyConfirmPwd" />
+					<include name="AK_13_UpdatepasswordwithoutmatchingwithPasswordpolicy" />
+					<include name="AK_14_UpdateNewPasswordWithSamevalueofnewpwdConfirmpwd" />
+
+				</methods>
+			</class>
+		</classes>
+	</test>
+
+	<test name="Password Policy" preserve-order="true">
+
+		<parameter name="browser" value="U_chrome" />
+		<parameter name="Environment" value="http://pre-prod.akku.work/" />
+
+		<classes>
+			<class name="com.app.akku.work.TestCases.AKKU_15_PasswordPolicy">
+				<methods>
+
+					<include
+						name="AKKU_15_UpdatePasswordpolicbyselectingonePasswordComplexity" />
+					<include name="Updateoldpasswordpolicy" />
+
+				</methods>
+			</class>
+		</classes>
+	</test>
+
+
+	<test name="Site Blocking" preserve-order="true">
+
+		<parameter name="browser" value="U_chrome" />
+		<parameter name="Environment" value="http://pre-prod.akku.work/" />
+
+		<classes>
+			<class name="com.app.akku.work.TestCases.AKKU_26_Siteblocking">
+				<methods>
+
+					<include name="AK_25_BlockingaSitewithValidSitedetails" />
+					<include name="AK_31_DeleteOneSiteURLfromsiteBlockedlist" />
+
+				</methods>
+			</class>
+		</classes>
+	</test>
+
+	<test name="User Management" preserve-order="true">
+
+		<parameter name="browser" value="U_chrome" />
+		<parameter name="Environment" value="http://pre-prod.akku.work/" />
+
+		<classes>
+			<class
+				name="com.app.akku.work.TestCases.AKKU_33_Edit_Delete_Suspend_Activity_Users">
+				<methods>
+
+					<include name="Akku_34_EditUsermanagementwithEmptyEmailId" />
+					<include name="Akku_37_DeleteUserfromUserManagementgrid" />
+					<include name="Akku_38_Resetwithinvalidpasswordpolicy" />
+					<include name="Akku_41_ChangePasswordinNextLogin" />
+					<include name="Akku_43_Searchuserfromuserlistusinginvalidkeyword" />
+					<include name="Akku_44_Userlistcountbasedonshowdropdown" />
+					<include name="Akku_46_VerifyLastLogindatetimeinuserList" />
+
+				</methods>
+			</class>
+		</classes>
+	</test>
+
+</suite>

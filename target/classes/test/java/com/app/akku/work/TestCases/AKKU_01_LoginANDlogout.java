@@ -1,19 +1,18 @@
 package com.app.akku.work.TestCases;
 
-
+import org.apache.log4j.Logger;
+import org.testng.Assert;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterTest;
-
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
-
 import com.app.akku.work.common.Browser_Setup;
 import com.app.akku.work.common.Retry;
 import com.app.akku.work.common.TestLinkIntegration;
 import com.app.akku.work.common.poi_Reader_e;
 import com.app.akku.work.keywords.Keywords;
-
+import com.aventstack.extentreports.Status;
 import testlink.api.java.client.TestLinkAPIResults;
 
 /**
@@ -34,7 +33,7 @@ public class AKKU_01_LoginANDlogout extends Browser_Setup {
 	String build = "Build1";
 	String notes = null;
 	String result = null;
-
+	 Logger log = Logger.getLogger(AKKU_01_LoginANDlogout.class.getName());
 	@DataProvider(name = "Login_Details")
 	public Object[][] dataProvider_ValidLogin() {
 
@@ -62,9 +61,10 @@ public class AKKU_01_LoginANDlogout extends Browser_Setup {
 		return testData;
 	}
 
-	// @Test(dataProvider = "Login_Details", retryAnalyzer = Retry.class)
-	@Test(dataProvider = "Login_Details")
+	@Test(dataProvider = "Login_Details", retryAnalyzer = Retry.class)
 	public void AK_01_ValidLogin(String email, String password) throws Exception {
+
+		test = report.createTest("AK_01", "Login Page Validation with Valid Credential");
 		try {
 
 			Thread.sleep(5000);
@@ -99,12 +99,13 @@ public class AKKU_01_LoginANDlogout extends Browser_Setup {
 
 	}
 
-	//@Test(dataProvider = "Invalid_LoginPwdDetails", retryAnalyzer = Retry.class)
-	@Test(dataProvider = "Invalid_LoginPwdDetails")
+	@Test(dataProvider = "Invalid_LoginPwdDetails", retryAnalyzer = Retry.class)
 	public void AK_02_LoginWithValidEmailAndInvalidPassword(String email, String password) throws Exception {
 
+		test = report.createTest("AK_02", "Trying to Login with Wrong Password");
+
 		try {
-			System.out.println("Inside of loginwithvalidEmailANDinvalidPWD");
+			log.info("AK_02_LoginWithValidEmailAndInvalidPassword");
 			loginpage.typeUseremail(email);
 
 			loginpage.typepassword(password);
@@ -112,7 +113,6 @@ public class AKKU_01_LoginANDlogout extends Browser_Setup {
 			loginpage.clickLogin();
 
 			Thread.sleep(2000);
-
 			loginpage.EmailANDPwdErrorValidation();
 
 			System.out.println("####################################################################");
@@ -121,11 +121,23 @@ public class AKKU_01_LoginANDlogout extends Browser_Setup {
 
 		} catch (Exception e) {
 
+			System.out.println("Inside Catch");
 			result = TestLinkAPIResults.TEST_FAILED;
 			notes = e.getMessage();
 			e.printStackTrace();
 
-		} finally {
+		} catch (AssertionError e) {
+
+			String message = e.getMessage();
+			System.out.println(message);
+			result = TestLinkAPIResults.TEST_FAILED;
+			notes = e.getMessage();
+			e.printStackTrace();
+			Assert.fail();
+
+		}
+
+		finally {
 
 			System.out.println("Updating TestCase Execution Status in TestLink");
 			TestLinkIntegration.reportResult(testProject, testPlan, AK_02, build, notes, result);
@@ -134,10 +146,9 @@ public class AKKU_01_LoginANDlogout extends Browser_Setup {
 
 	}
 
-	//@Test(dataProvider = "Login_Details", retryAnalyzer = Retry.class)
-	@Test(dataProvider = "Login_Details")
+	@Test(dataProvider = "Login_Details", retryAnalyzer = Retry.class)
 	public void AK_03_LoginwithValidUserNameandEmptyPassword(String email, String password) throws Exception {
-
+		test = report.createTest("AK_03", "Trying to Login without Password");
 		try {
 			System.out.println("Inside of login with valid Email AND Empty PWD");
 			loginpage.typeUseremail(email);
@@ -167,9 +178,9 @@ public class AKKU_01_LoginANDlogout extends Browser_Setup {
 
 	}
 
-	//@Test(dataProvider = "Invalid_LoginDetails", retryAnalyzer = Retry.class)
-	@Test(dataProvider = "Invalid_LoginDetails")
+	@Test(dataProvider = "Invalid_LoginDetails", retryAnalyzer = Retry.class)
 	public void AK_04_LoginwithinvalidUsernameandinvalidPassword(String email, String password) throws Exception {
+		test = report.createTest("AK_04", "Trying to Login invalid Credential");
 		try {
 
 			loginpage.typeUseremail(email);
@@ -200,16 +211,15 @@ public class AKKU_01_LoginANDlogout extends Browser_Setup {
 		}
 	}
 
-	//@Test(dataProvider = "Login_Details", retryAnalyzer = Retry.class)
-	@Test(dataProvider = "Login_Details")
+	@Test(dataProvider = "Login_Details", retryAnalyzer = Retry.class)
 	public void AK_05_LoginwithemptyUsernameandValidPassword(String email, String password) throws Exception {
-
+		test = report.createTest("AK_05", "Trying to Login Without Enter Email ID and Valid Password");
 		try {
 			System.out.println("Inside of login with Empty Email AND PWD");
 
 			loginpage.typepassword(password);
 
-			loginpage.clickLogin();
+		     loginpage.clickLogin();
 
 			Thread.sleep(2000);
 
@@ -245,23 +255,21 @@ public class AKKU_01_LoginANDlogout extends Browser_Setup {
 		try {
 			if (result.getStatus() == ITestResult.SUCCESS) {
 				System.out.println("Test case passed");
-				driver.quit();
+				test.log(Status.PASS, "Test Case Passed");
 
 			} else if (result.getStatus() == ITestResult.FAILURE) {
 
-				Keywords.captureScreenShot(driver);
-
-				System.out.println("Test case Failed & Screenshot taken in Tear Down method");
-				driver.quit();
+				String screenshot_path = Keywords.capture(driver, result.getName());
+				test.fail(result.getThrowable());
+				test.log(Status.FAIL, "Test case Failed & Screenshot taken in Tear Down method as: "
+						+ test.addScreenCaptureFromPath(screenshot_path));
 
 			} else if (result.getStatus() == ITestResult.SKIP) {
+				test.log(Status.SKIP, "Test case Skipped");
+				test.skip(result.getThrowable());
 
-				Keywords.captureScreenShot(driver);
-
-				System.out.println("Test case Skipped");
-
-				driver.quit();
 			}
+
 		} catch (Exception e) {
 
 			System.out.println("Exception while taking screenshot " + e.getMessage());
@@ -276,8 +284,9 @@ public class AKKU_01_LoginANDlogout extends Browser_Setup {
 	@AfterTest
 	public void teardown() throws Exception {
 
-		// driver.quit();
-		System.out.println("Test Execution Finished");
+		System.out.println("Test Execution");
+		driver.quit();
+		report.flush();
 
 	}
 

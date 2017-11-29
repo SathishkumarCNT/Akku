@@ -44,82 +44,71 @@ public class EditUserfromUserManagement extends Keywords {
 		}
 	}
 
-	public void clickonUpdatebtn() {
-		try {
-
+	public void clickonUpdatebtn() throws Exception{
+		
 			System.out.println("Trying to Click Edit Update button...");
 
 			click(By.xpath(prop.getAppProperty("Akku_UserManagement_Edit_clickonUpdatebtn_xpath")));
 
 			System.out.println("We think we Clicked on Update button...");
 
-		} catch (Exception e) {
-			System.out.println("We think we Faild to Clicked on Edit button...");
-			e.printStackTrace();
+	
+			
+		
 
-		}
+		
 	}
 
-	public void clickonEditbtninusermanagement() {
+	public void clickonEditbtninusermanagement() throws Exception{
 
-		try {
+	
 			System.out.println("Trying to Click on Edit button...");
 
 			click(By.xpath(prop.getAppProperty("Akku_UserManagement_Edituser_btn_xpath")));
-		} catch (Exception e) {
+		
 			System.out.println("We think we Clicked on Edit button...");
-			e.printStackTrace();
+			
 
-		}
+		
 	}
 
-	public void EditEmailinusermanagement(String NewEmail) {
+	public void EditEmailinusermanagement(String NewEmail) throws Exception {
 
-		try {
+	
 			System.out.println("Typing Email ID in Edit User management...");
 
 			clear(By.xpath(prop.getAppProperty("Akku_UserManagement_EdituserEmail_xpath")));
 			type(By.xpath(prop.getAppProperty("Akku_UserManagement_EdituserEmail_xpath")), NewEmail);
-		} catch (Exception e) {
 			System.out.println("We think we Typed Email ID in Edit User management...");
-			e.printStackTrace();
-
-		}
+		
 	}
 
-	public void EditFnameinusermanagement(String Fname) {
+	public void EditFnameinusermanagement(String Fname) throws Exception {
 
-		try {
+		
 			System.out.println("Typing First Name in Edit User management...");
 
 			clear(By.xpath(prop.getAppProperty("Akku_UserManagement_EdituserFName_xpath")));
 
 			type(By.xpath(prop.getAppProperty("Akku_UserManagement_EdituserFName_xpath")), Fname);
-		} catch (Exception e) {
 			System.out.println("We think we Typed First Name in Edit User management...");
-			e.printStackTrace();
-
-		}
+		
 	}
 
-	public void EditLnameinusermanagement(String Lname) {
+	public void EditLnameinusermanagement(String Lname) throws Exception {
 
-		try {
+
 			System.out.println("Typing Last Name in Edit User management...");
 
 			clear(By.xpath(prop.getAppProperty("Akku_UserManagement_EdituserLName_xpath")));
 
 			type(By.xpath(prop.getAppProperty("Akku_UserManagement_EdituserLName_xpath")), Lname);
-		} catch (Exception e) {
-			System.out.println("We think we Typed Last Name in Edit User management...");
-			e.printStackTrace();
-
-		}
+		
 	}
 
-	public void Editusertypeinusermanagement() {
+	public void Editusertypeinusermanagement() throws Exception {
 
-		try {
+		
 			System.out.println("Select User Type in Edit User management...");
 
 			String Usertype_user = "User";
@@ -134,15 +123,11 @@ public class EditUserfromUserManagement extends Keywords {
 				Select se = new Select(element);
 				se.selectByIndex(1);
 			}
-		} catch (Exception e) {
-			System.out.println("We think we Selected User type in Edit User management...");
-			e.printStackTrace();
-
-		}
+		
 	}
-	public void EditusertypeinGSuite() {
+	public void EditusertypeinGSuite()  throws Exception{
 
-		try {
+		
 			System.out.println("Select User Type in Edit User management...");
 
 			String Usertype_user = "User";
@@ -160,14 +145,12 @@ public class EditUserfromUserManagement extends Keywords {
 				se.selectByIndex(1);
 				//se.selectByValue("user");
 			}
-		} catch (Exception e) {
+		
 			System.out.println("We think we Selected User type in Edit User management...");
-			e.printStackTrace();
-
-		}
+			
 	}
-	public void UpdateSucessfulValidate() {
-		try {
+	public void UpdateSucessfulValidate() throws Exception {
+	
 
 			System.out.println("Verify Updated Successfully Message...");
 
@@ -183,14 +166,10 @@ public class EditUserfromUserManagement extends Keywords {
 
 			System.out.println("We think we Clicked on Update button...");
 
-		} catch (Exception e) {
-			System.out.println("We think we Faild to Clicked on Edit button...");
-			e.printStackTrace();
-
-		}
+		
 	}
 
-	public void updatefailValidation() {
+	public void updatefailValidation() throws Exception {
 		try {
 			System.out.println("Verfiy Update Fail message");
 
@@ -215,63 +194,49 @@ public class EditUserfromUserManagement extends Keywords {
 driver.navigate().refresh();
 	}
 
-	public void CloseEditPopup() {
-		try {
+	public void CloseEditPopup() throws Exception{
+	
 			System.out.println("Closing Edit Screen ...");
 
 			click(By.xpath(prop.getAppProperty("Akku_UserManagement_Edit_Close_Pop_Xpath")));
 
-		} catch (Exception e) {
-			System.out.println("We think we not Closed Edit PopUp Screen...");
-			e.printStackTrace();
-
-		}
+		
 	}
 
-	public void EditemptyEmailinusermanagement() {
+	public void EditemptyEmailinusermanagement() throws Exception {
 
-		try {
+		
 			System.out.println("Clearing Email ID in Edit User management...");
 
 			clear(By.xpath(prop.getAppProperty("Akku_UserManagement_EdituserEmail_xpath")));
 
-		} catch (Exception e) {
 			System.out.println("We think we Not Clearing Email ID in Edit User management...");
-			e.printStackTrace();
-
-		}
+		
 	}
 
-	public void EditemptyFnameinusermanagement() {
+	public void EditemptyFnameinusermanagement() throws Exception {
 
-		try {
+	
 			System.out.println("Clearing First Name in Edit User management...");
 
 			clear(By.xpath(prop.getAppProperty("Akku_UserManagement_EdituserFName_xpath")));
+			
+			System.out.println("We think we  Cleared First Name in Edit User management...");
 
-		} catch (Exception e) {
-			System.out.println("We think we Not Clearing First Name in Edit User management...");
-			e.printStackTrace();
-
-		}
+		
 	}
 
-	public void EditemptyLnameinusermanagement() {
+	public void EditemptyLnameinusermanagement() throws Exception {
 
-		try {
+		
 			System.out.println("Clearing Last Name in Edit User management...");
 
 			clear(By.xpath(prop.getAppProperty("Akku_UserManagement_EdituserLName_xpath")));
 
-		} catch (Exception e) {
-			System.out.println("We think we Not Clearing Last Name in Edit User management...");
-			e.printStackTrace();
-
 		}
-	}
 
-	public void validateEmptyemailidErrormsg() {
-		try {
+	public void validateEmptyemailidErrormsg() throws Exception {
+	
 			System.out.println("Verfiy Email ID Error message");
 
 			String Actual = getvalidationMessage(
@@ -281,14 +246,11 @@ driver.navigate().refresh();
 			Assert.assertEquals(Actual, Expected);
 			driver.navigate().refresh();
 
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		
 	}
 
-	public void validateEmptyFnameErrormsg() {
-		try {
+	public void validateEmptyFnameErrormsg() throws Exception {
+	
 			System.out.println("Verfiy First Name Error message");
 
 			String Actual = getvalidationMessage(
@@ -298,14 +260,11 @@ driver.navigate().refresh();
 			Assert.assertEquals(Actual, Expected);
 			driver.navigate().refresh();
 
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		
 	}
 
-	public void validateEmptyLnameErrormsg() {
-		try {
+	public void validateEmptyLnameErrormsg() throws Exception {
+		
 			System.out.println("Verfiy Last Name Error message");
 
 			String Actual = getvalidationMessage(
@@ -315,15 +274,12 @@ driver.navigate().refresh();
 			Assert.assertEquals(Actual, Expected);
 			driver.navigate().refresh();
 
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		
 	}
 
-	public void clickonSuspendbtninusermanagement() {
+	public void clickonSuspendbtninusermanagement() throws Exception{
 
-		try {
+	
 			System.out.println("Trying to Click on Suspend User button...");
 			
 			moveMouse(By.xpath(prop.getAppProperty("Akku_UserManagement_Suspenduser_btn_xpath")));
@@ -331,29 +287,21 @@ driver.navigate().refresh();
 			Thread.sleep(3000);
 
 			click(By.xpath(prop.getAppProperty("Akku_UserManagement_Suspenduser_btn_xpath")));
-		} catch (Exception e) {
-			System.out.println("We think we Suspend User button...");
-			e.printStackTrace();
-
-		}
+		
 	}
 
-	public void AcceptSuspendbtninusermanagement() {
+	public void AcceptSuspendbtninusermanagement() throws Exception {
 
-		try {
+		
 			System.out.println("Trying to Click on OK in Suspend User PopUp...");
 
 			click(By.xpath(prop.getAppProperty("Akku_EditInfo_Ok_btn_xpath")));
-		} catch (Exception e) {
-			System.out.println("We think we Clicked OK in Suspend User PopUp...");
-			e.printStackTrace();
-
-		}
+		
 	}
 
-	public void ValidateSuspendusermsg() {
+	public void ValidateSuspendusermsg() throws Exception{
 
-		try {
+		
 			System.out.println("Verify Suspend user Successfully Message...");
 
 			Thread.sleep(1000);
@@ -367,16 +315,12 @@ driver.navigate().refresh();
 			Assert.assertEquals(Actual, Expected);
 
 			System.out.println("We think we Verified Suspend user Successfully Message...");
-		} catch (Exception e) {
-			System.out.println("We think we Not Verified Suspend user Successfully Message....");
-			e.printStackTrace();
-
-		}
+		
 	}
 
-	public void clickonDeletebtninusermanagement() {
+	public void clickonDeletebtninusermanagement() throws Exception {
 
-		try {
+		
 			System.out.println("Trying to Click on Delete User button...");
 			
 			moveMouse(By.xpath(prop.getAppProperty("Akku_UserManagement_Deleteuser_btn_xpath")));
@@ -384,29 +328,22 @@ driver.navigate().refresh();
 			Thread.sleep(3000);
 
 			click(By.xpath(prop.getAppProperty("Akku_UserManagement_Deleteuser_btn_xpath")));
-		} catch (Exception e) {
-			System.out.println("We think we Delete User button...");
-			e.printStackTrace();
-
-		}
+		
 	}
 
-	public void AcceptDeletebtninusermanagement() {
+	public void AcceptDeletebtninusermanagement() throws Exception{
 
-		try {
+	
 			System.out.println("Trying to Click on OK in Delete User PopUp...");
 
 			click(By.xpath(prop.getAppProperty("Akku_EditInfo_Ok_btn_xpath")));
-		} catch (Exception e) {
 			System.out.println("We think we Clicked OK in Delete User PopUp...");
-			e.printStackTrace();
-
-		}
+		
 	}
 
-	public void ValidateDeleteusermsg() {
+	public void ValidateDeleteusermsg() throws Exception {
 
-		try {
+		
 			System.out.println("Verify Delete user Successfully Message...");
 
 			Thread.sleep(1000);
@@ -420,24 +357,18 @@ driver.navigate().refresh();
 			Assert.assertEquals(Actual, Expected);
 
 			System.out.println("We think we Verified Delete user Successfully Message...");
-		} catch (Exception e) {
-			System.out.println("We think we Not Verified Delete user Successfully Message....");
-			e.printStackTrace();
-
-		}
+		
 	}
 
-	public void clickonResetpwdbtninusermanagement() {
+	public void clickonResetpwdbtninusermanagement()throws Exception {
 
-		try {
+	
 			System.out.println("Trying to Click on Reset User button...");
 
 			click(By.xpath(prop.getAppProperty("Akku_UserManagement_Resetpwd_btn_xpath")));
-		} catch (Exception e) {
+			
 			System.out.println("We think we Reset User button...");
-			e.printStackTrace();
-
-		}
+		
 	}
 
 	public void typenewpassword(String Newpassword) throws Exception {
@@ -467,9 +398,9 @@ driver.navigate().refresh();
 		System.out.println("We think we Trying to Click Reset Button...");
 	}
 
-	public void Validateerormsg() {
+	public void Validateerormsg() throws Exception {
 
-		try {
+	
 
 			System.out.println("trying to verify Error Message...");
 
@@ -483,16 +414,12 @@ driver.navigate().refresh();
 			Thread.sleep(1000);
 			driver.navigate().refresh();
 
-		} catch (Exception e) {
-			System.out.println("We think we Typed Email ID in Edit User management...");
-			e.printStackTrace();
-
-		}
+		
 	}
 
-	public void Validateerormsgforcompwdnotmatch() {
+	public void Validateerormsgforcompwdnotmatch() throws Exception {
 
-		try {
+		
 
 			System.out.println("Trying to verify Error Message...");
 
@@ -506,16 +433,12 @@ driver.navigate().refresh();
 			Thread.sleep(1000);
 			driver.navigate().refresh();
 
-		} catch (Exception e) {
-			System.out.println("We think we Not verified verify Error Message...");
-			e.printStackTrace();
-
-		}
+		
 	}
 
-	public void ValidateSuccessfullyresetmsg() {
+	public void ValidateSuccessfullyresetmsg()  throws Exception {
 
-		try {
+		
 
 			System.out.println("Trying to verify Successful Message...");
 
@@ -529,11 +452,7 @@ driver.navigate().refresh();
 			Thread.sleep(1000);
 			driver.navigate().refresh();
 
-		} catch (Exception e) {
-			System.out.println("We think we Typed Email ID in Edit User management...");
-			e.printStackTrace();
-
-		}
+		
 	}
 
 	public void SearchEmailIdinGrid(String NewEmail) throws Exception {
@@ -606,9 +525,9 @@ driver.navigate().refresh();
 
 	}
 
-	public void validateChangepasswordmsg() {
+	public void validateChangepasswordmsg()  throws Exception{
 
-		try {
+	
 
 			System.out.println("Trying to verify Successful Message...");
 
@@ -622,27 +541,18 @@ driver.navigate().refresh();
 			System.out.println("We think we Verified verify Successful Message...");
 			Thread.sleep(1000);
 
-		} catch (Exception e) {
-			System.out.println("We think we Typed Email ID in Edit User management...");
-			e.printStackTrace();
-
-		}
 	}
 
-	public void ClickDashboardbtn() {
+	public void ClickDashboardbtn()  throws Exception{
 
-		try {
+	
 			System.out.println("Trying to Click Dashboard Button...");
 
 			click(By.xpath(prop.getAppProperty("Akku_Changepwd_Dashboard_btn_xpath")));
 
 			Thread.sleep(500);
-
-		} catch (Exception e) {
 			System.out.println("We think we Click Dashboard Button......");
-			e.printStackTrace();
-
-		}
+		
 	}
 
 	public void EnterKeywordinsearchtxtbox(String SearchKey) throws Exception {

@@ -32,15 +32,20 @@ import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Reporter;
 
-public class Keywords {
+import com.app.akku.work.common.Browser_Setup;
+import com.aventstack.extentreports.ExtentReporter;
+
+public class Keywords extends Browser_Setup{
 
 	public  static String ImagesPath = "..//App_Akku_Work//src//test//resources//Screenshots//"; 
+	
+	public static Logger log = Logger.getLogger(Browser_Setup.class.getName());
 	
 	String Email;
 	
 	public WebDriver driver;
 	
-	Logger log = Logger.getLogger(Keywords.class);
+	
 		
 	public Keywords(WebDriver driver)
 	{
@@ -112,6 +117,16 @@ public class Keywords {
 		return ImagesPath;		
 	}
 	
+	public static String capture(WebDriver driver,String screenShotName) throws IOException
+    {
+        TakesScreenshot ts = (TakesScreenshot)driver;
+        File source = ts.getScreenshotAs(OutputType.FILE);
+        String dest = System.getProperty("user.dir") +"/src/test/resources/Screenshots/"+screenShotName+".png";
+        File destination = new File(dest);
+        FileUtils.copyFile(source, destination);                             
+
+        return dest;
+    }
 		
 	public static String startdate()
 	{
@@ -262,13 +277,16 @@ public class Keywords {
 	}
 
 	public void click(By object) throws Exception {
-		try{
-			driver.findElement(object).click();
-			Thread.sleep(1000);		
-		}catch(Exception e) {
-			
-			
-		}
+		
+			try {
+				driver.findElement(object).click();
+				Thread.sleep(1000);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				System.exit(0);
+			}		
+		
 	}
 	
 	public void clear(By object)throws Exception{
