@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<<<<<<< HEAD
 <testng-results skipped="5" failed="5" ignored="0" total="10" passed="0">
   <reporter-output>
   </reporter-output>
@@ -12,6 +13,17 @@
           </reporter-output>
         </test-method> <!-- setUp -->
         <test-method status="PASS" signature="setup(java.lang.String, java.lang.String)[pri:0, instance:com.app.akku.work.TestCases.AKKU_01_LoginANDlogout@35fc6dc4]" name="setup" is-config="true" duration-ms="7635" started-at="2017-11-29T17:41:45Z" finished-at="2017-11-29T17:41:53Z">
+=======
+<testng-results skipped="0" failed="0" ignored="12" total="13" passed="1">
+  <reporter-output>
+  </reporter-output>
+  <suite name="AKKU_TestSuite" duration-ms="62927" started-at="2017-11-27T10:44:04Z" finished-at="2017-11-27T10:45:07Z">
+    <groups>
+    </groups>
+    <test name="Password Policy Test" duration-ms="62927" started-at="2017-11-27T10:44:04Z" finished-at="2017-11-27T10:45:07Z">
+      <class name="com.app.akku.work.TestCases.AKKU_15_PasswordPolicy">
+        <test-method status="PASS" signature="setup(java.lang.String, java.lang.String)[pri:0, instance:com.app.akku.work.TestCases.AKKU_15_PasswordPolicy@731a74c]" name="setup" is-config="true" duration-ms="5446" started-at="2017-11-27T16:14:05Z" finished-at="2017-11-27T16:14:10Z">
+>>>>>>> 90d437f53722b12c2e941d2a5f361968b3e3fe52
           <params>
             <param index="0">
               <value>
@@ -27,6 +39,7 @@
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setup -->
+<<<<<<< HEAD
         <test-method status="SKIP" signature="AK_01_ValidLogin(java.lang.String, java.lang.String)[pri:0, instance:com.app.akku.work.TestCases.AKKU_01_LoginANDlogout@35fc6dc4]" name="AK_01_ValidLogin" duration-ms="23340" started-at="2017-11-29T17:41:53Z" data-provider="Login_Details" finished-at="2017-11-29T17:42:16Z">
           <params>
             <param index="0">
@@ -95,6 +108,9 @@
           </reporter-output>
         </test-method> <!-- tearDown -->
         <test-method status="FAIL" signature="AK_01_ValidLogin(java.lang.String, java.lang.String)[pri:0, instance:com.app.akku.work.TestCases.AKKU_01_LoginANDlogout@35fc6dc4]" name="AK_01_ValidLogin" duration-ms="22569" started-at="2017-11-29T17:42:17Z" data-provider="Login_Details" finished-at="2017-11-29T17:42:39Z">
+=======
+        <test-method status="PASS" signature="AK_64_UpdatepasswordpolicyforparentOU(java.lang.String, java.lang.String, java.lang.String, java.lang.String)[pri:0, instance:com.app.akku.work.TestCases.AKKU_15_PasswordPolicy@731a74c]" name="AK_64_UpdatepasswordpolicyforparentOU" duration-ms="56267" started-at="2017-11-27T16:14:10Z" data-provider="Create_OU_As_SUBOU" finished-at="2017-11-27T16:15:07Z">
+>>>>>>> 90d437f53722b12c2e941d2a5f361968b3e3fe52
           <params>
             <param index="0">
               <value>
@@ -104,6 +120,16 @@
             <param index="1">
               <value>
                 <![CDATA[password1]]>
+              </value>
+            </param>
+            <param index="2">
+              <value>
+                <![CDATA[ChildOU]]>
+              </value>
+            </param>
+            <param index="3">
+              <value>
+                <![CDATA[DemoFN]]>
               </value>
             </param>
           </params>
@@ -149,6 +175,7 @@
           </exception> <!-- testlink.api.java.client.TestLinkAPIException -->
           <reporter-output>
           </reporter-output>
+<<<<<<< HEAD
         </test-method> <!-- AK_01_ValidLogin -->
         <test-method status="PASS" signature="tearDown(org.testng.ITestResult)[pri:0, instance:com.app.akku.work.TestCases.AKKU_01_LoginANDlogout@35fc6dc4]" name="tearDown" is-config="true" duration-ms="464" started-at="2017-11-29T17:42:39Z" finished-at="2017-11-29T17:42:40Z">
           <params>
@@ -693,17 +720,29 @@
             <param index="0">
               <value>
                 <![CDATA[[TestResult name=AK_05_LoginwithemptyUsernameandValidPassword status=FAILURE method=AKKU_01_LoginANDlogout.AK_05_LoginwithemptyUsernameandValidPassword(java.lang.String, java.lang.String)[pri:0, instance:com.app.akku.work.TestCases.AKKU_01_LoginANDlogout@35fc6dc4] output={null}]]]>
+=======
+        </test-method> <!-- AK_64_UpdatepasswordpolicyforparentOU -->
+        <test-method status="PASS" signature="tearDown(org.testng.ITestResult)[pri:0, instance:com.app.akku.work.TestCases.AKKU_15_PasswordPolicy@731a74c]" name="tearDown" is-config="true" duration-ms="620" started-at="2017-11-27T16:15:07Z" finished-at="2017-11-27T16:15:07Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=AK_64_UpdatepasswordpolicyforparentOU status=SUCCESS method=AKKU_15_PasswordPolicy.AK_64_UpdatepasswordpolicyforparentOU(java.lang.String, java.lang.String, java.lang.String, java.lang.String)[pri:0, instance:com.app.akku.work.TestCases.AKKU_15_PasswordPolicy@731a74c] output={null}]]]>
+>>>>>>> 90d437f53722b12c2e941d2a5f361968b3e3fe52
               </value>
             </param>
           </params>
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearDown -->
+<<<<<<< HEAD
         <test-method status="PASS" signature="teardown()[pri:0, instance:com.app.akku.work.TestCases.AKKU_01_LoginANDlogout@35fc6dc4]" name="teardown" is-config="true" duration-ms="1232" started-at="2017-11-29T17:44:05Z" finished-at="2017-11-29T17:44:07Z">
+=======
+        <test-method status="PASS" signature="teardown()[pri:0, instance:com.app.akku.work.TestCases.AKKU_15_PasswordPolicy@731a74c]" name="teardown" is-config="true" duration-ms="0" started-at="2017-11-27T16:15:07Z" finished-at="2017-11-27T16:15:07Z">
+>>>>>>> 90d437f53722b12c2e941d2a5f361968b3e3fe52
           <reporter-output>
           </reporter-output>
         </test-method> <!-- teardown -->
-      </class> <!-- com.app.akku.work.TestCases.AKKU_01_LoginANDlogout -->
-    </test> <!-- Login and logout in Chrome -->
-  </suite> <!-- AKKU_Sanity -->
+      </class> <!-- com.app.akku.work.TestCases.AKKU_15_PasswordPolicy -->
+    </test> <!-- Password Policy Test -->
+  </suite> <!-- AKKU_TestSuite -->
 </testng-results>

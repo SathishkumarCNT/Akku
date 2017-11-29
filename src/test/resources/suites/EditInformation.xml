@@ -23,7 +23,11 @@
 					<include name="AK_13_UpdatepasswordwithoutmatchingwithPasswordpolicy"/>
 					<include name="AK_14_UpdateNewPasswordWithSamevalueofnewpwdConfirmpwd"/> -->
 					
+<<<<<<< HEAD
 					
+=======
+					AK_33_EditUserinformationinuserManagementpagewithvaliddata
+>>>>>>> 90d437f53722b12c2e941d2a5f361968b3e3fe52
 				
 				</methods>
 			</class>

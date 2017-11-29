@@ -584,6 +584,171 @@ public class AKKU_15_PasswordPolicy extends Browser_Setup {
 
 		}
 
+<<<<<<< HEAD
+=======
+	}
+
+	@Test(dataProvider = "Verify_OU_As_Pwdpolicy")
+	public void Ak_66_VerifyPasswordHelptextdisplaybasedonparentOUPasswordpolicydetails(String email, String password,
+			String NewOu, String ParentOU, String SearchEmail) throws Exception
+
+	{
+
+		try {
+
+			loginpage.loginpageTitle();
+			loginpage.typeUseremail(email);
+			loginpage.typepassword(password);
+			loginpage.clickLogin();
+			Thread.sleep(2000);
+			loginpage.validatedloggedinUserDetailsEmailID(email);
+			loginpage.verifyloggedinUserFNameAndLName();
+
+			usermanagement.clickUsermanagementBtn();
+			editUser.EnterKeywordinsearchtxtbox(SearchEmail);
+			editUser.ValidateSearchkeyword(SearchEmail);
+			Pwdpolicy.clickonEditbtninusermanagement();
+			Pwdpolicy.SelectParentOU(ParentOU);
+			editUser.clickonUpdatebtn();
+			editUser.UpdateSucessfulValidate();
+			editinfo.closeAlertpopup();
+			usermanagement.clickUsermanagementBtn();
+			editUser.EnterKeywordinsearchtxtbox(SearchEmail);
+			editUser.ValidateSearchkeyword(SearchEmail);
+			Pwdpolicy.clickonResetpwdbtninusermanagement();
+			editUser.typenewpassword("Password@2345");
+			editUser.typeConfnewpassword("Password@2345");
+			editUser.ResetbtnClick();
+			editUser.ValidateSuccessfullyresetmsg();
+			Thread.sleep(3000);
+			loginpage.clickLogout();
+			Thread.sleep(3000);
+
+			loginpage.typeUseremail(SearchEmail);
+			loginpage.typepassword("Password@2345");
+			Thread.sleep(2000);
+			loginpage.clickLogin();
+			editUser.EnterpwdinChangePage("Password@1234");
+			editUser.EnterconpwdinChangePage("Password@1234");
+			Pwdpolicy.verifychildhelptextmessage(
+					"Password must be 12 character with minimum one   lowercase,   uppercase,  numeric,  special character");
+			editUser.ClickupdatepwdinChangePage();
+			editUser.validateChangepasswordmsg();
+			editUser.ClickDashboardbtn();
+			driver.navigate().to("http://pre-prod.akku.work/");
+			Thread.sleep(2000);
+			loginpage.typeUseremail(SearchEmail);
+			loginpage.typepassword("Password@1234");
+			loginpage.clickLogin();
+			Thread.sleep(3000);
+			editinfo.isEditInfobtn();
+			Pwdpolicy.clickEditbtn();
+			Pwdpolicy.typeOldpassword("Password@1234");
+			Pwdpolicy.verifychildhelptextmessage(
+					"Password must be 12 character with minimum one   lowercase,   uppercase,  numeric,  special character");
+			Pwdpolicy.typenewpassword("Password@12345");
+			Thread.sleep(3000);
+			Pwdpolicy.typeConfnewpassword("Password@12345");
+			Pwdpolicy.clickUpdatebtn();
+			editinfo.closeAlertpopup();
+			loginpage.clickLogout();
+
+			System.out.println("####################################################################");
+			result = TestLinkAPIResults.TEST_PASSED;
+
+		} catch (Exception e) {
+			result = TestLinkAPIResults.TEST_FAILED;
+			notes = e.getMessage();
+			e.printStackTrace();
+		} finally {
+
+			System.out.println("Updating TestCase Execution Status in TestLink");
+			TestLinkIntegration.reportResult(testProject, testPlan, AK_66, build, notes, result);
+
+		}
+
+	}
+
+	@Test(dataProvider = "Verify_OU_As_Pwdpolicy")
+	public void Ak_67_VerifyPasswordHelptextdisplaybasedonSubOUPasswordpolicydetails(String email, String password,
+			String NewOu, String ParentOU, String SearchEmail) throws Exception
+
+	{
+
+		try {
+			loginpage.loginpageTitle();
+			loginpage.typeUseremail(email);
+			loginpage.typepassword(password);
+			loginpage.clickLogin();
+			Thread.sleep(2000);
+			loginpage.validatedloggedinUserDetailsEmailID(email);
+			loginpage.verifyloggedinUserFNameAndLName();
+
+			usermanagement.clickUsermanagementBtn();
+			editUser.EnterKeywordinsearchtxtbox(SearchEmail);
+			editUser.ValidateSearchkeyword(SearchEmail);
+			Pwdpolicy.clickonEditbtninusermanagement();
+			Pwdpolicy.SelectchildOU(ParentOU, NewOu);
+			editUser.clickonUpdatebtn();
+			editUser.UpdateSucessfulValidate();
+			editinfo.closeAlertpopup();
+
+			usermanagement.clickUsermanagementBtn();
+			editUser.EnterKeywordinsearchtxtbox(SearchEmail);
+			editUser.ValidateSearchkeyword(SearchEmail);
+			Pwdpolicy.clickonResetpwdbtninusermanagement();
+			editUser.typenewpassword("password2");
+			editUser.typeConfnewpassword("password2");
+			editUser.ResetbtnClick();
+			editUser.ValidateSuccessfullyresetmsg();
+			Thread.sleep(3000);
+			loginpage.clickLogout();
+			Thread.sleep(3000);
+
+			loginpage.typeUseremail(SearchEmail);
+			loginpage.typepassword("password2");
+			Thread.sleep(2000);
+			loginpage.clickLogin();
+			editUser.EnterpwdinChangePage("password3");
+			editUser.EnterconpwdinChangePage("password3");
+			Pwdpolicy
+					.verifychildhelptextmessage("Password must be 08 character with minimum one   lowercase,  numeric");
+			editUser.ClickupdatepwdinChangePage();
+			editUser.validateChangepasswordmsg();
+			editUser.ClickDashboardbtn();
+			driver.navigate().to("http://pre-prod.akku.work/");
+			Thread.sleep(2000);
+			loginpage.typeUseremail(SearchEmail);
+			loginpage.typepassword("password3");
+			loginpage.clickLogin();
+			Thread.sleep(3000);
+			editinfo.isEditInfobtn();
+			Pwdpolicy.clickEditbtn();
+			Pwdpolicy.typeOldpassword("password3");
+			Pwdpolicy
+					.verifychildhelptextmessage("Password must be 08 character with minimum one   lowercase,  numeric");
+			Pwdpolicy.typenewpassword(password);
+			Thread.sleep(3000);
+			Pwdpolicy.typeConfnewpassword(password);
+			Pwdpolicy.clickUpdatebtn();
+			editinfo.closeAlertpopup();
+			loginpage.clickLogout();
+
+			System.out.println("####################################################################");
+			result = TestLinkAPIResults.TEST_PASSED;
+
+		} catch (Exception e) {
+			result = TestLinkAPIResults.TEST_FAILED;
+			notes = e.getMessage();
+			e.printStackTrace();
+		} finally {
+
+			System.out.println("Updating TestCase Execution Status in TestLink");
+			TestLinkIntegration.reportResult(testProject, testPlan, AK_67, build, notes, result);
+
+		}
+
+>>>>>>> 90d437f53722b12c2e941d2a5f361968b3e3fe52
 	}
 
 	@Test(dataProvider = "Verify_OU_As_Pwdpolicy")
