@@ -5,9 +5,11 @@ import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import com.app.akku.work.common.ReadfromProperties;
 import com.app.akku.work.keywords.Keywords;
+import com.aventstack.extentreports.Status;
 
 public class Loginpage extends Keywords {
 
+	
 	ReadfromProperties prop = new ReadfromProperties();
 
 	public Loginpage(WebDriver driver) {
@@ -15,6 +17,8 @@ public class Loginpage extends Keywords {
 	}
 
 	public void loginpageTitle() throws Exception {
+
+	
 
 		System.out.println("Trying to Validating Url Title");
 
@@ -24,25 +28,33 @@ public class Loginpage extends Keywords {
 		Assert.assertEquals(actual_msg, expect);
 
 		System.out.println(actual_msg);
+        test.log(Status.INFO,"Validated Url Title:"+ actual_msg);
 
 		System.out.println("We think we Validated Url Title");
 
 	}
 
-	public void inputpassworderrormsgvalidation() {
+	public void inputpassworderrormsgvalidation() throws Exception{
 
 		String message = driver.findElement(By.xpath("//input[@id='password']")).getAttribute("validationMessage");
 		System.out.println(message);
+		
+		 test.log(Status.INFO,"Password Error Message Validated: "+ message);
 	}
 
 	public void inputemailerrormsgvalidation() throws Exception {
 
 		String message = driver.findElement(By.xpath("//input[@type='email']")).getAttribute("validationMessage");
 		System.out.println(message);
+		
+	
+		 test.log(Status.INFO,"Email ID Error Message Validated: "+ message);
 
 	}
 
 	public void EmailANDPwdErrorValidation() throws Exception {
+		
+		log.error(" Validating Error message of Invalid Email ID & password");
 
 		System.out.println("Trying to Validating Error message of Invalid Email & Pwsd");
 
@@ -52,37 +64,57 @@ public class Loginpage extends Keywords {
 		System.out.println(actual_msg);
 		System.out.println(expect);
 		Assert.assertEquals(actual_msg, expect);
+		
+		
+		log.info("Validated Error message of Invalid Email ID & password");
+		test.log(Status.INFO,"Email ID and Password Error Message Validated: "+ actual_msg);
+		
 
 	}
 
 	public void typeUseremail(String email) throws Exception {
+		
+		log.info("Trying to Enter Email ID: "+email+" in the Email text field...");
 
 		System.out.println("Trying to Enter email in the Email text field...");
 
 		type(By.xpath(prop.getAppProperty("Login_email_xpath")), email);
 
 		System.out.println("We think we Entered Email in text field...");
+		
+		log.info("We think we Entered Email ID: "+email+" in the Email ID text field...");
+		
+		test.log(Status.INFO,"Email ID Entered: "+ email);
 
 	}
 
 	public void typepassword(String password) throws Exception {
 
+		log.info("Trying to Enter Password:"+password+" in the Password text field...");
 		System.out.println("Trying to Enter Password in the text field...");
 
 		Thread.sleep(2000);
 		type(By.xpath(prop.getAppProperty("Login_pwd_xpath")), password);
 
 		System.out.println("We think we Entered Password in text field...");
+		log.info("We think we Entered Password:"+password+" in the Password text field...");
+		
+		test.log(Status.INFO,"Password  Entered: "+ password);
 
 	}
 
 	public void clickLogin() throws Exception {
+		
+		log.info("Trying to Click on Login button...");
 
 		System.out.println("Trying to Click on Login button...");
 
 		click(By.xpath(prop.getAppProperty("Login_login_bnt_xpath")));
 
 		System.out.println("We think we Clicked on Login button...");
+		log.info("Login button Clicked Sucessfully...");
+		
+		test.log(Status.INFO,"Login Button Clicked");
 
 	}
 
@@ -98,6 +130,7 @@ public class Loginpage extends Keywords {
 		Assert.assertEquals(actual_msg, expect);
 
 		System.out.println("We think we Clicked on logout button...");
+		test.log(Status.INFO,"Logout Button Clicked");
 
 	}
 
@@ -110,6 +143,7 @@ public class Loginpage extends Keywords {
 		boolean expect = true;
 		Assert.assertEquals(Actual, expect);
 		System.out.println("We think we Validate Loggedin User Ac details...");
+		test.log(Status.INFO,"Validated Loggedin User Ac");
 
 	}
 
@@ -126,6 +160,8 @@ public class Loginpage extends Keywords {
 		Assert.assertEquals(Actual, expect);
 
 		System.out.println("We think we Validate Loggedin First Name details in Edit Info...");
+		
+		test.log(Status.INFO,"Validated Loggedin user First Name details in Edit Info"+Actual);
 
 	}
 
@@ -142,6 +178,8 @@ public class Loginpage extends Keywords {
 		Assert.assertEquals(Actual, expect);
 
 		System.out.println("We think we Validate Logged in User Last Name  in Edit Info...");
+		
+		test.log(Status.INFO,"Validated Loggedin user Last Name details in Edit Info"+Actual);
 
 	}
 
@@ -155,6 +193,8 @@ public class Loginpage extends Keywords {
 
 		Assert.assertEquals(Actual, expect);
 		System.out.println("We think we Validate Loggedin User FName And LName...");
+		
+		test.log(Status.INFO,"Validated Loggedin user First Name Last Name details in Edit Info"+Actual);
 
 	}
 }

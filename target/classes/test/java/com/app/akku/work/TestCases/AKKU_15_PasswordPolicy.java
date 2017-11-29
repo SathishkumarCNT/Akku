@@ -747,6 +747,47 @@ public class AKKU_15_PasswordPolicy extends Browser_Setup {
 		}
 
 	}
+	
+	@Test(dataProvider = "Create_OU_As_SUBOU")
+	public void DeleteCreatedOufromPage(String email, String password, String NewOu, String ParentOU) throws Exception {
+		try {
+			loginpage.loginpageTitle();
+			loginpage.typeUseremail(email);
+			loginpage.typepassword(password);
+			loginpage.clickLogin();
+			Thread.sleep(2000);
+			loginpage.validatedloggedinUserDetailsEmailID(email);
+			loginpage.verifyloggedinUserFNameAndLName();
+			oumangement.clickOUmanagementBtn();
+			oumangement.ClickExpandbtn();
+
+			oumangement.ClickexpandonParentOu(ParentOU);
+			Thread.sleep(2000);
+			oumangement.ClickdeleteonOu(NewOu);
+			Thread.sleep(2000);
+			editUser.AcceptDeletebtninusermanagement();
+			editinfo.closeAlertpopup();
+			driver.navigate().refresh();
+			Thread.sleep(2000);
+			oumangement.clickOUmanagementBtn();
+			oumangement.ClickExpandbtn();
+			Thread.sleep(2000);
+			oumangement.ClickdeleteonOu(ParentOU);
+			Thread.sleep(2000);
+			editUser.AcceptDeletebtninusermanagement();
+			Thread.sleep(2000);
+			editinfo.closeAlertpopup();
+
+			Thread.sleep(10000);
+			loginpage.clickLogout();
+
+		} catch (Exception e) {
+
+			e.printStackTrace();
+
+		}
+	}
+	
 
 	@AfterMethod
 	public void tearDown(ITestResult result) {

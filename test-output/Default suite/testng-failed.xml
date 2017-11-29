@@ -3,26 +3,18 @@
 <suite guice-stage="DEVELOPMENT" name="Failed suite [Default suite]">
   <test name="Default test(failed)">
     <classes>
-      <class name="com.app.akku.work.TestCases.AKKU_15_PasswordPolicy">
+      <class name="com.app.akku.work.TestCases.AKKU_01_LoginANDlogout">
         <methods>
-          <include name="AK_18_UpdatePasswordLengthwithvaliddata"/>
-          <include name="Ak_65_UpdatepasswordpolicyforChildOU"/>
-          <include name="AK_19_VerifyifExpirationofPwdisdisplayedwhenEnablePwdExpiryRadiobtnChecked"/>
           <include name="teardown"/>
-          <include name="Ak_66_VerifyPasswordHelptextdisplaybasedonparentOUPasswordpolicydetails"/>
-          <include name="Ak_67_VerifyPasswordHelptextdisplaybasedonSubOUPasswordpolicydetails"/>
-          <include name="AK_16_UpdatePwdpolicybyselectingmorethanonePwdComplexity"/>
-          <include name="Updateoldpasswordpolicy"/>
-          <include name="AK_64_UpdatepasswordpolicyforparentOU"/>
-          <include name="AK_63_CreatenewSubOUandsetpasswordpolicy"/>
-          <include name="AK_15_UpdatePwdpolicybyselectingonlyonePwdComplexity"/>
+          <include name="AK_01_ValidLogin"/>
+          <include name="AK_03_LoginwithValidUserNameandEmptyPassword"/>
           <include name="tearDown"/>
+          <include name="AK_05_LoginwithemptyUsernameandValidPassword"/>
+          <include name="AK_02_LoginWithValidEmailAndInvalidPassword"/>
           <include name="setup"/>
-          <include name="AK_20_VerifyifExpirationofPwdishidehenEnablePwdExpiryRadioisunchecked"/>
-          <include name="AK_62_CreatenewparentOUandsetpasswordpolicy"/>
-          <include name="AK_17_UpdatePasswordLengthwithinvaliddata"/>
+          <include name="AK_04_LoginwithinvalidUsernameandinvalidPassword"/>
         </methods>
-      </class> <!-- com.app.akku.work.TestCases.AKKU_15_PasswordPolicy -->
+      </class> <!-- com.app.akku.work.TestCases.AKKU_01_LoginANDlogout -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->
