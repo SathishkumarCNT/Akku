@@ -16,7 +16,7 @@
 
 	<test name="Login and logout in Chrome" preserve-order="true">
 
-		<parameter name="browser" value="U_firefox" />
+		<parameter name="browser" value="W_chrome" />
 		<parameter name="Environment" value="http://pre-prod.akku.work/" />
 
 		<classes>
