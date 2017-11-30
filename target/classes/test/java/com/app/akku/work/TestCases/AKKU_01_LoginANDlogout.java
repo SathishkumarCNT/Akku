@@ -67,17 +67,18 @@ public class AKKU_01_LoginANDlogout extends Browser_Setup {
 		test = report.createTest("AK_01", "Login Page Validation with Valid Credential");
 		try {
 
-			Thread.sleep(5000);
 			loginpage.loginpageTitle();
 
 			loginpage.typeUseremail(email);
-			Thread.sleep(3000);
+			
 			loginpage.typepassword(password);
-			Thread.sleep(5000);
+			
 			loginpage.clickLogin();
-			Thread.sleep(2000);
+			
 			loginpage.validatedloggedinUserDetailsEmailID(email);
+			
 			loginpage.verifyloggedinUserFNameAndLName();
+			
 			loginpage.clickLogout();
 
 			System.out.println("####################################################################");
@@ -89,6 +90,15 @@ public class AKKU_01_LoginANDlogout extends Browser_Setup {
 			result = TestLinkAPIResults.TEST_FAILED;
 			notes = e.getMessage();
 			e.printStackTrace();
+
+		}catch (AssertionError e) {
+
+			String message = e.getMessage();
+			System.out.println(message);
+			result = TestLinkAPIResults.TEST_FAILED;
+			notes = e.getMessage();
+			e.printStackTrace();
+			Assert.fail();
 
 		} finally {
 
@@ -184,12 +194,13 @@ public class AKKU_01_LoginANDlogout extends Browser_Setup {
 			TestLinkIntegration.reportResult(testProject, testPlan, AK_03, build, notes, result);
 
 		}
-
 	}
 
 	@Test(dataProvider = "Invalid_LoginDetails", retryAnalyzer = Retry.class)
 	public void AK_04_LoginwithinvalidUsernameandinvalidPassword(String email, String password) throws Exception {
+		
 		test = report.createTest("AK_04", "Trying to Login invalid Credential");
+		
 		try {
 
 			loginpage.typeUseremail(email);
@@ -212,7 +223,7 @@ public class AKKU_01_LoginANDlogout extends Browser_Setup {
 			notes = e.getMessage();
 			e.printStackTrace();
 
-		}catch (AssertionError e) {
+		} catch (AssertionError e) {
 
 			String message = e.getMessage();
 			System.out.println(message);
@@ -231,7 +242,9 @@ public class AKKU_01_LoginANDlogout extends Browser_Setup {
 
 	@Test(dataProvider = "Login_Details", retryAnalyzer = Retry.class)
 	public void AK_05_LoginwithemptyUsernameandValidPassword(String email, String password) throws Exception {
+		
 		test = report.createTest("AK_05", "Trying to Login Without Enter Email ID and Valid Password");
+		
 		try {
 			System.out.println("Inside of login with Empty Email AND PWD");
 
@@ -283,6 +296,7 @@ public class AKKU_01_LoginANDlogout extends Browser_Setup {
 			if (result.getStatus() == ITestResult.SUCCESS) {
 				System.out.println("Test case passed");
 				test.log(Status.PASS, "Test Case Passed");
+				driver.quit();
 
 			} else if (result.getStatus() == ITestResult.FAILURE) {
 
@@ -290,10 +304,12 @@ public class AKKU_01_LoginANDlogout extends Browser_Setup {
 				test.fail(result.getThrowable());
 				test.log(Status.FAIL, "Test case Failed & Screenshot taken in Tear Down method as: "
 						+ test.addScreenCaptureFromPath(screenshot_path));
+				driver.quit();
 
 			} else if (result.getStatus() == ITestResult.SKIP) {
 				test.log(Status.SKIP, "Test case Skipped");
 				test.skip(result.getThrowable());
+				driver.quit();
 
 			}
 
@@ -311,8 +327,8 @@ public class AKKU_01_LoginANDlogout extends Browser_Setup {
 	@AfterTest
 	public void teardown() throws Exception {
 
-		System.out.println("Test Execution");
-		driver.quit();
+		System.out.println("Test Execution Finished");
+		
 		report.flush();
 
 	}

@@ -77,6 +77,8 @@ public class Loginpage extends Keywords {
 		log.info("Trying to Enter Email ID: "+email+" in the Email text field...");
 
 		System.out.println("Trying to Enter email in the Email text field...");
+		
+		clear(By.xpath(prop.getAppProperty("Login_email_xpath")));
 
 		type(By.xpath(prop.getAppProperty("Login_email_xpath")), email);
 

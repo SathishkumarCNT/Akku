@@ -1,2 +1,4 @@
-/.metadata/
-/.test-output/
+/target/
+/test-output/
+
+

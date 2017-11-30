@@ -55,8 +55,9 @@ public class Browser_Setup {
 
 	@BeforeSuite
 	public void setUp() {
+		
 		System.out.println("Before Suite");
-		htmlReporter = new ExtentHtmlReporter(System.getProperty("user.dir") + "/test-output/MyOwnReport.html");
+		htmlReporter = new ExtentHtmlReporter(System.getProperty("user.dir") + "/src/test/resources/E_Reports/AkkuExtentReport.html");
 		report = new ExtentReports();
 		report.attachReporter(htmlReporter);
 
@@ -72,7 +73,7 @@ public class Browser_Setup {
 
 	}
 
-	@BeforeTest
+	@BeforeMethod
 	@Parameters({ "Environment", "browser" })
 	public void setup(String Environment, String browser) throws Exception {
 
