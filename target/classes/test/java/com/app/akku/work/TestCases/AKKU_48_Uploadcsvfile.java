@@ -1,5 +1,6 @@
 package com.app.akku.work.TestCases;
 
+import org.testng.Assert;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterTest;
@@ -72,6 +73,15 @@ public void AK_39_AddBulkUserfromUploadfilewithValidData(String email, String pa
 		} catch (Exception e) {
 			result = TestLinkAPIResults.TEST_FAILED;
 			notes = e.getMessage();
+		} catch (AssertionError e) {
+
+			String message = e.getMessage();
+			System.out.println(message);
+			result = TestLinkAPIResults.TEST_FAILED;
+			notes = e.getMessage();
+			e.printStackTrace();
+			Assert.fail();
+
 		}finally {
 
 			System.out.println("Updating TestCase Execution Status in TestLink");
@@ -122,6 +132,15 @@ public void AK_39_AddBulkUserfromUploadfilewithValidData(String email, String pa
 			result = TestLinkAPIResults.TEST_FAILED;
 			notes = e.getMessage();
 			e.printStackTrace();
+		} catch (AssertionError e) {
+
+			String message = e.getMessage();
+			System.out.println(message);
+			result = TestLinkAPIResults.TEST_FAILED;
+			notes = e.getMessage();
+			e.printStackTrace();
+			Assert.fail();
+
 		}finally {
 
 			System.out.println("Updating TestCase Execution Status in TestLink");

@@ -1,5 +1,6 @@
 package com.app.akku.work.TestCases;
 
+import org.testng.Assert;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterTest;
@@ -7,6 +8,7 @@ import org.testng.annotations.DataProvider;
 
 import org.testng.annotations.Test;
 import com.app.akku.work.common.Browser_Setup;
+import com.app.akku.work.common.Retry;
 import com.app.akku.work.common.TestLinkIntegration;
 import com.app.akku.work.common.poi_Reader_e;
 import com.app.akku.work.keywords.Keywords;
@@ -146,7 +148,16 @@ public class AKKU_33_Edit_Delete_Suspend_Activity_Users extends Browser_Setup {
 			result = TestLinkAPIResults.TEST_FAILED;
 			notes = e.getMessage();
 			e.printStackTrace();
-		} finally {
+		} catch (AssertionError e) {
+
+			String message = e.getMessage();
+			System.out.println(message);
+			result = TestLinkAPIResults.TEST_FAILED;
+			notes = e.getMessage();
+			e.printStackTrace();
+			Assert.fail();
+
+		}finally {
 
 			System.out.println("Updating TestCase Execution Status in TestLink");
 			TestLinkIntegration.reportResult(testProject, testPlan, AK_33, build, notes, result);
@@ -154,7 +165,7 @@ public class AKKU_33_Edit_Delete_Suspend_Activity_Users extends Browser_Setup {
 		}
 	}
 
-	@Test(dataProvider = "Edit_with_Invalid_Data")
+	@Test(dataProvider = "Edit_with_Invalid_Data", retryAnalyzer = Retry.class)
 	public void AK_35_EditUserDetailsinUserManagementpagewithInvaliddata(String email, String password, String Fname, String Lname,
 			String NewEmail) throws Exception {
 
@@ -217,6 +228,15 @@ public class AKKU_33_Edit_Delete_Suspend_Activity_Users extends Browser_Setup {
 			result = TestLinkAPIResults.TEST_FAILED;
 			notes = e.getMessage();
 			e.printStackTrace();
+		}catch (AssertionError e) {
+
+			String message = e.getMessage();
+			System.out.println(message);
+			result = TestLinkAPIResults.TEST_FAILED;
+			notes = e.getMessage();
+			e.printStackTrace();
+			Assert.fail();
+
 		} finally {
 
 			System.out.println("Updating TestCase Execution Status in TestLink");
@@ -226,7 +246,7 @@ public class AKKU_33_Edit_Delete_Suspend_Activity_Users extends Browser_Setup {
 
 	}
 
-	@Test(dataProvider = "Edit_with_Valid_Data")
+	@Test(dataProvider = "Edit_with_Valid_Data", retryAnalyzer = Retry.class)
 	public void AK_36_EditUserDetailswithinvalidEmailIDformat(String email, String password, String Fname, String Lname,
 			String NewEmail) throws Exception {
 
@@ -260,6 +280,15 @@ public class AKKU_33_Edit_Delete_Suspend_Activity_Users extends Browser_Setup {
 			result = TestLinkAPIResults.TEST_FAILED;
 			notes = e.getMessage();
 			e.printStackTrace();
+		}catch (AssertionError e) {
+
+			String message = e.getMessage();
+			System.out.println(message);
+			result = TestLinkAPIResults.TEST_FAILED;
+			notes = e.getMessage();
+			e.printStackTrace();
+			Assert.fail();
+
 		} finally {
 
 			System.out.println("Updating TestCase Execution Status in TestLink");
@@ -268,7 +297,7 @@ public class AKKU_33_Edit_Delete_Suspend_Activity_Users extends Browser_Setup {
 		}
 	}
 
-	@Test(dataProvider = "Edit_with_Valid_Data")
+	@Test(dataProvider = "Edit_with_Valid_Data", retryAnalyzer = Retry.class)
 	public void AK_37_SuspendUserfromUserManagementpage(String email, String password, String Fname, String Lname,
 			String NewEmail) throws Exception {
 
@@ -300,7 +329,16 @@ public class AKKU_33_Edit_Delete_Suspend_Activity_Users extends Browser_Setup {
 			result = TestLinkAPIResults.TEST_FAILED;
 			notes = e.getMessage();
 			e.printStackTrace();
-		} finally {
+		} catch (AssertionError e) {
+
+			String message = e.getMessage();
+			System.out.println(message);
+			result = TestLinkAPIResults.TEST_FAILED;
+			notes = e.getMessage();
+			e.printStackTrace();
+			Assert.fail();
+
+		}finally {
 
 			System.out.println("Updating TestCase Execution Status in TestLink");
 			TestLinkIntegration.reportResult(testProject, testPlan, AK_37, build, notes, result);
@@ -309,7 +347,7 @@ public class AKKU_33_Edit_Delete_Suspend_Activity_Users extends Browser_Setup {
 
 	}
 
-	@Test(dataProvider = "Edit_with_Valid_Data")
+	@Test(dataProvider = "Edit_with_Valid_Data", retryAnalyzer = Retry.class)
 	public void AK_38_DeleteUserfromUserManagementpage(String email, String password, String Fname, String Lname,
 			String NewEmail) throws Exception {
 
@@ -340,6 +378,15 @@ public class AKKU_33_Edit_Delete_Suspend_Activity_Users extends Browser_Setup {
 			result = TestLinkAPIResults.TEST_FAILED;
 			notes = e.getMessage();
 			e.printStackTrace();
+		}catch (AssertionError e) {
+
+			String message = e.getMessage();
+			System.out.println(message);
+			result = TestLinkAPIResults.TEST_FAILED;
+			notes = e.getMessage();
+			e.printStackTrace();
+			Assert.fail();
+
 		} finally {
 
 			System.out.println("Updating TestCase Execution Status in TestLink");
@@ -349,7 +396,7 @@ public class AKKU_33_Edit_Delete_Suspend_Activity_Users extends Browser_Setup {
 
 	}
 
-	@Test(dataProvider = "EditPwd_DetailswithPassworNotmatchPolicy")
+	@Test(dataProvider = "EditPwd_DetailswithPassworNotmatchPolicy", retryAnalyzer = Retry.class)
 	public void AK_40_ResetUserPasswordwithinvalidpasswordpolicy(String email, String password, String Oldpassword,
 			String Newpassword, String Confnewpassword) throws Exception {
 
@@ -382,6 +429,15 @@ public class AKKU_33_Edit_Delete_Suspend_Activity_Users extends Browser_Setup {
 			result = TestLinkAPIResults.TEST_FAILED;
 			notes = e.getMessage();
 			e.printStackTrace();
+		}catch (AssertionError e) {
+
+			String message = e.getMessage();
+			System.out.println(message);
+			result = TestLinkAPIResults.TEST_FAILED;
+			notes = e.getMessage();
+			e.printStackTrace();
+			Assert.fail();
+
 		} finally {
 
 			System.out.println("Updating TestCase Execution Status in TestLink");
@@ -391,7 +447,7 @@ public class AKKU_33_Edit_Delete_Suspend_Activity_Users extends Browser_Setup {
 
 	}
 
-	@Test(dataProvider = "EditPwd_DInvalidConfirmpassword_Details")
+	@Test(dataProvider = "EditPwd_DInvalidConfirmpassword_Details", retryAnalyzer = Retry.class)
 	public void AK_42_ResetNewpasswordwithnotmatchingwithConfirmPassword(String email, String password, String Oldpassword,
 			String Newpassword, String Confnewpassword) throws Exception {
 
@@ -424,6 +480,15 @@ public class AKKU_33_Edit_Delete_Suspend_Activity_Users extends Browser_Setup {
 			result = TestLinkAPIResults.TEST_FAILED;
 			notes = e.getMessage();
 			e.printStackTrace();
+		}catch (AssertionError e) {
+
+			String message = e.getMessage();
+			System.out.println(message);
+			result = TestLinkAPIResults.TEST_FAILED;
+			notes = e.getMessage();
+			e.printStackTrace();
+			Assert.fail();
+
 		} finally {
 
 			System.out.println("Updating TestCase Execution Status in TestLink");
@@ -433,7 +498,7 @@ public class AKKU_33_Edit_Delete_Suspend_Activity_Users extends Browser_Setup {
 
 	}
 
-	@Test(dataProvider = "EditPwd_validpassword_Details")
+	@Test(dataProvider = "EditPwd_validpassword_Details", retryAnalyzer = Retry.class)
 	public void AK_43_ResetPasswordfromUserListwithvalidpassword(String email, String password, String Oldpassword, String Newpassword,
 			String Confnewpassword) throws Exception {
 
@@ -466,6 +531,15 @@ public class AKKU_33_Edit_Delete_Suspend_Activity_Users extends Browser_Setup {
 			result = TestLinkAPIResults.TEST_FAILED;
 			notes = e.getMessage();
 			e.printStackTrace();
+		}catch (AssertionError e) {
+
+			String message = e.getMessage();
+			System.out.println(message);
+			result = TestLinkAPIResults.TEST_FAILED;
+			notes = e.getMessage();
+			e.printStackTrace();
+			Assert.fail();
+
 		} finally {
 
 			System.out.println("Updating TestCase Execution Status in TestLink");
@@ -475,7 +549,7 @@ public class AKKU_33_Edit_Delete_Suspend_Activity_Users extends Browser_Setup {
 
 	}
 
-	@Test(dataProvider = "EditPwd_Changepwdinnextlogin_Details")
+	@Test(dataProvider = "EditPwd_Changepwdinnextlogin_Details", retryAnalyzer = Retry.class)
 	public void AK_45_ResetPasswordandChangePasswordinNextLogin(String email, String password, String Oldpassword, String NewEmail,
 			String Newpassword, String Confnewpassword) throws Exception {
 
@@ -526,7 +600,16 @@ public class AKKU_33_Edit_Delete_Suspend_Activity_Users extends Browser_Setup {
 			result = TestLinkAPIResults.TEST_FAILED;
 			notes = e.getMessage();
 			e.printStackTrace();
-		} finally {
+		} catch (AssertionError e) {
+
+			String message = e.getMessage();
+			System.out.println(message);
+			result = TestLinkAPIResults.TEST_FAILED;
+			notes = e.getMessage();
+			e.printStackTrace();
+			Assert.fail();
+
+		}finally {
 
 			System.out.println("Updating TestCase Execution Status in TestLink");
 			TestLinkIntegration.reportResult(testProject, testPlan, AK_45, build, notes, result);
@@ -534,7 +617,7 @@ public class AKKU_33_Edit_Delete_Suspend_Activity_Users extends Browser_Setup {
 		}
 	}
 
-	@Test(dataProvider = "SearchKeywordingridwithvaliddata")
+	@Test(dataProvider = "SearchKeywordingridwithvaliddata", retryAnalyzer = Retry.class)
 	public void AK_47_Searchuserfromuserlistusingvalidkeyword(String email, String password, String Fname,
 			String Lname, String SearchKey) throws Exception {
 
@@ -568,6 +651,15 @@ public class AKKU_33_Edit_Delete_Suspend_Activity_Users extends Browser_Setup {
 			result = TestLinkAPIResults.TEST_FAILED;
 			notes = e.getMessage();
 			e.printStackTrace();
+		}catch (AssertionError e) {
+
+			String message = e.getMessage();
+			System.out.println(message);
+			result = TestLinkAPIResults.TEST_FAILED;
+			notes = e.getMessage();
+			e.printStackTrace();
+			Assert.fail();
+
 		} finally {
 
 			System.out.println("Updating TestCase Execution Status in TestLink");
@@ -577,7 +669,7 @@ public class AKKU_33_Edit_Delete_Suspend_Activity_Users extends Browser_Setup {
 
 	}
 
-	@Test(dataProvider = "SearchKeywordingridwithinvaliddata")
+	@Test(dataProvider = "SearchKeywordingridwithinvaliddata", retryAnalyzer = Retry.class)
 	public void AK_48_Searchuserfromuserlistusinginvalidkeyword(String email, String password, String Fname,
 			String Lname, String SearchKey) throws Exception {
 
@@ -611,6 +703,15 @@ public class AKKU_33_Edit_Delete_Suspend_Activity_Users extends Browser_Setup {
 			result = TestLinkAPIResults.TEST_FAILED;
 			notes = e.getMessage();
 			e.printStackTrace();
+		}catch (AssertionError e) {
+
+			String message = e.getMessage();
+			System.out.println(message);
+			result = TestLinkAPIResults.TEST_FAILED;
+			notes = e.getMessage();
+			e.printStackTrace();
+			Assert.fail();
+
 		} finally {
 
 			System.out.println("Updating TestCase Execution Status in TestLink");
@@ -620,7 +721,7 @@ public class AKKU_33_Edit_Delete_Suspend_Activity_Users extends Browser_Setup {
 
 	}
 
-	@Test(dataProvider = "SearchKeywordingridwithinvaliddata")
+	@Test(dataProvider = "SearchKeywordingridwithinvaliddata", retryAnalyzer = Retry.class)
 	public void AK_51_UserlistcountinapagebasedonShowCountselected(String email, String password, String Fname, String Lname,
 			String SearchKey) throws Exception {
 
@@ -653,6 +754,15 @@ public class AKKU_33_Edit_Delete_Suspend_Activity_Users extends Browser_Setup {
 			result = TestLinkAPIResults.TEST_FAILED;
 			notes = e.getMessage();
 			e.printStackTrace();
+		}catch (AssertionError e) {
+
+			String message = e.getMessage();
+			System.out.println(message);
+			result = TestLinkAPIResults.TEST_FAILED;
+			notes = e.getMessage();
+			e.printStackTrace();
+			Assert.fail();
+
 		} finally {
 
 			System.out.println("Updating TestCase Execution Status in TestLink");
@@ -662,7 +772,7 @@ public class AKKU_33_Edit_Delete_Suspend_Activity_Users extends Browser_Setup {
 
 	}
 
-	@Test(dataProvider = "SearchKeywordingridwithvaliddata")
+	@Test(dataProvider = "SearchKeywordingridwithvaliddata", retryAnalyzer = Retry.class)
 	public void AK_50_ViewUserdetailsbyselectingFullNameLinkText(String email, String password, String Fname,
 			String Lname, String SearchKey) throws Exception {
 
@@ -699,7 +809,16 @@ public class AKKU_33_Edit_Delete_Suspend_Activity_Users extends Browser_Setup {
 			result = TestLinkAPIResults.TEST_FAILED;
 			notes = e.getMessage();
 			e.printStackTrace();
-		} finally {
+		} catch (AssertionError e) {
+
+			String message = e.getMessage();
+			System.out.println(message);
+			result = TestLinkAPIResults.TEST_FAILED;
+			notes = e.getMessage();
+			e.printStackTrace();
+			Assert.fail();
+
+		}finally {
 
 			System.out.println("Updating TestCase Execution Status in TestLink");
 			TestLinkIntegration.reportResult(testProject, testPlan, AK_50, build, notes, result);
@@ -708,7 +827,7 @@ public class AKKU_33_Edit_Delete_Suspend_Activity_Users extends Browser_Setup {
 
 	}
 
-	@Test(dataProvider = "EditPwd_Changepwdinnextlogin_Details")
+	@Test(dataProvider = "EditPwd_Changepwdinnextlogin_Details", retryAnalyzer = Retry.class)
 	public void AK_49_VerifyLastLogindatetimeinuserList(String email, String password, String Oldpassword,
 			String NewEmail, String Newpassword, String Confnewpassword) throws Exception {
 
@@ -739,6 +858,15 @@ public class AKKU_33_Edit_Delete_Suspend_Activity_Users extends Browser_Setup {
 			result = TestLinkAPIResults.TEST_FAILED;
 			notes = e.getMessage();
 			e.printStackTrace();
+		}catch (AssertionError e) {
+
+			String message = e.getMessage();
+			System.out.println(message);
+			result = TestLinkAPIResults.TEST_FAILED;
+			notes = e.getMessage();
+			e.printStackTrace();
+			Assert.fail();
+
 		} finally {
 
 			System.out.println("Updating TestCase Execution Status in TestLink");
@@ -747,7 +875,7 @@ public class AKKU_33_Edit_Delete_Suspend_Activity_Users extends Browser_Setup {
 		}
 	}
 
-	@Test(dataProvider = "EditPwd_Changepwdinnextlogin_Details")
+	@Test(dataProvider = "EditPwd_Changepwdinnextlogin_Details", retryAnalyzer = Retry.class)
 	public void AK_44_SelectmultipleuserfromuserlistandVerifyActionbuttons(String email, String password, String Oldpassword, String NewEmail,
 			String Newpassword, String Confnewpassword) throws Exception {
 
@@ -800,7 +928,16 @@ public class AKKU_33_Edit_Delete_Suspend_Activity_Users extends Browser_Setup {
 			result = TestLinkAPIResults.TEST_FAILED;
 			notes = e.getMessage();
 			e.printStackTrace();
-		} finally {
+		} catch (AssertionError e) {
+
+			String message = e.getMessage();
+			System.out.println(message);
+			result = TestLinkAPIResults.TEST_FAILED;
+			notes = e.getMessage();
+			e.printStackTrace();
+			Assert.fail();
+
+		}finally {
 
 			System.out.println("Updating TestCase Execution Status in TestLink");
 			TestLinkIntegration.reportResult(testProject, testPlan, AK_44, build, notes, result);

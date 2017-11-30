@@ -1,11 +1,13 @@
 package com.app.akku.work.TestCases;
 
+import org.testng.Assert;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import com.app.akku.work.common.Browser_Setup;
+import com.app.akku.work.common.Retry;
 import com.app.akku.work.common.TestLinkIntegration;
 import com.app.akku.work.common.poi_Reader_e;
 import com.app.akku.work.keywords.Keywords;
@@ -39,7 +41,7 @@ public class AKKU_47_AddsingleuserManually extends Browser_Setup {
 		return testData;
 	}
 		
-	@Test(dataProvider = "Confirm_And_Add_User")
+	@Test(dataProvider = "Confirm_And_Add_User", retryAnalyzer = Retry.class)
 	public void AK_46_AddUsersManually(String email, String password,String FName, String Lname,String Confnewpassword ) throws Exception {
 		
 		try {
@@ -81,6 +83,15 @@ public class AKKU_47_AddsingleuserManually extends Browser_Setup {
 			result = TestLinkAPIResults.TEST_FAILED;
 			notes = e.getMessage();
 			e.printStackTrace();
+		} catch (AssertionError e) {
+
+			String message = e.getMessage();
+			System.out.println(message);
+			result = TestLinkAPIResults.TEST_FAILED;
+			notes = e.getMessage();
+			e.printStackTrace();
+			Assert.fail();
+
 		}finally {
 
 			System.out.println("Updating TestCase Execution Status in TestLink");
@@ -89,7 +100,7 @@ public class AKKU_47_AddsingleuserManually extends Browser_Setup {
 		}
 	} 
 	
-	@Test(dataProvider = "Confirm_And_Add_User")
+	@Test(dataProvider = "Confirm_And_Add_User", retryAnalyzer = Retry.class)
 	public void addAdmin(String email, String password,String FName, String Lname,String Confnewpassword ) throws Exception {
 		
 		try {
@@ -127,6 +138,15 @@ public class AKKU_47_AddsingleuserManually extends Browser_Setup {
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		} catch (AssertionError e) {
+
+			String message = e.getMessage();
+			System.out.println(message);
+			result = TestLinkAPIResults.TEST_FAILED;
+			notes = e.getMessage();
+			e.printStackTrace();
+			Assert.fail();
+
 		}
 	
 	}

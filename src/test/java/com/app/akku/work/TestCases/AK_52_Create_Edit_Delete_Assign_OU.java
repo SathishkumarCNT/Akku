@@ -1,5 +1,6 @@
 package com.app.akku.work.TestCases;
 
+import org.testng.Assert;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterTest;
@@ -7,7 +8,7 @@ import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 import com.app.akku.work.common.Browser_Setup;
-
+import com.app.akku.work.common.Retry;
 import com.app.akku.work.common.TestLinkIntegration;
 import com.app.akku.work.common.poi_Reader_e;
 import com.app.akku.work.keywords.Keywords;
@@ -96,7 +97,7 @@ public class AK_52_Create_Edit_Delete_Assign_OU extends Browser_Setup {
 		return testData;
 	}
 
-	@Test(dataProvider = "Create_OU")
+	@Test(dataProvider = "Create_OU", retryAnalyzer = Retry.class)
 	public void AK_52_AddValidNewOUwithParentCNT(String email, String password, String NewOu, String ParentOU)
 			throws Exception {
 		try {
@@ -125,9 +126,17 @@ public class AK_52_Create_Edit_Delete_Assign_OU extends Browser_Setup {
 			result = TestLinkAPIResults.TEST_FAILED;
 			notes = e.getMessage();
 			e.printStackTrace();
-		
+		}catch (AssertionError e) {
 
-		} finally {
+			String message = e.getMessage();
+			System.out.println(message);
+			result = TestLinkAPIResults.TEST_FAILED;
+			notes = e.getMessage();
+			e.printStackTrace();
+			Assert.fail();
+		}
+
+		 finally {
 
 			System.out.println("Updating TestCase Execution Status in TestLink");
 			TestLinkIntegration.reportResult(testProject, testPlan, AK_52, build, notes, result);
@@ -136,7 +145,7 @@ public class AK_52_Create_Edit_Delete_Assign_OU extends Browser_Setup {
 
 	}
 
-	@Test(dataProvider = "Create_OU_As_SUBOU")
+	@Test(dataProvider = "Create_OU_As_SUBOU", retryAnalyzer = Retry.class)
 	public void AK_54_AddValidNewOUwithanyChildOU(String email, String password, String NewOu, String ParentOU)
 			throws Exception {
 		try {
@@ -166,7 +175,16 @@ public class AK_52_Create_Edit_Delete_Assign_OU extends Browser_Setup {
 			notes = e.getMessage();
 			e.printStackTrace();
 
-		} finally {
+		} catch (AssertionError e) {
+
+			String message = e.getMessage();
+			System.out.println(message);
+			result = TestLinkAPIResults.TEST_FAILED;
+			notes = e.getMessage();
+			e.printStackTrace();
+			Assert.fail();
+		}
+		finally {
 
 			System.out.println("Updating TestCase Execution Status in TestLink");
 			TestLinkIntegration.reportResult(testProject, testPlan, AK_54, build, notes, result);
@@ -174,7 +192,7 @@ public class AK_52_Create_Edit_Delete_Assign_OU extends Browser_Setup {
 		}
 	}
 
-	@Test(dataProvider = "Duplicate_OU_In_Same_ParentOU")
+	@Test(dataProvider = "Duplicate_OU_In_Same_ParentOU", retryAnalyzer = Retry.class)
 	public void AK_55_AddDuplicateOUundersameParentOU(String email, String password, String NewOu, String ParentOU)
 			throws Exception {
 		try {
@@ -204,7 +222,16 @@ public class AK_52_Create_Edit_Delete_Assign_OU extends Browser_Setup {
 			notes = e.getMessage();
 			e.printStackTrace();
 
-		} finally {
+		} catch (AssertionError e) {
+
+			String message = e.getMessage();
+			System.out.println(message);
+			result = TestLinkAPIResults.TEST_FAILED;
+			notes = e.getMessage();
+			e.printStackTrace();
+			Assert.fail();
+		}
+		finally {
 
 			System.out.println("Updating TestCase Execution Status in TestLink");
 			TestLinkIntegration.reportResult(testProject, testPlan, AK_55, build, notes, result);
@@ -212,7 +239,7 @@ public class AK_52_Create_Edit_Delete_Assign_OU extends Browser_Setup {
 		}
 	}
 
-	@Test(dataProvider = "Duplicate_OU_with_differnt_ParentOU")
+	@Test(dataProvider = "Duplicate_OU_with_differnt_ParentOU", retryAnalyzer = Retry.class)
 	public void AK_56_AddDuplicateOUunderdifferentParentOU(String email, String password, String NewOu, String ParentOU)
 			throws Exception {
 		try {
@@ -242,7 +269,16 @@ public class AK_52_Create_Edit_Delete_Assign_OU extends Browser_Setup {
 			notes = e.getMessage();
 			e.printStackTrace();
 
-		} finally {
+		}catch (AssertionError e) {
+
+			String message = e.getMessage();
+			System.out.println(message);
+			result = TestLinkAPIResults.TEST_FAILED;
+			notes = e.getMessage();
+			e.printStackTrace();
+			Assert.fail();
+		}
+		 finally {
 
 			System.out.println("Updating TestCase Execution Status in TestLink");
 			TestLinkIntegration.reportResult(testProject, testPlan, AK_56, build, notes, result);
@@ -251,7 +287,7 @@ public class AK_52_Create_Edit_Delete_Assign_OU extends Browser_Setup {
 	}
 
 
-	@Test(dataProvider = "Edit_OU")
+	@Test(dataProvider = "Edit_OU", retryAnalyzer = Retry.class)
 	public void AK_53_EditOUNamewithValidNameformat(String email, String password, String NewOu, String ParentOU)
 			throws Exception {
 		try {
@@ -283,7 +319,16 @@ public class AK_52_Create_Edit_Delete_Assign_OU extends Browser_Setup {
 			notes = e.getMessage();
 			e.printStackTrace();
 
-		} finally {
+		} catch (AssertionError e) {
+
+			String message = e.getMessage();
+			System.out.println(message);
+			result = TestLinkAPIResults.TEST_FAILED;
+			notes = e.getMessage();
+			e.printStackTrace();
+			Assert.fail();
+		}
+		finally {
 
 			System.out.println("Updating TestCase Execution Status in TestLink");
 			TestLinkIntegration.reportResult(testProject, testPlan, AK_53, build, notes, result);
@@ -291,7 +336,7 @@ public class AK_52_Create_Edit_Delete_Assign_OU extends Browser_Setup {
 		}
 	}
 	
-	@Test(dataProvider = "Edit_OU")
+	@Test(dataProvider = "Edit_OU", retryAnalyzer = Retry.class)
 	public void RevertbackEditedOUNamewithValidNameformat(String email, String password, String NewOu, String ParentOU)
 			throws Exception {
 		try {
@@ -320,10 +365,19 @@ public class AK_52_Create_Edit_Delete_Assign_OU extends Browser_Setup {
 			
 			e.printStackTrace();
 
-		} 
+		} catch (AssertionError e) {
+
+			String message = e.getMessage();
+			System.out.println(message);
+			result = TestLinkAPIResults.TEST_FAILED;
+			notes = e.getMessage();
+			e.printStackTrace();
+			Assert.fail();
+		}
+		
 	}
 
-	@Test(dataProvider = "Edit_OU_With_InvalidName")
+	@Test(dataProvider = "Edit_OU_With_InvalidName", retryAnalyzer = Retry.class)
 	public void AK_57_EditOUNamewithInvalidNameformat(String email, String password, String NewOu, String ParentOU)
 			throws Exception {
 		try {
@@ -354,7 +408,16 @@ public class AK_52_Create_Edit_Delete_Assign_OU extends Browser_Setup {
 			notes = e.getMessage();
 			e.printStackTrace();
 
-		} finally {
+		}catch (AssertionError e) {
+
+			String message = e.getMessage();
+			System.out.println(message);
+			result = TestLinkAPIResults.TEST_FAILED;
+			notes = e.getMessage();
+			e.printStackTrace();
+			Assert.fail();
+		}
+		 finally {
 
 			System.out.println("Updating TestCase Execution Status in TestLink");
 			TestLinkIntegration.reportResult(testProject, testPlan, AK_57, build, notes, result);
@@ -362,7 +425,7 @@ public class AK_52_Create_Edit_Delete_Assign_OU extends Browser_Setup {
 		}
 	}
 
-	@Test(dataProvider = "Edit_OU_With_InvalidName")
+	@Test(dataProvider = "Edit_OU_With_InvalidName", retryAnalyzer = Retry.class)
 	public void AK_59_AssignUsers(String email, String password, String NewOu, String ParentOU) throws Exception {
 		try {
 			loginpage.loginpageTitle();
@@ -462,7 +525,16 @@ public class AK_52_Create_Edit_Delete_Assign_OU extends Browser_Setup {
 			notes = e.getMessage();
 			e.printStackTrace();
 
-		} finally {
+		}catch (AssertionError e) {
+
+			String message = e.getMessage();
+			System.out.println(message);
+			result = TestLinkAPIResults.TEST_FAILED;
+			notes = e.getMessage();
+			e.printStackTrace();
+			Assert.fail();
+		}
+		 finally {
 
 			System.out.println("Updating TestCase Execution Status in TestLink");
 			 TestLinkIntegration.reportResult(testProject, testPlan, AK_59, build, notes, result);
@@ -470,7 +542,7 @@ public class AK_52_Create_Edit_Delete_Assign_OU extends Browser_Setup {
 		}
 	}
 
-	@Test(dataProvider = "Duplicate_OU_with_differnt_ParentOU")
+	@Test(dataProvider = "Duplicate_OU_with_differnt_ParentOU", retryAnalyzer = Retry.class)
 	public void AK_58_DeleteOUinOUManagementpage(String email, String password, String NewOu, String ParentOU)
 			throws Exception {
 		try {
@@ -505,7 +577,16 @@ public class AK_52_Create_Edit_Delete_Assign_OU extends Browser_Setup {
 			notes = e.getMessage();
 			e.printStackTrace();
 
-		} finally {
+		}catch (AssertionError e) {
+
+			String message = e.getMessage();
+			System.out.println(message);
+			result = TestLinkAPIResults.TEST_FAILED;
+			notes = e.getMessage();
+			e.printStackTrace();
+			Assert.fail();
+		}
+		 finally {
 
 			System.out.println("Updating TestCase Execution Status in TestLink");
 			TestLinkIntegration.reportResult(testProject, testPlan, AK_58, build, notes, result);
@@ -513,7 +594,7 @@ public class AK_52_Create_Edit_Delete_Assign_OU extends Browser_Setup {
 		}
 	}
 
-	@Test(dataProvider = "Create_OU_As_SUBOU")
+	@Test(dataProvider = "Create_OU_As_SUBOU", retryAnalyzer = Retry.class)
 	public void AK_60_DeleteParentOUwhichhaveSubOUinOUManagementpage(String email, String password, String NewOu,
 			String ParentOU) throws Exception {
 		try {
@@ -549,7 +630,16 @@ public class AK_52_Create_Edit_Delete_Assign_OU extends Browser_Setup {
 			notes = e.getMessage();
 			e.printStackTrace();
 
-		} finally {
+		} catch (AssertionError e) {
+
+			String message = e.getMessage();
+			System.out.println(message);
+			result = TestLinkAPIResults.TEST_FAILED;
+			notes = e.getMessage();
+			e.printStackTrace();
+			Assert.fail();
+		}
+		finally {
 
 			System.out.println("Updating TestCase Execution Status in TestLink");
 			TestLinkIntegration.reportResult(testProject, testPlan, AK_60, build, notes, result);
@@ -557,7 +647,7 @@ public class AK_52_Create_Edit_Delete_Assign_OU extends Browser_Setup {
 		}
 	}
 
-	@Test(dataProvider = "Create_OU_As_SUBOU")
+	@Test(dataProvider = "Create_OU_As_SUBOU", retryAnalyzer = Retry.class)
 	public void AK_61_DeleteOUwhichhaveuserinOUManagementpage(String email, String password, String NewOu,
 			String ParentOU) throws Exception {
 		try {
@@ -618,7 +708,16 @@ public class AK_52_Create_Edit_Delete_Assign_OU extends Browser_Setup {
 			notes = e.getMessage();
 			e.printStackTrace();
 
-		} finally {
+		}catch (AssertionError e) {
+
+			String message = e.getMessage();
+			System.out.println(message);
+			result = TestLinkAPIResults.TEST_FAILED;
+			notes = e.getMessage();
+			e.printStackTrace();
+			Assert.fail();
+		}
+		 finally {
 
 			System.out.println("Updating TestCase Execution Status in TestLink");
 			TestLinkIntegration.reportResult(testProject, testPlan, AK_61, build, notes, result);
@@ -626,7 +725,7 @@ public class AK_52_Create_Edit_Delete_Assign_OU extends Browser_Setup {
 		}
 	}
 	
-	@Test(dataProvider = "Create_OU_As_SUBOU")
+	@Test(dataProvider = "Create_OU_As_SUBOU", retryAnalyzer = Retry.class)
 	public void DeleteCreatedOufromPage(String email, String password, String NewOu, String ParentOU) throws Exception {
 		try {
 			loginpage.loginpageTitle();
@@ -663,8 +762,18 @@ public class AK_52_Create_Edit_Delete_Assign_OU extends Browser_Setup {
 
 			e.printStackTrace();
 
-		}
+		}catch (AssertionError e) {
+
+			String message = e.getMessage();
+			System.out.println(message);
+			result = TestLinkAPIResults.TEST_FAILED;
+			notes = e.getMessage();
+			e.printStackTrace();
+			Assert.fail();
+
+		
 	}
+		}
 	
 	
 	

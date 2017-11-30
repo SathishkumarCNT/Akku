@@ -1,5 +1,6 @@
 package com.app.akku.work.TestCases;
 
+import org.testng.Assert;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterTest;
@@ -98,7 +99,16 @@ public class AKKU_15_PasswordPolicy extends Browser_Setup {
 			result = TestLinkAPIResults.TEST_FAILED;
 			notes = e.getMessage();
 			e.printStackTrace();
-		} finally {
+		} catch (AssertionError e) {
+
+			String message = e.getMessage();
+			System.out.println(message);
+			result = TestLinkAPIResults.TEST_FAILED;
+			notes = e.getMessage();
+			e.printStackTrace();
+			Assert.fail();
+
+		}finally {
 
 			System.out.println("Updating TestCase Execution Status in TestLink");
 			TestLinkIntegration.reportResult(testProject, testPlan, AK_15, build, notes, result);
@@ -178,7 +188,16 @@ public class AKKU_15_PasswordPolicy extends Browser_Setup {
 			result = TestLinkAPIResults.TEST_FAILED;
 			notes = e.getMessage();
 			e.printStackTrace();
-		} finally {
+		} catch (AssertionError e) {
+
+			String message = e.getMessage();
+			System.out.println(message);
+			result = TestLinkAPIResults.TEST_FAILED;
+			notes = e.getMessage();
+			e.printStackTrace();
+			Assert.fail();
+
+		}finally {
 
 			System.out.println("Updating TestCase Execution Status in TestLink");
 			TestLinkIntegration.reportResult(testProject, testPlan, AK_16, build, notes, result);
@@ -187,7 +206,7 @@ public class AKKU_15_PasswordPolicy extends Browser_Setup {
 
 	}
 
-	@Test(dataProvider = "SiteBlockingLogin_Details")
+	@Test(dataProvider = "SiteBlockingLogin_Details", retryAnalyzer = Retry.class)
 	public void AK_17_UpdatePasswordLengthwithinvaliddata(String email, String password, String siteURl,
 			String siteDescription) throws Exception
 
@@ -242,6 +261,15 @@ public class AKKU_15_PasswordPolicy extends Browser_Setup {
 			result = TestLinkAPIResults.TEST_FAILED;
 			notes = e.getMessage();
 			e.printStackTrace();
+		}catch (AssertionError e) {
+
+			String message = e.getMessage();
+			System.out.println(message);
+			result = TestLinkAPIResults.TEST_FAILED;
+			notes = e.getMessage();
+			e.printStackTrace();
+			Assert.fail();
+
 		} finally {
 
 			System.out.println("Updating TestCase Execution Status in TestLink");
@@ -251,7 +279,7 @@ public class AKKU_15_PasswordPolicy extends Browser_Setup {
 
 	}
 
-	@Test(dataProvider = "SiteBlockingLogin_Details")
+	@Test(dataProvider = "SiteBlockingLogin_Details", retryAnalyzer = Retry.class)
 	public void AK_18_UpdatePasswordLengthwithvaliddata(String email, String password, String siteURl,
 			String siteDescription) throws Exception
 
@@ -277,7 +305,16 @@ public class AKKU_15_PasswordPolicy extends Browser_Setup {
 			result = TestLinkAPIResults.TEST_FAILED;
 			notes = e.getMessage();
 			e.printStackTrace();
-		} finally {
+		} catch (AssertionError e) {
+
+			String message = e.getMessage();
+			System.out.println(message);
+			result = TestLinkAPIResults.TEST_FAILED;
+			notes = e.getMessage();
+			e.printStackTrace();
+			Assert.fail();
+
+		}finally {
 
 			System.out.println("Updating TestCase Execution Status in TestLink");
 			TestLinkIntegration.reportResult(testProject, testPlan, AK_18, build, notes, result);
@@ -286,7 +323,7 @@ public class AKKU_15_PasswordPolicy extends Browser_Setup {
 
 	}
 
-	@Test(dataProvider = "SiteBlockingLogin_Details")
+	@Test(dataProvider = "SiteBlockingLogin_Details", retryAnalyzer = Retry.class)
 	public void AK_19_VerifyifExpirationofPwdisdisplayedwhenEnablePwdExpiryRadiobtnChecked(String email,
 			String password, String siteURl, String siteDescription) throws Exception
 
@@ -315,6 +352,15 @@ public class AKKU_15_PasswordPolicy extends Browser_Setup {
 			result = TestLinkAPIResults.TEST_FAILED;
 			notes = e.getMessage();
 			e.printStackTrace();
+		}catch (AssertionError e) {
+
+			String message = e.getMessage();
+			System.out.println(message);
+			result = TestLinkAPIResults.TEST_FAILED;
+			notes = e.getMessage();
+			e.printStackTrace();
+			Assert.fail();
+
 		} finally {
 
 			System.out.println("Updating TestCase Execution Status in TestLink");
@@ -324,7 +370,7 @@ public class AKKU_15_PasswordPolicy extends Browser_Setup {
 
 	}
 
-	@Test(dataProvider = "SiteBlockingLogin_Details")
+	@Test(dataProvider = "SiteBlockingLogin_Details", retryAnalyzer = Retry.class)
 	public void AK_20_VerifyifExpirationofPwdishidehenEnablePwdExpiryRadioisunchecked(String email, String password,
 			String siteURl, String siteDescription) throws Exception
 
@@ -353,7 +399,16 @@ public class AKKU_15_PasswordPolicy extends Browser_Setup {
 			result = TestLinkAPIResults.TEST_FAILED;
 			notes = e.getMessage();
 			e.printStackTrace();
-		} finally {
+		} catch (AssertionError e) {
+
+			String message = e.getMessage();
+			System.out.println(message);
+			result = TestLinkAPIResults.TEST_FAILED;
+			notes = e.getMessage();
+			e.printStackTrace();
+			Assert.fail();
+
+		}finally {
 
 			System.out.println("Updating TestCase Execution Status in TestLink");
 			TestLinkIntegration.reportResult(testProject, testPlan, AK_20, build, notes, result);
@@ -362,7 +417,7 @@ public class AKKU_15_PasswordPolicy extends Browser_Setup {
 
 	}
 
-	@Test(dataProvider = "SiteBlockingLogin_Details")
+	@Test(dataProvider = "SiteBlockingLogin_Details", retryAnalyzer = Retry.class)
 	public void Updateoldpasswordpolicy(String email, String password, String siteURl, String siteDescription)
 			throws Exception
 
@@ -385,6 +440,15 @@ public class AKKU_15_PasswordPolicy extends Browser_Setup {
 			Pwdpolicy.Clickonsave();
 			Pwdpolicy.ValidateSucessfullyaddedmsg();
 			loginpage.clickLogout();
+		}catch (AssertionError e) {
+
+			String message = e.getMessage();
+			System.out.println(message);
+			result = TestLinkAPIResults.TEST_FAILED;
+			notes = e.getMessage();
+			e.printStackTrace();
+			Assert.fail();
+
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -392,7 +456,7 @@ public class AKKU_15_PasswordPolicy extends Browser_Setup {
 
 	}
 
-	@Test(dataProvider = "Create_OU")
+	@Test(dataProvider = "Create_OU", retryAnalyzer = Retry.class)
 	public void AK_62_CreatenewparentOUandsetpasswordpolicy(String email, String password, String NewOu,
 			String ParentOU) throws Exception
 
@@ -430,6 +494,15 @@ public class AKKU_15_PasswordPolicy extends Browser_Setup {
 			result = TestLinkAPIResults.TEST_FAILED;
 			notes = e.getMessage();
 			e.printStackTrace();
+		}catch (AssertionError e) {
+
+			String message = e.getMessage();
+			System.out.println(message);
+			result = TestLinkAPIResults.TEST_FAILED;
+			notes = e.getMessage();
+			e.printStackTrace();
+			Assert.fail();
+
 		} finally {
 
 			System.out.println("Updating TestCase Execution Status in TestLink");
@@ -439,7 +512,7 @@ public class AKKU_15_PasswordPolicy extends Browser_Setup {
 
 	}
 
-	@Test(dataProvider = "Create_OU_As_SUBOU")
+	@Test(dataProvider = "Create_OU_As_SUBOU", retryAnalyzer = Retry.class)
 	public void AK_63_CreatenewSubOUandsetpasswordpolicy(String email, String password, String NewOu, String ParentOU)
 			throws Exception {
 		try {
@@ -480,7 +553,16 @@ public class AKKU_15_PasswordPolicy extends Browser_Setup {
 			notes = e.getMessage();
 			e.printStackTrace();
 
-		} finally {
+		} catch (AssertionError e) {
+
+			String message = e.getMessage();
+			System.out.println(message);
+			result = TestLinkAPIResults.TEST_FAILED;
+			notes = e.getMessage();
+			e.printStackTrace();
+			Assert.fail();
+
+		}finally {
 
 			System.out.println("Updating TestCase Execution Status in TestLink");
 			TestLinkIntegration.reportResult(testProject, testPlan, AK_63, build, notes, result);
@@ -488,7 +570,7 @@ public class AKKU_15_PasswordPolicy extends Browser_Setup {
 		}
 	}
 
-	@Test(dataProvider = "Create_OU_As_SUBOU")
+	@Test(dataProvider = "Create_OU_As_SUBOU", retryAnalyzer = Retry.class)
 	public void AK_64_UpdatepasswordpolicyforparentOU(String email, String password, String NewOu, String ParentOU)
 			throws Exception {
 		try {
@@ -528,6 +610,15 @@ public class AKKU_15_PasswordPolicy extends Browser_Setup {
 			result = TestLinkAPIResults.TEST_FAILED;
 			notes = e.getMessage();
 			e.printStackTrace();
+		}catch (AssertionError e) {
+
+			String message = e.getMessage();
+			System.out.println(message);
+			result = TestLinkAPIResults.TEST_FAILED;
+			notes = e.getMessage();
+			e.printStackTrace();
+			Assert.fail();
+
 		} finally {
 
 			System.out.println("Updating TestCase Execution Status in TestLink");
@@ -537,7 +628,7 @@ public class AKKU_15_PasswordPolicy extends Browser_Setup {
 
 	}
 
-	@Test(dataProvider = "Create_OU_As_SUBOU")
+	@Test(dataProvider = "Create_OU_As_SUBOU", retryAnalyzer = Retry.class)
 	public void Ak_65_UpdatepasswordpolicyforChildOU(String email, String password, String NewOu, String ParentOU)
 			throws Exception
 
@@ -577,6 +668,15 @@ public class AKKU_15_PasswordPolicy extends Browser_Setup {
 			result = TestLinkAPIResults.TEST_FAILED;
 			notes = e.getMessage();
 			e.printStackTrace();
+		}catch (AssertionError e) {
+
+			String message = e.getMessage();
+			System.out.println(message);
+			result = TestLinkAPIResults.TEST_FAILED;
+			notes = e.getMessage();
+			e.printStackTrace();
+			Assert.fail();
+
 		} finally {
 
 			System.out.println("Updating TestCase Execution Status in TestLink");
@@ -586,7 +686,7 @@ public class AKKU_15_PasswordPolicy extends Browser_Setup {
 
 	}
 
-	@Test(dataProvider = "Verify_OU_As_Pwdpolicy")
+	@Test(dataProvider = "Verify_OU_As_Pwdpolicy", retryAnalyzer = Retry.class)
 	public void Ak_66_VerifyPasswordHelptextdisplaybasedonparentOUPasswordpolicydetails(String email, String password,
 			String NewOu, String ParentOU, String SearchEmail) throws Exception
 
@@ -658,7 +758,16 @@ public class AKKU_15_PasswordPolicy extends Browser_Setup {
 			result = TestLinkAPIResults.TEST_FAILED;
 			notes = e.getMessage();
 			e.printStackTrace();
-		} finally {
+		} catch (AssertionError e) {
+
+			String message = e.getMessage();
+			System.out.println(message);
+			result = TestLinkAPIResults.TEST_FAILED;
+			notes = e.getMessage();
+			e.printStackTrace();
+			Assert.fail();
+
+		}finally {
 
 			System.out.println("Updating TestCase Execution Status in TestLink");
 			TestLinkIntegration.reportResult(testProject, testPlan, AK_66, build, notes, result);
@@ -667,7 +776,7 @@ public class AKKU_15_PasswordPolicy extends Browser_Setup {
 
 	}
 
-	@Test(dataProvider = "Verify_OU_As_Pwdpolicy")
+	@Test(dataProvider = "Verify_OU_As_Pwdpolicy", retryAnalyzer = Retry.class)
 	public void Ak_67_VerifyPasswordHelptextdisplaybasedonSubOUPasswordpolicydetails(String email, String password,
 			String NewOu, String ParentOU, String SearchEmail) throws Exception
 
@@ -739,6 +848,15 @@ public class AKKU_15_PasswordPolicy extends Browser_Setup {
 			result = TestLinkAPIResults.TEST_FAILED;
 			notes = e.getMessage();
 			e.printStackTrace();
+		}catch (AssertionError e) {
+
+			String message = e.getMessage();
+			System.out.println(message);
+			result = TestLinkAPIResults.TEST_FAILED;
+			notes = e.getMessage();
+			e.printStackTrace();
+			Assert.fail();
+
 		} finally {
 
 			System.out.println("Updating TestCase Execution Status in TestLink");
@@ -748,7 +866,7 @@ public class AKKU_15_PasswordPolicy extends Browser_Setup {
 
 	}
 	
-	@Test(dataProvider = "Create_OU_As_SUBOU")
+	@Test(dataProvider = "Create_OU_As_SUBOU", retryAnalyzer = Retry.class)
 	public void DeleteCreatedOufromPage(String email, String password, String NewOu, String ParentOU) throws Exception {
 		try {
 			loginpage.loginpageTitle();
