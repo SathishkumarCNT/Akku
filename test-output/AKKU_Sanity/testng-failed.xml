@@ -8,11 +8,7 @@
       <class name="com.app.akku.work.TestCases.AKKU_01_LoginANDlogout">
         <methods>
           <include name="teardown"/>
-          <include name="AK_01_ValidLogin" invocation-numbers="0 0"/>
-          <include name="AK_03_LoginwithValidUserNameandEmptyPassword" invocation-numbers="0 0"/>
           <include name="tearDown"/>
-          <include name="AK_05_LoginwithemptyUsernameandValidPassword" invocation-numbers="0 0"/>
-          <include name="AK_02_LoginWithValidEmailAndInvalidPassword" invocation-numbers="0 0"/>
           <include name="setUp"/>
           <include name="setup"/>
           <include name="AK_04_LoginwithinvalidUsernameandinvalidPassword" invocation-numbers="0 0"/>
