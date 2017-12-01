@@ -1,5 +1,7 @@
 package com.app.akku.work.TestCases;
 
+import org.apache.log4j.Logger;
+import org.testng.Assert;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterTest;
@@ -26,7 +28,8 @@ import testlink.api.java.client.TestLinkAPIResults;
 public class AKKU_09_Editpwdinformation extends Browser_Setup {
 	
 	
-
+	Logger log = Logger.getLogger(AKKU_09_Editpwdinformation.class.getName());
+	
 	String testProject = "AkkuAppTC";
 	String testPlan = "AutomateManualTC";
 	String AK_06 = "Verification of User Info in Home page & Edit Info page";
@@ -92,7 +95,7 @@ public class AKKU_09_Editpwdinformation extends Browser_Setup {
 	@Test(dataProvider = "EditPwd_Details", retryAnalyzer = Retry.class)
 	public void AK_06_VerificationofUserInfoinHomepageEditInfopage(String email, String password, String Oldpassword,
 			String Newpassword, String Confnewpassword) throws Exception {
-				
+		test = report.createTest("AK_06", "Verification of User Info in Home page & Edit Info page");
 		try {
 			loginpage.loginpageTitle();
 			
@@ -112,16 +115,25 @@ public class AKKU_09_Editpwdinformation extends Browser_Setup {
 					
 			loginpage.clickLogout();
 			
-			System.out.println("####################################################################");
+			log.info("####################################################################");
 			result = TestLinkAPIResults.TEST_PASSED;
 			
 			
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}	finally {
+		}	catch (AssertionError e) {
 
-			System.out.println("Updating TestCase Execution Status in TestLink");
+			String message = e.getMessage();
+			log.info(message);
+			result = TestLinkAPIResults.TEST_FAILED;
+			notes = e.getMessage();
+			e.printStackTrace();
+			Assert.fail();
+
+		}finally {
+
+			log.info("Updating TestCase Execution Status in TestLink");
 			TestLinkIntegration.reportResult(testProject, testPlan, AK_06, build, notes, result);
 
 		}
@@ -129,7 +141,9 @@ public class AKKU_09_Editpwdinformation extends Browser_Setup {
 	@Test(dataProvider = "EditPwd_DetailswithInvalidoldpassword", retryAnalyzer = Retry.class)
 	public void AK_08_UpdateNewPasswordwithoutenteringOldpassword(String email, String password, String Oldpassword,
 			String Newpassword, String Confnewpassword) throws Exception {
-
+		
+		test = report.createTest("AK_08", "Update New Password without entering Old password");
+		
 		try {
 			loginpage.loginpageTitle();
 
@@ -156,15 +170,24 @@ public class AKKU_09_Editpwdinformation extends Browser_Setup {
 			loginpage.clickLogout();
 			
 			
-			System.out.println("####################################################################");
+			log.info("####################################################################");
 			result = TestLinkAPIResults.TEST_PASSED;
 			
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		}catch (AssertionError e) {
+
+			String message = e.getMessage();
+			log.info(message);
+			result = TestLinkAPIResults.TEST_FAILED;
+			notes = e.getMessage();
+			e.printStackTrace();
+			Assert.fail();
+
 		}finally {
 
-			System.out.println("Updating TestCase Execution Status in TestLink");
+			log.info("Updating TestCase Execution Status in TestLink");
 			TestLinkIntegration.reportResult(testProject, testPlan, AK_08, build, notes, result);
 
 		}
@@ -173,7 +196,8 @@ public class AKKU_09_Editpwdinformation extends Browser_Setup {
 	@Test(dataProvider = "EditPwd_Details", retryAnalyzer = Retry.class)
 	public void AK_09_ChangeOldPasswordtoNewPassword(String email, String password, String Oldpassword, String Newpassword, String Confnewpassword)
 			throws Exception {
-
+		test = report.createTest("AK_09", "Update New Password with All Valid Details");
+		
 		try {
 			loginpage.loginpageTitle();
 
@@ -189,16 +213,25 @@ public class AKKU_09_Editpwdinformation extends Browser_Setup {
 
 			loginpage.verifyloggedinUserFNameAndLName();
 			
-			editinfo.isEditInfobtn();
+			editinfo.updatenewpassword(Oldpassword,Newpassword,Confnewpassword);
 			
-			editinfo.updatenewpassword(Oldpassword, Newpassword, Confnewpassword);
+		
 			
 			loginpage.clickLogout();
 			
-			System.out.println("####################################################################");
+			log.info("####################################################################");
 			result = TestLinkAPIResults.TEST_PASSED;
 			
 			
+		}catch (AssertionError e) {
+
+			String message = e.getMessage();
+			log.info(message);
+			result = TestLinkAPIResults.TEST_FAILED;
+			notes = e.getMessage();
+			e.printStackTrace();
+			Assert.fail();
+
 		} catch (Exception e) {
 			
 			result = TestLinkAPIResults.TEST_FAILED;
@@ -206,7 +239,7 @@ public class AKKU_09_Editpwdinformation extends Browser_Setup {
 			e.printStackTrace();
 		}finally {
 
-			System.out.println("Updating TestCase Execution Status in TestLink");
+			log.info("Updating TestCase Execution Status in TestLink");
 			TestLinkIntegration.reportResult(testProject, testPlan, AK_09, build, notes, result);
 
 		}
@@ -216,7 +249,8 @@ public class AKKU_09_Editpwdinformation extends Browser_Setup {
 	@Test(dataProvider = "EditPwdChanged_Details", retryAnalyzer = Retry.class)
 	public void AK_32_ChangeNewPasswordtoOldPassword(String email, String password, String Oldpassword, String Newpassword, String Confnewpassword)
 			throws Exception {
-
+		test = report.createTest("AK_32", "Change New Password to Old Password");
+		
 		try {
 			loginpage.loginpageTitle();
 
@@ -225,20 +259,18 @@ public class AKKU_09_Editpwdinformation extends Browser_Setup {
 			loginpage.typepassword(password);
 
 			loginpage.clickLogin();
-
-			Thread.sleep(2000);
 			
 			loginpage.validatedloggedinUserDetailsEmailID(email);
 
 			loginpage.verifyloggedinUserFNameAndLName();
-			
-			editinfo.isEditInfobtn();
-			
-			editinfo.updatenewpassword(Oldpassword, Newpassword, Confnewpassword);
+
+			Thread.sleep(2000);
+						
+			editinfo.updatenewpassword(Oldpassword,Newpassword,Confnewpassword);
 			
 			loginpage.clickLogout();
 			
-			System.out.println("####################################################################");
+			log.info("####################################################################");
 			result = TestLinkAPIResults.TEST_PASSED;
 			
 			
@@ -246,10 +278,19 @@ public class AKKU_09_Editpwdinformation extends Browser_Setup {
 			result = TestLinkAPIResults.TEST_FAILED;
 			notes = e.getMessage();
 			e.printStackTrace();
-		}finally {
+		}catch (AssertionError e) {
 
-			System.out.println("Updating TestCase Execution Status in TestLink");
-			//TestLinkIntegration.reportResult(testProject, testPlan, AK_32, build, notes, result);
+			String message = e.getMessage();
+			log.info(message);
+			result = TestLinkAPIResults.TEST_FAILED;
+			notes = e.getMessage();
+			e.printStackTrace();
+			Assert.fail();
+
+		}
+		finally {
+
+			log.info("Updating TestCase Execution Status in TestLink");
 			TestLinkIntegration.reportResult(testProject, testPlan, AK_32, build, notes, result);
 		}
 
@@ -258,7 +299,8 @@ public class AKKU_09_Editpwdinformation extends Browser_Setup {
 	@Test(dataProvider = "EditPwd_DetailswithInvalidConfirmpassword", retryAnalyzer = Retry.class)
 	public void AK_10_UpdateNewPasswordwithinvalidConfirmpassword(String email, String password, String Oldpassword,
 			String Newpassword, String Confnewpassword) throws Exception {
-
+		test = report.createTest("AK_10", "Update New Password with invalid Confirm password");
+		
 		try {
 			loginpage.loginpageTitle();
 
@@ -284,16 +326,25 @@ public class AKKU_09_Editpwdinformation extends Browser_Setup {
 			editinfo.invalidconfirmpassworderrormsg(Confnewpassword);
 			loginpage.clickLogout();
 			
-			System.out.println("####################################################################");
+			log.info("####################################################################");
 			result = TestLinkAPIResults.TEST_PASSED;
 			
 		} catch (Exception e) {
 			result = TestLinkAPIResults.TEST_FAILED;
 			notes = e.getMessage();
 			e.printStackTrace();
+		}catch (AssertionError e) {
+
+			String message = e.getMessage();
+			log.info(message);
+			result = TestLinkAPIResults.TEST_FAILED;
+			notes = e.getMessage();
+			e.printStackTrace();
+			Assert.fail();
+
 		}finally {
 
-			System.out.println("Updating TestCase Execution Status in TestLink");
+			log.info("Updating TestCase Execution Status in TestLink");
 			TestLinkIntegration.reportResult(testProject, testPlan, AK_10, build, notes, result);
 
 		}
@@ -303,6 +354,7 @@ public class AKKU_09_Editpwdinformation extends Browser_Setup {
 	@Test(dataProvider = "EditPwd_DetailswithInvalidoldpassword", retryAnalyzer = Retry.class)
 	public void AK_11_UpdateNewPasswordwithenteringinvalidOldpassword(String email, String password, String Oldpassword,
 			String Newpassword, String Confnewpassword) throws Exception {
+		test = report.createTest("AK_11", "Update New Password with entering invalid Old password");
 
 		try {
 			loginpage.loginpageTitle();
@@ -330,16 +382,25 @@ public class AKKU_09_Editpwdinformation extends Browser_Setup {
 			editinfo.closeAlertpopup();
 			loginpage.clickLogout();
 			
-			System.out.println("####################################################################");
+			log.info("####################################################################");
 			result = TestLinkAPIResults.TEST_PASSED;
 			
 		} catch (Exception e) {
 			result = TestLinkAPIResults.TEST_FAILED;
 			notes = e.getMessage();
 			e.printStackTrace();
+		}catch (AssertionError e) {
+
+			String message = e.getMessage();
+			log.info(message);
+			result = TestLinkAPIResults.TEST_FAILED;
+			notes = e.getMessage();
+			e.printStackTrace();
+			Assert.fail();
+
 		}finally {
 
-			System.out.println("Updating TestCase Execution Status in TestLink");
+			log.info("Updating TestCase Execution Status in TestLink");
 			TestLinkIntegration.reportResult(testProject, testPlan, AK_11, build, notes, result);
 
 		}
@@ -350,6 +411,9 @@ public class AKKU_09_Editpwdinformation extends Browser_Setup {
 	@Test(dataProvider = "EditPwd_DetailswithInvalidConfirmpassword", retryAnalyzer = Retry.class)
 		public void AK_12_UpdateNewPasswordWithEmptyPwdEmptyConfirmPwd(String email, String password, String Oldpassword,
 			String Newpassword, String Confnewpassword) throws Exception {
+
+		test = report.createTest("AK_12", "Update New Password With Empty password & Empty Confirm password");
+	
 
 		try {
 			loginpage.loginpageTitle();
@@ -374,16 +438,26 @@ public class AKKU_09_Editpwdinformation extends Browser_Setup {
 			editinfo.emptynewandConfirmpassworderrormsg();
 			loginpage.clickLogout();
 			
-			System.out.println("####################################################################");
+			log.info("####################################################################");
 			result = TestLinkAPIResults.TEST_PASSED;
 			
 		} catch (Exception e) {
 			result = TestLinkAPIResults.TEST_FAILED;
 			notes = e.getMessage();
 			e.printStackTrace();
-		}finally {
+		}catch (AssertionError e) {
 
-			System.out.println("Updating TestCase Execution Status in TestLink");
+			String message = e.getMessage();
+			log.info(message);
+			result = TestLinkAPIResults.TEST_FAILED;
+			notes = e.getMessage();
+			e.printStackTrace();
+			Assert.fail();
+
+		}
+		finally {
+
+			log.info("Updating TestCase Execution Status in TestLink");
 			TestLinkIntegration.reportResult(testProject, testPlan, AK_12, build, notes, result);
 
 		}
@@ -393,6 +467,8 @@ public class AKKU_09_Editpwdinformation extends Browser_Setup {
 	@Test(dataProvider = "EditPwd_DetailswithPassworNotmatchPolicy", retryAnalyzer = Retry.class)
 	public void AK_13_UpdatepasswordwithoutmatchingwithPasswordpolicy(String email, String password, String Oldpassword,	String Newpassword, String Confnewpassword) throws Exception {
 
+		test = report.createTest("AK_13", "Update password without matching with Password policy");
+		
 		try {
 			loginpage.loginpageTitle();
 
@@ -419,16 +495,25 @@ public class AKKU_09_Editpwdinformation extends Browser_Setup {
 			editinfo.ValidateErrormessageforpasswordPolicy();
 			loginpage.clickLogout();
 			
-			System.out.println("####################################################################");
+			log.info("####################################################################");
 			result = TestLinkAPIResults.TEST_PASSED;
 			
 		} catch (Exception e) {
 			result = TestLinkAPIResults.TEST_FAILED;
 			notes = e.getMessage();
 			e.printStackTrace();
+		}catch (AssertionError e) {
+
+			String message = e.getMessage();
+			log.info(message);
+			result = TestLinkAPIResults.TEST_FAILED;
+			notes = e.getMessage();
+			e.printStackTrace();
+			Assert.fail();
+
 		}finally {
 
-			System.out.println("Updating TestCase Execution Status in TestLink");
+			log.info("Updating TestCase Execution Status in TestLink");
 			TestLinkIntegration.reportResult(testProject, testPlan, AK_13, build, notes, result);
 
 		}
@@ -437,7 +522,7 @@ public class AKKU_09_Editpwdinformation extends Browser_Setup {
 	
 	@Test(dataProvider = "EditPwd_DetailswithPassworNotmatchPolicy", retryAnalyzer = Retry.class)
 	public void AK_14_UpdateNewPasswordWithSamevalueofnewpwdConfirmpwd(String email, String password, String Oldpassword,	String Newpassword, String Confnewpassword) throws Exception {
-
+		test = report.createTest("AK_14", "Update New Password With Same value of new password & Confirm password");
 		try {
 			loginpage.loginpageTitle();
 
@@ -464,16 +549,25 @@ public class AKKU_09_Editpwdinformation extends Browser_Setup {
 			editinfo.ValidateErrormessagefornewpwdsameasold();
 			loginpage.clickLogout();
 			
-			System.out.println("####################################################################");
+			log.info("####################################################################");
 			result = TestLinkAPIResults.TEST_PASSED;
 			
 		} catch (Exception e) {
 			result = TestLinkAPIResults.TEST_FAILED;
 			notes = e.getMessage();
 			e.printStackTrace();
+		}catch (AssertionError e) {
+
+			String message = e.getMessage();
+			log.info(message);
+			result = TestLinkAPIResults.TEST_FAILED;
+			notes = e.getMessage();
+			e.printStackTrace();
+			Assert.fail();
+
 		}finally {
 
-			System.out.println("Updating TestCase Execution Status in TestLink");
+			log.info("Updating TestCase Execution Status in TestLink");
 			TestLinkIntegration.reportResult(testProject, testPlan, AK_14, build, notes, result);
 
 		}
@@ -481,50 +575,5 @@ public class AKKU_09_Editpwdinformation extends Browser_Setup {
 	}
 
 	
-	/**
-	 * 
-	 * @throws Exception
-	 */
-	@AfterMethod
-	public void tearDown(ITestResult result) {
-
-		System.out.println("Inside of tearDown Method");
-
-		try {
-			if (result.getStatus() == ITestResult.SUCCESS) {
-				System.out.println("Test case passed");
-				driver.quit();
-
-			} else if (result.getStatus() == ITestResult.FAILURE) {
-
-				Keywords.captureScreenShot(driver);
-
-				System.out.println("Screenshot taken in Tear Down method");
-				driver.quit();
-
-			} else if (result.getStatus() == ITestResult.SKIP) {
-
-				Keywords.captureScreenShot(driver);
-
-				System.out.println("Test case Skipped");
-				driver.quit();
-			}
-		} catch (Exception e) {
-
-			System.out.println("Exception while taking screenshot " + e.getMessage());
-		}
-
-	}
-
-	/**
-	 * 
-	 * @throws Exception
-	 */
-	@AfterTest
-	public void teardown() throws Exception {
-
-		// driver.quit();
-		System.out.println("Test Execution Finished");
-
-	}
+	
 }

@@ -12,14 +12,14 @@
 		<classes>
 			<class	name="com.app.akku.work.TestCases.AK_52_Create_Edit_Delete_Assign_OU">
 				<methods>
-					<include name="AK_52_AddValidNewOUwithParentCNT" />
+					<!-- <include name="AK_52_AddValidNewOUwithParentCNT" />
 					<include name="AK_54_AddValidNewOUwithanyChildOU" />
 					<include name="AK_55_AddDuplicateOUundersameParentOU" />
 					<include name="AK_56_AddDuplicateOUunderdifferentParentOU" />
 					<include name="AK_53_EditOUNamewithValidNameformat" />
 					<include name="RevertbackEditedOUNamewithValidNameformat" />
 					<include name="AK_57_EditOUNamewithInvalidNameformat" />
-					<include name="AK_59_AssignUsers" />
+					<include name="AK_59_AssignUsers" /> -->
 					<include name="AK_60_DeleteParentOUwhichhaveSubOUinOUManagementpage" />
 					<include name="AK_61_DeleteOUwhichhaveuserinOUManagementpage" />
 					<include name="AK_58_DeleteOUinOUManagementpage" />

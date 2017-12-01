@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<!-- Specify the test suite name -->
+
+<suite name="Report_TestSuite" annotations="JDK">
+
+	<test name="Login and logout in Chrome" preserve-order="true">
+
+		<parameter name="browser" value="W_chrome" />
+		<parameter name="Environment" value="http://pre-prod.akku.work/" />
+		<classes>
+			<class name="com.app.akku.work.TestCases.AKKU_01_LoginANDlogout">
+				<methods>
+					<!-- <include name="AK_01_ValidLogin" />
+					<include name="AK_02_LoginWithValidEmailAndInvalidPassword" />
+					<include name="AK_03_LoginwithValidUserNameandEmptyPassword" />
+					<include name="AK_04_LoginwithinvalidUsernameandinvalidPassword" />
+					<include name="AK_05_LoginwithemptyUsernameandValidPassword" /> -->
+				</methods>
+			</class>
+		</classes>
+	</test>
+
+	<test name="Edit Information" preserve-order="true">
+
+		<parameter name="browser" value="W_chrome" />
+		<parameter name="Environment" value="http://pre-prod.akku.work/" />
+
+		<classes>
+			<class name="com.app.akku.work.TestCases.AKKU_09_Editpwdinformation">
+				<methods>
+
+					<include name="AK_06_VerificationofUserInfoinHomepageEditInfopage" />
+					<include name="AK_08_UpdateNewPasswordwithoutenteringOldpassword" />
+					<include name="AK_09_ChangeOldPasswordtoNewPassword" />
+					<include name="AK_32_ChangeNewPasswordtoOldPassword" />
+					<include name="AK_10_UpdateNewPasswordwithinvalidConfirmpassword" />
+					<include name="AK_11_UpdateNewPasswordwithenteringinvalidOldpassword" />
+					<include name="AK_12_UpdateNewPasswordWithEmptyPwdEmptyConfirmPwd" />
+					<include name="AK_13_UpdatepasswordwithoutmatchingwithPasswordpolicy" />
+					<include name="AK_14_UpdateNewPasswordWithSamevalueofnewpwdConfirmpwd" />
+				</methods>
+			</class>
+		</classes>
+	</test>
+
+
+
+
+</suite>

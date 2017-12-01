@@ -1,5 +1,7 @@
 package com.app.akku.work.TestCases;
 
+import org.apache.log4j.Logger;
+import org.testng.Assert;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterTest;
@@ -7,10 +9,11 @@ import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 import com.app.akku.work.common.Browser_Setup;
-
+import com.app.akku.work.common.Retry;
 import com.app.akku.work.common.TestLinkIntegration;
 import com.app.akku.work.common.poi_Reader_e;
 import com.app.akku.work.keywords.Keywords;
+import com.app.akku.work.pageobjects.usermanagement.EditUserfromUserManagement;
 
 import testlink.api.java.client.TestLinkAPIResults;
 
@@ -41,6 +44,9 @@ public class AK_52_Create_Edit_Delete_Assign_OU extends Browser_Setup {
 	String build = "Build1";
 	String notes = null;
 	String result = null;
+	
+	Logger log = Logger.getLogger(AK_52_Create_Edit_Delete_Assign_OU.class.getName());
+	
 
 	@DataProvider(name = "Create_OU")
 	public Object[][] dataProvider_ClientName_ChangePwdinnextlogin() {
@@ -96,9 +102,11 @@ public class AK_52_Create_Edit_Delete_Assign_OU extends Browser_Setup {
 		return testData;
 	}
 
-	@Test(dataProvider = "Create_OU")
+	@Test(dataProvider = "Create_OU", retryAnalyzer = Retry.class)
 	public void AK_52_AddValidNewOUwithParentCNT(String email, String password, String NewOu, String ParentOU)
-			throws Exception {
+			throws Exception {		
+
+		test = report.createTest("AK_52", "Add Valid New OU with Parent CNT");
 		try {
 			loginpage.loginpageTitle();
 			loginpage.typeUseremail(email);
@@ -115,30 +123,40 @@ public class AK_52_Create_Edit_Delete_Assign_OU extends Browser_Setup {
 			editinfo.closeAlertpopup();
 			loginpage.clickLogout();
 
-			System.out.println("####################################################################");
+			log.info("####################################################################");
 			result = TestLinkAPIResults.TEST_PASSED;
-			notes = getOSBrowserDetails();
-			
+			notes = getOSBrowserDetails();			
+
 
 		} catch (Exception e) {
 
 			result = TestLinkAPIResults.TEST_FAILED;
 			notes = e.getMessage();
 			e.printStackTrace();
-		
+		}catch (AssertionError e) {
 
-		} finally {
+			String message = e.getMessage();
+			log.info(message);
+			result = TestLinkAPIResults.TEST_FAILED;
+			notes = e.getMessage();
+			e.printStackTrace();
+			Assert.fail();
+		}
 
-			System.out.println("Updating TestCase Execution Status in TestLink");
+		 finally {
+
+			log.info("Updating TestCase Execution Status in TestLink");
 			TestLinkIntegration.reportResult(testProject, testPlan, AK_52, build, notes, result);
 
 		}
 
 	}
 
-	@Test(dataProvider = "Create_OU_As_SUBOU")
+	@Test(dataProvider = "Create_OU_As_SUBOU", retryAnalyzer = Retry.class)
 	public void AK_54_AddValidNewOUwithanyChildOU(String email, String password, String NewOu, String ParentOU)
-			throws Exception {
+			throws Exception {		
+
+		test = report.createTest("AK_54", "Add Valid New OU with any Child OU");
 		try {
 			loginpage.loginpageTitle();
 			loginpage.typeUseremail(email);
@@ -156,7 +174,7 @@ public class AK_52_Create_Edit_Delete_Assign_OU extends Browser_Setup {
 			editinfo.closeAlertpopup();
 			loginpage.clickLogout();
 
-			System.out.println("####################################################################");
+			log.info("####################################################################");
 			result = TestLinkAPIResults.TEST_PASSED;
 			notes = getOSBrowserDetails();
 
@@ -166,17 +184,28 @@ public class AK_52_Create_Edit_Delete_Assign_OU extends Browser_Setup {
 			notes = e.getMessage();
 			e.printStackTrace();
 
-		} finally {
+		} catch (AssertionError e) {
 
-			System.out.println("Updating TestCase Execution Status in TestLink");
+			String message = e.getMessage();
+			log.info(message);
+			result = TestLinkAPIResults.TEST_FAILED;
+			notes = e.getMessage();
+			e.printStackTrace();
+			Assert.fail();
+		}
+		finally {
+
+			log.info("Updating TestCase Execution Status in TestLink");
 			TestLinkIntegration.reportResult(testProject, testPlan, AK_54, build, notes, result);
 
 		}
 	}
 
-	@Test(dataProvider = "Duplicate_OU_In_Same_ParentOU")
+	@Test(dataProvider = "Duplicate_OU_In_Same_ParentOU", retryAnalyzer = Retry.class)
 	public void AK_55_AddDuplicateOUundersameParentOU(String email, String password, String NewOu, String ParentOU)
-			throws Exception {
+			throws Exception {		
+
+		test = report.createTest("AK_55", "Add Duplicate OU under same Parent OU");
 		try {
 			loginpage.loginpageTitle();
 			loginpage.typeUseremail(email);
@@ -194,7 +223,7 @@ public class AK_52_Create_Edit_Delete_Assign_OU extends Browser_Setup {
 			editinfo.closeAlertpopup();
 			loginpage.clickLogout();
 
-			System.out.println("####################################################################");
+			log.info("####################################################################");
 			result = TestLinkAPIResults.TEST_PASSED;
 			notes = getOSBrowserDetails();
 
@@ -204,17 +233,28 @@ public class AK_52_Create_Edit_Delete_Assign_OU extends Browser_Setup {
 			notes = e.getMessage();
 			e.printStackTrace();
 
-		} finally {
+		} catch (AssertionError e) {
 
-			System.out.println("Updating TestCase Execution Status in TestLink");
+			String message = e.getMessage();
+			log.info(message);
+			result = TestLinkAPIResults.TEST_FAILED;
+			notes = e.getMessage();
+			e.printStackTrace();
+			Assert.fail();
+		}
+		finally {
+
+			log.info("Updating TestCase Execution Status in TestLink");
 			TestLinkIntegration.reportResult(testProject, testPlan, AK_55, build, notes, result);
 
 		}
 	}
 
-	@Test(dataProvider = "Duplicate_OU_with_differnt_ParentOU")
+	@Test(dataProvider = "Duplicate_OU_with_differnt_ParentOU", retryAnalyzer = Retry.class)
 	public void AK_56_AddDuplicateOUunderdifferentParentOU(String email, String password, String NewOu, String ParentOU)
-			throws Exception {
+			throws Exception {		
+
+		test = report.createTest("AK_55", "Add Duplicate OU under different Parent OU"); 
 		try {
 			loginpage.loginpageTitle();
 			loginpage.typeUseremail(email);
@@ -232,7 +272,7 @@ public class AK_52_Create_Edit_Delete_Assign_OU extends Browser_Setup {
 			editinfo.closeAlertpopup();
 			loginpage.clickLogout();
 
-			System.out.println("####################################################################");
+			log.info("####################################################################");
 			result = TestLinkAPIResults.TEST_PASSED;
 			notes = getOSBrowserDetails();
 
@@ -242,18 +282,29 @@ public class AK_52_Create_Edit_Delete_Assign_OU extends Browser_Setup {
 			notes = e.getMessage();
 			e.printStackTrace();
 
-		} finally {
+		}catch (AssertionError e) {
 
-			System.out.println("Updating TestCase Execution Status in TestLink");
+			String message = e.getMessage();
+			log.info(message);
+			result = TestLinkAPIResults.TEST_FAILED;
+			notes = e.getMessage();
+			e.printStackTrace();
+			Assert.fail();
+		}
+		 finally {
+
+			log.info("Updating TestCase Execution Status in TestLink");
 			TestLinkIntegration.reportResult(testProject, testPlan, AK_56, build, notes, result);
 
 		}
 	}
 
 
-	@Test(dataProvider = "Edit_OU")
+	@Test(dataProvider = "Edit_OU", retryAnalyzer = Retry.class)
 	public void AK_53_EditOUNamewithValidNameformat(String email, String password, String NewOu, String ParentOU)
-			throws Exception {
+			throws Exception {		
+
+		test = report.createTest("AK_53", "Edit OU Name with Valid Name format");
 		try {
 			loginpage.loginpageTitle();
 			loginpage.typeUseremail(email);
@@ -263,7 +314,7 @@ public class AK_52_Create_Edit_Delete_Assign_OU extends Browser_Setup {
 			loginpage.validatedloggedinUserDetailsEmailID(email);
 			loginpage.verifyloggedinUserFNameAndLName();
 			oumangement.clickOUmanagementBtn();
-			oumangement.ClickExpandbtn();
+			oumangement.ClickExpandORCollapsBtn();
 			oumangement.ClickOUEditbtn(NewOu);
 			oumangement.EditeOUName(ParentOU, NewOu);
 			oumangement.Clickonupdate();
@@ -273,7 +324,7 @@ public class AK_52_Create_Edit_Delete_Assign_OU extends Browser_Setup {
 			Thread.sleep(2000);
 			loginpage.clickLogout();
 
-			System.out.println("####################################################################");
+			log.info("####################################################################");
 			result = TestLinkAPIResults.TEST_PASSED;
 			notes = getOSBrowserDetails();
 
@@ -283,15 +334,24 @@ public class AK_52_Create_Edit_Delete_Assign_OU extends Browser_Setup {
 			notes = e.getMessage();
 			e.printStackTrace();
 
-		} finally {
+		} catch (AssertionError e) {
 
-			System.out.println("Updating TestCase Execution Status in TestLink");
+			String message = e.getMessage();
+			log.info(message);
+			result = TestLinkAPIResults.TEST_FAILED;
+			notes = e.getMessage();
+			e.printStackTrace();
+			Assert.fail();
+		}
+		finally {
+
+			log.info("Updating TestCase Execution Status in TestLink");
 			TestLinkIntegration.reportResult(testProject, testPlan, AK_53, build, notes, result);
 
 		}
-	}
-	
-	@Test(dataProvider = "Edit_OU")
+	}	
+
+	@Test(dataProvider = "Edit_OU", retryAnalyzer = Retry.class)
 	public void RevertbackEditedOUNamewithValidNameformat(String email, String password, String NewOu, String ParentOU)
 			throws Exception {
 		try {
@@ -303,7 +363,7 @@ public class AK_52_Create_Edit_Delete_Assign_OU extends Browser_Setup {
 			loginpage.validatedloggedinUserDetailsEmailID(email);
 			loginpage.verifyloggedinUserFNameAndLName();
 			oumangement.clickOUmanagementBtn();
-			oumangement.ClickExpandbtn();
+			oumangement.ClickExpandORCollapsBtn();
 			oumangement.ClickOUEditbtn(ParentOU);
 			oumangement.EditeOUName(NewOu, ParentOU);
 			oumangement.Clickonupdate();
@@ -312,20 +372,31 @@ public class AK_52_Create_Edit_Delete_Assign_OU extends Browser_Setup {
 			editinfo.closeAlertpopup();
 			Thread.sleep(2000);
 			loginpage.clickLogout();
-
 			
+
 
 		} catch (Exception e) {
-
 			
+
 			e.printStackTrace();
 
-		} 
+		} catch (AssertionError e) {
+
+			String message = e.getMessage();
+			log.info(message);
+			result = TestLinkAPIResults.TEST_FAILED;
+			notes = e.getMessage();
+			e.printStackTrace();
+			Assert.fail();
+		}		
+
 	}
 
-	@Test(dataProvider = "Edit_OU_With_InvalidName")
+	@Test(dataProvider = "Edit_OU_With_InvalidName", retryAnalyzer = Retry.class)
 	public void AK_57_EditOUNamewithInvalidNameformat(String email, String password, String NewOu, String ParentOU)
-			throws Exception {
+			throws Exception {		
+
+		test = report.createTest("AK_57", "Edit OU Name with Invalid Name format"); 
 		try {
 			loginpage.loginpageTitle();
 			loginpage.typeUseremail(email);
@@ -335,7 +406,7 @@ public class AK_52_Create_Edit_Delete_Assign_OU extends Browser_Setup {
 			loginpage.validatedloggedinUserDetailsEmailID(email);
 			loginpage.verifyloggedinUserFNameAndLName();
 			oumangement.clickOUmanagementBtn();
-			oumangement.ClickExpandbtn();
+			oumangement.ClickExpandORCollapsBtn();
 			oumangement.ClickOUEditbtn(NewOu);
 			oumangement.EditeOUName(ParentOU,ParentOU );
 			oumangement.Clickonupdate();
@@ -344,7 +415,7 @@ public class AK_52_Create_Edit_Delete_Assign_OU extends Browser_Setup {
 			Thread.sleep(2000);
 			loginpage.clickLogout();
 
-			System.out.println("####################################################################");
+			log.info("####################################################################");
 			result = TestLinkAPIResults.TEST_PASSED;
 			notes = getOSBrowserDetails();
 
@@ -354,16 +425,27 @@ public class AK_52_Create_Edit_Delete_Assign_OU extends Browser_Setup {
 			notes = e.getMessage();
 			e.printStackTrace();
 
-		} finally {
+		}catch (AssertionError e) {
 
-			System.out.println("Updating TestCase Execution Status in TestLink");
+			String message = e.getMessage();
+			log.info(message);
+			result = TestLinkAPIResults.TEST_FAILED;
+			notes = e.getMessage();
+			e.printStackTrace();
+			Assert.fail();
+		}
+		 finally {
+
+			log.info("Updating TestCase Execution Status in TestLink");
 			TestLinkIntegration.reportResult(testProject, testPlan, AK_57, build, notes, result);
 
 		}
 	}
 
-	@Test(dataProvider = "Edit_OU_With_InvalidName")
-	public void AK_59_AssignUsers(String email, String password, String NewOu, String ParentOU) throws Exception {
+	@Test(dataProvider = "Edit_OU_With_InvalidName", retryAnalyzer = Retry.class)
+	public void AK_59_AssignUsers(String email, String password, String NewOu, String ParentOU) throws Exception {		
+
+		test = report.createTest("AK_59", "Assign Users");
 		try {
 			loginpage.loginpageTitle();
 			loginpage.typeUseremail(email);
@@ -377,7 +459,7 @@ public class AK_52_Create_Edit_Delete_Assign_OU extends Browser_Setup {
 
 				if (i == 1) {
 					oumangement.clickOUmanagementBtn();
-					oumangement.ClickExpandbtn();
+					oumangement.ClickExpandORCollapsBtn();
 					oumangement.ClickOUAssginuserbtn(NewOu);
 					oumangement.ClickonAssignusersavebtn();
 					oumangement.ValidateNousermovederrormsg();
@@ -385,7 +467,7 @@ public class AK_52_Create_Edit_Delete_Assign_OU extends Browser_Setup {
 				}
 				if (i == 2) {
 					oumangement.clickOUmanagementBtn();
-					oumangement.ClickExpandbtn();
+					oumangement.ClickExpandORCollapsBtn();
 					oumangement.ClickOUAssginuserbtn(NewOu);
 					Thread.sleep(2000);
 					oumangement.useravaliableinnonuserlist();
@@ -396,13 +478,13 @@ public class AK_52_Create_Edit_Delete_Assign_OU extends Browser_Setup {
 					Thread.sleep(2000);
 					oumangement.ValidateAssignuserSuccessfullmsg();
 					Thread.sleep(2000);
-					editinfo.closeAlertpopup();
-					
+					editinfo.closeAlertpopup();					
+
 
 				}
 				if (i == 3) {
 					oumangement.clickOUmanagementBtn();
-					oumangement.ClickExpandbtn();
+					oumangement.ClickExpandORCollapsBtn();
 					oumangement.ClickOUAssginuserbtn(NewOu);
 					Thread.sleep(2000);
 					oumangement.Selectallusereinnonoulist();
@@ -417,7 +499,7 @@ public class AK_52_Create_Edit_Delete_Assign_OU extends Browser_Setup {
 				}
 				if (i == 4) {
 					oumangement.clickOUmanagementBtn();
-					oumangement.ClickExpandbtn();
+					oumangement.ClickExpandORCollapsBtn();
 					oumangement.ClickOUAssginuserbtn(NewOu);
 					Thread.sleep(2000);
 					oumangement.useravaliableinexistinglist();
@@ -433,7 +515,7 @@ public class AK_52_Create_Edit_Delete_Assign_OU extends Browser_Setup {
 				}
 				if (i == 5) {
 					oumangement.clickOUmanagementBtn();
-					oumangement.ClickExpandbtn();
+					oumangement.ClickExpandORCollapsBtn();
 					oumangement.ClickOUAssginuserbtn(NewOu);
 					Thread.sleep(2000);
 					oumangement.Selectallusereinexistinguserlist();
@@ -452,7 +534,7 @@ public class AK_52_Create_Edit_Delete_Assign_OU extends Browser_Setup {
 			Thread.sleep(2000);
 			loginpage.clickLogout();
 
-			System.out.println("####################################################################");
+			log.info("####################################################################");
 			result = TestLinkAPIResults.TEST_PASSED;
 			notes = getOSBrowserDetails();
 
@@ -462,17 +544,28 @@ public class AK_52_Create_Edit_Delete_Assign_OU extends Browser_Setup {
 			notes = e.getMessage();
 			e.printStackTrace();
 
-		} finally {
+		}catch (AssertionError e) {
 
-			System.out.println("Updating TestCase Execution Status in TestLink");
+			String message = e.getMessage();
+			log.info(message);
+			result = TestLinkAPIResults.TEST_FAILED;
+			notes = e.getMessage();
+			e.printStackTrace();
+			Assert.fail();
+		}
+		 finally {
+
+			log.info("Updating TestCase Execution Status in TestLink");
 			 TestLinkIntegration.reportResult(testProject, testPlan, AK_59, build, notes, result);
 
 		}
 	}
 
-	@Test(dataProvider = "Duplicate_OU_with_differnt_ParentOU")
+	@Test(dataProvider = "Duplicate_OU_with_differnt_ParentOU", retryAnalyzer = Retry.class)
 	public void AK_58_DeleteOUinOUManagementpage(String email, String password, String NewOu, String ParentOU)
-			throws Exception {
+			throws Exception {		
+
+		test = report.createTest("AK_58", "Delete OU in OU Management page"); 
 		try {
 			loginpage.loginpageTitle();
 			loginpage.typeUseremail(email);
@@ -482,7 +575,7 @@ public class AK_52_Create_Edit_Delete_Assign_OU extends Browser_Setup {
 			loginpage.validatedloggedinUserDetailsEmailID(email);
 			loginpage.verifyloggedinUserFNameAndLName();
 			oumangement.clickOUmanagementBtn();
-			oumangement.ClickExpandbtn();
+			oumangement.ClickExpandORCollapsBtn();
 			oumangement.ClickexpandonParentOu(ParentOU);
 			Thread.sleep(2000);
 			oumangement.ClickdeleteonOu(NewOu);
@@ -495,7 +588,7 @@ public class AK_52_Create_Edit_Delete_Assign_OU extends Browser_Setup {
 			Thread.sleep(2000);
 			loginpage.clickLogout();
 
-			System.out.println("####################################################################");
+			log.info("####################################################################");
 			result = TestLinkAPIResults.TEST_PASSED;
 			notes = getOSBrowserDetails();
 
@@ -505,17 +598,29 @@ public class AK_52_Create_Edit_Delete_Assign_OU extends Browser_Setup {
 			notes = e.getMessage();
 			e.printStackTrace();
 
-		} finally {
+		}catch (AssertionError e) {
 
-			System.out.println("Updating TestCase Execution Status in TestLink");
+			String message = e.getMessage();
+			log.info(message);
+			result = TestLinkAPIResults.TEST_FAILED;
+			notes = e.getMessage();
+			e.printStackTrace();
+			Assert.fail();
+		}
+		 finally {
+
+			log.info("Updating TestCase Execution Status in TestLink");
 			TestLinkIntegration.reportResult(testProject, testPlan, AK_58, build, notes, result);
 
 		}
 	}
 
-	@Test(dataProvider = "Create_OU_As_SUBOU")
+	@Test(dataProvider = "Create_OU_As_SUBOU", retryAnalyzer = Retry.class)
 	public void AK_60_DeleteParentOUwhichhaveSubOUinOUManagementpage(String email, String password, String NewOu,
-			String ParentOU) throws Exception {
+			String ParentOU) throws Exception {		
+
+		test = report.createTest("AK_60", "Delete Parent OU which have SubOU in OU Management page");		
+
 		try {
 			loginpage.loginpageTitle();
 			loginpage.typeUseremail(email);
@@ -525,21 +630,23 @@ public class AK_52_Create_Edit_Delete_Assign_OU extends Browser_Setup {
 			loginpage.validatedloggedinUserDetailsEmailID(email);
 			loginpage.verifyloggedinUserFNameAndLName();
 			oumangement.clickOUmanagementBtn();
-			oumangement.ClickExpandbtn();
+			oumangement.ClickExpandORCollapsBtn();
 
 			oumangement.ClickexpandonParentOu(ParentOU);
 			Thread.sleep(2000);
 			oumangement.ClickdeleteonOu(ParentOU);
 			Thread.sleep(2000);
-			editUser.AcceptDeletebtninusermanagement();
-			Thread.sleep(2000);
+			
 			oumangement.ValidatDeleteFailOUhavesuboumsg();
+			Thread.sleep(2000);
+			
+			
 			Thread.sleep(2000);
 			editinfo.closeAlertpopup();
 			Thread.sleep(10000);
 			loginpage.clickLogout();
 
-			System.out.println("####################################################################");
+			log.info("####################################################################");
 			result = TestLinkAPIResults.TEST_PASSED;
 			notes = getOSBrowserDetails();
 
@@ -549,17 +656,28 @@ public class AK_52_Create_Edit_Delete_Assign_OU extends Browser_Setup {
 			notes = e.getMessage();
 			e.printStackTrace();
 
-		} finally {
+		} catch (AssertionError e) {
 
-			System.out.println("Updating TestCase Execution Status in TestLink");
+			String message = e.getMessage();
+			log.info(message);
+			result = TestLinkAPIResults.TEST_FAILED;
+			notes = e.getMessage();
+			e.printStackTrace();
+			Assert.fail();
+		}
+		finally {
+
+			log.info("Updating TestCase Execution Status in TestLink");
 			TestLinkIntegration.reportResult(testProject, testPlan, AK_60, build, notes, result);
 
 		}
 	}
 
-	@Test(dataProvider = "Create_OU_As_SUBOU")
+	@Test(dataProvider = "Create_OU_As_SUBOU", retryAnalyzer = Retry.class)
 	public void AK_61_DeleteOUwhichhaveuserinOUManagementpage(String email, String password, String NewOu,
-			String ParentOU) throws Exception {
+			String ParentOU) throws Exception {		
+
+		test = report.createTest("AK_61", "Delete OU which have user in OU Management page");
 		try {
 			loginpage.loginpageTitle();
 			loginpage.typeUseremail(email);
@@ -569,31 +687,32 @@ public class AK_52_Create_Edit_Delete_Assign_OU extends Browser_Setup {
 			loginpage.validatedloggedinUserDetailsEmailID(email);
 			loginpage.verifyloggedinUserFNameAndLName();
 			oumangement.clickOUmanagementBtn();
-			oumangement.ClickExpandbtn();
+			oumangement.ClickExpandORCollapsBtn();
+			
 
-			
 			oumangement.ClickexpandonParentOu(ParentOU);
-			Thread.sleep(2000);
-			
+			Thread.sleep(2000);			
+
 			oumangement.clickOUmanagementBtn();
-			oumangement.ClickExpandbtn();
+			oumangement.ClickExpandORCollapsBtn();
 			oumangement.ClickOUAssginuserbtn(NewOu);
 			oumangement.ClickonAssignusersavebtn();
-			oumangement.ValidateNousermovederrormsg();
-			editinfo.closeAlertpopup();
-			
-			oumangement.ClickdeleteonOu(NewOu);
 			Thread.sleep(2000);
+			oumangement.ValidateNousermovederrormsg();
+			editinfo.closeAlertpopup();			
+
+			oumangement.ClickdeleteonOu(NewOu);
+			Thread.sleep(2000);			
 			
-			
+
 			editUser.AcceptDeletebtninusermanagement();
 			Thread.sleep(2000);
 			oumangement.ValidatDeleteFailOUhaveusermsg();
 			Thread.sleep(2000);
-			editinfo.closeAlertpopup();
-			
+			editinfo.closeAlertpopup();			
+
 			oumangement.clickOUmanagementBtn();
-			oumangement.ClickExpandbtn();
+			oumangement.ClickExpandORCollapsBtn();
 			oumangement.ClickOUAssginuserbtn(NewOu);
 			Thread.sleep(2000);
 			oumangement.Selectallusereinexistinguserlist();
@@ -608,7 +727,7 @@ public class AK_52_Create_Edit_Delete_Assign_OU extends Browser_Setup {
 			Thread.sleep(10000);
 			loginpage.clickLogout();
 
-			System.out.println("####################################################################");
+			log.info("####################################################################");
 			result = TestLinkAPIResults.TEST_PASSED;
 			notes = getOSBrowserDetails();
 
@@ -618,15 +737,24 @@ public class AK_52_Create_Edit_Delete_Assign_OU extends Browser_Setup {
 			notes = e.getMessage();
 			e.printStackTrace();
 
-		} finally {
+		}catch (AssertionError e) {
 
-			System.out.println("Updating TestCase Execution Status in TestLink");
+			String message = e.getMessage();
+			log.info(message);
+			result = TestLinkAPIResults.TEST_FAILED;
+			notes = e.getMessage();
+			e.printStackTrace();
+			Assert.fail();
+		}
+		 finally {
+
+			log.info("Updating TestCase Execution Status in TestLink");
 			TestLinkIntegration.reportResult(testProject, testPlan, AK_61, build, notes, result);
 
 		}
-	}
-	
-	@Test(dataProvider = "Create_OU_As_SUBOU")
+	}	
+
+	@Test(dataProvider = "Create_OU_As_SUBOU", retryAnalyzer = Retry.class)
 	public void DeleteCreatedOufromPage(String email, String password, String NewOu, String ParentOU) throws Exception {
 		try {
 			loginpage.loginpageTitle();
@@ -637,7 +765,7 @@ public class AK_52_Create_Edit_Delete_Assign_OU extends Browser_Setup {
 			loginpage.validatedloggedinUserDetailsEmailID(email);
 			loginpage.verifyloggedinUserFNameAndLName();
 			oumangement.clickOUmanagementBtn();
-			oumangement.ClickExpandbtn();
+			oumangement.ClickExpandORCollapsBtn();
 
 			oumangement.ClickexpandonParentOu(ParentOU);
 			Thread.sleep(2000);
@@ -648,7 +776,7 @@ public class AK_52_Create_Edit_Delete_Assign_OU extends Browser_Setup {
 			driver.navigate().refresh();
 			Thread.sleep(2000);
 			oumangement.clickOUmanagementBtn();
-			oumangement.ClickExpandbtn();
+			oumangement.ClickExpandORCollapsBtn();
 			Thread.sleep(2000);
 			oumangement.ClickdeleteonOu(ParentOU);
 			Thread.sleep(2000);
@@ -663,51 +791,14 @@ public class AK_52_Create_Edit_Delete_Assign_OU extends Browser_Setup {
 
 			e.printStackTrace();
 
-		}
-	}
-	
-	
-	
+		}catch (AssertionError e) {
 
-	@AfterMethod
-	public void tearDown(ITestResult result) {
-
-		System.out.println("Inside of tearDown Method");
-
-		try {
-			if (result.getStatus() == ITestResult.SUCCESS) {
-				System.out.println("Test case passed");
-				driver.quit();
-
-			} else if (result.getStatus() == ITestResult.FAILURE) {
-
-				Keywords.captureScreenShot(driver);
-
-				System.out.println("Screenshot taken in Tear Down method");
-				driver.quit();
-
-			} else if (result.getStatus() == ITestResult.SKIP) {
-
-				Keywords.captureScreenShot(driver);
-
-				System.out.println("Test case Skipped");
-				driver.quit();
-			}
-		} catch (Exception e) {
-
-			System.out.println("Exception while taking screenshot " + e.getMessage());
-		}
-	}
-
-	/**
-	 * 
-	 * @throws Exception
-	 */
-	@AfterTest
-	public void teardown() throws Exception {
-
-		// driver.quit();
-		System.out.println("Test Execution Finished");
-
-	}
+			String message = e.getMessage();
+			log.info(message);
+			result = TestLinkAPIResults.TEST_FAILED;
+			notes = e.getMessage();
+			e.printStackTrace();
+			Assert.fail();
+		} 
+    }
 }

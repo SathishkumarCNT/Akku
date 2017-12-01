@@ -121,7 +121,7 @@ public class Keywords extends Browser_Setup{
     {
         TakesScreenshot ts = (TakesScreenshot)driver;
         File source = ts.getScreenshotAs(OutputType.FILE);
-        String dest = System.getProperty("user.dir") +"/src/test/resources/Screenshots/"+screenShotName+".png";
+        String dest = System.getProperty("user.dir") +"/src/test/resources/E_Reports/"+screenShotName+".png";
         File destination = new File(dest);
         FileUtils.copyFile(source, destination);                             
 
@@ -284,7 +284,7 @@ public class Keywords extends Browser_Setup{
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
-				System.exit(0);
+				
 			}		
 		
 	}

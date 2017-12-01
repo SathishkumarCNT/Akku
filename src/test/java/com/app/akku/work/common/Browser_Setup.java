@@ -1,6 +1,7 @@
 package com.app.akku.work.common;
 
-import java.io.File;
+
+import java.time.LocalDateTime;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.Capabilities;
@@ -10,12 +11,14 @@ import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.remote.RemoteWebDriver;
+import org.testng.ITestResult;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterSuite;
+import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
-import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Parameters;
-
+import com.app.akku.work.keywords.Keywords;
 import com.app.akku.work.pageobjects.LoginPage.Loginpage;
 import com.app.akku.work.pageobjects.OUManagement.OUmanagementpage;
 import com.app.akku.work.pageobjects.editinfopage.EditInformationpage;
@@ -26,12 +29,11 @@ import com.app.akku.work.pageobjects.usermanagement.AddsingleUser;
 import com.app.akku.work.pageobjects.usermanagement.EditUserfromUserManagement;
 import com.app.akku.work.pageobjects.usermanagement.Usermanagementpage;
 import org.apache.log4j.Logger;
-
 import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
+import com.aventstack.extentreports.Status;
 import com.aventstack.extentreports.reporter.ExtentHtmlReporter;
 import com.aventstack.extentreports.reporter.configuration.ChartLocation;
-
 
 public class Browser_Setup {
 
@@ -51,18 +53,19 @@ public class Browser_Setup {
 	public static ExtentReports report;
 	public static ExtentTest test;
 
-    Logger log = Logger.getLogger(Browser_Setup.class.getName());
+	Logger log = Logger.getLogger(Browser_Setup.class.getName());
 
 	@BeforeSuite
-	public void setUp() {
-		System.out.println("Before Suite");
-		htmlReporter = new ExtentHtmlReporter(System.getProperty("user.dir") + "/test-output/MyOwnReport.html");
+	public void ExtentReportSetUp() {
+		
+		log.info("Extended Report Started");
+		htmlReporter = new ExtentHtmlReporter(
+				System.getProperty("user.dir") + "/src/test/resources/E_Reports/AkkuExtentReport.html");
 		report = new ExtentReports();
 		report.attachReporter(htmlReporter);
 
 		
-		report.setSystemInfo("OS", "Windows");
-		report.setSystemInfo("Host Name", "AKKU");
+	    report.setSystemInfo("Host Name", "AKKU");
 		report.setSystemInfo("Environment", "Pre-Prod");
 		report.setSystemInfo("User Name", "SathishKumar");
 		htmlReporter.config().setChartVisibilityOnOpen(true);
@@ -72,16 +75,14 @@ public class Browser_Setup {
 
 	}
 
-	@BeforeTest
+	@BeforeMethod
 	@Parameters({ "Environment", "browser" })
 	public void setup(String Environment, String browser) throws Exception {
 
 		environment = Environment;
 
 		if (browser.equalsIgnoreCase("U_firefox")) {
-			log.info("Launching firefox browser.");
-
-		
+			log.info("Launching Ubuntu firefox browser.");
 
 			System.setProperty("webdriver.gecko.driver",
 					"..//App_Akku_Work//src//test//resources//Drivers//Ubuntu_geckodriver");
@@ -89,7 +90,7 @@ public class Browser_Setup {
 
 		} else if (browser.equalsIgnoreCase("M_firefox")) {
 
-			System.out.println("launching firefox browser");
+			log.info("Launching Mac firefox browser.");
 
 			System.setProperty("webdriver.gecko.driver",
 					"..//App_Akku_Work//src//test//resources//Drivers//MAC_OS_geckodriver");
@@ -97,7 +98,7 @@ public class Browser_Setup {
 
 		} else if (browser.equalsIgnoreCase("W_firefox")) {
 
-			System.out.println("launching firefox browser");
+			log.info("Launching Windows firefox browser.");
 
 			System.setProperty("webdriver.gecko.driver",
 					"..//App_Akku_Work//src//test//resources//Drivers//Win_64_geckodriver.exe");
@@ -105,7 +106,7 @@ public class Browser_Setup {
 
 		} else if (browser.equalsIgnoreCase("U_chrome")) {
 
-			System.out.println("launching chrome browser");
+			log.info("Launching Ubutu chrome browser.");
 
 			System.setProperty("webdriver.chrome.driver",
 					"..//App_Akku_Work//src//test//resources//Drivers//Ubuntu_chromedriver");
@@ -113,25 +114,25 @@ public class Browser_Setup {
 
 		} else if (browser.equalsIgnoreCase("M_chrome")) {
 
-			System.out.println("launching chrome browser");
+			log.info("Launching Mac chrome browser.");
 
 			System.setProperty("webdriver.chrome.driver",
 					"..//App_Akku_Work//src//test//resources//Drivers//MAC_OS_chromedriver");
 			driver = new ChromeDriver();
 
 		} else if (browser.equalsIgnoreCase("W_chrome")) {
-			log.info("Launching Chrome browser in Windows");
 
-			System.out.println("launching chrome browser");
+			log.info("Launching Windows chrome browser.");
 
 			System.setProperty("webdriver.chrome.driver",
 					"..//App_Akku_Work//src//test//resources//Drivers//Win_32_chromedriver.exe");
 			driver = new ChromeDriver();
+
 			log.info("Chrome browser Launched Sucessfully in Windows.");
 
 		} else if (browser.equalsIgnoreCase("IE")) {
 
-			System.out.println("launching IE browser");
+			log.info("Launching Windows IE browser.");
 
 			System.setProperty("webdriver.ie.driver",
 					"..//App_Akku_Work//src//test//resources//Drivers//Win_X64_IEDriverServer.exe");
@@ -139,7 +140,7 @@ public class Browser_Setup {
 
 		} else if (browser.equalsIgnoreCase("Edge")) {
 
-			System.out.println("launching Edge browser");
+			log.info("Launching Windows Edge browser.");
 
 			System.setProperty("webdriver.edge.driver",
 					"..//App_Akku_Work//src//test//resources//Drivers//MicrosoftWebDriver.exe");
@@ -152,15 +153,74 @@ public class Browser_Setup {
 		driver.get(Environment);
 		driver.manage().deleteAllCookies();
 
-		loginpage = new Loginpage(driver);
-		usermanagement = new Usermanagementpage(driver);
-		editinfo = new EditInformationpage(driver);
-		addsingleuser = new AddsingleUser(driver);
-		editUser = new EditUserfromUserManagement(driver);
-		addgsuiteuser = new AddGSuiteUser(driver);
-		siteblocking = new SiteBlockingpage(driver);
-		Pwdpolicy = new PasswordPolicy(driver);
-		oumangement = new OUmanagementpage(driver);
+		loginpage               = new Loginpage(driver);
+		usermanagement          = new Usermanagementpage(driver);
+		editinfo                = new EditInformationpage(driver);
+		addsingleuser           = new AddsingleUser(driver);
+		editUser                = new EditUserfromUserManagement(driver);
+		addgsuiteuser           = new AddGSuiteUser(driver);
+		siteblocking            = new SiteBlockingpage(driver);
+		Pwdpolicy               = new PasswordPolicy(driver);
+		oumangement             = new OUmanagementpage(driver);
+
+	}
+
+	/**
+	 * 
+	 * @throws Exception
+	 */
+	@AfterMethod
+	public void tearDown(ITestResult result) {
+
+		log.info("Inside of After Method");
+
+		try {
+			if (result.getStatus() == ITestResult.SUCCESS) {
+				log.info("Test case passed");
+				test.log(Status.PASS, "Test Case Passed");
+				driver.quit();
+			} else if (result.getStatus() == ITestResult.FAILURE) {
+				log.error("Test case Failed" + result.getThrowable());
+				String screenshot_path = Keywords.capture(driver, result.getName());
+				test.fail(result.getThrowable());
+				test.log(Status.FAIL, "Test case Failed & Screenshot taken in Tear Down method as: "
+						+ test.addScreenCaptureFromPath(screenshot_path));
+
+				driver.quit();
+			} else if (result.getStatus() == ITestResult.SKIP) {
+				log.info("Test case Skipped" + result.getThrowable());
+				test.log(Status.SKIP, "Test case Skipped");
+				test.skip(result.getThrowable());
+				driver.quit();
+			}
+
+		} catch (Exception e) {
+
+			log.info("Exception in After method" + e.getMessage());
+		}
+		driver.quit();
+	}
+	
+	
+	/**
+	 * 
+	 * @throws Exception
+	 */
+	@AfterTest
+	public void teardown() throws Exception {
+
+		System.out.println("Test Execution");
+		report.flush();
+
+	}
+
+
+	@AfterSuite
+	public void endsuite() throws Exception {
+		log.info("Test Suite Execution Finished");
+
+		report.close();
+		log.info("Extended Report Ended");
 
 	}
 
@@ -169,18 +229,10 @@ public class Browser_Setup {
 		String BrowserName = cap.getBrowserName().toLowerCase();
 		String os = System.getProperty("os.name").toLowerCase();
 		String BrowserVersion = cap.getVersion().toString();
-		System.out.println("OS = " + os + ", Browser = " + BrowserName + ", BrowserVersion=" + BrowserVersion + "");
+		log.info("OS = " + os + ", Browser = " + BrowserName + ", BrowserVersion=" + BrowserVersion + "");
 		String OSBrowserDetails = "Test Execution Successfully Passed in OS = " + os + ", Browser = " + BrowserName
 				+ ", BrowserVersion=" + BrowserVersion + "";
 		return OSBrowserDetails;
-
-	}
-
-	@AfterSuite
-	public void teardown() throws Exception {
-		System.out.println("Test Suite Execution Finished");
-
-		report.close();
 
 	}
 }

@@ -13,7 +13,7 @@ import org.testng.Assert;
 
 import com.app.akku.work.common.ReadfromProperties;
 import com.app.akku.work.keywords.Keywords;
-
+import com.aventstack.extentreports.Status;
 
 public class Usermanagementpage extends Keywords {
 
@@ -33,62 +33,63 @@ public class Usermanagementpage extends Keywords {
 
 	public void clickUsermanagementBtn() throws Exception {
 
-		System.out.println("Trying to Click on Users button...");
+		log.info("Trying to Click on Users Management button...");
 
 		click(By.xpath(prop.getAppProperty("Akku_UserManagement_userlist_xpath")));
-		
-		
 
-		System.out.println("We think we Click on Users button...");
+		log.info(" We think we Clicked on Users Management button");
+		test.log(Status.INFO, "We think we Clicked on Users Management button");
+
 	}
-	
+
 	public void clickAppmanagementBtn() throws Exception {
 
-		System.out.println("Trying to Click on Users button...");
+		log.info("Trying to Click on App Management  button...");
 
-		//click(By.xpath(prop.getAppProperty("Akku_UserManagement_userlist_xpath")));
-		
 		click(By.xpath(prop.getAppProperty("Home_AppManagement_btn_xpath")));
 
-		System.out.println("We think we Click on Users button...");
+		log.info("We think we Clicked on App Management  button...");
+		test.log(Status.INFO, "We think we Clicked on App Management  button");
 	}
 
 	public void clickOnAddUserManualy() throws Exception {
 
-		System.out.println("Trying to Click on Add Users Manually button...");
+		log.info("Trying to Click on Add Users Manually button...");
 
 		moveMouse(By.xpath(prop.getAppProperty("Akku_UserManagement_plus_btn_xpath")));
 
 		Thread.sleep(2000);
-		//WaitForElement(By.xpath(prop.getAppProperty("Akku_UserManagement_adduser_Manually_btn_xpath")));
 
 		click(By.xpath(prop.getAppProperty("Akku_UserManagement_adduser_Manually_btn_xpath")));
 
-		System.out.println("We think we Click on Add Users Manually button...");
+		log.info("We think we Clicked on Add Users Manually button...");
+		test.log(Status.INFO, "We think we Clicked on Add Users Manually button");
 	}
 
 	public void clickonAddUserViaGSuite() throws Exception {
 
-			System.out.println("Trying to Click on Add Users by using GSuite button...");
+		log.info("Trying to Click on Add Users by using GSuite button...");
 
-			moveMouse(By.xpath(prop.getAppProperty("Akku_UserManagement_plus_btn_xpath")));
+		moveMouse(By.xpath(prop.getAppProperty("Akku_UserManagement_plus_btn_xpath")));
 
-			Thread.sleep(2000);
-			//WaitForElement(By.xpath(prop.getAppProperty("Akku_UserManagement_adduservia_Gsuite_btn_xpath")));
+		Thread.sleep(2000);
 
-			click(By.xpath(prop.getAppProperty("Akku_UserManagement_adduservia_Gsuite_btn_xpath")));
+		click(By.xpath(prop.getAppProperty("Akku_UserManagement_adduservia_Gsuite_btn_xpath")));
 
-			System.out.println("We think we Click on Add user via GSuite  Button...");
+		log.info("We think we Clicked on Add user via GSuite  Button...");
+		test.log(Status.INFO, "We think we Clicked on Add user via GSuite  Button");
 
-			}
+	}
 
 	public void clickOnaddUserbyBulkOption() throws Exception {
 
-		System.out.println("Trying to Click on Add Users by Bulk option button...");
+		log.info("Trying to Click on Add Users by Bulk option button...");
 
 		click(By.xpath(prop.getAppProperty("Akku_UserManagement_AdduserbyBulk_btn_xpath")));
 
-		System.out.println("We think we Click on Add Users by Bulk option button...");
+		log.info("We think we Click on Add Users by Bulk option button...");
+
+		test.log(Status.INFO, "We think we Click on Add Users by Bulk option button");
 
 	}
 
@@ -98,99 +99,100 @@ public class Usermanagementpage extends Keywords {
 				By.xpath(prop.getAppProperty("Akku_UserManagement_DownloadSampleFile_btn_xpath")));
 		return status;
 	}
-	
 
 	public void selectvalidcsvfile() throws Exception {
 
-		/*WebElement uploadcsv = findElement(By.xpath(prop.getAppProperty("Akku_UserManagement_Browse..._btn_xpath")));
+		/*
+		 * WebElement uploadcsv = findElement(By.xpath(prop.getAppProperty(
+		 * "Akku_UserManagement_Browse..._btn_xpath")));
+		 * 
+		 * uploadcsv.sendKeys(
+		 * "..//App_Akku_Work//src//test//resources//input//Invalid_user.csv");
+		 * 
+		 * driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		 */
 
-		uploadcsv.sendKeys("..//App_Akku_Work//src//test//resources//input//Invalid_user.csv");
-
-		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);*/
-		
-
-		WebElement elementUpload=findElement(By.xpath(prop.getAppProperty("Akku_UserManagement_Bulkuser_upload_btn_xpath")));
-		WebDriverWait wait=new WebDriverWait(driver, 30);
+		log.info("Trying to Select CSv File from Path...");
+		WebElement elementUpload = findElement(
+				By.xpath(prop.getAppProperty("Akku_UserManagement_Bulkuser_upload_btn_xpath")));
+		WebDriverWait wait = new WebDriverWait(driver, 30);
 		wait.until(ExpectedConditions.elementToBeClickable(elementUpload));
 
-		elementUpload.sendKeys("F://Automation_Workspace//Akku_Master//App_Akku_Work//src//test//resources//input//valid.csv");
+		elementUpload.sendKeys(
+				"F://Automation_Workspace//Akku_Master//App_Akku_Work//src//test//resources//input//valid.csv");
 
-		
-		
-	
-	    
+		log.info("We think we Selected CSV file From Path ...");
+
+		test.log(Status.INFO, "We think we Selected CSV file From Path ...");
+
 	}
-	
+
 	public void selectinvalidcsvfile() throws Exception {
 
-		/*WebElement uploadcsv = findElement(By.xpath(prop.getAppProperty("Akku_UserManagement_Browse..._btn_xpath")));
+		/*
+		 * WebElement uploadcsv = findElement(By.xpath(prop.getAppProperty(
+		 * "Akku_UserManagement_Browse..._btn_xpath")));
+		 * 
+		 * uploadcsv.sendKeys(
+		 * "..//App_Akku_Work//src//test//resources//input//Invalid_user.csv");
+		 * 
+		 * driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		 */
 
-		uploadcsv.sendKeys("..//App_Akku_Work//src//test//resources//input//Invalid_user.csv");
-
-		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);*/
-		
-
-		WebElement elementUpload=findElement(By.xpath(prop.getAppProperty("Akku_UserManagement_Bulkuser_upload_btn_xpath")));
-		WebDriverWait wait=new WebDriverWait(driver, 30);
+		log.info("Trying to Select CSv File from Path...");
+		WebElement elementUpload = findElement(
+				By.xpath(prop.getAppProperty("Akku_UserManagement_Bulkuser_upload_btn_xpath")));
+		WebDriverWait wait = new WebDriverWait(driver, 30);
 		wait.until(ExpectedConditions.elementToBeClickable(elementUpload));
 
-		elementUpload.sendKeys("F://Automation_Workspace//Akku_Master//App_Akku_Work//src//test//resources//input//Invalid_user.csv");
+		elementUpload.sendKeys(
+				"F://Automation_Workspace//Akku_Master//App_Akku_Work//src//test//resources//input//Invalid_user.csv");
 
-		
-		
-	
-	    
+		log.info("We think we Selected CSV file From Path ...");
+
+		test.log(Status.INFO, "We think we Selected CSV file From Path ...");
+
 	}
-	
-	
-	public void ValidateErrormsg() {
 
-		try {
+	public void ValidateErrormsg() throws Exception{
 
-			System.out.println("Trying to verify Error Message...");
 
-			String Expected = "Upload failed invalid email id.";
 
-			String Actual = getText(By.xpath(prop.getAppProperty("Akku_UserManagement_Bulkuser_upload_Errormsg_xpath")));
+			log.info("Trying to verify Error Message...");
+
+			String Expected = "Upload failed invalid CSV data..";
+
+			String Actual = getText(
+					By.xpath(prop.getAppProperty("Akku_UserManagement_Bulkuser_upload_Errormsg_xpath")));
 
 			Assert.assertEquals(Actual, Expected);
 
-			System.out.println("We think we Verified Error Message...");
+			log.info("We think we Verified Error Message...");
+			test.log(Status.INFO, "We think we Verified Error Message");
 			Thread.sleep(1000);
-			
 
-		} catch (Exception e) {
-			System.out.println("We think we Not Verified Error Message...");
-			e.printStackTrace();
-			
-
-		}
+		
 	}
 
-	public void CloseBulkuserpopscreen() {
+	public void CloseBulkuserpopscreen() throws Exception{
 
-		try {
+	
 
-			System.out.println("Trying to Close Pop Screen...");
+			log.info("Trying to Close Pop Screen...");
 
-			
+			click(By.xpath(prop.getAppProperty("Akku_UserManagement_Bulkuser_popup_Close_xpath")));
 
-		click(By.xpath(prop.getAppProperty("Akku_UserManagement_Bulkuser_popup_Close_xpath")));
+			log.info("We think we Closed Bulk user Pop up window...");
+			Thread.sleep(1000);
 
-		System.out.println("We think we Closed Bulk user Pop up window...");
-		Thread.sleep(1000);
-
-		} catch (Exception e) {
-			System.out.println("We think we Not Closed...");
-			e.printStackTrace();
-
-		}
+			test.log(Status.INFO, "We think we Closed Bulk user Pop up window...");
 	}
-	public void ValidateSuccessfullyresetmsg() {
 
-		try {
+	public void ValidateSuccessfullyresetmsg()throws Exception {
 
-			System.out.println("Trying to verify Successful Message...");
+		
+
+			log.info("Trying to verify Successful Message...");
 
 			String Expected = "Users Successfully Added";
 
@@ -198,64 +200,77 @@ public class Usermanagementpage extends Keywords {
 
 			Assert.assertEquals(Actual, Expected);
 
-			System.out.println("We think we Verified verify Successful Message...");
+			log.info("We think we Verified verify Successful Message...");
+			
+			test.log(Status.INFO, "We think we Verified verify Successful Message..."); 
+			
+			
 			Thread.sleep(1000);
 			driver.navigate().refresh();
 
-		} catch (Exception e) {
-			System.out.println("We think we Typed Email ID in Edit User management...");
-			e.printStackTrace();
-			driver.navigate().refresh();
-
-		}
+		
 	}
 
 	public void clickOnBrowseBtn() throws Exception {
 
-		System.out.println("Trying to Click on Browse button...");
+		log.info("Trying to Click on Browse button...");
 
 		click(By.xpath(prop.getAppProperty("Akku_UserManagement_Browse..._btn_xpath")));
 
-		System.out.println("We think we Click on Browse button...");
+		log.info("We think we Clicked on Browse button...");
+		
+		test.log(Status.INFO, "We think we Clicked on Browse button"); 
 
 	}
 
 	public void clickOnUploadBtn() throws Exception {
 
-		System.out.println("Trying to Click on Browse button...");
+		log.info("Trying to Click on upload button...");
 
 		click(By.xpath(prop.getAppProperty("Akku_UserManagement_Upload_btn_xpath")));
 
-		System.out.println("We think we Click on Browse button...");
+		log.info("We think we Clicked on upload button...");
+		
+		test.log(Status.INFO, "We think we Clicked on upload button"); 
 
 	}
 
 	public void selectcsvfile() throws Exception {
+		
+		log.info("Trying to Select CSV file From Path ...");
 
 		WebElement uploadcsv = findElement(By.xpath(prop.getAppProperty("Akku_UserManagement_Browse..._btn_xpath")));
 
 		uploadcsv.sendKeys("..//App_Akku_Work//src//test//resources//input//qacsv.csv");
 
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		
+		log.info("We think we Selected CSV file From Path ...");
+
+		test.log(Status.INFO, "We think we Selected CSV file From Path ...");
 
 	}
 
 	public void closeAlertpopup() throws Exception {
 
-		System.out.println("Trying to Click on Popup OK button...");
+		log.info("Trying to Click on Popup OK button...");
 
 		click(By.xpath(prop.getAppProperty("Akku_EditInfo_Ok_btn_xpath")));
 
-		System.out.println("We think we Click on Popup OK button...");
+		log.info("We think we Clicked on Popup OK button...");
+		
+		test.log(Status.INFO, "We think we Clicked on Popup OK button"); 
 	}
 
 	public void typeinsearchfield(String CSVEmail) throws Exception {
-	
-		System.out.println("Trying to Enter CSV email in the search text field...");
+
+		log.info("Trying to Enter CSV email in the search text field...");
 
 		type(By.xpath(prop.getAppProperty("Akku_UserManagement_Search_textfield_xpath")), CSVEmail);
-			
-		System.out.println("We think we Entered CSV email in the search text field...");
+
+		log.info("We think we Entered CSV email in the search text field...");
+		
+		test.log(Status.INFO, "We think we Entered CSV email in the search text field"); 
 	}
 
 	public boolean isCSVEmailDisplayed() throws Exception {

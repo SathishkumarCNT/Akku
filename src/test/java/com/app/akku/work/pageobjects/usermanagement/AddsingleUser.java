@@ -1,7 +1,6 @@
 package com.app.akku.work.pageobjects.usermanagement;
 
-
-
+import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -9,97 +8,112 @@ import org.openqa.selenium.support.ui.Select;
 
 import com.app.akku.work.common.ReadfromProperties;
 import com.app.akku.work.keywords.Keywords;
+import com.aventstack.extentreports.Status;
 
 public class AddsingleUser extends Keywords {
 	
+	Logger log = Logger.getLogger(AddsingleUser.class.getName());
+
 	public AddsingleUser(WebDriver driver) {
 		super(driver);
-		
+
 	}
-	
+
 	ReadfromProperties prop = new ReadfromProperties();
 	String Email;
-	
+
 	public void typeFname(String Fname) throws Exception {
-    			
-		System.out.println("Trying to Enter FName in the FName text field...");
-		
+
+		log.info("Trying to Enter FName in the FName text field...");
+
 		type(By.xpath(prop.getAppProperty("Akku_UserManagement_AddUserManually_FName_xpath")), Fname);
-		
-		System.out.println("We think we Entered FName in the FName text field...");
-							
+
+		log.info("We think we  Enter FName in the FName text field: " + Fname);
+
+		test.log(Status.INFO, "We think we  Enter FName in the FName text field: " + Fname);
+
 	}
 
 	public void typeLname(String Lname) throws Exception {
-    				
-		System.out.println("Trying to Enter LName in the LName text field...");
-				
+
+		log.info("Trying to Enter LName in the LName text field...");
+
 		type(By.xpath(prop.getAppProperty("Akku_UserManagement_AddUserManually_LName_xpath")), Lname);
-					
-		System.out.println("We think we Entered LName in the LName text field...");
+
+		log.info("We think we Entered LName in the LName text field...");
+		test.log(Status.INFO, "We think we  Enter LName in the LName text field: " + Lname);
 	}
 
-	
-    public void typeEmail() throws Exception {
-    	
-		System.out.println("Trying to Enter email in the email text field...");
-						
-		String Email="Testuser"+(int)(Math.random()*1000)+"@demo.cloudnowtech.com";
-			
+	public void typeEmail() throws Exception {
 
-		 System.out.println(Email);
-				
-		
-		type(By.xpath(prop.getAppProperty("Akku_UserManagement_AddUserManually_email_xpath")),Email);	
-				
-		System.out.println("We think we Entered email in the email text field...");
+		log.info("Trying to Enter email in the email text field...");
+
+		String Email = "Testuser" + (int) (Math.random() * 1000) + "@demo.cloudnowtech.com";
+
+		log.info(Email);
+
+		type(By.xpath(prop.getAppProperty("Akku_UserManagement_AddUserManually_email_xpath")), Email);
+
+		log.info("We think we Entered email in the email text field: " + Email);
+
+		test.log(Status.INFO, "We think we Entered email in the email text field: " + Email);
 	}
-    
-    public void typeConfnewpassword(String Confnewpassword) throws Exception {
-    
-		System.out.println("Trying to Enter Confirm Password in the Email text field...");
-		
+
+	public void typeConfnewpassword(String Confnewpassword) throws Exception {
+
+		log.info("Trying to Enter Confirm Password in the Email text field...");
+
 		click(By.xpath(prop.getAppProperty("conpassword_Xpath")));
 		type(By.xpath(prop.getAppProperty("conpassword_Xpath")), Confnewpassword);
-				
-		System.out.println("We think we Entered Confirm  Password in then Email text field...");
+
+		log.info("We think we Entered Confirm  Password in then Email text field: " + Confnewpassword);
+
+		test.log(Status.INFO, "We think we Entered Confirm  Password in then Email text field: " + Confnewpassword);
 	}
-    
-    public void clickonConfirmAndAddUser() throws Exception {
-    
-    	System.out.println("Trying to Click on Confirm And Add button...");
-		
+
+	public void clickonConfirmAndAddUser() throws Exception {
+
+		log.info("Trying to Click on Confirm And Add button...");
+
 		click(By.xpath(prop.getAppProperty("Akku_UserManagement_AddUserManually_ConfirmAndAddUser_xpath")));
-		    	
-		System.out.println("We think we Clicked on Confirm And Add button...");
-    	
-    }
-    
-    public void clickondropdowntoselectusertypeASuser() throws Exception {
-    	
-    
-    	
-    	WebElement element = driver.findElement(By.xpath("//*[@id=\"autype\"]"));
+
+		log.info("We think we Clicked on Confirm And Add button...");
+
+		test.log(Status.INFO, "We think we Click on Confirm And Add button");
+
+	}
+
+	public void clickondropdowntoselectusertypeASuser() throws Exception {
+
+		log.info("Trying to Select  on User from User Type drop down...");
+
+		WebElement element = driver.findElement(By.xpath("//*[@id=\"autype\"]"));
 		Select se = new Select(element);
 		se.selectByIndex(0);
-    	
-    }
-    
-    public void clickondropdowntoselectusertypeASAdmin() throws Exception {
-    	
-    	
-    	
-    	WebElement element = driver.findElement(By.xpath("//*[@id=\"autype\"]"));
+
+		log.info("We think we We selected User from Usertype drop down");
+
+		test.log(Status.INFO, "We think we We selected User from Usertype drop down");
+
+	}
+
+	public void clickondropdowntoselectusertypeASAdmin() throws Exception {
+		log.info("Trying to Select  on User from User Type drop down...");
+
+		WebElement element = driver.findElement(By.xpath("//*[@id=\"autype\"]"));
 		Select se = new Select(element);
 		se.selectByIndex(1);
-    	
-    	
-    }
-    
-    public void addusertypeinusermanagement() {
 
-		try {
-			System.out.println("Select User Type in Edit User management...");
+		log.info("We think we We selected Admin from Usertype drop down");
+
+		test.log(Status.INFO, "We think we We selected Admin from Usertype drop down");
+
+	}
+
+	public void addusertypeinusermanagement()throws Exception {
+
+	
+			log.info("Select User Type in Edit User management...");
 
 			String Usertype_user = "User";
 			String readusertype = getText(By.xpath(prop.getAppProperty("Akku_UserManagement_addusertype_xpath")));
@@ -113,12 +127,10 @@ public class AddsingleUser extends Keywords {
 				Select se = new Select(element);
 				se.selectByIndex(1);
 			}
-		} catch (Exception e) {
-			System.out.println("We think we Selected User type in Edit User management...");
-			e.printStackTrace();
+		
 
-		}
- 
-    
-}
+		log.info("We think we We selected Usertype in drop down");
+
+		test.log(Status.INFO, "We think we We selected Usertype from drop down");
+	}
 }

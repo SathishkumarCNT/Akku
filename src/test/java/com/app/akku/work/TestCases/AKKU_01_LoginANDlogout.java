@@ -33,7 +33,11 @@ public class AKKU_01_LoginANDlogout extends Browser_Setup {
 	String build = "Build1";
 	String notes = null;
 	String result = null;
+	
+	
 	 Logger log = Logger.getLogger(AKKU_01_LoginANDlogout.class.getName());
+	 
+	 
 	@DataProvider(name = "Login_Details")
 	public Object[][] dataProvider_ValidLogin() {
 
@@ -80,7 +84,7 @@ public class AKKU_01_LoginANDlogout extends Browser_Setup {
 			loginpage.verifyloggedinUserFNameAndLName();
 			loginpage.clickLogout();
 
-			System.out.println("####################################################################");
+			log.info("####################################################################");
 			result = TestLinkAPIResults.TEST_PASSED;
 			notes = getOSBrowserDetails();
 
@@ -90,9 +94,18 @@ public class AKKU_01_LoginANDlogout extends Browser_Setup {
 			notes = e.getMessage();
 			e.printStackTrace();
 
+		}catch (AssertionError e) {
+
+			String message = e.getMessage();
+			log.info(message);
+			result = TestLinkAPIResults.TEST_FAILED;
+			notes = e.getMessage();
+			e.printStackTrace();
+			Assert.fail();
+
 		} finally {
 
-			System.out.println("Updating TestCase Execution Status in TestLink");
+			log.info("Updating TestCase Execution Status in TestLink");
 			TestLinkIntegration.reportResult(testProject, testPlan, AK_01, build, notes, result);
 
 		}
@@ -115,13 +128,13 @@ public class AKKU_01_LoginANDlogout extends Browser_Setup {
 			Thread.sleep(2000);
 			loginpage.EmailANDPwdErrorValidation();
 
-			System.out.println("####################################################################");
+			log.info("####################################################################");
 			result = TestLinkAPIResults.TEST_PASSED;
 			notes = getOSBrowserDetails();
 
 		} catch (Exception e) {
 
-			System.out.println("Inside Catch");
+			log.info("Inside Catch");
 			result = TestLinkAPIResults.TEST_FAILED;
 			notes = e.getMessage();
 			e.printStackTrace();
@@ -129,7 +142,7 @@ public class AKKU_01_LoginANDlogout extends Browser_Setup {
 		} catch (AssertionError e) {
 
 			String message = e.getMessage();
-			System.out.println(message);
+			log.info(message);
 			result = TestLinkAPIResults.TEST_FAILED;
 			notes = e.getMessage();
 			e.printStackTrace();
@@ -139,7 +152,7 @@ public class AKKU_01_LoginANDlogout extends Browser_Setup {
 
 		finally {
 
-			System.out.println("Updating TestCase Execution Status in TestLink");
+			log.info("Updating TestCase Execution Status in TestLink");
 			TestLinkIntegration.reportResult(testProject, testPlan, AK_02, build, notes, result);
 
 		}
@@ -150,7 +163,7 @@ public class AKKU_01_LoginANDlogout extends Browser_Setup {
 	public void AK_03_LoginwithValidUserNameandEmptyPassword(String email, String password) throws Exception {
 		test = report.createTest("AK_03", "Trying to Login without Password");
 		try {
-			System.out.println("Inside of login with valid Email AND Empty PWD");
+			
 			loginpage.typeUseremail(email);
 
 			loginpage.clickLogin();
@@ -159,7 +172,7 @@ public class AKKU_01_LoginANDlogout extends Browser_Setup {
 
 			loginpage.inputpassworderrormsgvalidation();
 
-			System.out.println("####################################################################");
+			log.info("####################################################################");
 			result = TestLinkAPIResults.TEST_PASSED;
 			notes = getOSBrowserDetails();
 
@@ -169,9 +182,18 @@ public class AKKU_01_LoginANDlogout extends Browser_Setup {
 			notes = e.getMessage();
 			e.printStackTrace();
 
+		}catch (AssertionError e) {
+
+			String message = e.getMessage();
+			log.info(message);
+			result = TestLinkAPIResults.TEST_FAILED;
+			notes = e.getMessage();
+			e.printStackTrace();
+			Assert.fail();
+
 		} finally {
 
-			System.out.println("Updating TestCase Execution Status in TestLink");
+			log.info("Updating TestCase Execution Status in TestLink");
 			TestLinkIntegration.reportResult(testProject, testPlan, AK_03, build, notes, result);
 
 		}
@@ -193,7 +215,7 @@ public class AKKU_01_LoginANDlogout extends Browser_Setup {
 
 			loginpage.EmailANDPwdErrorValidation();
 
-			System.out.println("####################################################################");
+			log.info("####################################################################");
 			result = TestLinkAPIResults.TEST_PASSED;
 			notes = getOSBrowserDetails();
 
@@ -203,9 +225,18 @@ public class AKKU_01_LoginANDlogout extends Browser_Setup {
 			notes = e.getMessage();
 			e.printStackTrace();
 
+		}catch (AssertionError e) {
+
+			String message = e.getMessage();
+			log.info(message);
+			result = TestLinkAPIResults.TEST_FAILED;
+			notes = e.getMessage();
+			e.printStackTrace();
+			Assert.fail();
+
 		} finally {
 
-			System.out.println("Updating TestCase Execution Status in TestLink");
+			log.info("Updating TestCase Execution Status in TestLink");
 			TestLinkIntegration.reportResult(testProject, testPlan, AK_04, build, notes, result);
 
 		}
@@ -215,8 +246,7 @@ public class AKKU_01_LoginANDlogout extends Browser_Setup {
 	public void AK_05_LoginwithemptyUsernameandValidPassword(String email, String password) throws Exception {
 		test = report.createTest("AK_05", "Trying to Login Without Enter Email ID and Valid Password");
 		try {
-			System.out.println("Inside of login with Empty Email AND PWD");
-
+			
 			loginpage.typepassword(password);
 
 		     loginpage.clickLogin();
@@ -225,11 +255,20 @@ public class AKKU_01_LoginANDlogout extends Browser_Setup {
 
 			loginpage.inputemailerrormsgvalidation();
 
-			System.out.println("####################################################################");
+			log.info("####################################################################");
 			result = TestLinkAPIResults.TEST_PASSED;
 			notes = getOSBrowserDetails();
 
-		} catch (Exception e) {
+		} catch (AssertionError e) {
+
+			String message = e.getMessage();
+			log.info(message);
+			result = TestLinkAPIResults.TEST_FAILED;
+			notes = e.getMessage();
+			e.printStackTrace();
+			Assert.fail();
+
+		}catch (Exception e) {
 
 			result = TestLinkAPIResults.TEST_FAILED;
 			notes = e.getMessage();
@@ -237,57 +276,12 @@ public class AKKU_01_LoginANDlogout extends Browser_Setup {
 
 		} finally {
 
-			System.out.println("Updating TestCase Execution Status in TestLink");
+			log.info("Updating TestCase Execution Status in TestLink");
 			TestLinkIntegration.reportResult(testProject, testPlan, AK_05, build, notes, result);
 
 		}
 	}
 
-	/**
-	 * 
-	 * @throws Exception
-	 */
-	@AfterMethod
-	public void tearDown(ITestResult result) {
-
-		System.out.println("Inside of tearDown Method");
-
-		try {
-			if (result.getStatus() == ITestResult.SUCCESS) {
-				System.out.println("Test case passed");
-				test.log(Status.PASS, "Test Case Passed");
-
-			} else if (result.getStatus() == ITestResult.FAILURE) {
-
-				String screenshot_path = Keywords.capture(driver, result.getName());
-				test.fail(result.getThrowable());
-				test.log(Status.FAIL, "Test case Failed & Screenshot taken in Tear Down method as: "
-						+ test.addScreenCaptureFromPath(screenshot_path));
-
-			} else if (result.getStatus() == ITestResult.SKIP) {
-				test.log(Status.SKIP, "Test case Skipped");
-				test.skip(result.getThrowable());
-
-			}
-
-		} catch (Exception e) {
-
-			System.out.println("Exception while taking screenshot " + e.getMessage());
-		}
-
-	}
-
-	/**
-	 * 
-	 * @throws Exception
-	 */
-	@AfterTest
-	public void teardown() throws Exception {
-
-		System.out.println("Test Execution");
-		driver.quit();
-		report.flush();
-
-	}
-
+	
+	
 }

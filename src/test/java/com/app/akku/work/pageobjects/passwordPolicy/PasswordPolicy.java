@@ -2,6 +2,7 @@ package com.app.akku.work.pageobjects.passwordPolicy;
 
 import java.util.List;
 
+import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -10,8 +11,12 @@ import org.testng.Assert;
 
 import com.app.akku.work.common.ReadfromProperties;
 import com.app.akku.work.keywords.Keywords;
+import com.app.akku.work.pageobjects.OUManagement.OUmanagementpage;
+import com.aventstack.extentreports.Status;
 
 public class PasswordPolicy extends Keywords {
+	
+	Logger log = Logger.getLogger(PasswordPolicy.class.getName());
 
 	public int pwdlen;
 
@@ -24,125 +29,133 @@ public class PasswordPolicy extends Keywords {
 
 	public void clickonpwdpolicyBtn() throws Exception {
 
-		System.out.println("Trying to Click on Password Policy button...");
+		log.info("Trying to Click on Password Policy button...");
 
 		click(By.xpath(prop.getAppProperty("AppManagement_passwordpolicy_btn_xpath ")));
 
-		System.out.println("We think we Click on Password Policy button...");
+		test.log(Status.INFO,"We think we Click on Password Policy button");
+		log.info("We think we Click on Password Policy button...");
 	}
 
 	public void Clearpwdlength() throws Exception {
 
-		System.out.println("Trying to Clear on Min password Length field");
+		log.info("Trying to Clear on Min password Length field");
 
 		click(By.xpath(prop.getAppProperty("AppManagement_pwdpolicy_MinpwdLen_xpath")));
 		clear(By.xpath(prop.getAppProperty("AppManagement_pwdpolicy_MinpwdLen_xpath")));
 
-		System.out.println("We think we Clear on Min password Length field");
+		log.info("We think we Clear on Min password Length field");
+		test.log(Status.INFO,"We think we Clear on Min password Length field");
 	}
 
 	public void Clickonsave() throws Exception {
 
-		System.out.println("Trying to Click on Password Policy Save button..");
+		log.info("Trying to Click on Password Policy Save button..");
 
 		click(By.xpath(prop.getAppProperty("AppManagement_passwordpolicy_Save_btn_xpath")));
 
-		System.out.println("We think we Click on Password Policy Save button.");
+		test.log(Status.INFO,"We think we Click on Password Policy Save button.");
+		log.info("We think we Click on Password Policy Save button.");
 
 	}
 
 	public void Validateerrormsgforblankpwdlength() throws Exception {
 
-		System.out.println("Trying to verify Password Policy Error Message..");
+		log.info("Trying to verify Password Policy Error Message..");
 
 		String Expected = "Updation failed. Please try after some time.";
 		String Actual = getText(By.xpath(prop.getAppProperty("ishome_home_update_error_popup_xpath")));
-		System.out.println(Actual);
-		System.out.println(Expected);
+		log.info(Actual);
+		log.info(Expected);
 		Assert.assertEquals(Actual, Expected);
-		System.out.println("We think we Trying to verified Password Policy Error Message.");
+		test.log(Status.INFO,"We think we Trying to verified Password Policy Error Message.");
+		log.info("We think we Trying to verified Password Policy Error Message.");
 
 	}
 
 	public void closeAlertpopup() throws Exception {
 
-		System.out.println("Trying to Click on Popup OK button...");
+		log.info("Trying to Click on Popup OK button...");
 
 		click(By.xpath(prop.getAppProperty("Akku_EditInfo_Ok_btn_xpath")));
-
-		System.out.println("We think we Click on Popup OK button...");
+		test.log(Status.INFO,"We think we Click on Popup OK button");
+		log.info("We think we Click on Popup OK button...");
 	}
 
 	public void EnterCharinpwdlength() throws Exception {
 
-		System.out.println("Trying to Clear on Min password Length field");
+		log.info("Trying to Clear on Min password Length field");
 
 		clear(By.xpath(prop.getAppProperty("AppManagement_pwdpolicy_MinpwdLen_xpath")));
 
 		type(By.xpath(prop.getAppProperty("AppManagement_pwdpolicy_MinpwdLen_xpath")), "e");
-
-		System.out.println("We think we Clear on Min password Length field");
+		test.log(Status.INFO,"We think we Clear on Min password Length field");
+		log.info("We think we Clear on Min password Length field");
 	}
 
 	public void ValidateerrormsgforCharinpwdlength() throws Exception {
 
-		System.out.println("Trying to verify Password Policy Error Message..");
+		log.info("Trying to verify Password Policy Error Message..");
 
 		String Expected = "Please enter a number.";
 		String Actual = getvalidationMessage(By.xpath(prop.getAppProperty("AppManagement_pwdpolicy_MinpwdLen_xpath")));
-		System.out.println(Actual);
-		System.out.println(Expected);
+		log.info(Actual);
+		log.info(Expected);
 		Assert.assertEquals(Actual, Expected);
-		System.out.println("We think we Trying to verified Password Policy Error Message.");
+		test.log(Status.INFO,"We think we Trying to verified Password Policy Error Message.");
+		log.info("We think we Trying to verified Password Policy Error Message.");
 		driver.navigate().refresh();
 
 	}
 
 	public void Enterpwdlengthof7char() throws Exception {
 
-		System.out.println("Trying to Clear on Min password Length field");
+		log.info("Trying to Clear on Min password Length field");
 
 		clear(By.xpath(prop.getAppProperty("AppManagement_pwdpolicy_MinpwdLen_xpath")));
 
 		type(By.xpath(prop.getAppProperty("AppManagement_pwdpolicy_MinpwdLen_xpath")), "7");
-
-		System.out.println("We think we Clear on Min password Length field");
+		
+		test.log(Status.INFO,"We think we Clear on Min password Length field");
+		log.info("We think we Clear on Min password Length field");
 	}
 
 	public void Validateerrormsgforpwdlength7char() throws Exception {
 
-		System.out.println("Trying to verify Password Policy Error Message..");
+		log.info("Trying to verify Password Policy Error Message..");
 
 		String Expected = "Value must be greater than or equal to 8.";
 		String Actual = getvalidationMessage(By.xpath(prop.getAppProperty("AppManagement_pwdpolicy_MinpwdLen_xpath")));
-		System.out.println(Actual);
-		System.out.println(Expected);
+		log.info(Actual);
+		log.info(Expected);
 		Assert.assertEquals(Actual, Expected);
-		System.out.println("We think we Trying to verified Password Policy Error Message.");
+		test.log(Status.INFO,"We think we Trying to verified Password Policy Error Message.");
+		log.info("We think we Trying to verified Password Policy Error Message.");
 		driver.navigate().refresh();
 
 	}
 
 	public void SelectonepwdComplexity() throws Exception {
 
-		System.out.println("Trying to Select One password Complexity...");
+		log.info("Trying to Select One password Complexity...");
 
 		boolean Uppercase = isSelected(By.id(prop.getAppProperty("AppManagement_pwdpolicy_ComplUChar_ID")));
 		boolean lowercase = isSelected(By.id(prop.getAppProperty("AppManagement_pwdpolicy_ComplLChar_ID")));
 		boolean numeric = isSelected(By.id(prop.getAppProperty("AppManagement_pwdpolicy_ComplNumChar_ID")));
 		boolean special = isSelected(By.id(prop.getAppProperty("AppManagement_pwdpolicy_ComplsplChar_ID")));
 
-		System.out.println("Upper Case: " + Uppercase + "");
-		System.out.println("Lower Case: " + lowercase + "");
-		System.out.println("Numeric Case: " + numeric + "");
-		System.out.println("special Case: " + special + "");
+		log.info("Upper Case: " + Uppercase + "");
+		log.info("Lower Case: " + lowercase + "");
+		log.info("Numeric Case: " + numeric + "");
+		log.info("special Case: " + special + "");
 
 		if (Uppercase == true)
 
 		{
 			click(By.xpath(prop.getAppProperty("AppManagement_pwdpolicy_ClicklUChar_xpath")));
 			Thread.sleep(500);
-			System.out.println("We think we UnSelect Uppercase...");
+			test.log(Status.INFO,"We think we Un Select Uppercase");
+			log.info("We think we Un Select Uppercase...");
 
 		}
 		if (lowercase == true)
@@ -150,7 +163,8 @@ public class PasswordPolicy extends Keywords {
 		{
 			click(By.xpath(prop.getAppProperty("AppManagement_pwdpolicy_ClicklLChar_xpath")));
 			Thread.sleep(500);
-			System.out.println("We think we Select Lowercase...");
+			test.log(Status.INFO,"We think we Select Lowercase");
+			log.info("We think we Select Lowercase...");
 
 		}
 		if (numeric == false)
@@ -159,7 +173,8 @@ public class PasswordPolicy extends Keywords {
 
 			click(By.xpath(prop.getAppProperty("AppManagement_pwdpolicy_ClicklnumChar_xpath")));
 			Thread.sleep(500);
-			System.out.println("We think we Select Numeric...");
+			test.log(Status.INFO,"We think we Select Numeric");
+			log.info("We think we Select Numeric...");
 
 		}
 		if (special == true)
@@ -167,33 +182,36 @@ public class PasswordPolicy extends Keywords {
 		{
 			click(By.xpath(prop.getAppProperty("AppManagement_pwdpolicy_ClicklsplChar_xpath")));
 			Thread.sleep(500);
-			System.out.println("We think we Select UnSpecial Character...");
+			test.log(Status.INFO,"We think we UnSelect  Special Character");
+			log.info("We think we  UnSelect Special Character...");
 
 		}
 
-		System.out.println("We think we Select One password Complexity...");
+		test.log(Status.INFO,"We think we Select One password Complexity");
+		log.info("We think we Select One password Complexity...");
 	}
 
 	public void SelecttwopwdComplexity() throws Exception {
 
-		System.out.println("Trying to Select Two password Complexity...");
+		log.info("Trying to Select Two password Complexity...");
 
 		boolean Uppercase = isSelected(By.id(prop.getAppProperty("AppManagement_pwdpolicy_ComplUChar_ID")));
 		boolean lowercase = isSelected(By.id(prop.getAppProperty("AppManagement_pwdpolicy_ComplLChar_ID")));
 		boolean numeric = isSelected(By.id(prop.getAppProperty("AppManagement_pwdpolicy_ComplNumChar_ID")));
 		boolean special = isSelected(By.id(prop.getAppProperty("AppManagement_pwdpolicy_ComplsplChar_ID")));
 
-		System.out.println("Upper Case: " + Uppercase + "");
-		System.out.println("Lower Case: " + lowercase + "");
-		System.out.println("Numeric Case: " + numeric + "");
-		System.out.println("special Case: " + special + "");
+		log.info("Upper Case: " + Uppercase + "");
+		log.info("Lower Case: " + lowercase + "");
+		log.info("Numeric Case: " + numeric + "");
+		log.info("special Case: " + special + "");
 
 		if (Uppercase == true)
 
 		{
 			click(By.xpath(prop.getAppProperty("AppManagement_pwdpolicy_ClicklUChar_xpath")));
 			Thread.sleep(500);
-			System.out.println("We think we UnSelect Uppercase...");
+			test.log(Status.INFO,"We think we Un Select Uppercase");
+			log.info("We think we Un Select Uppercase...");
 
 		}
 		if (lowercase == false)
@@ -201,7 +219,8 @@ public class PasswordPolicy extends Keywords {
 		{
 			click(By.xpath(prop.getAppProperty("AppManagement_pwdpolicy_ClicklLChar_xpath")));
 			Thread.sleep(500);
-			System.out.println("We think we Select Lowercase...");
+			test.log(Status.INFO,"We think we Select Lowercase");
+			log.info("We think we Select Lowercase...");
 
 		}
 		if (numeric == false)
@@ -210,7 +229,8 @@ public class PasswordPolicy extends Keywords {
 
 			click(By.xpath(prop.getAppProperty("AppManagement_pwdpolicy_ClicklnumChar_xpath")));
 			Thread.sleep(500);
-			System.out.println("We think we Select Numeric...");
+			test.log(Status.INFO,"We think we Select Numeric");
+			log.info("We think we Select Numeric...");
 
 		}
 		if (special == true)
@@ -218,33 +238,37 @@ public class PasswordPolicy extends Keywords {
 		{
 			click(By.xpath(prop.getAppProperty("AppManagement_pwdpolicy_ClicklsplChar_xpath")));
 			Thread.sleep(500);
-			System.out.println("We think we Select UnSpecial Character...");
-
+			
+		
+			test.log(Status.INFO,"We think we UnSelect  Special Character");
+			log.info("We think we  UnSelect Special Character...");
 		}
 
-		System.out.println("We think we Select two password Complexity...");
+		test.log(Status.INFO,"We think we Select two password Complexity");
+		log.info("We think we Select two password Complexity...");
 	}
 
 	public void SelectthreepwdComplexity() throws Exception {
 
-		System.out.println("Trying to Select Two password Complexity...");
+		log.info("Trying to Select Two password Complexity...");
 
 		boolean Uppercase = isSelected(By.id(prop.getAppProperty("AppManagement_pwdpolicy_ComplUChar_ID")));
 		boolean lowercase = isSelected(By.id(prop.getAppProperty("AppManagement_pwdpolicy_ComplLChar_ID")));
 		boolean numeric = isSelected(By.id(prop.getAppProperty("AppManagement_pwdpolicy_ComplNumChar_ID")));
 		boolean special = isSelected(By.id(prop.getAppProperty("AppManagement_pwdpolicy_ComplsplChar_ID")));
 
-		System.out.println("Upper Case: " + Uppercase + "");
-		System.out.println("Lower Case: " + lowercase + "");
-		System.out.println("Numeric Case: " + numeric + "");
-		System.out.println("special Case: " + special + "");
+		log.info("Upper Case: " + Uppercase + "");
+		log.info("Lower Case: " + lowercase + "");
+		log.info("Numeric Case: " + numeric + "");
+		log.info("special Case: " + special + "");
 
 		if (Uppercase == false)
 
 		{
 			click(By.xpath(prop.getAppProperty("AppManagement_pwdpolicy_ClicklUChar_xpath")));
 			Thread.sleep(500);
-			System.out.println("We think we UnSelect Uppercase...");
+			test.log(Status.INFO,"We think we Un Select Uppercase");
+			log.info("We think we Un Select Uppercase...");
 
 		}
 		if (lowercase == false)
@@ -252,7 +276,8 @@ public class PasswordPolicy extends Keywords {
 		{
 			click(By.xpath(prop.getAppProperty("AppManagement_pwdpolicy_ClicklLChar_xpath")));
 			Thread.sleep(500);
-			System.out.println("We think we Select Lowercase...");
+			test.log(Status.INFO,"We think we Select Lowercase");
+			log.info("We think we Select Lowercase...");
 
 		}
 		if (numeric == false)
@@ -261,7 +286,8 @@ public class PasswordPolicy extends Keywords {
 
 			click(By.xpath(prop.getAppProperty("AppManagement_pwdpolicy_ClicklnumChar_xpath")));
 			Thread.sleep(500);
-			System.out.println("We think we Select Numeric...");
+			test.log(Status.INFO,"We think we Select Numeric");
+			log.info("We think we Select Numeric...");
 
 		}
 		if (special == true)
@@ -269,33 +295,36 @@ public class PasswordPolicy extends Keywords {
 		{
 			click(By.xpath(prop.getAppProperty("AppManagement_pwdpolicy_ClicklsplChar_xpath")));
 			Thread.sleep(500);
-			System.out.println("We think we Select UnSpecial Character...");
+			test.log(Status.INFO,"We think we UnSelect  Special Character");
+			log.info("We think we  UnSelectSpecial Character...");
 
 		}
 
-		System.out.println("We think we Select two password Complexity...");
+		test.log(Status.INFO,"We think we Select two password Complexity");
+		log.info("We think we Select two password Complexity...");
 	}
 
 	public void SelectfourpwdComplexity() throws Exception {
 
-		System.out.println("Trying to Select Two password Complexity...");
+		log.info("Trying to Select Two password Complexity...");
 
 		boolean Uppercase = isSelected(By.id(prop.getAppProperty("AppManagement_pwdpolicy_ComplUChar_ID")));
 		boolean lowercase = isSelected(By.id(prop.getAppProperty("AppManagement_pwdpolicy_ComplLChar_ID")));
 		boolean numeric = isSelected(By.id(prop.getAppProperty("AppManagement_pwdpolicy_ComplNumChar_ID")));
 		boolean special = isSelected(By.id(prop.getAppProperty("AppManagement_pwdpolicy_ComplsplChar_ID")));
 
-		System.out.println("Upper Case: " + Uppercase + "");
-		System.out.println("Lower Case: " + lowercase + "");
-		System.out.println("Numeric Case: " + numeric + "");
-		System.out.println("special Case: " + special + "");
+		log.info("Upper Case: " + Uppercase + "");
+		log.info("Lower Case: " + lowercase + "");
+		log.info("Numeric Case: " + numeric + "");
+		log.info("special Case: " + special + "");
 
 		if (Uppercase == false)
 
 		{
 			click(By.xpath(prop.getAppProperty("AppManagement_pwdpolicy_ClicklUChar_xpath")));
 			Thread.sleep(500);
-			System.out.println("We think we UnSelect Uppercase...");
+			test.log(Status.INFO,"We think we UnSelect Uppercase");
+			log.info("We think we UnSelect Uppercase...");
 
 		}
 		if (lowercase == false)
@@ -303,7 +332,8 @@ public class PasswordPolicy extends Keywords {
 		{
 			click(By.xpath(prop.getAppProperty("AppManagement_pwdpolicy_ClicklLChar_xpath")));
 			Thread.sleep(500);
-			System.out.println("We think we Select Lowercase...");
+			test.log(Status.INFO,"We think we Select Lowercase");
+			log.info("We think we Select Lowercase...");
 
 		}
 		if (numeric == false)
@@ -312,7 +342,9 @@ public class PasswordPolicy extends Keywords {
 
 			click(By.xpath(prop.getAppProperty("AppManagement_pwdpolicy_ClicklnumChar_xpath")));
 			Thread.sleep(500);
-			System.out.println("We think we Select Numeric...");
+			test.log(Status.INFO,"We think we Select Numeric");
+			log.info("We think we Select Numeric...");
+			
 
 		}
 		if (special == false)
@@ -320,23 +352,26 @@ public class PasswordPolicy extends Keywords {
 		{
 			click(By.xpath(prop.getAppProperty("AppManagement_pwdpolicy_ClicklsplChar_xpath")));
 			Thread.sleep(500);
-			System.out.println("We think we Select UnSpecial Character...");
+			test.log(Status.INFO,"We think we Select UnSpecial Character");
+			log.info("We think we Select UnSpecial Character...");
 
 		}
-
-		System.out.println("We think we Select two password Complexity...");
+		test.log(Status.INFO,"We think we Select two password Complexity");
+		log.info("We think we Select two password Complexity...");
 	}
 
 	public void ValidateerrormsgforonepwdComplexity() throws Exception {
 
-		System.out.println("Trying to verify Password Complixty Error Message..");
+		log.info("Trying to verify Password Complixty Error Message..");
 
 		String Expected = "Check at least two checkboxs in Password Complexity.";
 		String Actual = getText(By.xpath(prop.getAppProperty("ishome_home_update_error_popup_xpath")));
-		System.out.println(Actual);
-		System.out.println(Expected);
+		log.info(Actual);
+		log.info(Expected);
 		Assert.assertEquals(Actual, Expected);
-		System.out.println("We think we Trying to verified Password Complixty Error Message.");
+		log.info("We think we Trying to verified Password Complixty Error Message.");
+		
+		test.log(Status.INFO,"We think we Trying to verified Password Complixty Error Message");
 		Thread.sleep(1000);
 		driver.navigate().refresh();
 
@@ -345,53 +380,61 @@ public class PasswordPolicy extends Keywords {
 	public void Entervalidpwdlength() throws Exception
 
 	{
-		System.out.println("Trying to Clear on Min password Length field");
+		log.info("Trying to Clear on Min password Length field");
 
 		clear(By.xpath(prop.getAppProperty("AppManagement_pwdpolicy_MinpwdLen_xpath")));
 
 		type(By.xpath(prop.getAppProperty("AppManagement_pwdpolicy_MinpwdLen_xpath")), "9");
+		
+		test.log(Status.INFO,"We think we Clear on Min password Length field: 9");
 
-		System.out.println("We think we Clear on Min password Length field");
+		log.info("We think we Clear on Min password Length field");
 	}
 
 	public void ChangeEntervalidpwdlength() throws Exception
 
 	{
-		System.out.println("Trying to Clear on Min password Length field");
+		log.info("Trying to Clear on Min password Length field");
 		click(By.xpath(prop.getAppProperty("AppManagement_pwdpolicy_MinpwdLen_xpath")));
 
 		clear(By.xpath(prop.getAppProperty("AppManagement_pwdpolicy_MinpwdLen_xpath")));
 
 		type(By.xpath(prop.getAppProperty("AppManagement_pwdpolicy_MinpwdLen_xpath")), "8");
+		
+		test.log(Status.INFO,"We think we Clear on Min password Length field: 8");
 
-		System.out.println("We think we Clear on Min password Length field");
+		log.info("We think we Clear on Min password Length field");
 	}
 
 	public void ChangeEntervalidpwdlengthasten(String length) throws Exception
 
 	{
-		System.out.println("Trying to Clear on Min password Length field");
+		log.info("Trying to Clear on Min password Length field");
 		click(By.xpath(prop.getAppProperty("AppManagement_pwdpolicy_MinpwdLen_xpath")));
 
 		clear(By.xpath(prop.getAppProperty("AppManagement_pwdpolicy_MinpwdLen_xpath")));
 
 		type(By.xpath(prop.getAppProperty("AppManagement_pwdpolicy_MinpwdLen_xpath")), length);
+		
+		test.log(Status.INFO,"We think we Clear on Min password Length field");
 
-		System.out.println("We think we Clear on Min password Length field");
+		log.info("We think we Clear on Min password Length field");
 	}
 
 	public void ValidateSucessfullyaddedmsg() throws Exception {
 
-		System.out.println("Trying to verify Password policy Updated Message..");
+		log.info("Trying to verify Password policy Updated Message..");
 
 		Thread.sleep(2000);
 		String Expected = "Successfully Updated";
 		String Actual = getText(By.xpath(prop.getAppProperty("SiteBlocking_DeleteBtn_Confirm_Message_Xpath")));
 
-		System.out.println(Actual);
-		System.out.println(Expected);
+		log.info(Actual);
+		log.info(Expected);
 		Assert.assertEquals(Actual, Expected);
-		System.out.println("We think we Trying to verified Password policy Updated Message.");
+		log.info("We think we Trying to verified Password policy Updated Message.");
+		
+		test.log(Status.INFO,"We think we Trying to verified Password policy Updated Message");
 		driver.navigate().refresh();
 
 	}
@@ -399,12 +442,12 @@ public class PasswordPolicy extends Keywords {
 	public void EnablePasswordExpiry() throws Exception
 
 	{
-		System.out.println("Trying to Enable Password Expiry");
+		log.info("Trying to Enable Password Expiry");
 
 		boolean Enablepwdexpriy = isSelected(
 				By.xpath(prop.getAppProperty("AppManagement_pwdpolicy_EnablePwdExpiry_xpath")));
 
-		System.out.println(Enablepwdexpriy);
+		log.info(Enablepwdexpriy);
 
 		if (Enablepwdexpriy == false) {
 			click(By.xpath(prop.getAppProperty("AppManagement_pwdpolicy_ClickEnablePwdExpiry_xpath")));
@@ -416,18 +459,19 @@ public class PasswordPolicy extends Keywords {
 
 		}
 
-		System.out.println("We think we Clear on Min password Length field");
+		log.info("We think we Clear on Min password Length field");
+		test.log(Status.INFO,"We think we Clear on Min password Length field");
 	}
 
 	public void DisablePasswordExpiry() throws Exception
 
 	{
-		System.out.println("Trying to Disable Password Expiry");
+		log.info("Trying to Disable Password Expiry");
 
 		boolean Enablepwdexpriy = isSelected(
 				By.xpath(prop.getAppProperty("AppManagement_pwdpolicy_EnablePwdExpiry_xpath")));
 
-		System.out.println(Enablepwdexpriy);
+		log.info(Enablepwdexpriy);
 
 		if (Enablepwdexpriy == false) {
 			click(By.xpath(prop.getAppProperty("AppManagement_pwdpolicy_ClickEnablePwdExpiry_xpath")));
@@ -440,7 +484,9 @@ public class PasswordPolicy extends Keywords {
 
 		}
 
-		System.out.println("We think we Disable Password Expiry");
+		log.info("We think we Disable Password Expiry");
+		
+		test.log(Status.INFO,"We think we Disable Password Expiry");
 
 	}
 
@@ -448,14 +494,16 @@ public class PasswordPolicy extends Keywords {
 
 	{
 
-		System.out.println("Trying to Verify Expiration of Password Option Disabale");
+		log.info("Trying to Verify Expiration of Password Option Disabale");
 
 		boolean Actual = IsDisplayed(By.xpath(prop.getAppProperty("AppManagement_pwdpolicy_ExpofPwd_xpath")));
 
 		Assert.assertEquals(Actual, false);
 
-		System.out.println("We think we Verify Expiration of Password Option Disabale");
+		log.info("We think we Verify Expiration of Password Option Disabale");
 		driver.navigate().refresh();
+		
+		test.log(Status.INFO,"We think we Verify Expiration of Password Option Disabale");
 
 	}
 
@@ -463,49 +511,55 @@ public class PasswordPolicy extends Keywords {
 
 	{
 
-		System.out.println("Trying to Verify Expiration of Password Option enable");
+		log.info("Trying to Verify Expiration of Password Option enable");
 
 		boolean Actual = IsDisplayed(By.xpath(prop.getAppProperty("AppManagement_pwdpolicy_ExpofPwd_xpath")));
 
 		Assert.assertEquals(Actual, true);
 
-		System.out.println("We think we Verify Expiration of Password Option enabled");
+		log.info("We think we Verify Expiration of Password Option enabled");
 
-		System.out.println("Trying to Select Expiration of Password 60 Days");
+		log.info("Trying to Select Expiration of Password 60 Days");
 
 		selectBy(By.xpath(prop.getAppProperty("AppManagement_pwdpolicy_ExpofPwd_xpath")), 2);
-		System.out.println("We think we Selected Expiration as Password 60 Days");
+		log.info("We think we Selected Expiration as Password 60 Days");
+		
+		test.log(Status.INFO,"We think we Selected Expiration as Password 60 Days");
 
 	}
 
 	public void ClickOnparentOU(String NewOu) throws Exception {
 
-		System.out.println("Trying to Click OU Name...");
+		log.info("Trying to Click OU Name...");
 
 		Thread.sleep(3000);
 		boolean A = driver.findElement(By.xpath("//a[contains(text()," + NewOu + ")]")).isDisplayed();
-		System.out.println(A);
+		log.info(A);
 
 		Thread.sleep(3000);
 
 		driver.findElement(By.xpath("//a[contains(text(),'" + NewOu + "')]")).click();
 
-		System.out.println("We think Click OU Name...");
+		
+		test.log(Status.INFO,"We think Click OU Name");
+		log.info("We think Click OU Name...");
 
 	}
 
 	public void verifySubOupasswordlengthlsochange(String NewOu) throws Exception {
 
 		Thread.sleep(5000);
-		System.out.println("Validating Sub OU Password Length");
+		log.info("Validating Sub OU Password Length");
 		String passwordlength = driver.getPageSource();
-		System.out.println(passwordlength);
-		System.out.println(NewOu);
+		log.info(passwordlength);
+		log.info(NewOu);
 		if (passwordlength.contains(NewOu)) {
 			String Actual = NewOu;
 			String Excepted = NewOu;
 			Assert.assertEquals(Actual, Excepted);
-			System.out.println("We think we Validating Sub OU Password Length");
+			log.info("We think we Validating Sub OU Password Length");
+			
+			test.log(Status.INFO,"We think we Validating Sub OU Password Length");
 
 		}
 
@@ -513,7 +567,7 @@ public class PasswordPolicy extends Keywords {
 
 	public void VerifySubOUPasswordComplexity() throws Exception {
 
-		System.out.println("Validating Password Complexity ");
+		log.info("Validating Password Complexity ");
 
 		boolean Uppercase = isSelected(By.id(prop.getAppProperty("AppManagement_pwdpolicy_ComplUChar_ID")));
 		boolean lowercase = isSelected(By.id(prop.getAppProperty("AppManagement_pwdpolicy_ComplLChar_ID")));
@@ -525,37 +579,41 @@ public class PasswordPolicy extends Keywords {
 		Assert.assertEquals(numeric, true);
 		Assert.assertEquals(special, true);
 
-		System.out.println("We think we Validate Password Complexity");
+		test.log(Status.INFO,"\"We think we Validate Password Complexity");
+		log.info("We think we Validate Password Complexity");
 	}
 
-	public void clickonEditbtninusermanagement() {
+	public void clickonEditbtninusermanagement() throws Exception {
 
-		try {
-			System.out.println("Trying to Click on Edit button...");
+	
+			log.info("Trying to Click on Edit button...");
 
 			click(By.xpath(prop.getAppProperty("Akku_OuManagementUserOU_Edit_btn_xpath")));
-		} catch (Exception e) {
-			System.out.println("We think we Clicked on Edit button...");
-			e.printStackTrace();
+		
+			log.info("We think we Clicked on Edit button...");
+			
+			test.log(Status.INFO,"We think we Clicked on Edit button");
+			
+			
 
-		}
+	
 	}
 
 	public void SelectParentOU(String parentOU) throws Exception {
 
-		System.out.println("Trying to Select " + parentOU + " OU Name...");
+		log.info("Trying to Select " + parentOU + " OU Name...");
 
 		click(By.xpath(prop.getAppProperty("Akku_UserOU_Edit_btn_xpath")));
 
 		List<WebElement> liElements = driver.findElements(By.xpath("//*[@id='edituserouiv']/div/ul/li/ul"));
 
-		System.out.println(liElements.size());
+		log.info(liElements.size());
 
 		for (int i = 1; i < liElements.size() + 1; i++) {
 			WebElement linkElement = driver
 					.findElement(By.xpath("//*[@id='edituserouiv']/div/ul/li/ul[" + i + "]/li/label"));
 
-			System.out.println(linkElement.getText());
+			log.info(linkElement.getText());
 
 			String OU = linkElement.getText();
 
@@ -570,36 +628,36 @@ public class PasswordPolicy extends Keywords {
 
 	public void SelectchildOU(String parentOU, String NewOu) throws Exception {
 
-		System.out.println("Trying to Select " + parentOU + " OU Name...");
+		log.info("Trying to Select " + parentOU + " OU Name...");
 
 		click(By.xpath(prop.getAppProperty("Akku_UserOU_Edit_btn_xpath")));
 
 		List<WebElement> liparentElements = driver.findElements(By.xpath("//*[@id='edituserouiv']/div/ul/li/ul"));
 
-		System.out.println(liparentElements.size());
+		log.info(liparentElements.size());
 
 		for (int i = 1; i < liparentElements.size() + 1; i++) {
 			WebElement linklocateparentou = driver.findElement(By.xpath("//*[@id='edituserouiv']/div/ul/li/ul[" + i + "]/li/label"));
 
-			System.out.println(linklocateparentou.getText());
+			log.info(linklocateparentou.getText());
 
 			String OU = linklocateparentou.getText();
 
-			System.out.println(OU);
+			log.info(OU);
 
 			if (OU.contains(parentOU)) {
 
 				List<WebElement> lichildOUElements = driver.findElements(By.xpath("//*[@id='edituserouiv']/div/ul/li/ul[" + i + "]/li/ul/li"));
-				System.out.println(lichildOUElements.size());
+				log.info(lichildOUElements.size());
 
 				for (int j = 1; j < lichildOUElements.size() + 1; j++) {
 					WebElement lichildOUlocate = driver.findElement(By.xpath("//*[@id='edituserouiv']/div/ul/li/ul[" + i + "]/li/ul[" + j + "]/li/label"));
 
-					System.out.println(linklocateparentou.getText());
+					log.info(linklocateparentou.getText());
 
 					String subOU = lichildOUlocate.getText();
 
-					System.out.println(subOU);
+					log.info(subOU);
 
 					if (subOU.contains(NewOu)) {
 
@@ -616,23 +674,23 @@ public class PasswordPolicy extends Keywords {
 	public void clickonResetpwdbtninusermanagement() throws Exception {
 
 		
-			System.out.println("Trying to Click on Reset User button...");
+			log.info("Trying to Click on Reset User button...");
 
 			click(By.xpath(prop.getAppProperty("Akku_UserOU_Reset_btn_xpath")));
-			System.out.println("We think we Clicked on Reset User button...");
+			log.info("We think we Clicked on Reset User button...");
 		
-
+			test.log(Status.INFO,"We think we Clicked on Reset User button");
 		
 	}
 	
 	public void verifychildhelptextmessage(String Helptextforchidou) throws Exception {
 
 		
-		System.out.println("Trying to Validate on Helptext...");
+		log.info("Trying to Validate on Helptext...");
 		
 		String gethelptext =driver.getPageSource();
 		
-		System.out.println(gethelptext);
+		log.info(gethelptext);
 		boolean Excepted =true;
 		if(gethelptext.contains(Helptextforchidou))
 				{
@@ -646,7 +704,9 @@ public class PasswordPolicy extends Keywords {
 			Assert.assertEquals(Actual, Excepted);
 		}
 		
-		System.out.println("We think we Validate on Helptext...");
+		test.log(Status.INFO,"We think we Validate on Helptext");
+		
+		log.info("We think we Validate on Helptext...");
 	
 
 	
@@ -654,52 +714,59 @@ public class PasswordPolicy extends Keywords {
 	
 	public void clickEditbtn() throws Exception {
 
-		System.out.println("Trying to Click on Edit button...");
+		log.info("Trying to Click on Edit button...");
 
 		
 		click(By.xpath(prop.getAppProperty("Home_Edit_btn_xpath")));
+		
+		log.info("We think we Click on Edit button...");
 
-		System.out.println("We think we Click on Edit button...");
+		log.info("We think we Click on Edit button...");
 	}
 
 	public void typeOldpassword(String Oldpassword) throws Exception {
 
-		System.out.println("Trying to Enter Password in Old text field...");
+		log.info("Trying to Enter Password in Old text field...");
 
 		
 		type(By.xpath(prop.getAppProperty("Home_Edit_oldPwd_text_xpath")), Oldpassword);
-
-		System.out.println("We think we Entered Password in Old text field...");
+		
+		test.log(Status.INFO,"We think we Entered Password in Old text field : "+ Oldpassword);
+		
+		log.info("We think we Entered Password in Old text field...");
 	}
 
 	public void typenewpassword(String Newpassword) throws Exception {
 
-		System.out.println("Trying to Enter Password in the New text field...");
+		log.info("Trying to Enter Password in the New text field...");
 		click(By.xpath(prop.getAppProperty("Home_Edit_newPwd_text_xpath")));
 		Thread.sleep(5000);
 		type(By.xpath(prop.getAppProperty("Home_Edit_newPwd_text_xpath")), Newpassword);
+		test.log(Status.INFO,"We think we Entered Password in New text field : "+ Newpassword);
 
-		System.out.println("We think we Entered Password in New text field...");
+		log.info("We think we Entered Password in New text field...");
 	}
 
 	public void typeConfnewpassword(String Confnewpassword) throws Exception {
 
-		System.out.println("Trying to Enter Password in the Confirm text field...");
+		log.info("Trying to Enter Password in the Confirm text field...");
 
 	
 		type(By.xpath(prop.getAppProperty("Home_Edit_confPwd_text_xpath")), Confnewpassword);
 
-		System.out.println("We think we Entered Password in the Confirm text field...");
+		test.log(Status.INFO,"We think we Entered Password in the Confirm text field : "+ Confnewpassword);
+		log.info("We think we Entered Password in the Confirm text field...");
 	}
 
 	public void clickUpdatebtn() throws Exception {
 
-		System.out.println("Trying to Click on Update button...");
+		log.info("Trying to Click on Update button...");
 
 		
 		click(By.xpath(prop.getAppProperty("Home_Edit_Update_btn_xpath")));
 
-		System.out.println("We think we Click on Update button...");
+		test.log(Status.INFO,"We think we Click on Update button");
+		log.info("We think we Click on Update button...");
 	}
 
 	

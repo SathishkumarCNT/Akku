@@ -35,13 +35,13 @@
 
 		<classes>
 			<class name="com.app.akku.work.TestCases.AKKU_09_Editpwdinformation">
-				<methods>
+				<methods>				
+				    <include name="AK_09_ChangeOldPasswordtoNewPassword" />
+					<include name="AK_32_ChangeNewPasswordtoOldPassword" />
 					<include name="AK_8_UpdateNewPasswordwithoutenteringOldpassword" />
 					<include name="AK_12_UpdateNewPasswordWithEmptyPwdEmptyConfirmPwd" />
 					<include name="AK_13_UpdatepasswordwithoutmatchingwithPasswordpolicy" />
-					<include name="AK_14_UpdateNewPasswordWithSamevalueofnewpwdConfirmpwd" />
-					<include name="AK_9_ChangeOldPasswordtoNewPassword" />
-					<include name="AK_32_ChangeNewPasswordtoOldPassword" />
+					<include name="AK_14_UpdateNewPasswordWithSamevalueofnewpwdConfirmpwd" />				
 				</methods>
 			</class>
 		</classes>
@@ -94,10 +94,10 @@
 					<include name="AK_37_SuspendUserfromUserManagementpage" />
 					<include name="AK_38_DeleteUserfromUserManagementpage" />
 					<include name="AK_43_ResetPasswordfromUserListwithvalidpassword" />
+					<include name="AK_45_ResetPasswordandChangePasswordinNextLogin" />
 					<include name="AK_47_Searchuserfromuserlistusingvalidkeyword" />
 					<include name="AK_49_VerifyLastLogindatetimeinuserList" />
-					<include
-						name="AK_44_SelectmultipleuserfromuserlistandVerifyActionbuttons" />
+					<include name="AK_44_SelectmultipleuserfromuserlistandVerifyActionbuttons" />
 				</methods>
 			</class>
 		</classes>

@@ -13,16 +13,16 @@
 		<classes>
 			<class name="com.app.akku.work.TestCases.AKKU_26_Siteblocking">
 				<methods>
-			<include name="AK_21_AddDuplicateSiteUrlwithvalidSiteDescription"/>
+			<!-- <include name="AK_21_AddDuplicateSiteUrlwithvalidSiteDescription"/>
 				 <include name="AK_22_ClickonAddSitewithoutEnteringanyDatainUrlDesctextfield"/>
 					<include name="AK_23_AddInvalidSiteUrlandvalidSiteDescriptioninSiteBlocking" />
-					<include name="AK_24_AddValidSiteUrlandInvalidSiteDescriptioninSiteBlocking" />
+					<include name="AK_24_AddValidSiteUrlandInvalidSiteDescriptioninSiteBlocking" /> -->
 					<include name="AK_25_BlockingaSitewithValidSitedetails" />
-					<include name="AK_26_EditSiteDetailsandsaveitbyRemovingurlDescriptiondetails" />
+				<!-- 	<include name="AK_26_EditSiteDetailsandsaveitbyRemovingurlDescriptiondetails" />
 					<include name="AK_27_EditSiteDetailsandsaveitbyDuplicateurlValidDescriptiondetails" />
 					<include name="AK_28_EditSiteDetailsandsaveitbyvalidsiteurlemptysiteDescription" />
 					<include name="AK_29_EditSiteDetailsandsaveitbyvalidsiteurlvalidsiteDescription" />
-					<include name="AK_30_EditSiteDetailsandsaveitbyInvalidsiteurlvalidsiteDescription" />
+					<include name="AK_30_EditSiteDetailsandsaveitbyInvalidsiteurlvalidsiteDescription" /> -->
 					<include name="AK_31_DeleteOneSiteURLfromsiteBlockedlist" />
 					
 					

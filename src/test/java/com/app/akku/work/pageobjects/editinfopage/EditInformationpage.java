@@ -2,14 +2,18 @@ package com.app.akku.work.pageobjects.editinfopage;
 
 import java.util.Random;
 
+import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 
 import com.app.akku.work.common.ReadfromProperties;
 import com.app.akku.work.keywords.Keywords;
+import com.aventstack.extentreports.Status;
 
 public class EditInformationpage extends Keywords {
+
+	Logger log = Logger.getLogger(EditInformationpage.class.getName());
 
 	public EditInformationpage(WebDriver driver) {
 		super(driver);
@@ -36,135 +40,140 @@ public class EditInformationpage extends Keywords {
 
 	public void clickEditbtn() throws Exception {
 
-		System.out.println("Trying to Click on Edit button...");
+		try {
+			log.info("Trying to Click on Edit button...");
 
-		
-		click(By.xpath(prop.getAppProperty("Home_Edit_btn_xpath")));
+			click(By.xpath(prop.getAppProperty("Home_Edit_btn_xpath")));
 
-		System.out.println("We think we Click on Edit button...");
+			test.log(Status.INFO, "We think we Click on Edit button");
+
+			log.info("We think we Click on Edit button...");
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	public void typeOldpassword(String Oldpassword) throws Exception {
 
-		System.out.println("Trying to Enter Password in Old text field...");
+		log.info("Trying to Enter Password in Old text field...");
 
-		
 		type(By.xpath(prop.getAppProperty("Home_Edit_oldPwd_text_xpath")), Oldpassword);
+		
+		test.log(Status.INFO,"We think we Entered Password in Old text field: "+ Oldpassword);
 
-		System.out.println("We think we Entered Password in Old text field...");
+		log.info("We think we Entered Password in Old text field:"+ Oldpassword);
 	}
 
 	public void typenewpassword(String Newpassword) throws Exception {
 
-		System.out.println("Trying to Enter Password in the New text field...");
+		log.info("Trying to Enter Password in the New text field...");
 
-		
 		type(By.xpath(prop.getAppProperty("Home_Edit_newPwd_text_xpath")), Newpassword);
+		
+		test.log(Status.INFO,"We think we Entered Password in New text field: "+ Newpassword);
 
-		System.out.println("We think we Entered Password in New text field...");
+		log.info("We think we Entered Password in New text field...");
 	}
 
 	public void typeConfnewpassword(String Confnewpassword) throws Exception {
 
-		System.out.println("Trying to Enter Password in the Confirm text field...");
+		log.info("Trying to Enter Password in the Confirm text field...");
 
-	
 		type(By.xpath(prop.getAppProperty("Home_Edit_confPwd_text_xpath")), Confnewpassword);
+		
+		test.log(Status.INFO,"We think we Entered Password in the Confirm text field: "+ Confnewpassword);
 
-		System.out.println("We think we Entered Password in the Confirm text field...");
+		log.info("We think we Entered Password in the Confirm text field...");
 	}
 
 	public void clickUpdatebtn() throws Exception {
 
-		System.out.println("Trying to Click on Update button...");
+		log.info("Trying to Click on Update button...");
 
-		
 		click(By.xpath(prop.getAppProperty("Home_Edit_Update_btn_xpath")));
+		
+		test.log(Status.INFO, "We think we Click on Update button");
 
-		System.out.println("We think we Click on Update button...");
+		log.info("We think we Click on Update button...");
 	}
 
 	public void closeAlertpopup() throws Exception {
 
-		System.out.println("Trying to Click on Popup OK button...");
+		log.info("Trying to Click on Popup OK button...");
 
-	
 		click(By.xpath(prop.getAppProperty("Akku_EditInfo_Ok_btn_xpath")));
 		// CloseAlertBox();
-
-		System.out.println("We think we Click on Popup OK button...");
+		test.log(Status.INFO, "We think we Click on Popup OK button");
+		
+		log.info("We think we Click on Popup OK button...");
 	}
 
 	public void invalidconfirmpassworderrormsg(String Confnewpassword) throws Exception {
 
-		System.out.println("Trying to Verify Error Message for Invalid Confirm Password...");
+		log.info("Trying to Verify Error Message for Invalid Confirm Password...");
 
 		String Expected;
 
 		Expected = "The password does not match. Please enter a correct password";
 
 		String Actual = getText(By.xpath(prop.getAppProperty("Home_Edit_Update_Errormsg_xpath")));
-		System.out.println(Actual);
-		System.out.println(Expected);
+		log.info(Actual);
+		log.info(Expected);
 		Assert.assertEquals(Actual, Expected);
-
-		System.out.println("We think we Verify Confirm Password...");
+		test.log(Status.INFO, "We think we Verify Confirm Password: "+ Actual);
+		log.info("We think we Verify Confirm Password...");
 	}
 
 	public void invalidoldpassworderrormsg(String Oldpassword) throws Exception {
 
-		System.out.println("Trying to Verify Error Message for Invalid Old Password...");
-		System.out.println("Invalid Old Password.."+Oldpassword+"");
-		
-				type(By.xpath(prop.getAppProperty("Home_Edit_oldPwd_text_xpath")),Oldpassword);
+		log.info("Trying to Verify Error Message for Invalid Old Password...");
+		log.info("Invalid Old Password.." + Oldpassword + "");
 
-				System.out.println("We think we Entered Password in Old text field...");
-				clickUpdatebtn();
-				Thread.sleep(1000);
-				String Expected = "Incorrect old password";
-				String Actual = getText(By.xpath(prop.getAppProperty("ishome_home_update_error_popup_xpath")));
-				System.out.println(Actual);
-				System.out.println(Expected);
-				System.out.println(Actual);
-				Assert.assertEquals(Actual, Expected);
-					
-	
-		System.out.println("We think we Verifed Error Message for Invalid Old Password...");
+		type(By.xpath(prop.getAppProperty("Home_Edit_oldPwd_text_xpath")), Oldpassword);
+
+		log.info("We think we Entered Password in Old text field...");
+		clickUpdatebtn();
+		Thread.sleep(1000);
+		String Expected = "Incorrect old password";
+		String Actual = getText(By.xpath(prop.getAppProperty("ishome_home_update_error_popup_xpath")));
+		log.info(Actual);
+		log.info(Expected);
+		
+		Assert.assertEquals(Actual, Expected);
+		test.log(Status.INFO,"We think we Verifed Error Message for Invalid Old Password : "+ Actual);
+		log.info("We think we Verifed Error Message for Invalid Old Password...");
 	}
-	
-	
+
 	public void emptyoldpassworderrormsg() throws Exception {
 
-		System.out.println("Trying to Verify Error Message for Empty Old Password...");
-				
-			clickUpdatebtn();	
-			Thread.sleep(1000);
-			String Expected = "Please Enter the Old Password";
-			String Actual = getText(By.xpath(prop.getAppProperty("Home_Edit_Update_Errormsg_xpath")));
-			System.out.println(Actual);
-			System.out.println(Expected);
-			System.out.println(Actual);
-			Assert.assertEquals(Actual, Expected);
-			
-			
+		log.info("Trying to Verify Error Message for Empty Old Password...");
 
-		System.out.println("We think we Verifed Error Message for Empty Old Password...");
+		clickUpdatebtn();
+		Thread.sleep(1000);
+		String Expected = "Please Enter the Old Password";
+		String Actual = getText(By.xpath(prop.getAppProperty("Home_Edit_Update_Errormsg_xpath")));
+		log.info(Actual);
+		log.info(Expected);
+		log.info(Actual);
+		Assert.assertEquals(Actual, Expected);
+		test.log(Status.INFO,"We think we Verifed Error Message for Empty Old Password : "+ Actual);
+		log.info("We think we Verifed Error Message for Empty Old Password...");
 	}
-	
-	
+
 	public void emptynewandConfirmpassworderrormsg() throws Exception {
 
-		System.out.println("Trying to Verify Error Message without entering text in New Password and Confirm password...");
-				
-			Thread.sleep(1000);
-			String Expected = "Please Enter the Password";
-			String Actual = getText(By.xpath(prop.getAppProperty("Home_Edit_Update_Errormsg_xpath")));
-			System.out.println(Actual);
-			System.out.println(Expected);
-			System.out.println(Actual);
-			Assert.assertEquals(Actual, Expected);
-						
-		System.out.println("We think we Verifed Error Message for New Password and Confirm password Empty Field...");
+		log.info("Trying to Verify Error Message without entering text in New Password and Confirm password...");
+
+		Thread.sleep(1000);
+		String Expected = "Please Enter the Password";
+		String Actual = getText(By.xpath(prop.getAppProperty("Home_Edit_Update_Errormsg_xpath")));
+		log.info(Actual);
+		log.info(Expected);
+		log.info(Actual);
+		Assert.assertEquals(Actual, Expected);
+		test.log(Status.INFO,"We think we Verifed Error Message for New Password and Confirm password Empty Field : "+ Actual);
+		log.info("We think we Verifed Error Message for New Password and Confirm password Empty Field...");
 	}
 
 	public void updatenewpassword(String Oldpassword, String Newpassword, String Confnewpassword) throws Exception {
@@ -177,67 +186,60 @@ public class EditInformationpage extends Keywords {
 		clickUpdatebtn();
 		closeAlertpopup();
 	}
-	
-	
+
 	public void ValidateErrormessageforpasswordPolicy() throws Exception {
 
-		System.out.println("Trying to Validate Password Error message..");
-				
-			Thread.sleep(1000);
-			
-			String Expected = "Password must be 8 character with minimum one lowercase, numeric";
-			String Actual = getText(By.xpath(prop.getAppProperty("Home_Edit_Update_Errormsg_xpath")));
-			System.out.println(Actual);
-			System.out.println(Expected);
-			Assert.assertEquals(Actual, Expected);
-			
-						
-		System.out.println("We think we Verifed  Validate Password Error message...");
+		log.info("Trying to Validate Password Error message..");
+
+		Thread.sleep(1000);
+
+		String Expected = "Password must be 8 character with minimum one lowercase, numeric";
+		String Actual = getText(By.xpath(prop.getAppProperty("Home_Edit_Update_Errormsg_xpath")));
+		log.info(Actual);
+		log.info(Expected);
+		Assert.assertEquals(Actual, Expected);
+		
+		test.log(Status.INFO,"We think we Verifed  Validate Password Error message : "+ Actual);
+
+		log.info("We think we Verifed  Validate Password Error message...");
 	}
-	
+
 	public void ValidateErrormessagefornewpwdsameasold() throws Exception {
 
-		System.out.println("Trying to Validate Password Error message..");
-				
-			Thread.sleep(1000);
-			
-			String Expected = "Your new password should not match with current password";
-			String Actual = getText(By.xpath(prop.getAppProperty("Home_Edit_Update_Errormsg_xpath")));
-			System.out.println(Actual);
-			System.out.println(Expected);
-			Assert.assertEquals(Actual, Expected);
-			
-						
-		System.out.println("We think we Verifed  Validate Password Error message...");
-	}
-	
-	public void ValidateminpassErrormessageforpasswordPolicy() throws Exception
-	{
-		System.out.println("Trying to Validate Password Error message..");
-		
-	String ReadHelptext= "DemoLN.DemoLNDemoLN.DemoLNDemoLN.DemoLN.DemoLN.DemoLN.DemoLN.DemoLN.DemoLN.DemoLN.DemoLN.DemoLN@demo";
-	System.out.println(ReadHelptext);
-		
+		log.info("Trying to Validate Password Error message..");
 
-		int password_length= Integer.parseInt(ReadHelptext.replaceAll("[\\D]", ""));
-	
-		
-		System.out.println(password_length);
-		String alphabet= "abcdefghijklmnopqrstuvwxyz";
-        String s = "";
-        Random random = new Random();
-        int randomLen = 1+random.nextInt(password_length);
-        for (int i = 0; i < randomLen; i++) {
-            char c = alphabet.charAt(random.nextInt(26));
-            s+=c;
-        }
-         
-        System.out.println(s);
-    }
-		
-		
-		
-		
-	}
-	
+		Thread.sleep(1000);
 
+		String Expected = "Your new password should not match with current password";
+		String Actual = getText(By.xpath(prop.getAppProperty("Home_Edit_Update_Errormsg_xpath")));
+		log.info(Actual);
+		log.info(Expected);
+		Assert.assertEquals(Actual, Expected);
+		
+		test.log(Status.INFO,"We think we Verifed  Validate Password Error message: "+ Actual);
+
+		log.info("We think we Verifed  Validate Password Error message...");
+	}
+
+	public void ValidateminpassErrormessageforpasswordPolicy() throws Exception {
+		log.info("Trying to Validate Password Error message..");
+
+		String ReadHelptext = "DemoLN.DemoLNDemoLN.DemoLNDemoLN.DemoLN.DemoLN.DemoLN.DemoLN.DemoLN.DemoLN.DemoLN.DemoLN.DemoLN@demo";
+		log.info(ReadHelptext);
+
+		int password_length = Integer.parseInt(ReadHelptext.replaceAll("[\\D]", ""));
+
+		log.info(password_length);
+		String alphabet = "abcdefghijklmnopqrstuvwxyz";
+		String s = "";
+		Random random = new Random();
+		int randomLen = 1 + random.nextInt(password_length);
+		for (int i = 0; i < randomLen; i++) {
+			char c = alphabet.charAt(random.nextInt(26));
+			s += c;
+		}
+
+		log.info(s);
+	}
+
+}

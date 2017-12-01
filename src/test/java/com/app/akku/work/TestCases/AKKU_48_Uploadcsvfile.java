@@ -1,5 +1,7 @@
 package com.app.akku.work.TestCases;
 
+import org.apache.log4j.Logger;
+import org.testng.Assert;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterTest;
@@ -25,6 +27,9 @@ public class AKKU_48_Uploadcsvfile extends Browser_Setup{
 	String notes = null;
 	String result = null;
 	
+	
+	Logger log = Logger.getLogger(AKKU_48_Uploadcsvfile.class.getName());
+	
 	@DataProvider(name = "CSVFileUploadLogin_Details")
 	public Object[][] dataProvider_ClientName_name() {
 
@@ -37,6 +42,9 @@ public class AKKU_48_Uploadcsvfile extends Browser_Setup{
 	@Test(dataProvider = "CSVFileUploadLogin_Details", retryAnalyzer = Retry.class)
 public void AK_39_AddBulkUserfromUploadfilewithValidData(String email, String password, String CSVEmail) throws Exception {
 		
+		test = report.createTest("AK_39", "Add Bulk User from Upload file(CSV) with Valid Data");
+		
+	
 		try {
 			loginpage.loginpageTitle();
 			
@@ -66,15 +74,24 @@ public void AK_39_AddBulkUserfromUploadfilewithValidData(String email, String pa
 			usermanagement.ValidateSuccessfullyresetmsg();
 			loginpage.clickLogout();
 			
-			System.out.println("####################################################################");
+			log.info("####################################################################");
 			result = TestLinkAPIResults.TEST_PASSED;
 			
 		} catch (Exception e) {
 			result = TestLinkAPIResults.TEST_FAILED;
 			notes = e.getMessage();
+		} catch (AssertionError e) {
+
+			String message = e.getMessage();
+			log.info(message);
+			result = TestLinkAPIResults.TEST_FAILED;
+			notes = e.getMessage();
+			e.printStackTrace();
+			Assert.fail();
+
 		}finally {
 
-			System.out.println("Updating TestCase Execution Status in TestLink");
+			log.info("Updating TestCase Execution Status in TestLink");
 			TestLinkIntegration.reportResult(testProject, testPlan, AK_39, build, notes, result);
 
 		}
@@ -84,6 +101,7 @@ public void AK_39_AddBulkUserfromUploadfilewithValidData(String email, String pa
 	@Test(dataProvider = "CSVFileUploadLogin_Details", retryAnalyzer = Retry.class)
 	public void AK_34_AddBulkUserfromUploadfileCSVwithInvalidData(String email, String password, String CSVEmail) throws Exception {
 		
+		test = report.createTest("AK_34", "Add Bulk User from Upload file(CSV) with Invalid Data");
 		try {
 			loginpage.loginpageTitle();
 			
@@ -116,15 +134,24 @@ public void AK_39_AddBulkUserfromUploadfilewithValidData(String email, String pa
 					
 			loginpage.clickLogout();
 			
-			System.out.println("####################################################################");
+			log.info("####################################################################");
 			result = TestLinkAPIResults.TEST_PASSED;
 		} catch (Exception e) {
 			result = TestLinkAPIResults.TEST_FAILED;
 			notes = e.getMessage();
 			e.printStackTrace();
+		} catch (AssertionError e) {
+
+			String message = e.getMessage();
+			log.info(message);
+			result = TestLinkAPIResults.TEST_FAILED;
+			notes = e.getMessage();
+			e.printStackTrace();
+			Assert.fail();
+
 		}finally {
 
-			System.out.println("Updating TestCase Execution Status in TestLink");
+			log.info("Updating TestCase Execution Status in TestLink");
 			TestLinkIntegration.reportResult(testProject, testPlan, AK_34, build, notes, result);
 
 		}
@@ -132,57 +159,5 @@ public void AK_39_AddBulkUserfromUploadfilewithValidData(String email, String pa
 	}
 	
 	
-	/**
-	 * 
-	 * @throws Exception
-	 */
-	@AfterMethod
-	public void tearDown(ITestResult result) {
-		
-		System.out.println("Inside of tearDown Method");
-				
-		try
-	    {
-	        if(result.getStatus() == ITestResult.SUCCESS)
-	        {
-	        	System.out.println("Test case passed");
-	        	driver.quit();
-				
-	        }
-	        else if(result.getStatus() == ITestResult.FAILURE)
-	        {
-	        	
-	        	Keywords.captureScreenShot(driver);
-				
-				System.out.println("Screenshot taken in Tear Down method");
-				driver.quit();
-				
-			} else if(result.getStatus() == ITestResult.SKIP)
-			{
-				
-				Keywords.captureScreenShot(driver);
-				
-				System.out.println("Test case Skipped");
-				driver.quit();
-			}
-	    }
-	   	    catch (Exception e) {
-
-				System.out.println("Exception while taking screenshot " + e.getMessage());
-			}
-			
-		}
 	
-	/**
-	 * 
-	 * @throws Exception
-	 */
-	@AfterTest
-	public void teardown() throws Exception {
-		
-		
-		//driver.quit();
-		System.out.println("Test Execution Finished");
-
-	}
 }

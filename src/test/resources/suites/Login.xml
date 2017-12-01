@@ -22,10 +22,10 @@
 			<class name="com.app.akku.work.TestCases.AKKU_01_LoginANDlogout">
 				<methods>
 					<include name="AK_01_ValidLogin" />
-					<include name="AK_02_LoginWithValidEmailAndInvalidPassword" />
+					<!-- <include name="AK_02_LoginWithValidEmailAndInvalidPassword" />
 					<include name="AK_03_LoginwithValidUserNameandEmptyPassword" />
 					<include name="AK_04_LoginwithinvalidUsernameandinvalidPassword" />
-					<include name="AK_05_LoginwithemptyUsernameandValidPassword" />
+					<include name="AK_05_LoginwithemptyUsernameandValidPassword" /> -->
 				</methods>
 			</class>
 		</classes>

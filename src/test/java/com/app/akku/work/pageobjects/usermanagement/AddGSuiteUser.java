@@ -2,6 +2,7 @@ package com.app.akku.work.pageobjects.usermanagement;
 
 import java.util.List;
 
+import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -9,9 +10,12 @@ import org.testng.Assert;
 
 import com.app.akku.work.common.ReadfromProperties;
 import com.app.akku.work.keywords.Keywords;
-
+import com.app.akku.work.pageobjects.siteblocking.SiteBlockingpage;
+import com.aventstack.extentreports.Status;
 
 public class AddGSuiteUser extends Keywords {
+	
+	Logger log = Logger.getLogger(AddGSuiteUser.class.getName());
 
 	public AddGSuiteUser(WebDriver driver) {
 		super(driver);
@@ -21,168 +25,159 @@ public class AddGSuiteUser extends Keywords {
 
 	public void typeGSuiteEmail(String GSuiteEmail) throws Exception {
 
-			System.out.println("Trying to Enter Gsuite Admin email in the text field...");
+		log.info("Trying to Enter Gsuite Admin email in the text field...");
 
-			type(By.id(prop.getAppProperty("GSuite_EmailID_ID")), GSuiteEmail);
+		type(By.id(prop.getAppProperty("GSuite_EmailID_ID")), GSuiteEmail);
 
-			System.out.println("We think we Entered Gsuite Admin email in the text field...");
+		test.log(Status.INFO, "We think we Entered Gsuite Admin email in the text field: " + GSuiteEmail);
+		log.info("We think we Entered Gsuite Admin email in the text field...");
 
 	}
 
 	public void typeGSuitePwd(String GSuitePwd) throws Exception {
-	
-		System.out.println("Trying to Enter Gsuite Admin password in the text field...");
+
+		log.info("Trying to Enter Gsuite Admin password in the text field...");
 		type(By.xpath(prop.getAppProperty("GSuite_Password_Xpath")), GSuitePwd);
 
-		
-		System.out.println("We think we Entered Gsuite Admin password in the text field...");
-	
+		test.log(Status.INFO, "We think we Entered Gsuite Admin password in the text field:" + GSuitePwd);
+
+		log.info("We think we Entered Gsuite Admin password in the text field");
+
 	}
 
 	public void verifyGSuiteDahsboardtext() {
 
-			System.out.println("Trying to Validated GSuite Dashboard Text");
+		log.info("Trying to Validated GSuite Dashboard Text");
 
-			String actual_msg = driver.findElement(By.xpath("//span[@class='semi-bold']")).getText(); // fa fa-google
-			String expected = "G-Suite Users Synchronization";
-			Assert.assertEquals(actual_msg, expected);
+		String actual_msg = driver.findElement(By.xpath("//span[@class='semi-bold']")).getText();
+		String expected = "G-Suite Users Synchronization";
+		Assert.assertEquals(actual_msg, expected);
 
-			System.out.println("We think we Validated GSuite Dashboard Text");
+		log.info("We think we Validated GSuite Dashboard Text");
 
-			System.out.println("We think we didn't Validated GSuite Dashboard Text");	
+		test.log(Status.INFO, "We think we Validated GSuite Dashboard Text");
 	}
 
 	public void clickOnNextBtnofGSuiteFormEmail() throws Exception {
-	
-			System.out.println("Trying to click on Next button in GSuite Login After Email Entered...");
 
-			
+		log.info("Trying to click on Next button in GSuite Login After Email Entered...");
 
-			click(By.id(prop.getAppProperty("GSuite_EmailID_Email_Next_Btn_ID")));
+		click(By.id(prop.getAppProperty("GSuite_EmailID_Email_Next_Btn_ID")));
 
-			
+		log.info("We think we clicked on Next button in GSuite Login form...");
+		test.log(Status.INFO, "We think we clicked on Next button in GSuite Login form");
 
-			System.out.println("We think we clicked on Next button in GSuite Login form...");
-		
 	}
 
 	public void clickOnNextBtnofGSuiteFormPassword() throws Exception {
-	
-			System.out.println("Trying to click on Next button in GSuite Login form...");
 
-			click(By.xpath(prop.getAppProperty("GSuite_EmailID_Password_Next_Btn_Xpath")));
+		log.info("Trying to click on Next button in GSuite Login form...");
 
-			
+		click(By.xpath(prop.getAppProperty("GSuite_EmailID_Password_Next_Btn_Xpath")));
 
-			System.out.println("We think we clicked on Next button in GSuite Login form...");
-		
+		test.log(Status.INFO, "We think we clicked on Next button in GSuite Login form");
+		log.info("We think we clicked on Next button in GSuite Login form...");
+
 	}
 
-	public void clickOnAddnewuser() {
-		try {
-			System.out.println("Trying to click on Add new button in G-Suite Users Synchronization List...");
+	public void clickOnAddnewuser() throws Exception {
 
-			click(By.xpath(prop.getAppProperty("GSuite_Adduser_btn_Xpath")));
+		log.info("Trying to click on Add new button in G-Suite Users Synchronization List...");
 
-			System.out.println("We think we clicked Add new button in G-Suite Users Synchronization List...");
-		} catch (Exception e) {
-			System.out.println("We think we didn't clicked Add new button in G-Suite Users Synchronization List...");
-			e.printStackTrace();
-		}
+		click(By.xpath(prop.getAppProperty("GSuite_Adduser_btn_Xpath")));
+
+		log.info("We think we clicked Add new button in G-Suite Users Synchronization List.");
+
+		test.log(Status.INFO, "We think we clicked Add new button in G-Suite Users Synchronization List");
+
 	}
 
-	public void EnterFirsttName(String Fname) {
-		try {
-			System.out.println("Enter Last Name ..");
+	public void EnterFirsttName(String Fname) throws Exception {
 
-			clear(By.xpath(prop.getAppProperty("GSuite_Adduser_FName_btn_Xpath")));
-			type(By.xpath(prop.getAppProperty("GSuite_Adduser_FName_btn_Xpath")), Fname);
+		log.info("Enter Last Name ..");
 
-			System.out.println("We think we entered Last name...");
-		} catch (Exception e) {
-			System.out.println("We think we didn't entered Last name...");
-			e.printStackTrace();
-		}
+		clear(By.xpath(prop.getAppProperty("GSuite_Adduser_FName_btn_Xpath")));
+		type(By.xpath(prop.getAppProperty("GSuite_Adduser_FName_btn_Xpath")), Fname);
+
+		log.info("We think we entered Last name: " + Fname);
+		test.log(Status.INFO, "We think we entered Last name: " + Fname);
+
 	}
 
-	public void EnterLastName() {
-		try {
-			System.out.println("Enter Last Name ..");
+	public void EnterLastName() throws Exception {
 
-			String Lastname = getTimeStamp();
-			System.out.println(Lastname);
-			clear(By.xpath(prop.getAppProperty("GSuite_Adduser_LName_btn_Xpath")));
-			type(By.xpath(prop.getAppProperty("GSuite_Adduser_LName_btn_Xpath")), Lastname);
+		log.info("Enter Last Name ..");
 
-			System.out.println("We think we entered Last name...");
-		} catch (Exception e) {
-			System.out.println("We think we didn't entered Last name...");
-			e.printStackTrace();
-		}
+		String Lastname = "User";
+		log.info(Lastname);
+		clear(By.xpath(prop.getAppProperty("GSuite_Adduser_LName_btn_Xpath")));
+		type(By.xpath(prop.getAppProperty("GSuite_Adduser_LName_btn_Xpath")), Lastname);
+
+		log.info("We think we entered Last name:" + Lastname);
+		test.log(Status.INFO, "We think we entered Last name:" + Lastname);
 	}
 
-	public void Password(String Confnewpassword) {
-		try {
-			System.out.println("Enter Last Name ..");
+	public void Password(String Confnewpassword) throws Exception {
 
-			clear(By.xpath(prop.getAppProperty("GSuite_Adduser_password_btn_Xpath")));
+		log.info("Enter Password ..");
 
-			type(By.xpath(prop.getAppProperty("GSuite_Adduser_password_btn_Xpath")), Confnewpassword);
+		clear(By.xpath(prop.getAppProperty("GSuite_Adduser_password_btn_Xpath")));
 
-			System.out.println("We think we entered Last name...");
-		} catch (Exception e) {
-			System.out.println("We think we didn't entered Last name...");
-			e.printStackTrace();
-		}
+		type(By.xpath(prop.getAppProperty("GSuite_Adduser_password_btn_Xpath")), Confnewpassword);
+
+		log.info("We think we entered password: " + Confnewpassword);
+		test.log(Status.INFO, "We think we entered Last name: " + Confnewpassword);
+
 	}
 
-	public void clickAddUser() {
-		try {
-			System.out.println("Clicking AddUser Button ..");
+	public void clickAddUser() throws Exception {
 
-			click(By.xpath(prop.getAppProperty("GSuite_Adduser_Add_btn_btn_Xpath")));
+		log.info("Clicking AddUser Button ..");
 
-			System.out.println("We think Click AddUser Button...");
-		} catch (Exception e) {
-			System.out.println("We think we didn't Click AddUser Button ...");
-			e.printStackTrace();
-		}
+		click(By.xpath(prop.getAppProperty("GSuite_Adduser_Add_btn_btn_Xpath")));
+
+		log.info("We think we Click AddUser Button...");
+
+		test.log(Status.INFO, "We think we Click AddUser Button");
+
 	}
 
 	public void Validateuserlist(String Fname) throws Exception {
-		try {
-			System.out.println("Verify User Found in List");
 
-			clear(By.xpath(prop.getAppProperty("Akku_UserManagement_Search_fromlist_xpath")));
+		log.info("Trying to Verify User Found in List");
 
-			click(By.xpath(prop.getAppProperty("Akku_UserManagement_Search_fromlist_xpath")));
-			type(By.xpath(prop.getAppProperty("Akku_UserManagement_Search_fromlist_xpath")), Fname);
+		clear(By.xpath(prop.getAppProperty("Akku_UserManagement_Search_fromlist_xpath")));
 
-			int totalusercount;
+		click(By.xpath(prop.getAppProperty("Akku_UserManagement_Search_fromlist_xpath")));
+		type(By.xpath(prop.getAppProperty("Akku_UserManagement_Search_fromlist_xpath")), Fname);
 
-			totalusercount = driver.findElements(By.xpath("//*[@id=\"user-list\"]/tbody/tr")).size();
+		int totalusercount;
 
-			System.out.println(totalusercount);
+		totalusercount = driver.findElements(By.xpath("//*[@id=\"user-list\"]/tbody/tr")).size();
 
-			List<WebElement> elements = driver.findElements(By.xpath("//*[@id=\"user-list\"]/tbody/tr/td[2]"));
+		log.info(totalusercount);
 
-			Thread.sleep(2000);
-			String Filter = Fname;
-			for (int i = 0; i <= totalusercount; i++) {
-				String listelement = elements.get(i).getText();
+		List<WebElement> elements = driver.findElements(By.xpath("//*[@id=\"user-list\"]/tbody/tr/td[2]"));
 
-				System.out.println(i);
-				if (listelement.contains(Filter)) {
-					System.out.println("Record Found");
-					Thread.sleep(2000);
-					break;
-				}
+		Thread.sleep(2000);
+		String Filter = Fname;
+		for (int i = 0; i <= totalusercount; i++) {
+			String listelement = elements.get(i).getText();
 
+			log.info(i);
+			if (listelement.contains(Filter)) {
+				log.info("Record Found");
+				Thread.sleep(2000);
+				break;
 			}
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			else
+			{
+				Assert.fail();
+			}
 
 		}
+		log.info("We think we found User in Grid...");
+
+		test.log(Status.INFO, "We think we found User in Grid...");
 	}
 }
