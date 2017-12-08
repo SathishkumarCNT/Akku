@@ -42,7 +42,7 @@ public class AKKU_09_Editpwdinformation extends Browser_Setup {
 	String AK_13 = "Update password without matching with Password policy";
 	String AK_14 = "Update New Password With Same value of new pwd & Confirm pwd";
 	
-	String build = "Build1";
+	String build = "Build 2";
 	String notes = null;
 	String result = null;
 
@@ -98,21 +98,15 @@ public class AKKU_09_Editpwdinformation extends Browser_Setup {
 		test = report.createTest("AK_06", "Verification of User Info in Home page & Edit Info page");
 		try {
 			loginpage.loginpageTitle();
-			
 			loginpage.typeUseremail(email);
-			
 			loginpage.typepassword(password);
-			
 			loginpage.clickLogin();
-			
-			Thread.sleep(2000);
 			loginpage.validatedloggedinUserDetailsEmailID(email);
-			
 			editinfo.clickEditbtn();
 			loginpage.verifyloggedinFnameineditinfo();
 			loginpage.verifyloggedinLnameineditinfo();
 			loginpage.validatedloggedinUserDetailsEmailID(email);
-					
+
 			loginpage.clickLogout();
 			
 			log.info("####################################################################");
@@ -122,6 +116,7 @@ public class AKKU_09_Editpwdinformation extends Browser_Setup {
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			Assert.fail();
 		}	catch (AssertionError e) {
 
 			String message = e.getMessage();
@@ -146,26 +141,17 @@ public class AKKU_09_Editpwdinformation extends Browser_Setup {
 		
 		try {
 			loginpage.loginpageTitle();
-
 			loginpage.typeUseremail(email);
-
 			loginpage.typepassword(password);
-
 			loginpage.clickLogin();
-
-			Thread.sleep(2000);
 			loginpage.validatedloggedinUserDetailsEmailID(email);
-
 			loginpage.verifyloggedinUserFNameAndLName();
 			editinfo.isEditInfobtn();
 			editinfo.clickEditbtn();
 			editinfo.isPWDEditInformationpage();
-			
 			editinfo.typenewpassword(Newpassword);
-			Thread.sleep(1000);
 			editinfo.typeConfnewpassword(Confnewpassword);
 			editinfo.clickUpdatebtn();
-			Thread.sleep(1000);
 			editinfo.emptyoldpassworderrormsg();
 			loginpage.clickLogout();
 			
@@ -176,6 +162,7 @@ public class AKKU_09_Editpwdinformation extends Browser_Setup {
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			Assert.fail();
 		}catch (AssertionError e) {
 
 			String message = e.getMessage();
@@ -200,23 +187,12 @@ public class AKKU_09_Editpwdinformation extends Browser_Setup {
 		
 		try {
 			loginpage.loginpageTitle();
-
 			loginpage.typeUseremail(email);
-
 			loginpage.typepassword(password);
-
 			loginpage.clickLogin();
-
-			Thread.sleep(2000);
-			
 			loginpage.validatedloggedinUserDetailsEmailID(email);
-
 			loginpage.verifyloggedinUserFNameAndLName();
-			
 			editinfo.updatenewpassword(Oldpassword,Newpassword,Confnewpassword);
-			
-		
-			
 			loginpage.clickLogout();
 			
 			log.info("####################################################################");
@@ -237,6 +213,7 @@ public class AKKU_09_Editpwdinformation extends Browser_Setup {
 			result = TestLinkAPIResults.TEST_FAILED;
 			notes = e.getMessage();
 			e.printStackTrace();
+			Assert.fail();
 		}finally {
 
 			log.info("Updating TestCase Execution Status in TestLink");
@@ -253,21 +230,12 @@ public class AKKU_09_Editpwdinformation extends Browser_Setup {
 		
 		try {
 			loginpage.loginpageTitle();
-
 			loginpage.typeUseremail(email);
-
 			loginpage.typepassword(password);
-
 			loginpage.clickLogin();
-			
 			loginpage.validatedloggedinUserDetailsEmailID(email);
-
 			loginpage.verifyloggedinUserFNameAndLName();
-
-			Thread.sleep(2000);
-						
 			editinfo.updatenewpassword(Oldpassword,Newpassword,Confnewpassword);
-			
 			loginpage.clickLogout();
 			
 			log.info("####################################################################");
@@ -278,6 +246,7 @@ public class AKKU_09_Editpwdinformation extends Browser_Setup {
 			result = TestLinkAPIResults.TEST_FAILED;
 			notes = e.getMessage();
 			e.printStackTrace();
+			Assert.fail();
 		}catch (AssertionError e) {
 
 			String message = e.getMessage();
@@ -303,26 +272,18 @@ public class AKKU_09_Editpwdinformation extends Browser_Setup {
 		
 		try {
 			loginpage.loginpageTitle();
-
 			loginpage.typeUseremail(email);
-
 			loginpage.typepassword(password);
-
 			loginpage.clickLogin();
-
-			Thread.sleep(2000);
 			loginpage.validatedloggedinUserDetailsEmailID(email);
-
 			loginpage.verifyloggedinUserFNameAndLName();
 			editinfo.isEditInfobtn();
 			editinfo.clickEditbtn();
 			editinfo.isPWDEditInformationpage();
 			editinfo.typeOldpassword(Oldpassword);
 			editinfo.typenewpassword(Newpassword);
-			Thread.sleep(1000);
 			editinfo.typeConfnewpassword(Confnewpassword);
 			editinfo.clickUpdatebtn();
-			Thread.sleep(1000);
 			editinfo.invalidconfirmpassworderrormsg(Confnewpassword);
 			loginpage.clickLogout();
 			
@@ -333,6 +294,7 @@ public class AKKU_09_Editpwdinformation extends Browser_Setup {
 			result = TestLinkAPIResults.TEST_FAILED;
 			notes = e.getMessage();
 			e.printStackTrace();
+			Assert.fail();
 		}catch (AssertionError e) {
 
 			String message = e.getMessage();
@@ -358,26 +320,17 @@ public class AKKU_09_Editpwdinformation extends Browser_Setup {
 
 		try {
 			loginpage.loginpageTitle();
-
 			loginpage.typeUseremail(email);
-
 			loginpage.typepassword(password);
-
 			loginpage.clickLogin();
-
-			Thread.sleep(2000);
 			loginpage.validatedloggedinUserDetailsEmailID(email);
-
 			loginpage.verifyloggedinUserFNameAndLName();
 			editinfo.isEditInfobtn();
 			editinfo.clickEditbtn();
 			editinfo.isPWDEditInformationpage();
-			
 			editinfo.typenewpassword(Newpassword);
-			Thread.sleep(1000);
 			editinfo.typeConfnewpassword(Confnewpassword);
 			editinfo.clickUpdatebtn();
-			Thread.sleep(1000);
 			editinfo.invalidoldpassworderrormsg(Oldpassword);
 			editinfo.closeAlertpopup();
 			loginpage.clickLogout();
@@ -389,6 +342,7 @@ public class AKKU_09_Editpwdinformation extends Browser_Setup {
 			result = TestLinkAPIResults.TEST_FAILED;
 			notes = e.getMessage();
 			e.printStackTrace();
+			Assert.fail();
 		}catch (AssertionError e) {
 
 			String message = e.getMessage();
@@ -417,24 +371,16 @@ public class AKKU_09_Editpwdinformation extends Browser_Setup {
 
 		try {
 			loginpage.loginpageTitle();
-
 			loginpage.typeUseremail(email);
-
 			loginpage.typepassword(password);
-
 			loginpage.clickLogin();
-
-			Thread.sleep(2000);
 			loginpage.validatedloggedinUserDetailsEmailID(email);
-
 			loginpage.verifyloggedinUserFNameAndLName();
 			editinfo.isEditInfobtn();
 			editinfo.clickEditbtn();
 			editinfo.isPWDEditInformationpage();
 			editinfo.typeOldpassword(Oldpassword);
-			Thread.sleep(1000);
 			editinfo.clickUpdatebtn();
-			Thread.sleep(1000);
 			editinfo.emptynewandConfirmpassworderrormsg();
 			loginpage.clickLogout();
 			
@@ -445,6 +391,7 @@ public class AKKU_09_Editpwdinformation extends Browser_Setup {
 			result = TestLinkAPIResults.TEST_FAILED;
 			notes = e.getMessage();
 			e.printStackTrace();
+			Assert.fail();
 		}catch (AssertionError e) {
 
 			String message = e.getMessage();
@@ -471,27 +418,18 @@ public class AKKU_09_Editpwdinformation extends Browser_Setup {
 		
 		try {
 			loginpage.loginpageTitle();
-
 			loginpage.typeUseremail(email);
-
 			loginpage.typepassword(password);
-
 			loginpage.clickLogin();
-
-			Thread.sleep(2000);
 			loginpage.validatedloggedinUserDetailsEmailID(email);
-
 			loginpage.verifyloggedinUserFNameAndLName();
 			editinfo.isEditInfobtn();
 			editinfo.clickEditbtn();
 			editinfo.isPWDEditInformationpage();
 			editinfo.typeOldpassword(Oldpassword);
 			editinfo.typenewpassword(Newpassword);
-			Thread.sleep(1000);
 			editinfo.typeConfnewpassword(Confnewpassword);
 			editinfo.clickUpdatebtn();
-			Thread.sleep(1000);
-			
 			editinfo.ValidateErrormessageforpasswordPolicy();
 			loginpage.clickLogout();
 			
@@ -502,6 +440,7 @@ public class AKKU_09_Editpwdinformation extends Browser_Setup {
 			result = TestLinkAPIResults.TEST_FAILED;
 			notes = e.getMessage();
 			e.printStackTrace();
+			Assert.fail();
 		}catch (AssertionError e) {
 
 			String message = e.getMessage();
@@ -525,27 +464,18 @@ public class AKKU_09_Editpwdinformation extends Browser_Setup {
 		test = report.createTest("AK_14", "Update New Password With Same value of new password & Confirm password");
 		try {
 			loginpage.loginpageTitle();
-
-			loginpage.typeUseremail(email);
-
-			loginpage.typepassword(password);
-
+ 			loginpage.typeUseremail(email);
+ 			loginpage.typepassword(password);
 			loginpage.clickLogin();
-
-			Thread.sleep(2000);
 			loginpage.validatedloggedinUserDetailsEmailID(email);
-
 			loginpage.verifyloggedinUserFNameAndLName();
 			editinfo.isEditInfobtn();
 			editinfo.clickEditbtn();
 			editinfo.isPWDEditInformationpage();
 			editinfo.typeOldpassword(Oldpassword);
 			editinfo.typenewpassword(Oldpassword);
-			Thread.sleep(1000);
 			editinfo.typeConfnewpassword(Oldpassword);
 			editinfo.clickUpdatebtn();
-			Thread.sleep(1000);
-			
 			editinfo.ValidateErrormessagefornewpwdsameasold();
 			loginpage.clickLogout();
 			
@@ -556,6 +486,7 @@ public class AKKU_09_Editpwdinformation extends Browser_Setup {
 			result = TestLinkAPIResults.TEST_FAILED;
 			notes = e.getMessage();
 			e.printStackTrace();
+			Assert.fail();
 		}catch (AssertionError e) {
 
 			String message = e.getMessage();

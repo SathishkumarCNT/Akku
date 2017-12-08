@@ -1,30 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite guice-stage="DEVELOPMENT" name="Failed suite [AKKU_TestSuite]">
-  <test name="Password Policy Test(failed)">
+<suite guice-stage="DEVELOPMENT" name="Failed suite [Sanity_TestSuite]">
+  <test name="OU Management(failed)">
     <parameter name="browser" value="W_chrome"/>
     <parameter name="Environment" value="http://pre-prod.akku.work/"/>
     <classes>
-      <class name="com.app.akku.work.TestCases.AKKU_15_PasswordPolicy">
+      <class name="com.app.akku.work.TestCases.AK_52_Create_Edit_Delete_Assign_OU">
         <methods>
-          <include name="teardown"/>
-<<<<<<< HEAD
-          <include name="AK_01_ValidLogin" invocation-numbers="0 0"/>
-          <include name="AK_03_LoginwithValidUserNameandEmptyPassword" invocation-numbers="0 0"/>
-=======
->>>>>>> 90d437f53722b12c2e941d2a5f361968b3e3fe52
-          <include name="tearDown"/>
-          <include name="AK_05_LoginwithemptyUsernameandValidPassword" invocation-numbers="0 0"/>
-          <include name="AK_02_LoginWithValidEmailAndInvalidPassword" invocation-numbers="0 0"/>
-          <include name="setUp"/>
+          <include name="endsuite"/>
           <include name="setup"/>
-<<<<<<< HEAD
-          <include name="AK_04_LoginwithinvalidUsernameandinvalidPassword" invocation-numbers="0 0"/>
-=======
-          <include name="AK_64_UpdatepasswordpolicyforparentOU" invocation-numbers="0"/>
->>>>>>> 90d437f53722b12c2e941d2a5f361968b3e3fe52
+          <include name="ExtentReportSetUp"/>
+          <include name="AK_68_SynchronizationOUviaGSuite" invocation-numbers="0"/>
+          <include name="tearDown"/>
+          <include name="teardown"/>
         </methods>
-      </class> <!-- com.app.akku.work.TestCases.AKKU_15_PasswordPolicy -->
+      </class> <!-- com.app.akku.work.TestCases.AK_52_Create_Edit_Delete_Assign_OU -->
     </classes>
-  </test> <!-- Password Policy Test(failed) -->
-</suite> <!-- Failed suite [AKKU_TestSuite] -->
+  </test> <!-- OU Management(failed) -->
+</suite> <!-- Failed suite [Sanity_TestSuite] -->

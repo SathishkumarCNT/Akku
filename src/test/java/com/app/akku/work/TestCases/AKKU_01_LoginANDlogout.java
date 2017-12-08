@@ -30,7 +30,7 @@ public class AKKU_01_LoginANDlogout extends Browser_Setup {
 	String AK_03 = "Login with Valid User Name and Empty Password";
 	String AK_04 = "Login with invalid Username and invalid Password";
 	String AK_05 = "Login with empty Username and Valid Password";
-	String build = "Build1";
+	String build = "Build 2";
 	String notes = null;
 	String result = null;
 	
@@ -71,15 +71,11 @@ public class AKKU_01_LoginANDlogout extends Browser_Setup {
 		test = report.createTest("AK_01", "Login Page Validation with Valid Credential");
 		try {
 
-			Thread.sleep(5000);
+		
 			loginpage.loginpageTitle();
-
 			loginpage.typeUseremail(email);
-			Thread.sleep(3000);
 			loginpage.typepassword(password);
-			Thread.sleep(5000);
 			loginpage.clickLogin();
-			Thread.sleep(2000);
 			loginpage.validatedloggedinUserDetailsEmailID(email);
 			loginpage.verifyloggedinUserFNameAndLName();
 			loginpage.clickLogout();
@@ -104,11 +100,23 @@ public class AKKU_01_LoginANDlogout extends Browser_Setup {
 			Assert.fail();
 
 		} finally {
+			
+			
+			
 
 			log.info("Updating TestCase Execution Status in TestLink");
+			
+			log.info(testProject);
+			log.info(testPlan);
+			log.info(AK_01);
+			log.info(build);
+			log.info(notes);
+			log.info(result);
+			
 			TestLinkIntegration.reportResult(testProject, testPlan, AK_01, build, notes, result);
 
 		}
+		
 
 	}
 
@@ -120,12 +128,8 @@ public class AKKU_01_LoginANDlogout extends Browser_Setup {
 		try {
 			log.info("AK_02_LoginWithValidEmailAndInvalidPassword");
 			loginpage.typeUseremail(email);
-
 			loginpage.typepassword(password);
-
 			loginpage.clickLogin();
-
-			Thread.sleep(2000);
 			loginpage.EmailANDPwdErrorValidation();
 
 			log.info("####################################################################");
@@ -138,7 +142,7 @@ public class AKKU_01_LoginANDlogout extends Browser_Setup {
 			result = TestLinkAPIResults.TEST_FAILED;
 			notes = e.getMessage();
 			e.printStackTrace();
-
+			Assert.fail();
 		} catch (AssertionError e) {
 
 			String message = e.getMessage();
@@ -165,11 +169,7 @@ public class AKKU_01_LoginANDlogout extends Browser_Setup {
 		try {
 			
 			loginpage.typeUseremail(email);
-
 			loginpage.clickLogin();
-
-			Thread.sleep(2000);
-
 			loginpage.inputpassworderrormsgvalidation();
 
 			log.info("####################################################################");
@@ -181,7 +181,7 @@ public class AKKU_01_LoginANDlogout extends Browser_Setup {
 			result = TestLinkAPIResults.TEST_FAILED;
 			notes = e.getMessage();
 			e.printStackTrace();
-
+			Assert.fail();
 		}catch (AssertionError e) {
 
 			String message = e.getMessage();
@@ -206,13 +206,8 @@ public class AKKU_01_LoginANDlogout extends Browser_Setup {
 		try {
 
 			loginpage.typeUseremail(email);
-
 			loginpage.typepassword(password);
-
 			loginpage.clickLogin();
-
-			Thread.sleep(2000);
-
 			loginpage.EmailANDPwdErrorValidation();
 
 			log.info("####################################################################");
@@ -224,6 +219,7 @@ public class AKKU_01_LoginANDlogout extends Browser_Setup {
 			result = TestLinkAPIResults.TEST_FAILED;
 			notes = e.getMessage();
 			e.printStackTrace();
+			Assert.fail();
 
 		}catch (AssertionError e) {
 
@@ -248,11 +244,7 @@ public class AKKU_01_LoginANDlogout extends Browser_Setup {
 		try {
 			
 			loginpage.typepassword(password);
-
-		     loginpage.clickLogin();
-
-			Thread.sleep(2000);
-
+    	    loginpage.clickLogin();
 			loginpage.inputemailerrormsgvalidation();
 
 			log.info("####################################################################");
@@ -273,6 +265,7 @@ public class AKKU_01_LoginANDlogout extends Browser_Setup {
 			result = TestLinkAPIResults.TEST_FAILED;
 			notes = e.getMessage();
 			e.printStackTrace();
+			Assert.fail();
 
 		} finally {
 

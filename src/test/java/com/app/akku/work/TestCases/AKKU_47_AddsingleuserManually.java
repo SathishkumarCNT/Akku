@@ -27,7 +27,7 @@ public class AKKU_47_AddsingleuserManually extends Browser_Setup {
 	String testProject = "AkkuAppTC";
 	String testPlan = "AutomateManualTC";
 	String AK_46 = "Add Users Manually";
-	String build = "Build1";
+	String build = "Build 2";
 	String notes = null;
 	String result = null;
 	
@@ -50,29 +50,18 @@ public class AKKU_47_AddsingleuserManually extends Browser_Setup {
 		test = report.createTest("AK_46", "Add Users Manually");
 		try {
 			loginpage.loginpageTitle();
-			
 			loginpage.typeUseremail(email);
-			
 			loginpage.typepassword(password);
-			
 			loginpage.clickLogin();
-			
-			Thread.sleep(2000);
 			loginpage.validatedloggedinUserDetailsEmailID(email);
-			
 			loginpage.verifyloggedinUserFNameAndLName();
-			
 			usermanagement.clickUsermanagementBtn();
-			Thread.sleep(5000);
 			usermanagement.isUsermanagementpage();
 			usermanagement.clickOnAddUserManualy();
-			Thread.sleep(5000);   	
 			addsingleuser.typeFname(FName);
 			addsingleuser.typeLname(Lname);
 			addsingleuser.typeEmail();
-			Thread.sleep(2000);
 			addsingleuser.clickondropdowntoselectusertypeASuser();
-			Thread.sleep(2000);
 			loginpage.typepassword(password);
 			addsingleuser.typeConfnewpassword(Confnewpassword);
 			addsingleuser.clickonConfirmAndAddUser();
@@ -87,6 +76,7 @@ public class AKKU_47_AddsingleuserManually extends Browser_Setup {
 			result = TestLinkAPIResults.TEST_FAILED;
 			notes = e.getMessage();
 			e.printStackTrace();
+			Assert.fail();
 		} catch (AssertionError e) {
 
 			String message = e.getMessage();
@@ -109,36 +99,25 @@ public class AKKU_47_AddsingleuserManually extends Browser_Setup {
 		
 		try {
 			loginpage.loginpageTitle();
-			
 			loginpage.typeUseremail(email);
-			
 			loginpage.typepassword(password);
-			
 			loginpage.clickLogin();
-			
-			Thread.sleep(2000);
 			loginpage.validatedloggedinUserDetailsEmailID(email);
-			
 			loginpage.verifyloggedinUserFNameAndLName();
-			
 			usermanagement.clickUsermanagementBtn();
-			Thread.sleep(5000);
 			usermanagement.isUsermanagementpage();
-			usermanagement.clickOnAddUserManualy();
-			Thread.sleep(5000);   	
+			usermanagement.clickOnAddUserManualy();  	
 			addsingleuser.typeFname(FName);
 			addsingleuser.typeLname(Lname);
 			addsingleuser.typeEmail();
-			Thread.sleep(2000);
 			addsingleuser.clickondropdowntoselectusertypeASAdmin();
-			Thread.sleep(2000);
-			
 			loginpage.typepassword(password);
 			addsingleuser.typeConfnewpassword(Confnewpassword);
 			addsingleuser.clickonConfirmAndAddUser();
 			editinfo.closeAlertpopup();
 			
 			loginpage.clickLogout();
+			Assert.fail();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

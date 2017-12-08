@@ -62,7 +62,7 @@ public class PasswordPolicy extends Keywords {
 	public void Validateerrormsgforblankpwdlength() throws Exception {
 
 		log.info("Trying to verify Password Policy Error Message..");
-
+		waitTillAssertElementPresent(By.xpath(prop.getAppProperty("ishome_home_update_error_popup_xpath")), "Updation failed. Please try after some time.");
 		String Expected = "Updation failed. Please try after some time.";
 		String Actual = getText(By.xpath(prop.getAppProperty("ishome_home_update_error_popup_xpath")));
 		log.info(Actual);
@@ -96,6 +96,7 @@ public class PasswordPolicy extends Keywords {
 	public void ValidateerrormsgforCharinpwdlength() throws Exception {
 
 		log.info("Trying to verify Password Policy Error Message..");
+		waitTillAssertElementPresent(By.xpath(prop.getAppProperty("AppManagement_pwdpolicy_MinpwdLen_xpath")), "Please enter a number.");
 
 		String Expected = "Please enter a number.";
 		String Actual = getvalidationMessage(By.xpath(prop.getAppProperty("AppManagement_pwdpolicy_MinpwdLen_xpath")));
@@ -123,6 +124,7 @@ public class PasswordPolicy extends Keywords {
 	public void Validateerrormsgforpwdlength7char() throws Exception {
 
 		log.info("Trying to verify Password Policy Error Message..");
+		waitTillAssertElementPresent(By.xpath(prop.getAppProperty("AppManagement_pwdpolicy_MinpwdLen_xpath")), "Value must be greater than or equal to 8.");
 
 		String Expected = "Value must be greater than or equal to 8.";
 		String Actual = getvalidationMessage(By.xpath(prop.getAppProperty("AppManagement_pwdpolicy_MinpwdLen_xpath")));
@@ -153,7 +155,7 @@ public class PasswordPolicy extends Keywords {
 
 		{
 			click(By.xpath(prop.getAppProperty("AppManagement_pwdpolicy_ClicklUChar_xpath")));
-			Thread.sleep(500);
+			
 			test.log(Status.INFO,"We think we Un Select Uppercase");
 			log.info("We think we Un Select Uppercase...");
 
@@ -162,7 +164,7 @@ public class PasswordPolicy extends Keywords {
 
 		{
 			click(By.xpath(prop.getAppProperty("AppManagement_pwdpolicy_ClicklLChar_xpath")));
-			Thread.sleep(500);
+		
 			test.log(Status.INFO,"We think we Select Lowercase");
 			log.info("We think we Select Lowercase...");
 
@@ -172,7 +174,7 @@ public class PasswordPolicy extends Keywords {
 		{
 
 			click(By.xpath(prop.getAppProperty("AppManagement_pwdpolicy_ClicklnumChar_xpath")));
-			Thread.sleep(500);
+	
 			test.log(Status.INFO,"We think we Select Numeric");
 			log.info("We think we Select Numeric...");
 
@@ -181,7 +183,7 @@ public class PasswordPolicy extends Keywords {
 
 		{
 			click(By.xpath(prop.getAppProperty("AppManagement_pwdpolicy_ClicklsplChar_xpath")));
-			Thread.sleep(500);
+		
 			test.log(Status.INFO,"We think we UnSelect  Special Character");
 			log.info("We think we  UnSelect Special Character...");
 
@@ -209,7 +211,7 @@ public class PasswordPolicy extends Keywords {
 
 		{
 			click(By.xpath(prop.getAppProperty("AppManagement_pwdpolicy_ClicklUChar_xpath")));
-			Thread.sleep(500);
+	
 			test.log(Status.INFO,"We think we Un Select Uppercase");
 			log.info("We think we Un Select Uppercase...");
 
@@ -218,7 +220,7 @@ public class PasswordPolicy extends Keywords {
 
 		{
 			click(By.xpath(prop.getAppProperty("AppManagement_pwdpolicy_ClicklLChar_xpath")));
-			Thread.sleep(500);
+		
 			test.log(Status.INFO,"We think we Select Lowercase");
 			log.info("We think we Select Lowercase...");
 
@@ -228,7 +230,7 @@ public class PasswordPolicy extends Keywords {
 		{
 
 			click(By.xpath(prop.getAppProperty("AppManagement_pwdpolicy_ClicklnumChar_xpath")));
-			Thread.sleep(500);
+		
 			test.log(Status.INFO,"We think we Select Numeric");
 			log.info("We think we Select Numeric...");
 
@@ -237,7 +239,7 @@ public class PasswordPolicy extends Keywords {
 
 		{
 			click(By.xpath(prop.getAppProperty("AppManagement_pwdpolicy_ClicklsplChar_xpath")));
-			Thread.sleep(500);
+	
 			
 		
 			test.log(Status.INFO,"We think we UnSelect  Special Character");
@@ -266,7 +268,7 @@ public class PasswordPolicy extends Keywords {
 
 		{
 			click(By.xpath(prop.getAppProperty("AppManagement_pwdpolicy_ClicklUChar_xpath")));
-			Thread.sleep(500);
+		
 			test.log(Status.INFO,"We think we Un Select Uppercase");
 			log.info("We think we Un Select Uppercase...");
 
@@ -275,7 +277,7 @@ public class PasswordPolicy extends Keywords {
 
 		{
 			click(By.xpath(prop.getAppProperty("AppManagement_pwdpolicy_ClicklLChar_xpath")));
-			Thread.sleep(500);
+	
 			test.log(Status.INFO,"We think we Select Lowercase");
 			log.info("We think we Select Lowercase...");
 
@@ -285,7 +287,7 @@ public class PasswordPolicy extends Keywords {
 		{
 
 			click(By.xpath(prop.getAppProperty("AppManagement_pwdpolicy_ClicklnumChar_xpath")));
-			Thread.sleep(500);
+
 			test.log(Status.INFO,"We think we Select Numeric");
 			log.info("We think we Select Numeric...");
 
@@ -294,7 +296,7 @@ public class PasswordPolicy extends Keywords {
 
 		{
 			click(By.xpath(prop.getAppProperty("AppManagement_pwdpolicy_ClicklsplChar_xpath")));
-			Thread.sleep(500);
+
 			test.log(Status.INFO,"We think we UnSelect  Special Character");
 			log.info("We think we  UnSelectSpecial Character...");
 
@@ -322,7 +324,7 @@ public class PasswordPolicy extends Keywords {
 
 		{
 			click(By.xpath(prop.getAppProperty("AppManagement_pwdpolicy_ClicklUChar_xpath")));
-			Thread.sleep(500);
+
 			test.log(Status.INFO,"We think we UnSelect Uppercase");
 			log.info("We think we UnSelect Uppercase...");
 
@@ -331,7 +333,7 @@ public class PasswordPolicy extends Keywords {
 
 		{
 			click(By.xpath(prop.getAppProperty("AppManagement_pwdpolicy_ClicklLChar_xpath")));
-			Thread.sleep(500);
+
 			test.log(Status.INFO,"We think we Select Lowercase");
 			log.info("We think we Select Lowercase...");
 
@@ -341,7 +343,7 @@ public class PasswordPolicy extends Keywords {
 		{
 
 			click(By.xpath(prop.getAppProperty("AppManagement_pwdpolicy_ClicklnumChar_xpath")));
-			Thread.sleep(500);
+
 			test.log(Status.INFO,"We think we Select Numeric");
 			log.info("We think we Select Numeric...");
 			
@@ -351,7 +353,7 @@ public class PasswordPolicy extends Keywords {
 
 		{
 			click(By.xpath(prop.getAppProperty("AppManagement_pwdpolicy_ClicklsplChar_xpath")));
-			Thread.sleep(500);
+
 			test.log(Status.INFO,"We think we Select UnSpecial Character");
 			log.info("We think we Select UnSpecial Character...");
 
@@ -363,6 +365,7 @@ public class PasswordPolicy extends Keywords {
 	public void ValidateerrormsgforonepwdComplexity() throws Exception {
 
 		log.info("Trying to verify Password Complixty Error Message..");
+		waitTillAssertElementPresent(By.xpath(prop.getAppProperty("ishome_home_update_error_popup_xpath")), "Check at least two checkboxs in Password Complexity.");
 
 		String Expected = "Check at least two checkboxs in Password Complexity.";
 		String Actual = getText(By.xpath(prop.getAppProperty("ishome_home_update_error_popup_xpath")));
@@ -372,7 +375,7 @@ public class PasswordPolicy extends Keywords {
 		log.info("We think we Trying to verified Password Complixty Error Message.");
 		
 		test.log(Status.INFO,"We think we Trying to verified Password Complixty Error Message");
-		Thread.sleep(1000);
+
 		driver.navigate().refresh();
 
 	}
@@ -425,7 +428,8 @@ public class PasswordPolicy extends Keywords {
 
 		log.info("Trying to verify Password policy Updated Message..");
 
-		Thread.sleep(2000);
+		waitTillAssertElementPresent(By.xpath(prop.getAppProperty("SiteBlocking_DeleteBtn_Confirm_Message_Xpath")), "Successfully Updated");
+
 		String Expected = "Successfully Updated";
 		String Actual = getText(By.xpath(prop.getAppProperty("SiteBlocking_DeleteBtn_Confirm_Message_Xpath")));
 
@@ -443,7 +447,7 @@ public class PasswordPolicy extends Keywords {
 
 	{
 		log.info("Trying to Enable Password Expiry");
-
+//waitTillElementlocate(By.xpath(prop.getAppProperty("AppManagement_pwdpolicy_EnablePwdExpiry_xpath")));
 		boolean Enablepwdexpriy = isSelected(
 				By.xpath(prop.getAppProperty("AppManagement_pwdpolicy_EnablePwdExpiry_xpath")));
 
@@ -454,7 +458,7 @@ public class PasswordPolicy extends Keywords {
 
 		} else {
 			click(By.xpath(prop.getAppProperty("AppManagement_pwdpolicy_ClickEnablePwdExpiry_xpath")));
-			Thread.sleep(1000);
+
 			click(By.xpath(prop.getAppProperty("AppManagement_pwdpolicy_ClickEnablePwdExpiry_xpath")));
 
 		}
@@ -467,6 +471,7 @@ public class PasswordPolicy extends Keywords {
 
 	{
 		log.info("Trying to Disable Password Expiry");
+		waitTillElementlocate(By.xpath(prop.getAppProperty("AppManagement_pwdpolicy_EnablePwdExpiry_xpath")));
 
 		boolean Enablepwdexpriy = isSelected(
 				By.xpath(prop.getAppProperty("AppManagement_pwdpolicy_EnablePwdExpiry_xpath")));
@@ -479,7 +484,7 @@ public class PasswordPolicy extends Keywords {
 
 		} else {
 
-			Thread.sleep(1000);
+
 			click(By.xpath(prop.getAppProperty("AppManagement_pwdpolicy_ClickEnablePwdExpiry_xpath")));
 
 		}
@@ -495,6 +500,7 @@ public class PasswordPolicy extends Keywords {
 	{
 
 		log.info("Trying to Verify Expiration of Password Option Disabale");
+		waitTillElementlocate(By.xpath(prop.getAppProperty("AppManagement_pwdpolicy_ExpofPwd_xpath")));
 
 		boolean Actual = IsDisplayed(By.xpath(prop.getAppProperty("AppManagement_pwdpolicy_ExpofPwd_xpath")));
 
@@ -512,6 +518,7 @@ public class PasswordPolicy extends Keywords {
 	{
 
 		log.info("Trying to Verify Expiration of Password Option enable");
+		waitTillElementlocate(By.xpath(prop.getAppProperty("AppManagement_pwdpolicy_ExpofPwd_xpath")));
 
 		boolean Actual = IsDisplayed(By.xpath(prop.getAppProperty("AppManagement_pwdpolicy_ExpofPwd_xpath")));
 
@@ -531,12 +538,13 @@ public class PasswordPolicy extends Keywords {
 	public void ClickOnparentOU(String NewOu) throws Exception {
 
 		log.info("Trying to Click OU Name...");
+		waitTillElementlocate(By.xpath("//a[contains(text()," + NewOu + ")]"));
 
-		Thread.sleep(3000);
+	
 		boolean A = driver.findElement(By.xpath("//a[contains(text()," + NewOu + ")]")).isDisplayed();
 		log.info(A);
 
-		Thread.sleep(3000);
+	
 
 		driver.findElement(By.xpath("//a[contains(text(),'" + NewOu + "')]")).click();
 
@@ -548,7 +556,7 @@ public class PasswordPolicy extends Keywords {
 
 	public void verifySubOupasswordlengthlsochange(String NewOu) throws Exception {
 
-		Thread.sleep(5000);
+		checkPageIsReady();
 		log.info("Validating Sub OU Password Length");
 		String passwordlength = driver.getPageSource();
 		log.info(passwordlength);
@@ -604,7 +612,7 @@ public class PasswordPolicy extends Keywords {
 		log.info("Trying to Select " + parentOU + " OU Name...");
 
 		click(By.xpath(prop.getAppProperty("Akku_UserOU_Edit_btn_xpath")));
-
+waitTillElementlocate(By.xpath("//*[@id='edituserouiv']/div/ul/li/ul"));
 		List<WebElement> liElements = driver.findElements(By.xpath("//*[@id='edituserouiv']/div/ul/li/ul"));
 
 		log.info(liElements.size());
@@ -687,7 +695,7 @@ public class PasswordPolicy extends Keywords {
 
 		
 		log.info("Trying to Validate on Helptext...");
-		
+		checkPageIsReady();
 		String gethelptext =driver.getPageSource();
 		
 		log.info(gethelptext);
@@ -740,7 +748,7 @@ public class PasswordPolicy extends Keywords {
 
 		log.info("Trying to Enter Password in the New text field...");
 		click(By.xpath(prop.getAppProperty("Home_Edit_newPwd_text_xpath")));
-		Thread.sleep(5000);
+
 		type(By.xpath(prop.getAppProperty("Home_Edit_newPwd_text_xpath")), Newpassword);
 		test.log(Status.INFO,"We think we Entered Password in New text field : "+ Newpassword);
 

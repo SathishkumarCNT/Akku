@@ -86,7 +86,7 @@ public class AddsingleUser extends Keywords {
 	public void clickondropdowntoselectusertypeASuser() throws Exception {
 
 		log.info("Trying to Select  on User from User Type drop down...");
-
+waitTillElementlocate(By.xpath("//*[@id=\"autype\"]"));
 		WebElement element = driver.findElement(By.xpath("//*[@id=\"autype\"]"));
 		Select se = new Select(element);
 		se.selectByIndex(0);
@@ -99,7 +99,7 @@ public class AddsingleUser extends Keywords {
 
 	public void clickondropdowntoselectusertypeASAdmin() throws Exception {
 		log.info("Trying to Select  on User from User Type drop down...");
-
+		waitTillElementlocate(By.xpath("//*[@id=\"autype\"]"));
 		WebElement element = driver.findElement(By.xpath("//*[@id=\"autype\"]"));
 		Select se = new Select(element);
 		se.selectByIndex(1);
@@ -116,6 +116,7 @@ public class AddsingleUser extends Keywords {
 			log.info("Select User Type in Edit User management...");
 
 			String Usertype_user = "User";
+			waitTillElementlocate(By.xpath(prop.getAppProperty("Akku_UserManagement_addusertype_xpath")));
 			String readusertype = getText(By.xpath(prop.getAppProperty("Akku_UserManagement_addusertype_xpath")));
 
 			if (readusertype.equals(Usertype_user)) {

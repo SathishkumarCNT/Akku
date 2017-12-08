@@ -31,7 +31,7 @@ public class AKKU_33_Edit_Delete_Suspend_Activity_Users extends Browser_Setup {
 	String AK_49 = "Verify Last Login date & time in user List";
 	String AK_50 = "View User details, by selecting Full Name Link Text";
 	String AK_51 = "User list count in a page, based on Show Count selected";
-	String build = "Build1";
+	String build = "Build 2";
 	String notes = null;
 	String result = null;	
 
@@ -116,21 +116,13 @@ public class AKKU_33_Edit_Delete_Suspend_Activity_Users extends Browser_Setup {
 		test = report.createTest("AK_33", "Edit User information in user Management page with valid data");
 		try {
 			loginpage.loginpageTitle();
-
 			loginpage.typeUseremail(email);
-
 			loginpage.typepassword(password);
-
 			loginpage.clickLogin();
-
-			Thread.sleep(2000);
 			loginpage.validatedloggedinUserDetailsEmailID(email);
-
 			loginpage.verifyloggedinUserFNameAndLName();
-
 			usermanagement.clickUsermanagementBtn();
 			usermanagement.isUsermanagementpage();
-
 			editUser.clickonEditbtninusermanagement();
 			editUser.EditFnameinusermanagement(Fname);
 			editUser.EditLnameinusermanagement(Lname);
@@ -148,6 +140,7 @@ public class AKKU_33_Edit_Delete_Suspend_Activity_Users extends Browser_Setup {
 			result = TestLinkAPIResults.TEST_FAILED;
 			notes = e.getMessage();
 			e.printStackTrace();
+			Assert.fail();
 		} catch (AssertionError e) {
 
 			String message = e.getMessage();
@@ -172,24 +165,17 @@ public class AKKU_33_Edit_Delete_Suspend_Activity_Users extends Browser_Setup {
 		test = report.createTest("AK_35", "Edit User Details in User Management page with Invalid data");		
 		try {
 			loginpage.loginpageTitle();
-
 			loginpage.typeUseremail(email);
-
 			loginpage.typepassword(password);
-
 			loginpage.clickLogin();
-
-			Thread.sleep(2000);
 			loginpage.validatedloggedinUserDetailsEmailID(email);
-
 			loginpage.verifyloggedinUserFNameAndLName();
-
 			usermanagement.clickUsermanagementBtn();
 
 			for (int i = 1; i <= 3; i++) {
 				if (i == 1) {
 
-					Thread.sleep(2000);
+				
 					editUser.clickonEditbtninusermanagement();
 					editUser.EditemptyEmailinusermanagement();
 					editUser.EditFnameinusermanagement(Fname);
@@ -199,7 +185,7 @@ public class AKKU_33_Edit_Delete_Suspend_Activity_Users extends Browser_Setup {
 
 				}
 				if (i == 2) {
-					Thread.sleep(2000);
+					
 					editUser.clickonEditbtninusermanagement();
 					editUser.EditEmailinusermanagement(NewEmail);
 					editUser.EditemptyFnameinusermanagement();
@@ -209,7 +195,7 @@ public class AKKU_33_Edit_Delete_Suspend_Activity_Users extends Browser_Setup {
 
 				}
 				if (i == 3) {
-					Thread.sleep(2000);
+			
 					editUser.clickonEditbtninusermanagement();
 					editUser.EditEmailinusermanagement(NewEmail);
 					editUser.EditFnameinusermanagement(Fname);
@@ -229,6 +215,7 @@ public class AKKU_33_Edit_Delete_Suspend_Activity_Users extends Browser_Setup {
 			result = TestLinkAPIResults.TEST_FAILED;
 			notes = e.getMessage();
 			e.printStackTrace();
+			Assert.fail();
 		}catch (AssertionError e) {
 
 			String message = e.getMessage();
@@ -261,7 +248,6 @@ public class AKKU_33_Edit_Delete_Suspend_Activity_Users extends Browser_Setup {
 
 			loginpage.clickLogin();
 
-			Thread.sleep(2000);
 			loginpage.validatedloggedinUserDetailsEmailID(email);
 
 			loginpage.verifyloggedinUserFNameAndLName();
@@ -282,6 +268,7 @@ public class AKKU_33_Edit_Delete_Suspend_Activity_Users extends Browser_Setup {
 			result = TestLinkAPIResults.TEST_FAILED;
 			notes = e.getMessage();
 			e.printStackTrace();
+			Assert.fail();
 		}catch (AssertionError e) {
 
 			String message = e.getMessage();
@@ -306,26 +293,15 @@ public class AKKU_33_Edit_Delete_Suspend_Activity_Users extends Browser_Setup {
 		test = report.createTest("AK_37", "Suspend User from User Management page");
 		try {
 			loginpage.loginpageTitle();
-
 			loginpage.typeUseremail(email);
-
 			loginpage.typepassword(password);
-
 			loginpage.clickLogin();
-
-			Thread.sleep(2000);
 			loginpage.validatedloggedinUserDetailsEmailID(email);
-
 			loginpage.verifyloggedinUserFNameAndLName();
-
 			usermanagement.clickUsermanagementBtn();
-
 			editUser.clickonSuspendbtninusermanagement();
-			Thread.sleep(3000);
 			editUser.AcceptSuspendbtninusermanagement();
-			Thread.sleep(3000);
 			editUser.ValidateSuspendusermsg();
-			Thread.sleep(3000);
 			editUser.AcceptSuspendbtninusermanagement();
 			loginpage.clickLogout();
 			log.info("####################################################################");
@@ -335,6 +311,7 @@ public class AKKU_33_Edit_Delete_Suspend_Activity_Users extends Browser_Setup {
 			result = TestLinkAPIResults.TEST_FAILED;
 			notes = e.getMessage();
 			e.printStackTrace();
+			Assert.fail();
 		} catch (AssertionError e) {
 
 			String message = e.getMessage();
@@ -360,28 +337,16 @@ public class AKKU_33_Edit_Delete_Suspend_Activity_Users extends Browser_Setup {
 		test = report.createTest("AK_38", "Delete User from User Management page");
 		try {
 			loginpage.loginpageTitle();
-
 			loginpage.typeUseremail(email);
-
 			loginpage.typepassword(password);
-
 			loginpage.clickLogin();
-
-			Thread.sleep(2000);
 			loginpage.validatedloggedinUserDetailsEmailID(email);
-
 			loginpage.verifyloggedinUserFNameAndLName();
-
 			usermanagement.clickUsermanagementBtn();
-			Thread.sleep(3000);
 			editUser.clickonDeletebtninusermanagement();
-			Thread.sleep(3000);
 			editUser.AcceptDeletebtninusermanagement();
-			Thread.sleep(3000);
 			editUser.ValidateDeleteusermsg();
-			Thread.sleep(3000);
 			editUser.AcceptDeletebtninusermanagement();
-			Thread.sleep(3000);
 			loginpage.clickLogout();
 			log.info("####################################################################");
 			result = TestLinkAPIResults.TEST_PASSED;
@@ -390,6 +355,7 @@ public class AKKU_33_Edit_Delete_Suspend_Activity_Users extends Browser_Setup {
 			result = TestLinkAPIResults.TEST_FAILED;
 			notes = e.getMessage();
 			e.printStackTrace();
+			Assert.fail();
 		}catch (AssertionError e) {
 
 			String message = e.getMessage();
@@ -415,25 +381,17 @@ public class AKKU_33_Edit_Delete_Suspend_Activity_Users extends Browser_Setup {
 		test = report.createTest("AK_40", "Reset User Password with invalid password policy");
 		try {
 			loginpage.loginpageTitle();
-
 			loginpage.typeUseremail(email);
-
 			loginpage.typepassword(password);
-
 			loginpage.clickLogin();
-
-			Thread.sleep(2000);
 			loginpage.validatedloggedinUserDetailsEmailID(email);
-
 			loginpage.verifyloggedinUserFNameAndLName();
 			usermanagement.clickUsermanagementBtn();
 			editUser.clickonResetpwdbtninusermanagement();
 			editUser.typenewpassword(Confnewpassword);
 			editUser.typeConfnewpassword(Confnewpassword);
 			editUser.ResetbtnClick();
-			Thread.sleep(3000);
 			editUser.Validateerormsg();
-
 			loginpage.clickLogout();
 
 			log.info("####################################################################");
@@ -443,6 +401,7 @@ public class AKKU_33_Edit_Delete_Suspend_Activity_Users extends Browser_Setup {
 			result = TestLinkAPIResults.TEST_FAILED;
 			notes = e.getMessage();
 			e.printStackTrace();
+			Assert.fail();
 		}catch (AssertionError e) {
 
 			String message = e.getMessage();
@@ -468,16 +427,10 @@ public class AKKU_33_Edit_Delete_Suspend_Activity_Users extends Browser_Setup {
 		test = report.createTest("AK_42", "Reset New password with not matching with Confirm Password");
 		try {
 			loginpage.loginpageTitle();
-
 			loginpage.typeUseremail(email);
-
 			loginpage.typepassword(password);
-
 			loginpage.clickLogin();
-
-			Thread.sleep(2000);
 			loginpage.validatedloggedinUserDetailsEmailID(email);
-
 			loginpage.verifyloggedinUserFNameAndLName();
 			usermanagement.clickUsermanagementBtn();
 			editUser.clickonResetpwdbtninusermanagement();
@@ -496,6 +449,7 @@ public class AKKU_33_Edit_Delete_Suspend_Activity_Users extends Browser_Setup {
 			result = TestLinkAPIResults.TEST_FAILED;
 			notes = e.getMessage();
 			e.printStackTrace();
+			Assert.fail();
 		}catch (AssertionError e) {
 
 			String message = e.getMessage();
@@ -521,23 +475,16 @@ public class AKKU_33_Edit_Delete_Suspend_Activity_Users extends Browser_Setup {
 		test = report.createTest("AK_43", "Reset Password from User List with valid password");
 		try {
 			loginpage.loginpageTitle();
-
 			loginpage.typeUseremail(email);
-
 			loginpage.typepassword(password);
-
 			loginpage.clickLogin();
-
-			Thread.sleep(2000);
 			loginpage.validatedloggedinUserDetailsEmailID(email);
-
 			loginpage.verifyloggedinUserFNameAndLName();
 			usermanagement.clickUsermanagementBtn();
 			editUser.clickonResetpwdbtninusermanagement();
 			editUser.typenewpassword(Newpassword);
 			editUser.typeConfnewpassword(Confnewpassword);
 			editUser.ResetbtnClick();
-			Thread.sleep(3000);
 			editUser.ValidateSuccessfullyresetmsg();
 
 			loginpage.clickLogout();
@@ -549,6 +496,7 @@ public class AKKU_33_Edit_Delete_Suspend_Activity_Users extends Browser_Setup {
 			result = TestLinkAPIResults.TEST_FAILED;
 			notes = e.getMessage();
 			e.printStackTrace();
+			Assert.fail();
 		}catch (AssertionError e) {
 
 			String message = e.getMessage();
@@ -575,45 +523,23 @@ public class AKKU_33_Edit_Delete_Suspend_Activity_Users extends Browser_Setup {
 		test = report.createTest("AK_44", "Select multiple user from user list and Verify Action buttons");
 		try {
 			loginpage.loginpageTitle();
-
 			loginpage.typeUseremail(email);
-
 			loginpage.typepassword(password);
-
 			loginpage.clickLogin();
-
-			Thread.sleep(2000);
-
-			Thread.sleep(2000);
 			loginpage.validatedloggedinUserDetailsEmailID(email);
-
 			loginpage.verifyloggedinUserFNameAndLName();
 			usermanagement.clickUsermanagementBtn();
-
 			editUser.Selectalluser();
 			editUser.ValidateDeleteandsuspendbtndisplay();
-
-			Thread.sleep(3000);
-
 			editUser.SelectSuspenduserfromstatusdropdown();
 			editUser.Clicksearchbutton();
 			editUser.Selectalluser();
-
-			Thread.sleep(5000);
-
 			editUser.ValidateDeleteandActivebtndisplay();
-
-			Thread.sleep(3000);
 			editUser.SelectDeleteduserfromstatusdropdown();
-
 			editUser.Clicksearchbutton();
 			editUser.Selectalluser();
-
 			editUser.ValidateSuspendandActivebtndisplay();
-
-			Thread.sleep(3000);
-
-			loginpage.clickLogout();
+    		loginpage.clickLogout();
 
 			log.info("####################################################################");
 			result = TestLinkAPIResults.TEST_PASSED;
@@ -622,6 +548,7 @@ public class AKKU_33_Edit_Delete_Suspend_Activity_Users extends Browser_Setup {
 			result = TestLinkAPIResults.TEST_FAILED;
 			notes = e.getMessage();
 			e.printStackTrace();
+			Assert.fail();
 		} catch (AssertionError e) {
 
 			String message = e.getMessage();
@@ -647,51 +574,33 @@ public class AKKU_33_Edit_Delete_Suspend_Activity_Users extends Browser_Setup {
 		test = report.createTest("AK_45", "Reset Password and Change Password in Next Login");
 		try {
 			loginpage.loginpageTitle();
-
 			loginpage.typeUseremail(email);
-
 			loginpage.typepassword(password);
-
 			loginpage.clickLogin();
-
-			Thread.sleep(2000);
 			loginpage.validatedloggedinUserDetailsEmailID(email);
-
 			loginpage.verifyloggedinUserFNameAndLName();
 			usermanagement.clickUsermanagementBtn();
 			editUser.SearchEmailIdinGrid(NewEmail);
 			editUser.typenewpassword(Newpassword);
 			editUser.typeConfnewpassword(Confnewpassword);
 			editUser.SelectChangePwd();
-
 			editUser.ResetbtnClick();
 			editUser.ValidateSuccessfullyresetmsg();
 			loginpage.clickLogout();
-
 			loginpage.typeUseremail(NewEmail);
 			loginpage.typepassword(Newpassword);
-			loginpage.clickLogin();
-			Thread.sleep(3000);
-			editUser.EnterpwdinChangePage(Oldpassword);
-			Thread.sleep(3000);
-			editUser.EnterconpwdinChangePage(Oldpassword);
-			Thread.sleep(3000);
+			loginpage.clickLogin();	
+			editUser.EnterpwdinChangePage(Oldpassword);	
+			editUser.EnterconpwdinChangePage(Oldpassword);		
 			editUser.ClickupdatepwdinChangePage();
-			Thread.sleep(3000);
 			editUser.validateChangepasswordmsg();
-			Thread.sleep(3000);
 			editUser.ClickDashboardbtn();
 			driver.navigate().to("http://pre-prod.akku.work/");
-			Thread.sleep(2000);
 			loginpage.typeUseremail(NewEmail);
 			loginpage.typepassword(Oldpassword);
-			Thread.sleep(3000);
 			loginpage.clickLogin();
-			Thread.sleep(3000);
 			loginpage.validatedloggedinUserDetailsEmailID(NewEmail);
-			Thread.sleep(3000);
 			loginpage.clickLogout();
-
 			log.info("####################################################################");
 			result = TestLinkAPIResults.TEST_PASSED;
 
@@ -699,6 +608,7 @@ public class AKKU_33_Edit_Delete_Suspend_Activity_Users extends Browser_Setup {
 			result = TestLinkAPIResults.TEST_FAILED;
 			notes = e.getMessage();
 			e.printStackTrace();
+			Assert.fail();
 		} catch (AssertionError e) {
 
 			String message = e.getMessage();
@@ -723,27 +633,14 @@ public class AKKU_33_Edit_Delete_Suspend_Activity_Users extends Browser_Setup {
 		test = report.createTest("AK_47", "Search user from User List Using Valid keyword");
 		try {
 			loginpage.loginpageTitle();
-
 			loginpage.typeUseremail(email);
-
 			loginpage.typepassword(password);
-
-			loginpage.clickLogin();
-
-			Thread.sleep(2000);
-
-			Thread.sleep(2000);
+         	loginpage.clickLogin();
 			loginpage.validatedloggedinUserDetailsEmailID(email);
-
 			loginpage.verifyloggedinUserFNameAndLName();
 			usermanagement.clickUsermanagementBtn();
-			Thread.sleep(3000);
 			editUser.EnterKeywordinsearchtxtbox(SearchKey);
-			Thread.sleep(3000);
 			editUser.ValidateSearchkeyword(SearchKey);
-
-			Thread.sleep(5000);
-
 			loginpage.clickLogout();
 
 			log.info("####################################################################");
@@ -753,6 +650,7 @@ public class AKKU_33_Edit_Delete_Suspend_Activity_Users extends Browser_Setup {
 			result = TestLinkAPIResults.TEST_FAILED;
 			notes = e.getMessage();
 			e.printStackTrace();
+			Assert.fail();
 		}catch (AssertionError e) {
 
 			String message = e.getMessage();
@@ -778,25 +676,14 @@ public class AKKU_33_Edit_Delete_Suspend_Activity_Users extends Browser_Setup {
 		test = report.createTest("AK_48", "Search user from User List using Invalid keyword");
 		try {
 			loginpage.loginpageTitle();
-
 			loginpage.typeUseremail(email);
-
 			loginpage.typepassword(password);
-
 			loginpage.clickLogin();
-
-			Thread.sleep(2000);
-
-			Thread.sleep(2000);
 			loginpage.validatedloggedinUserDetailsEmailID(email);
-
 			loginpage.verifyloggedinUserFNameAndLName();
 			usermanagement.clickUsermanagementBtn();
 			editUser.EnterKeywordinsearchtxtbox(SearchKey);
 			editUser.Validaterecordnotfoundmsg();
-
-			Thread.sleep(5000);
-
 			loginpage.clickLogout();
 
 			log.info("####################################################################");
@@ -806,6 +693,7 @@ public class AKKU_33_Edit_Delete_Suspend_Activity_Users extends Browser_Setup {
 			result = TestLinkAPIResults.TEST_FAILED;
 			notes = e.getMessage();
 			e.printStackTrace();
+			Assert.fail();
 		}catch (AssertionError e) {
 
 			String message = e.getMessage();
@@ -831,22 +719,17 @@ public class AKKU_33_Edit_Delete_Suspend_Activity_Users extends Browser_Setup {
 		test = report.createTest("AK_49", "Verify Last Login date & time in user List");
 		try {
 			loginpage.loginpageTitle();
-
 			loginpage.typeUseremail(NewEmail);
 			loginpage.typepassword(Oldpassword);
 			loginpage.clickLogin();
 			editUser.Getdatetime();
 			loginpage.clickLogout();
-			Thread.sleep(3000);
 			loginpage.typeUseremail(email);
 			loginpage.typepassword(password);
 			loginpage.clickLogin();
 			usermanagement.clickUsermanagementBtn();
 			editUser.EnterKeywordinsearchtxtbox(NewEmail);
 			editUser.ValidateDatetimefromgrid();
-
-			Thread.sleep(3000);
-
 			loginpage.clickLogout();
 
 			log.info("####################################################################");
@@ -856,6 +739,7 @@ public class AKKU_33_Edit_Delete_Suspend_Activity_Users extends Browser_Setup {
 			result = TestLinkAPIResults.TEST_FAILED;
 			notes = e.getMessage();
 			e.printStackTrace();
+			Assert.fail();
 		}catch (AssertionError e) {
 
 			String message = e.getMessage();
@@ -881,28 +765,16 @@ public class AKKU_33_Edit_Delete_Suspend_Activity_Users extends Browser_Setup {
 
 		try {
 			loginpage.loginpageTitle();
-
 			loginpage.typeUseremail(email);
-
 			loginpage.typepassword(password);
-
 			loginpage.clickLogin();
-
-			Thread.sleep(2000);
-
-			Thread.sleep(2000);
 			loginpage.validatedloggedinUserDetailsEmailID(email);
-
 			loginpage.verifyloggedinUserFNameAndLName();
 			usermanagement.clickUsermanagementBtn();
 			editUser.EnterKeywordinsearchtxtbox(SearchKey);
-
 			editUser.Selectfirstnamelinktxt();
 			editUser.ValidateEmailinlinktxtpopup(SearchKey);
 			editUser.CloseEditPopup();
-
-			Thread.sleep(3000);
-
 			loginpage.clickLogout();
 
 			log.info("####################################################################");
@@ -912,6 +784,7 @@ public class AKKU_33_Edit_Delete_Suspend_Activity_Users extends Browser_Setup {
 			result = TestLinkAPIResults.TEST_FAILED;
 			notes = e.getMessage();
 			e.printStackTrace();
+			Assert.fail();
 		} catch (AssertionError e) {
 
 			String message = e.getMessage();
@@ -938,24 +811,13 @@ public class AKKU_33_Edit_Delete_Suspend_Activity_Users extends Browser_Setup {
 		test = report.createTest("AK_51", "User list count in a page, based on Show Count selected");
 		try {
 			loginpage.loginpageTitle();
-
 			loginpage.typeUseremail(email);
-
 			loginpage.typepassword(password);
-
 			loginpage.clickLogin();
-
-			Thread.sleep(2000);
-
-			Thread.sleep(2000);
 			loginpage.validatedloggedinUserDetailsEmailID(email);
-
 			loginpage.verifyloggedinUserFNameAndLName();
 			usermanagement.clickUsermanagementBtn();
 			editUser.SelectShowdropdown();
-
-			Thread.sleep(5000);
-
 			loginpage.clickLogout();
 
 			log.info("####################################################################");
@@ -965,6 +827,7 @@ public class AKKU_33_Edit_Delete_Suspend_Activity_Users extends Browser_Setup {
 			result = TestLinkAPIResults.TEST_FAILED;
 			notes = e.getMessage();
 			e.printStackTrace();
+			Assert.fail();
 		}catch (AssertionError e) {
 
 			String message = e.getMessage();

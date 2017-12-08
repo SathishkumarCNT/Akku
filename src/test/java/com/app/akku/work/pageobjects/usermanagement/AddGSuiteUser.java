@@ -159,7 +159,7 @@ public class AddGSuiteUser extends Keywords {
 
 		List<WebElement> elements = driver.findElements(By.xpath("//*[@id=\"user-list\"]/tbody/tr/td[2]"));
 
-		Thread.sleep(2000);
+
 		String Filter = Fname;
 		for (int i = 0; i <= totalusercount; i++) {
 			String listelement = elements.get(i).getText();
@@ -167,7 +167,7 @@ public class AddGSuiteUser extends Keywords {
 			log.info(i);
 			if (listelement.contains(Filter)) {
 				log.info("Record Found");
-				Thread.sleep(2000);
+	
 				break;
 			}
 			else

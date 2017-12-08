@@ -5,6 +5,7 @@ import java.util.Random;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
 
 import com.app.akku.work.common.ReadfromProperties;
@@ -23,7 +24,7 @@ public class EditInformationpage extends Keywords {
 	ReadfromProperties prop = new ReadfromProperties();
 
 	public boolean isEditInfobtn() throws Exception {
-
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(prop.getAppProperty("Home_Edit_btn_xpath"))));
 		boolean status = isElementPresent(By.xpath(prop.getAppProperty("Home_Edit_btn_xpath")));
 
 		return status;
@@ -31,6 +32,7 @@ public class EditInformationpage extends Keywords {
 	}
 
 	public boolean isPWDEditInformationpage() throws Exception {
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(prop.getAppProperty("Editinformatiom_text_xpath"))));
 
 		boolean status = isElementPresent(By.xpath(prop.getAppProperty("Editinformatiom_text_xpath")));
 
@@ -112,6 +114,7 @@ public class EditInformationpage extends Keywords {
 	public void invalidconfirmpassworderrormsg(String Confnewpassword) throws Exception {
 
 		log.info("Trying to Verify Error Message for Invalid Confirm Password...");
+		waitTillAssertElementPresent(By.xpath(prop.getAppProperty("Home_Edit_Update_Errormsg_xpath")),"The password does not match. Please enter a correct password");
 
 		String Expected;
 
@@ -134,7 +137,8 @@ public class EditInformationpage extends Keywords {
 
 		log.info("We think we Entered Password in Old text field...");
 		clickUpdatebtn();
-		Thread.sleep(1000);
+		waitTillAssertElementPresent(By.xpath(prop.getAppProperty("ishome_home_update_error_popup_xpath")),"Incorrect old password");
+
 		String Expected = "Incorrect old password";
 		String Actual = getText(By.xpath(prop.getAppProperty("ishome_home_update_error_popup_xpath")));
 		log.info(Actual);
@@ -149,8 +153,8 @@ public class EditInformationpage extends Keywords {
 
 		log.info("Trying to Verify Error Message for Empty Old Password...");
 
-		clickUpdatebtn();
-		Thread.sleep(1000);
+	
+		waitTillAssertElementPresent(By.xpath(prop.getAppProperty("Home_Edit_Update_Errormsg_xpath")),"Please Enter the Old Password");
 		String Expected = "Please Enter the Old Password";
 		String Actual = getText(By.xpath(prop.getAppProperty("Home_Edit_Update_Errormsg_xpath")));
 		log.info(Actual);
@@ -165,7 +169,7 @@ public class EditInformationpage extends Keywords {
 
 		log.info("Trying to Verify Error Message without entering text in New Password and Confirm password...");
 
-		Thread.sleep(1000);
+		waitTillAssertElementPresent(By.xpath(prop.getAppProperty("Home_Edit_Update_Errormsg_xpath")),"Please Enter the Password");
 		String Expected = "Please Enter the Password";
 		String Actual = getText(By.xpath(prop.getAppProperty("Home_Edit_Update_Errormsg_xpath")));
 		log.info(Actual);
@@ -191,7 +195,7 @@ public class EditInformationpage extends Keywords {
 
 		log.info("Trying to Validate Password Error message..");
 
-		Thread.sleep(1000);
+		waitTillAssertElementPresent(By.xpath(prop.getAppProperty("Home_Edit_Update_Errormsg_xpath")),"Password must be 8 character with minimum one lowercase, numeric");
 
 		String Expected = "Password must be 8 character with minimum one lowercase, numeric";
 		String Actual = getText(By.xpath(prop.getAppProperty("Home_Edit_Update_Errormsg_xpath")));
@@ -208,7 +212,7 @@ public class EditInformationpage extends Keywords {
 
 		log.info("Trying to Validate Password Error message..");
 
-		Thread.sleep(1000);
+		waitTillAssertElementPresent(By.xpath(prop.getAppProperty("Home_Edit_Update_Errormsg_xpath")),"Your new password should not match with current password");
 
 		String Expected = "Your new password should not match with current password";
 		String Actual = getText(By.xpath(prop.getAppProperty("Home_Edit_Update_Errormsg_xpath")));

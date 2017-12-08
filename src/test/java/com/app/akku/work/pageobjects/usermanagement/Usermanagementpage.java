@@ -57,8 +57,9 @@ public class Usermanagementpage extends Keywords {
 		log.info("Trying to Click on Add Users Manually button...");
 
 		moveMouse(By.xpath(prop.getAppProperty("Akku_UserManagement_plus_btn_xpath")));
-
-		Thread.sleep(2000);
+		
+Thread.sleep(5000);
+		//wait.until(ExpectedConditions.elementToBeClickable(By.xpath(prop.getAppProperty("Akku_UserManagement_adduser_Manually_btn_xpath"))));
 
 		click(By.xpath(prop.getAppProperty("Akku_UserManagement_adduser_Manually_btn_xpath")));
 
@@ -71,8 +72,8 @@ public class Usermanagementpage extends Keywords {
 		log.info("Trying to Click on Add Users by using GSuite button...");
 
 		moveMouse(By.xpath(prop.getAppProperty("Akku_UserManagement_plus_btn_xpath")));
-
-		Thread.sleep(2000);
+		Thread.sleep(5000);
+		//wait.until(ExpectedConditions.elementToBeClickable(By.xpath(prop.getAppProperty("Akku_UserManagement_adduservia_Gsuite_btn_xpath"))));
 
 		click(By.xpath(prop.getAppProperty("Akku_UserManagement_adduservia_Gsuite_btn_xpath")));
 
@@ -161,7 +162,7 @@ public class Usermanagementpage extends Keywords {
 			log.info("Trying to verify Error Message...");
 
 			String Expected = "Upload failed invalid CSV data..";
-
+waitTillAssertElementPresent(By.xpath(prop.getAppProperty("Akku_UserManagement_Bulkuser_upload_Errormsg_xpath")), Expected);
 			String Actual = getText(
 					By.xpath(prop.getAppProperty("Akku_UserManagement_Bulkuser_upload_Errormsg_xpath")));
 
@@ -169,7 +170,7 @@ public class Usermanagementpage extends Keywords {
 
 			log.info("We think we Verified Error Message...");
 			test.log(Status.INFO, "We think we Verified Error Message");
-			Thread.sleep(1000);
+			
 
 		
 	}
@@ -183,7 +184,7 @@ public class Usermanagementpage extends Keywords {
 			click(By.xpath(prop.getAppProperty("Akku_UserManagement_Bulkuser_popup_Close_xpath")));
 
 			log.info("We think we Closed Bulk user Pop up window...");
-			Thread.sleep(1000);
+		
 
 			test.log(Status.INFO, "We think we Closed Bulk user Pop up window...");
 	}
@@ -195,7 +196,7 @@ public class Usermanagementpage extends Keywords {
 			log.info("Trying to verify Successful Message...");
 
 			String Expected = "Users Successfully Added";
-
+waitTillAssertElementPresent(By.xpath(prop.getAppProperty("Akku_UserManagement_Resetpwd_Succesmsg_xpath")), Expected);
 			String Actual = getText(By.xpath(prop.getAppProperty("Akku_UserManagement_Resetpwd_Succesmsg_xpath")));
 
 			Assert.assertEquals(Actual, Expected);
@@ -205,7 +206,6 @@ public class Usermanagementpage extends Keywords {
 			test.log(Status.INFO, "We think we Verified verify Successful Message..."); 
 			
 			
-			Thread.sleep(1000);
 			driver.navigate().refresh();
 
 		

@@ -7,10 +7,12 @@
     <classes>
       <class name="com.app.akku.work.TestCases.AKKU_15_PasswordPolicy">
         <methods>
-          <include name="teardown"/>
-          <include name="tearDown"/>
+          <include name="endsuite"/>
           <include name="setup"/>
-          <include name="AK_64_UpdatepasswordpolicyforparentOU" invocation-numbers="0"/>
+          <include name="AK_62_CreatenewparentOUandsetpasswordpolicy" invocation-numbers="0"/>
+          <include name="ExtentReportSetUp"/>
+          <include name="tearDown"/>
+          <include name="teardown"/>
         </methods>
       </class> <!-- com.app.akku.work.TestCases.AKKU_15_PasswordPolicy -->
     </classes>

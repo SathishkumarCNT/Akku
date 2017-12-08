@@ -42,7 +42,7 @@ public class EditUserfromUserManagement extends Keywords {
 
 			if (!isChecked) {
 				radioButtons.get(i).click();
-				Thread.sleep(2000);
+				
 			}
 		}
 	}
@@ -132,7 +132,7 @@ public class EditUserfromUserManagement extends Keywords {
 	public void EditusertypeinGSuite() throws Exception {
 
 		log.info("Select User Type in Edit User management...");
-
+waitTillElementlocate(By.id("userrole"));
 		String Usertype_user = "User";
 		String readusertype = driver.findElement(By.id("userrole")).getText();
 		log.info(readusertype);
@@ -159,7 +159,7 @@ public class EditUserfromUserManagement extends Keywords {
 
 		log.info("Trying to Verify Updated Successfully Message...");
 
-		Thread.sleep(1000);
+		checkPageIsReady();
 
 		boolean Actual = driver.getPageSource().contains("Successfully Updated");
 
@@ -177,7 +177,7 @@ public class EditUserfromUserManagement extends Keywords {
 	public void updatefailValidation() throws Exception {
 
 		log.info(" Trying to Verfiy Update Fail message");
-
+waitTillElementlocate(By.xpath(prop.getAppProperty("Akku_UserManagement_EdituserEmail_xpath")));
 		String errormsg = getvalidationMessage(
 				By.xpath(prop.getAppProperty("Akku_UserManagement_EdituserEmail_xpath")));
 
@@ -318,7 +318,7 @@ public class EditUserfromUserManagement extends Keywords {
 
 		log.info("Trying to Verify Suspend user Successfully Message...");
 
-		Thread.sleep(1000);
+		waitTillAssertElementPresent(By.xpath(prop.getAppProperty("Akku_UserManagement_Suspenduser_Accept_xpath")), "User suspended Successfully");
 
 		String Actual = getText(By.xpath(prop.getAppProperty("Akku_UserManagement_Suspenduser_Accept_xpath")));
 
@@ -362,7 +362,7 @@ public class EditUserfromUserManagement extends Keywords {
 
 		log.info("Verify Delete user Successfully Message...");
 
-		Thread.sleep(1000);
+		waitTillAssertElementPresent(By.xpath(prop.getAppProperty("Akku_UserManagement_Suspenduser_Accept_xpath")), "User deleteed Successfully");
 
 		String Actual = getText(By.xpath(prop.getAppProperty("Akku_UserManagement_Suspenduser_Accept_xpath")));
 
@@ -429,6 +429,7 @@ public class EditUserfromUserManagement extends Keywords {
 
 		String Expected = "Password must be 8 character with minimum one lowercase, numeric";
 
+		waitTillAssertElementPresent(By.xpath(prop.getAppProperty("Akku_UserManagement_Resetpwd_ErrorMsg_xpath")), Expected);
 		String Actual = getText(By.xpath(prop.getAppProperty("Akku_UserManagement_Resetpwd_ErrorMsg_xpath")));
 
 		Assert.assertEquals(Actual, Expected);
@@ -436,7 +437,7 @@ public class EditUserfromUserManagement extends Keywords {
 		log.info("We think we Verified verify Error Message...");
 		test.log(Status.INFO, "We think we Verified verify Error Message");
 
-		Thread.sleep(1000);
+	
 		driver.navigate().refresh();
 
 	}
@@ -446,14 +447,14 @@ public class EditUserfromUserManagement extends Keywords {
 		log.info("Trying to verify Error Message...");
 
 		String Expected = "The password does not match. Please enter a correct password";
-
+waitTillAssertElementPresent(By.xpath(prop.getAppProperty("Akku_UserManagement_Resetpwd_ErrorMsg_xpath")), Expected);
 		String Actual = getText(By.xpath(prop.getAppProperty("Akku_UserManagement_Resetpwd_ErrorMsg_xpath")));
 
 		Assert.assertEquals(Actual, Expected);
 
 		log.info("We think we Verified verified Confirm password Not matched Error Message...");
 		test.log(Status.INFO, "We think we Verified verified Confirm password Not matched Error Message");
-		Thread.sleep(1000);
+
 		driver.navigate().refresh();
 
 	}
@@ -461,9 +462,9 @@ public class EditUserfromUserManagement extends Keywords {
 	public void ValidateSuccessfullyresetmsg() throws Exception {
 
 		log.info("Trying to verify Successful Message...");
-Thread.sleep(5000);
-		String Expected = "Successfully Password Reseted";
 
+		String Expected = "Successfully Password Reseted";
+waitTillAssertElementPresent(By.xpath(prop.getAppProperty("Akku_UserManagement_Resetpwd_Succesmsg_xpath")), Expected);
 		String Actual = getText(By.xpath(prop.getAppProperty("Akku_UserManagement_Resetpwd_Succesmsg_xpath")));
 
 		Assert.assertEquals(Actual, Expected);
@@ -471,7 +472,7 @@ Thread.sleep(5000);
 		log.info("We think we Verified verify Successful Message...");
 
 		test.log(Status.INFO, "We think we Verified verify Successful Message");
-		Thread.sleep(1000);
+
 		driver.navigate().refresh();
 
 	}
@@ -489,7 +490,7 @@ Thread.sleep(5000);
 
 		test.log(Status.INFO, "We have entered Email Id In search box");
 
-		Thread.sleep(1000);
+
 
 		log.info("Trying to Click Email Id In search");
 
@@ -509,7 +510,7 @@ Thread.sleep(5000);
 
 		if (Changpwdinnxtlogin == true) {
 			click(By.id(prop.getAppProperty("Akku_UserManagement_Resetpwd_ChngPwdCheckbox_ID")));
-			Thread.sleep(1000);
+			
 			click(By.id(prop.getAppProperty("Akku_UserManagement_Resetpwd_ChngPwdCheckbox_ID")));
 		} else {
 			click(By.id(prop.getAppProperty("Akku_UserManagement_Resetpwd_ChngPwdCheckbox_ID")));
@@ -525,7 +526,7 @@ Thread.sleep(5000);
 		log.info("Trying to Enter password");
 
 		type(By.xpath(prop.getAppProperty("Akku_Changepwd_Password_xpath")), Password);
-		Thread.sleep(1000);
+	
 
 		log.info("We Think We Entered password");
 		test.log(Status.INFO, "We Think We Entered password: " + Password);
@@ -537,7 +538,7 @@ Thread.sleep(5000);
 		log.info("Trying to Enter Confirm password");
 
 		type(By.xpath(prop.getAppProperty("Akku_Changepwd_ConfirmPwd_xpath")), conPassword);
-		Thread.sleep(1000);
+	
 
 		log.info("We Think We Enter Confirm password");
 
@@ -551,7 +552,7 @@ Thread.sleep(5000);
 		log.info("Trying to Click Update Button");
 
 		click(By.xpath(prop.getAppProperty("Akku_Changepwd_Submit_btn_xpath")));
-		Thread.sleep(1000);
+		
 
 		log.info("We Think We Clicked on Update Button");
 
@@ -564,7 +565,7 @@ Thread.sleep(5000);
 		log.info("Trying to verify Successful Message...");
 
 		String Expected = "Your password has been updated successfully.";
-		Thread.sleep(1000);
+		waitTillAssertElementPresent(By.xpath(prop.getAppProperty("Akku_Changepwd_Sucess_msg_xpath")), Expected);
 
 		String Actual = getText(By.xpath(prop.getAppProperty("Akku_Changepwd_Sucess_msg_xpath")));
 
@@ -572,7 +573,7 @@ Thread.sleep(5000);
 
 		log.info("We think we Verified  Successful Message...");
 		test.log(Status.INFO, "We Think We Verified Successful Message: " + Actual);
-		Thread.sleep(1000);
+
 
 	}
 
@@ -582,7 +583,7 @@ Thread.sleep(5000);
 
 		click(By.xpath(prop.getAppProperty("Akku_Changepwd_Dashboard_btn_xpath")));
 
-		Thread.sleep(500);
+		
 		log.info("We think we Click Dashboard Button......");
 
 		log.info("We think we  Clicked Dashboard Button...");
@@ -602,7 +603,7 @@ Thread.sleep(5000);
 		log.info("We think we entered Email Id In search box");
 		test.log(Status.INFO, "We think we entered Email Id In search box");
 
-		Thread.sleep(1000);
+;
 
 	}
 
@@ -611,6 +612,7 @@ Thread.sleep(5000);
 		log.info("Trying to Verify User Found in List");
 
 		String Filter = SearchKey;
+		waitTillElementlocate(By.xpath("//*[@id=\"user-list\"]/tbody/tr"));
 		int Row_count = driver.findElements(By.xpath("//*[@id=\"user-list\"]/tbody/tr")).size();
 		log.info("Number Of Rows = " + Row_count);
 
@@ -638,7 +640,7 @@ Thread.sleep(5000);
 					log.info("We have Verified Enter Text Found in grid");
 					test.log(Status.INFO, "We have Verified Enter Text Found in grid");
 
-					Thread.sleep(2000);
+			
 					Assert.assertEquals(Actual, Excepted);
 					break;
 
@@ -653,11 +655,11 @@ Thread.sleep(5000);
 
 		log.info("Verify User Not Found Message In grid");
 
-		Thread.sleep(2000);
+		String Except = "No matching records found";
 
+waitTillAssertElementPresent(By.xpath(prop.getAppProperty("Akku_UserManagement_grid_Norecordfound_xpath")), Except);
 		String Actual = getText(By.xpath(prop.getAppProperty("Akku_UserManagement_grid_Norecordfound_xpath")));
 
-		String Except = "No matching records found";
 
 		log.info(Actual);
 		log.info(Except);
@@ -684,7 +686,7 @@ Thread.sleep(5000);
 				selectByVisibleText(By.xpath(prop.getAppProperty("Akku_UserManagement_Show_dropdown_xpath")),
 						Showvalue);
 				click(By.xpath(prop.getAppProperty("Akku_UserManagement_Show_dropdown_xpath")));
-				Thread.sleep(1000);
+		
 
 				log.info("We have selected" + Excepted + "From Show dropdown.");
 
@@ -695,7 +697,7 @@ Thread.sleep(5000);
 				JavascriptExecutor jse = (JavascriptExecutor) driver;
 				jse.executeScript("window.scrollBy(0,8000)", "");
 				log.info("Record Count display in grid = " + Row_count);
-				Thread.sleep(3000);
+		
 				Assert.assertEquals(Row_count, Excepted);
 				driver.navigate().refresh();
 
@@ -710,7 +712,7 @@ Thread.sleep(5000);
 				selectByVisibleText(By.xpath(prop.getAppProperty("Akku_UserManagement_Show_dropdown_xpath")),
 						Showvalue);
 
-				Thread.sleep(3000);
+	
 
 				log.info("We have selected" + Excepted + "From Show dropdown.");
 
@@ -721,7 +723,7 @@ Thread.sleep(5000);
 				JavascriptExecutor jse = (JavascriptExecutor) driver;
 				jse.executeScript("window.scrollBy(0,00)", "");
 				log.info("Record Count display in grid = " + Row_count);
-				Thread.sleep(5000);
+
 				Assert.assertEquals(Row_count, Excepted);
 				driver.navigate().refresh();
 			} else if (i == 3) {
@@ -734,7 +736,7 @@ Thread.sleep(5000);
 				selectByVisibleText(By.xpath(prop.getAppProperty("Akku_UserManagement_Show_dropdown_xpath")),
 						Showvalue);
 
-				Thread.sleep(3000);
+
 
 				log.info("We have selected" + Excepted + "From Show dropdown.");
 
@@ -745,7 +747,7 @@ Thread.sleep(5000);
 				JavascriptExecutor jse = (JavascriptExecutor) driver;
 				jse.executeScript("window.scrollBy(0,8000)", "");
 				log.info("Record Count display in grid = " + Row_count);
-				Thread.sleep(5000);
+
 				Assert.assertEquals(Row_count, Excepted);
 				driver.navigate().refresh();
 			} else if (i == 4) {
@@ -757,7 +759,7 @@ Thread.sleep(5000);
 				click(By.xpath(prop.getAppProperty("Akku_UserManagement_Show_dropdown_xpath")));
 				selectByVisibleText(By.xpath(prop.getAppProperty("Akku_UserManagement_Show_dropdown_xpath")),
 						Showvalue);
-				Thread.sleep(3000);
+
 
 				log.info("We have selected" + Excepted + "From Show dropdown.");
 
@@ -790,7 +792,7 @@ Thread.sleep(5000);
 
 	{
 		String Expected = SearchKey;
-
+waitTillAssertElementPresent(By.xpath(prop.getAppProperty("Akku_UserManagement_EmailId_FName_POpup_xpath")), Expected);
 		log.info("Trying to verify on Ful Name Link Text");
 		String Actual = getText(By.xpath(prop.getAppProperty("Akku_UserManagement_EmailId_FName_POpup_xpath")));
 
@@ -819,7 +821,7 @@ Thread.sleep(5000);
 
 	{
 		String Expected = Logindatetime;
-
+waitTillAssertElementPresent(By.xpath(prop.getAppProperty("Akku_UserManagement_LastloginDatetime_xpath")), Expected);
 		log.info("Trying to Verify on Last login Date time");
 		String Actual = getText(By.xpath(prop.getAppProperty("Akku_UserManagement_LastloginDatetime_xpath")));
 
@@ -857,11 +859,11 @@ Thread.sleep(5000);
 		log.info(Deletebtn);
 		log.info(Suspend);
 		Assert.assertEquals(Deletebtn, excepted);
-		Thread.sleep(1000);
+
 		Assert.assertEquals(Suspend, excepted);
 		log.info(" We Think We Verified  Delete and Suspend Button displayed in page");
 		test.log(Status.INFO, " We Think We Verified  Delete and Suspend Button displayed in page");
-		Thread.sleep(1000);
+
 		driver.navigate().refresh();
 
 	}
@@ -869,7 +871,7 @@ Thread.sleep(5000);
 	public void ValidateDeleteandActivebtndisplay() throws Exception
 
 	{
-		Thread.sleep(3000);
+
 		boolean excepted = true;
 
 		log.info("Trying to Verify Delete and Active Button displayed in page");
@@ -880,18 +882,18 @@ Thread.sleep(5000);
 		log.info(Deletebtn);
 		log.info(Active);
 		Assert.assertEquals(Deletebtn, excepted);
-		Thread.sleep(1000);
+
 		Assert.assertEquals(Active, excepted);
 		log.info(" We Think We Verified  Delete and Active Button displayed in page");
 		test.log(Status.INFO, " We Think We Verified  Delete and Active Button displayed in page");
-		Thread.sleep(1000);
+
 
 	}
 
 	public void ValidateSuspendandActivebtndisplay() throws Exception
 
 	{
-		Thread.sleep(3000);
+
 		boolean excepted = true;
 
 		log.info("Trying to Verify Active and Suspend Button displayed in page");
@@ -902,11 +904,11 @@ Thread.sleep(5000);
 		log.info(Suspend);
 		log.info(Active);
 		Assert.assertEquals(Suspend, excepted);
-		Thread.sleep(1000);
+
 		Assert.assertEquals(Active, excepted);
 		log.info(" We Think We Verified  Active and Suspend Button displayed in page");
 		test.log(Status.INFO, "We Think We Verified  Active and Suspend Button displayed in page");
-		Thread.sleep(1000);
+
 
 	}
 

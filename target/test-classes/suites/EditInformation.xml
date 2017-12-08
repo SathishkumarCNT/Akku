@@ -16,18 +16,14 @@
 					<!-- <include name="AK_06_VerificationofUserInfoinHomepageEditInfopage" />
 					<include name="AK_08_UpdateNewPasswordwithoutenteringOldpassword"/> -->
 					<include name="AK_09_ChangeOldPasswordtoNewPassword"/>
-					<include name="AK_32_ChangeNewPasswordtoOldPassword"/>
-				   <!--  <include name="AK_10_UpdateNewPasswordwithinvalidConfirmpassword"/>
+					 <include name="AK_32_ChangeNewPasswordtoOldPassword"/>
+				<!-- <include name="AK_10_UpdateNewPasswordwithinvalidConfirmpassword"/>
 				    <include name="AK_11_UpdateNewPasswordwithenteringinvalidOldpassword"/>
 					<include name="AK_12_UpdateNewPasswordWithEmptyPwdEmptyConfirmPwd"/>		
-					<include name="AK_13_UpdatepasswordwithoutmatchingwithPasswordpolicy"/>
-					<include name="AK_14_UpdateNewPasswordWithSamevalueofnewpwdConfirmpwd"/> -->
+					<include name="AK_13_UpdatepasswordwithoutmatchingwithPasswordpolicy"/> 
+					<include name="AK_14_UpdateNewPasswordWithSamevalueofnewpwdConfirmpwd"/>-->
 					
-<<<<<<< HEAD
 					
-=======
-					AK_33_EditUserinformationinuserManagementpagewithvaliddata
->>>>>>> 90d437f53722b12c2e941d2a5f361968b3e3fe52
 				
 				</methods>
 			</class>

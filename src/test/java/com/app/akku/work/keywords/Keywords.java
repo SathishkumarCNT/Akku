@@ -22,6 +22,7 @@ import org.openqa.selenium.Keys;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.TakesScreenshot;
+import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -43,15 +44,17 @@ public class Keywords extends Browser_Setup{
 	
 	String Email;
 	
-	public WebDriver driver;
+
 	
-	
+
 		
 	public Keywords(WebDriver driver)
 	{
 		this.driver = driver;
 	}
 	public String getvalidationMessage(By object) {
+		wait.until(ExpectedConditions.visibilityOfElementLocated(object));
+
 		return driver.findElement(object).getAttribute("validationMessage");
 	}
 	
@@ -180,6 +183,7 @@ public class Keywords extends Browser_Setup{
 	}
 	
 	public boolean isSelected(By object) throws Exception {
+		
 
 		boolean select = driver.findElement(object).isSelected();
 
@@ -193,6 +197,7 @@ public class Keywords extends Browser_Setup{
 	}
 
 	public boolean IsDisplayed(By object) throws Exception {
+		wait.until(ExpectedConditions.visibilityOfElementLocated(object));
 
 		boolean select = driver.findElement(object).isDisplayed();
 
@@ -207,6 +212,7 @@ public class Keywords extends Browser_Setup{
 	
 	public void doubleclick(By object) throws Exception
 	{
+		wait.until(ExpectedConditions.visibilityOfElementLocated(object));
 		try{
 			Actions action = new Actions(driver);
 			WebElement element=driver.findElement(object);
@@ -219,6 +225,8 @@ public class Keywords extends Browser_Setup{
 	}
 	
 	public void doubleClick(By object) {
+		
+		wait.until(ExpectedConditions.visibilityOfElementLocated(object));
 		try {
 			Actions action = new Actions(driver);
 			WebElement element=driver.findElement(object);
@@ -256,7 +264,10 @@ public class Keywords extends Browser_Setup{
 	
 	
 	public boolean isverifyElementAbsent(By object) throws Exception {
+		
+		wait.until(ExpectedConditions.visibilityOfElementLocated(object));
 	    try {
+	    	
 	        driver.findElement(object);
 	        log.info("Element Present");
 	        return false;
@@ -277,19 +288,23 @@ public class Keywords extends Browser_Setup{
 	}
 
 	public void click(By object) throws Exception {
-		
+		wait.until(ExpectedConditions.elementToBeClickable(object));
 			try {
+				
 				driver.findElement(object).click();
 				Thread.sleep(1000);
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
-				
-			}		
-		
+			}
+			
+			
 	}
 	
 	public void clear(By object)throws Exception{
+		
+		wait.until(ExpectedConditions.presenceOfElementLocated(object));
+
 		try
 		{
 			driver.findElement(object).clear();
@@ -302,6 +317,8 @@ public class Keywords extends Browser_Setup{
 	}
 	
 	public  WebElement clickelement(By object, WebElement element) throws Exception {
+		wait.until(ExpectedConditions.visibilityOfElementLocated(object));
+		
 		try{
 			driver.findElement(object).click();
 			Thread.sleep(1000);			
@@ -313,6 +330,8 @@ public class Keywords extends Browser_Setup{
 	}
 	
 	public void click(WebElement element) {
+		
+		
 		try
 		{
 			element.click();
@@ -324,6 +343,9 @@ public class Keywords extends Browser_Setup{
 	}
 
 	public void type(By object, String data) throws Exception {
+		
+		
+		 wait.until(ExpectedConditions.visibilityOfElementLocated(object));
 		
 		try{
 			driver.findElement(object).sendKeys(data);
@@ -337,6 +359,7 @@ public class Keywords extends Browser_Setup{
 
 	public void pressTabkey(By object) throws Exception{
 		/*logs.debug("Executing___"+testName+"___"+stepName);*/
+		wait.until(ExpectedConditions.visibilityOfElementLocated(object));
 		try
 		{
 			driver.findElement(object).sendKeys(Keys.TAB);
@@ -349,6 +372,8 @@ public class Keywords extends Browser_Setup{
 	}
 
 	public String getText(By object) throws Exception{
+		wait.until(ExpectedConditions.visibilityOfElementLocated(object));
+		
 		try{
 			String text = driver.findElement(object).getText();	 		
 		
@@ -360,6 +385,7 @@ public class Keywords extends Browser_Setup{
 	}
 
 	public String getWindowtitle() throws Exception{
+		
 		try{
 			String text = driver.getTitle();	
 			return text;
@@ -388,6 +414,7 @@ public class Keywords extends Browser_Setup{
 	}
 
 	public int sizeOf(By object) {
+		wait.until(ExpectedConditions.presenceOfElementLocated(object)); 
 		int size=driver.findElements(object).size();
 		return size;
 	}
@@ -500,7 +527,7 @@ public class Keywords extends Browser_Setup{
 
 	public WebElement WaitForElement(By object) throws Exception {
 		try	{		          
-			WebDriverWait wait = new WebDriverWait(driver,60);
+			
 			return wait.until(ExpectedConditions.presenceOfElementLocated(object)); 
 
 		}
@@ -584,6 +611,8 @@ public class Keywords extends Browser_Setup{
 
 	public void moveMouse(By object)
 	{
+		wait.until(ExpectedConditions.presenceOfElementLocated(object)); 
+
 		try{
 			WebElement mouseelement = null;
 			mouseelement = driver.findElement(object);
@@ -664,6 +693,8 @@ public class Keywords extends Browser_Setup{
 	}
 	
 	public void selectByindexvalue(By object,int value) throws Exception {
+		wait.until(ExpectedConditions.presenceOfElementLocated(object)); 
+
 		try{
 			Select select = new Select(driver.findElement(object));
 			select.selectByIndex(value);
@@ -678,6 +709,8 @@ public class Keywords extends Browser_Setup{
 	}
 	
 	public void selectall(By object) throws Exception {
+		wait.until(ExpectedConditions.presenceOfElementLocated(object)); 
+
 		try{
 			Select select = new Select(driver.findElement(object));
 			select.getAllSelectedOptions();
@@ -709,7 +742,7 @@ public class Keywords extends Browser_Setup{
 		
 	}
 public void keytype(By object, Keys data) throws Exception {
-		
+	wait.until(ExpectedConditions.presenceOfElementLocated(object)); 
 		try{
 			driver.findElement(object).sendKeys(data);
 			}
@@ -719,5 +752,34 @@ public void keytype(By object, Keys data) throws Exception {
 			
 		}
 	}
+public String checkPageIsReady() throws Exception {
+	  
+	 
+		JavascriptExecutor js = (JavascriptExecutor)driver;
+		  
+		  
+		 
+		  if (js.executeScript("return document.readyState").toString().equals("complete")){ 
+		 
+		   
+		   
+		  } 
 	
+	  return "Page Is loaded.";
+}
+
+public void waitTillAssertElementPresent(By object, String asserttext) throws Exception
+{
+	
+		wait.until(ExpectedConditions.textToBePresentInElementLocated(object,asserttext));
+	
+}
+public void waitTillElementlocate(By object) throws Exception
+{
+
+
+	wait.until(ExpectedConditions.visibilityOfElementLocated(object));
+
+
+}
 }

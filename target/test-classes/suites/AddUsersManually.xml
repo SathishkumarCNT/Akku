@@ -4,7 +4,7 @@
 
 <suite name="AKKU_TestSuite"  annotations="JDK">
 	
-	<test name="Edit User" preserve-order="true">
+<!-- 	<test name="Edit User" preserve-order="true">
 	
 	<parameter name="browser" value="W_chrome"/>
   	<parameter name="Environment" value="http://pre-prod.akku.work/" />
@@ -13,13 +13,26 @@
 			<class name="com.app.akku.work.TestCases.AKKU_47_AddsingleuserManually">
 				<methods>
 
-	<!--  <include name="AK_46_AddUsersManually"/>  -->
+	 <include name="AK_46_AddUsersManually"/> 
 				  <include name="addAdmin"/>
 					
 					
 				</methods>
 			</class>
 		</classes>
-  	</test> 
+  	</test>  -->
+  	
+	<test name="CSV_File_Upload">
+		<parameter name="browser" value="W_chrome" />
+		<parameter name="Environment" value="http://pre-prod.akku.work/" />
+		<classes>
+			<class name="com.app.akku.work.TestCases.AKKU_48_Uploadcsvfile">
+				<methods>
+					<include name="AK_39_AddBulkUserfromUploadfilewithValidData" />
+					<include name="AK_34_AddBulkUserfromUploadfileCSVwithInvalidData" />
+				</methods>
+			</class>
+		</classes>
+	</test>
   	
 </suite>

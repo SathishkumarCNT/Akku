@@ -23,7 +23,7 @@ public class AKKU_48_Uploadcsvfile extends Browser_Setup{
 	String testPlan = "AutomateManualTC";
 	String AK_39 = "Add Bulk User from Upload file(CSV) with Valid Data";
 	String AK_34 = "Add Bulk User from Upload file(CSV) with Invalid Data";
-	String build = "Build1";
+	String build = "Build 2";
 	String notes = null;
 	String result = null;
 	
@@ -46,31 +46,18 @@ public void AK_39_AddBulkUserfromUploadfilewithValidData(String email, String pa
 		
 	
 		try {
-			loginpage.loginpageTitle();
-			
-			loginpage.typeUseremail(email);
-			
-			loginpage.typepassword(password);
-			
+			loginpage.loginpageTitle();	
+			loginpage.typeUseremail(email);		
+			loginpage.typepassword(password);		
 			loginpage.clickLogin();
-			
-			Thread.sleep(2000);
 			loginpage.validatedloggedinUserDetailsEmailID(email);
-			
 			loginpage.verifyloggedinUserFNameAndLName();
-			Thread.sleep(5000);
 			usermanagement.clickUsermanagementBtn();
 			usermanagement.clickOnAddUserManualy();
 			usermanagement.clickOnaddUserbyBulkOption();
-			
 			usermanagement.isDownloadSampleFilebtn();
-			
 			usermanagement.selectvalidcsvfile();
-			Thread.sleep(5000);
-				
-			
 			usermanagement.clickOnUploadBtn();
-			
 			usermanagement.ValidateSuccessfullyresetmsg();
 			loginpage.clickLogout();
 			
@@ -80,6 +67,7 @@ public void AK_39_AddBulkUserfromUploadfilewithValidData(String email, String pa
 		} catch (Exception e) {
 			result = TestLinkAPIResults.TEST_FAILED;
 			notes = e.getMessage();
+			Assert.fail();
 		} catch (AssertionError e) {
 
 			String message = e.getMessage();
@@ -103,35 +91,20 @@ public void AK_39_AddBulkUserfromUploadfilewithValidData(String email, String pa
 		
 		test = report.createTest("AK_34", "Add Bulk User from Upload file(CSV) with Invalid Data");
 		try {
-			loginpage.loginpageTitle();
-			
-			loginpage.typeUseremail(email);
-			
-			loginpage.typepassword(password);
-			
+			loginpage.loginpageTitle();	
+			loginpage.typeUseremail(email);			
+			loginpage.typepassword(password);		
 			loginpage.clickLogin();
-			
-			Thread.sleep(2000);
 			loginpage.validatedloggedinUserDetailsEmailID(email);
-			
 			loginpage.verifyloggedinUserFNameAndLName();
-			Thread.sleep(5000);
 			usermanagement.clickUsermanagementBtn();
 			usermanagement.clickOnAddUserManualy();
 			usermanagement.clickOnaddUserbyBulkOption();
-			
-			usermanagement.isDownloadSampleFilebtn();
-			
+			usermanagement.isDownloadSampleFilebtn();		
 			usermanagement.selectinvalidcsvfile();
-			Thread.sleep(5000);
-				
-			
 			usermanagement.clickOnUploadBtn();
-			
 			usermanagement.ValidateErrormsg();
-			usermanagement.CloseBulkuserpopscreen();
-			
-					
+			usermanagement.CloseBulkuserpopscreen();		
 			loginpage.clickLogout();
 			
 			log.info("####################################################################");
@@ -140,6 +113,7 @@ public void AK_39_AddBulkUserfromUploadfilewithValidData(String email, String pa
 			result = TestLinkAPIResults.TEST_FAILED;
 			notes = e.getMessage();
 			e.printStackTrace();
+			Assert.fail();
 		} catch (AssertionError e) {
 
 			String message = e.getMessage();

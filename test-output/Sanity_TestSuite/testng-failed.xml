@@ -1,18 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite guice-stage="DEVELOPMENT" name="Failed suite [Sanity_TestSuite]">
-  <test name="Upload CSV(failed)">
+  <test name="OU Management(failed)">
     <parameter name="browser" value="W_chrome"/>
     <parameter name="Environment" value="http://pre-prod.akku.work/"/>
     <classes>
       <class name="com.app.akku.work.TestCases.AK_52_Create_Edit_Delete_Assign_OU">
         <methods>
-          <include name="AK_58_DeleteOUinOUManagementpage" invocation-numbers="0"/>
-          <include name="teardown"/>
+          <include name="endsuite"/>
           <include name="setup"/>
+          <include name="ExtentReportSetUp"/>
+          <include name="AK_68_SynchronizationOUviaGSuite" invocation-numbers="0"/>
           <include name="tearDown"/>
+          <include name="teardown"/>
         </methods>
       </class> <!-- com.app.akku.work.TestCases.AK_52_Create_Edit_Delete_Assign_OU -->
     </classes>
-  </test> <!-- Upload CSV(failed) -->
+  </test> <!-- OU Management(failed) -->
 </suite> <!-- Failed suite [Sanity_TestSuite] -->

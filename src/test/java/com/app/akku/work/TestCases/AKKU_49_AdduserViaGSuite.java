@@ -27,7 +27,7 @@ public class AKKU_49_AdduserViaGSuite extends Browser_Setup {
 	String testProject = "AkkuAppTC";
 	String testPlan = "AutomateManualTC";
 	String AK_41 = "Add new user Via G-suite";
-	String build = "Build1";
+	String build = "Build 2";
 	String notes = null;
 	String result = null;
 	
@@ -52,46 +52,29 @@ public class AKKU_49_AdduserViaGSuite extends Browser_Setup {
 		
 		try {
 			loginpage.loginpageTitle();
-			
 			loginpage.typeUseremail(email);
-			
 			loginpage.typepassword(password);
-			
 			loginpage.clickLogin();
-			Thread.sleep(2000);
 			loginpage.validatedloggedinUserDetailsEmailID(email);
-
 			loginpage.verifyloggedinUserFNameAndLName();
-
 			usermanagement.clickUsermanagementBtn();
-			Thread.sleep(3000);
 			usermanagement.isUsermanagementpage();
 			usermanagement.clickonAddUserViaGSuite();
 			addgsuiteuser.typeGSuiteEmail(GSuiteEmail);
 			addgsuiteuser.clickOnNextBtnofGSuiteFormEmail();
-			Thread.sleep(2000);
-			addgsuiteuser.typeGSuitePwd(GSuitePwd);
-			
+			addgsuiteuser.typeGSuitePwd(GSuitePwd);	
 			addgsuiteuser.clickOnNextBtnofGSuiteFormPassword();
-
-			Thread.sleep(5000);
-
 			addgsuiteuser.verifyGSuiteDahsboardtext();
 			addgsuiteuser.clickOnAddnewuser();
 			addgsuiteuser.EnterFirsttName(Fname);
 			addgsuiteuser.EnterLastName();
 			addgsuiteuser.Password(Confnewpassword);
-			Thread.sleep(5000);
 			addsingleuser.typeConfnewpassword(Confnewpassword);
 			editUser.EditusertypeinGSuite();
 			addgsuiteuser.clickAddUser();
-			Thread.sleep(3000);
 			usermanagement.clickUsermanagementBtn();
 			usermanagement.isUsermanagementpage();
-			Thread.sleep(3000);
-
 			addgsuiteuser.Validateuserlist(Fname);
-
 			loginpage.clickLogout();
 			
 			log.info("####################################################################");
@@ -102,8 +85,9 @@ public class AKKU_49_AdduserViaGSuite extends Browser_Setup {
 			result = TestLinkAPIResults.TEST_FAILED;
 			notes = e.getMessage();
 			e.printStackTrace();
+			Assert.fail();
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+		
 		} catch (AssertionError e) {
 
 			String message = e.getMessage();

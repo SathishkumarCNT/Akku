@@ -11,6 +11,7 @@ import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.remote.RemoteWebDriver;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterSuite;
@@ -38,6 +39,7 @@ import com.aventstack.extentreports.reporter.configuration.ChartLocation;
 public class Browser_Setup {
 
 	public WebDriver driver;
+	
 
 	String environment;
 	public static Loginpage loginpage;
@@ -52,6 +54,7 @@ public class Browser_Setup {
 	public static ExtentHtmlReporter htmlReporter;
 	public static ExtentReports report;
 	public static ExtentTest test;
+	public static WebDriverWait wait;
 
 	Logger log = Logger.getLogger(Browser_Setup.class.getName());
 
@@ -148,7 +151,7 @@ public class Browser_Setup {
 
 		}
 
-		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		//driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		driver.manage().window().maximize();
 		driver.get(Environment);
 		driver.manage().deleteAllCookies();
@@ -162,7 +165,7 @@ public class Browser_Setup {
 		siteblocking            = new SiteBlockingpage(driver);
 		Pwdpolicy               = new PasswordPolicy(driver);
 		oumangement             = new OUmanagementpage(driver);
-
+		wait                    = new WebDriverWait(driver, 30);
 	}
 
 	/**

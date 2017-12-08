@@ -35,13 +35,13 @@
 
 		<classes>
 			<class name="com.app.akku.work.TestCases.AKKU_09_Editpwdinformation">
-				<methods>
+				<methods>				
+				    <include name="AK_09_ChangeOldPasswordtoNewPassword" />
+					<include name="AK_32_ChangeNewPasswordtoOldPassword" />
 					<include name="AK_8_UpdateNewPasswordwithoutenteringOldpassword" />
 					<include name="AK_12_UpdateNewPasswordWithEmptyPwdEmptyConfirmPwd" />
 					<include name="AK_13_UpdatepasswordwithoutmatchingwithPasswordpolicy" />
-					<include name="AK_14_UpdateNewPasswordWithSamevalueofnewpwdConfirmpwd" />
-					<include name="AK_9_ChangeOldPasswordtoNewPassword" />
-					<include name="AK_32_ChangeNewPasswordtoOldPassword" />
+					<include name="AK_14_UpdateNewPasswordWithSamevalueofnewpwdConfirmpwd" />				
 				</methods>
 			</class>
 		</classes>
@@ -94,10 +94,10 @@
 					<include name="AK_37_SuspendUserfromUserManagementpage" />
 					<include name="AK_38_DeleteUserfromUserManagementpage" />
 					<include name="AK_43_ResetPasswordfromUserListwithvalidpassword" />
+					<include name="AK_45_ResetPasswordandChangePasswordinNextLogin" />
 					<include name="AK_47_Searchuserfromuserlistusingvalidkeyword" />
 					<include name="AK_49_VerifyLastLogindatetimeinuserList" />
-					<include
-						name="AK_44_SelectmultipleuserfromuserlistandVerifyActionbuttons" />
+					<include name="AK_44_SelectmultipleuserfromuserlistandVerifyActionbuttons" />
 				</methods>
 			</class>
 		</classes>
@@ -116,20 +116,7 @@
 		</classes>
 	</test>
 
-	<test name="Add User Via G-Suite" preserve-order="true">
-
-		<parameter name="browser" value="W_chrome" />
-		<parameter name="Environment" value="http://pre-prod.akku.work/" />
-
-		<classes>
-			<class name="com.app.akku.work.TestCases.AKKU_49_AdduserViaGSuite">
-				<methods>
-					<include name="AK_41_AddUserViaGSuite" />
-
-				</methods>
-			</class>
-		</classes>
-	</test>
+	
 
 	<test name="Edit User" preserve-order="true">
 
@@ -162,13 +149,26 @@
 					<include name="AK_59_AssignUsers" />
 					<include name="AK_60_DeleteParentOUwhichhaveSubOUinOUManagementpage" />
 					<include name="AK_61_DeleteOUwhichhaveuserinOUManagementpage" />
-					<include name="AK_58_DeleteOUinOUManagementpage" />
+					<!-- <include name="AK_58_DeleteOUinOUManagementpage" /> -->
 					<include name="DeleteCreatedOufromPage" />
 				</methods>
 			</class>
 		</classes>
 	</test>
+<test name="Add User Via G-Suite" preserve-order="true">
 
+		<parameter name="browser" value="W_chrome" />
+		<parameter name="Environment" value="http://pre-prod.akku.work/" />
+
+		<classes>
+			<class name="com.app.akku.work.TestCases.AKKU_49_AdduserViaGSuite">
+				<methods>
+					<include name="AK_41_AddUserViaGSuite" />
+
+				</methods>
+			</class>
+		</classes>
+	</test>
 
 
 </suite>

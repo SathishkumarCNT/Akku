@@ -1,6 +1,8 @@
 package com.app.akku.work.TestCases;
 
 
+import org.apache.log4j.Logger;
+import org.testng.Assert;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterTest;
@@ -25,9 +27,12 @@ public class AKKU_49_AdduserViaGSuite extends Browser_Setup {
 	String testProject = "AkkuAppTC";
 	String testPlan = "AutomateManualTC";
 	String AK_41 = "Add new user Via G-suite";
-	String build = "Build1";
+	String build = "Build 2";
 	String notes = null;
 	String result = null;
+	
+	
+	Logger log = Logger.getLogger(AKKU_49_AdduserViaGSuite.class.getName());
 
 	@DataProvider(name = "Gsuite_Login")
 	public Object[][] dataProvider_ClientName() {
@@ -43,51 +48,36 @@ public class AKKU_49_AdduserViaGSuite extends Browser_Setup {
 	public void AK_41_AddnewuserViaGsuite(String email, String password, String GSuiteEmail, String GSuitePwd, String Fname,
 			String Confnewpassword)throws Exception {
 		
+		test = report.createTest("AK_41", "Add new user Via G-suite");
+		
 		try {
 			loginpage.loginpageTitle();
-			
 			loginpage.typeUseremail(email);
-			
 			loginpage.typepassword(password);
-			
 			loginpage.clickLogin();
-			Thread.sleep(2000);
 			loginpage.validatedloggedinUserDetailsEmailID(email);
-
 			loginpage.verifyloggedinUserFNameAndLName();
-
 			usermanagement.clickUsermanagementBtn();
-			Thread.sleep(3000);
 			usermanagement.isUsermanagementpage();
 			usermanagement.clickonAddUserViaGSuite();
 			addgsuiteuser.typeGSuiteEmail(GSuiteEmail);
 			addgsuiteuser.clickOnNextBtnofGSuiteFormEmail();
-			Thread.sleep(2000);
-			addgsuiteuser.typeGSuitePwd(GSuitePwd);
-			
+			addgsuiteuser.typeGSuitePwd(GSuitePwd);	
 			addgsuiteuser.clickOnNextBtnofGSuiteFormPassword();
-
-			Thread.sleep(5000);
-
 			addgsuiteuser.verifyGSuiteDahsboardtext();
 			addgsuiteuser.clickOnAddnewuser();
 			addgsuiteuser.EnterFirsttName(Fname);
 			addgsuiteuser.EnterLastName();
 			addgsuiteuser.Password(Confnewpassword);
-			Thread.sleep(5000);
 			addsingleuser.typeConfnewpassword(Confnewpassword);
 			editUser.EditusertypeinGSuite();
 			addgsuiteuser.clickAddUser();
-			Thread.sleep(3000);
 			usermanagement.clickUsermanagementBtn();
 			usermanagement.isUsermanagementpage();
-			Thread.sleep(3000);
-
 			addgsuiteuser.Validateuserlist(Fname);
-
 			loginpage.clickLogout();
 			
-			System.out.println("####################################################################");
+			log.info("####################################################################");
 			result = TestLinkAPIResults.TEST_PASSED;
 			
 		} catch (Exception e) {
@@ -95,66 +85,24 @@ public class AKKU_49_AdduserViaGSuite extends Browser_Setup {
 			result = TestLinkAPIResults.TEST_FAILED;
 			notes = e.getMessage();
 			e.printStackTrace();
+			Assert.fail();
 			// TODO Auto-generated catch block
+		
+		} catch (AssertionError e) {
+
+			String message = e.getMessage();
+			log.info(message);
+			result = TestLinkAPIResults.TEST_FAILED;
+			notes = e.getMessage();
 			e.printStackTrace();
+			Assert.fail();
+
 		}finally {
 
-			System.out.println("Updating TestCase Execution Status in TestLink");
+			log.info("Updating TestCase Execution Status in TestLink");
 			TestLinkIntegration.reportResult(testProject, testPlan, AK_41, build, notes, result);
 
 		}
 	} 	
-	/**
-	 * 
-	 * @throws Exception
-	 */
-	@AfterMethod
-	public void tearDown(ITestResult result) {
-		
-		System.out.println("Inside of tearDown Method");
-				
-		try
-	    {
-	        if(result.getStatus() == ITestResult.SUCCESS)
-	        {
-	        	System.out.println("Test case passed");
-	        	driver.quit();
-				
-	        }
-	        else if(result.getStatus() == ITestResult.FAILURE)
-	        {
-	        	
-	        	Keywords.captureScreenShot(driver);
-				
-				System.out.println("Screenshot taken in Tear Down method");
-				driver.quit();
-				
-			} else if(result.getStatus() == ITestResult.SKIP)
-			{
-				
-				Keywords.captureScreenShot(driver);
-				
-				System.out.println("Test case Skipped");
-				driver.quit();
-			}
-	    }
-	   	    catch (Exception e) {
-
-				System.out.println("Exception while taking screenshot " + e.getMessage());
-			}
-			
-		}
 	
-	/**
-	 * 
-	 * @throws Exception
-	 */
-	@AfterTest
-	public void teardown() throws Exception {
-		
-		
-		//driver.quit();
-		System.out.println("Test Execution Finished");
-
-	}
 }

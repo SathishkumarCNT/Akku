@@ -1,5 +1,6 @@
 package com.app.akku.work.pageobjects.OUManagement;
 
+import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
 
 import org.apache.log4j.Logger;
@@ -8,7 +9,7 @@ import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
-
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
 
 import com.app.akku.work.common.ReadfromProperties;
@@ -18,7 +19,7 @@ import com.aventstack.extentreports.Status;
 
 public class OUmanagementpage extends Keywords {
 	ReadfromProperties prop = new ReadfromProperties();
-	
+
 	Logger log = Logger.getLogger(OUmanagementpage.class.getName());
 
 	public OUmanagementpage(WebDriver driver) {
@@ -41,9 +42,8 @@ public class OUmanagementpage extends Keywords {
 		log.info("Trying to Click on Add OU button...");
 
 		moveMouse(By.xpath(prop.getAppProperty("OuManagement_Plus_btn_xpath")));
-
-		Thread.sleep(2000);
-		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		Thread.sleep(5000);
+		// wait.until(ExpectedConditions.elementToBeClickable(By.xpath(prop.getAppProperty("OuManagement_AddOU_Manually_css"))));
 		click(By.cssSelector(prop.getAppProperty("OuManagement_AddOU_Manually_css")));
 
 		test.log(Status.INFO, "We think we Click on Add OU Manually button...");
@@ -69,8 +69,7 @@ public class OUmanagementpage extends Keywords {
 
 		click(By.xpath(prop.getAppProperty("OuManagement_AddOu_parentOu_Xpath")));
 
-		Thread.sleep(2000);
-
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//label[contains(.,'" + ParentOU + "')]")));
 		driver.findElement(By.xpath("//label[contains(.,'" + ParentOU + "')]")).click();
 
 		click(By.xpath(prop.getAppProperty("OuManagement_AddOu_OuName_Xpath")));
@@ -87,16 +86,13 @@ public class OUmanagementpage extends Keywords {
 
 		boolean Actual = IsDisplayed(By.xpath(prop.getAppProperty("OuManagement_AddOu_Create_btn_xpath")));
 		Assert.assertEquals(Actual, true);
-		
-		if (Actual=true )
-		{
-		click(By.xpath(prop.getAppProperty("OuManagement_AddOu_Create_btn_xpath")));
-		}else
-		{
+
+		if (Actual = true) {
+			click(By.xpath(prop.getAppProperty("OuManagement_AddOu_Create_btn_xpath")));
+		} else {
 			throw new Exception();
 		}
-		
-		
+
 		log.info("We think we Clicked on Create button...");
 
 		test.log(Status.INFO, "We think we Clicked on Create button...");
@@ -107,7 +103,8 @@ public class OUmanagementpage extends Keywords {
 
 		log.info("Verify Updated Successfully Message...");
 
-		Thread.sleep(1000);
+		waitTillAssertElementPresent(By.xpath(prop.getAppProperty("OuManagement_AddOu_success_msg_Xpath")),
+				"OU Successfully Created");
 
 		String Actual = getText(By.xpath(prop.getAppProperty("OuManagement_AddOu_success_msg_Xpath")));
 
@@ -138,7 +135,8 @@ public class OUmanagementpage extends Keywords {
 
 		log.info("Trying to Click Edit OU Name...");
 
-		Thread.sleep(3000);
+		wait.until(ExpectedConditions
+				.visibilityOfElementLocated(By.xpath("//a[contains(text(),'" + NewOu + "')]/../div/button[1]")));
 
 		driver.findElement(By.xpath("//a[contains(text(),'" + NewOu + "')]/../div/button[1]")).click();
 
@@ -163,10 +161,8 @@ public class OUmanagementpage extends Keywords {
 			keytype(By.xpath(prop.getAppProperty("OuManagement_Edit_OUName_xpath")), Keys.BACK_SPACE);
 
 		}
-		Thread.sleep(1000);
-		type(By.xpath(prop.getAppProperty("OuManagement_Edit_OUName_xpath")), ParentOU);
 
-		Thread.sleep(2000);
+		type(By.xpath(prop.getAppProperty("OuManagement_Edit_OUName_xpath")), ParentOU);
 
 		log.info("We think We Cleared Ou Name and typed New OU Name...");
 		test.log(Status.INFO, "We think We Cleared OU Name and typed New OU Name...");
@@ -179,8 +175,6 @@ public class OUmanagementpage extends Keywords {
 
 		click(By.xpath(prop.getAppProperty("OuManagement_Edit_OUupdate_Xpath")));
 
-		Thread.sleep(3000);
-
 		log.info("We think Clicked on OU Update update button...");
 
 		test.log(Status.INFO, "We think Clicked on OU Update update button...");
@@ -191,7 +185,8 @@ public class OUmanagementpage extends Keywords {
 
 		log.info("Verifying Updated Successfully Message...");
 
-		Thread.sleep(1000);
+		waitTillAssertElementPresent(By.xpath(prop.getAppProperty("OuManagement_AddOu_success_msg_Xpath")),
+				"OU Successfully Created");
 
 		String Actual = getText(By.xpath(prop.getAppProperty("OuManagement_AddOu_success_msg_Xpath")));
 
@@ -209,7 +204,8 @@ public class OUmanagementpage extends Keywords {
 
 		log.info("Trying to Verify Updated Failed Message...");
 
-		Thread.sleep(1000);
+		waitTillAssertElementPresent(By.xpath(prop.getAppProperty("OuManagement_Edit_Fail_Msg_Xpath")),
+				"Please Enter the Valid OU Name");
 
 		String Actual = getText(By.xpath(prop.getAppProperty("OuManagement_Edit_Fail_Msg_Xpath")));
 
@@ -219,7 +215,6 @@ public class OUmanagementpage extends Keywords {
 		log.info("We think we Verified Failed Message...");
 		test.log(Status.INFO, "We think we Verified Failed Message...");
 
-		Thread.sleep(4000);
 		driver.navigate().refresh();
 
 	}
@@ -228,7 +223,8 @@ public class OUmanagementpage extends Keywords {
 
 		log.info("Verify OU Already Exist Message...");
 
-		Thread.sleep(1000);
+		waitTillAssertElementPresent(By.xpath(prop.getAppProperty("OuManagement_Edit_Duplicate_Msg_Xpath")),
+				"Ou name already exists");
 
 		String Actual = getText(By.xpath(prop.getAppProperty("OuManagement_Edit_Duplicate_Msg_Xpath")));
 
@@ -239,7 +235,6 @@ public class OUmanagementpage extends Keywords {
 		log.info("We think we verified OU Already Exist Message...");
 		test.log(Status.INFO, "We think we verified OU Already Exist Message...");
 
-		Thread.sleep(4000);
 		driver.navigate().refresh();
 
 	}
@@ -248,12 +243,13 @@ public class OUmanagementpage extends Keywords {
 
 		log.info("Trying to Expand " + ParentOu + " OU ...");
 
-		Thread.sleep(3000);
+		wait.until(ExpectedConditions
+				.visibilityOfElementLocated(By.xpath("//a[contains(text(),'" + ParentOu + "')]/../span/span[1]")));
 
 		WebElement ele = driver.findElement(By.xpath("//a[contains(text(),'" + ParentOu + "')]/../span/span[1]"));
 		Actions action = new Actions(driver);
 		action.moveToElement(ele).build().perform();
-		Thread.sleep(3000);
+
 		driver.findElement(By.xpath("//a[contains(text(),'" + ParentOu + "')]/../span/span[1]")).click();
 
 		log.info("We think Expanded " + ParentOu + " OU ......");
@@ -265,7 +261,8 @@ public class OUmanagementpage extends Keywords {
 
 		log.info("Trying to Delete " + NewOu + " OU...");
 
-		Thread.sleep(3000);
+		wait.until(ExpectedConditions
+				.visibilityOfElementLocated(By.xpath("//a[contains(text(),'" + NewOu + "')]/../div/button[2]")));
 
 		driver.findElement(By.xpath("//a[contains(text(),'" + NewOu + "')]/../div/button[2]")).click();
 
@@ -279,7 +276,8 @@ public class OUmanagementpage extends Keywords {
 
 		log.info("Verify Delete OU Successfully Message...");
 
-		Thread.sleep(1000);
+		waitTillAssertElementPresent(By.xpath(prop.getAppProperty("OuManagement_Delete_Sucess_Msg_Xpath")),
+				"" + NewOu + " ou successfully deleted");
 
 		String Actual = getText(By.xpath(prop.getAppProperty("OuManagement_Delete_Sucess_Msg_Xpath")));
 
@@ -296,10 +294,9 @@ public class OUmanagementpage extends Keywords {
 
 		log.info("Verify Delete OU Failed Message...");
 
-		Thread.sleep(1000);
+		checkPageIsReady();
 
 		String Actual = driver.getPageSource();
-		Thread.sleep(3000);
 
 		String Expected = "This OU has sub-ou. Cannot delete it.";
 		boolean Expected_Result = true;
@@ -324,10 +321,8 @@ public class OUmanagementpage extends Keywords {
 
 		log.info("Verify Delete OU Failed Message...");
 
-		Thread.sleep(1000);
-
+		checkPageIsReady();
 		String Actual = driver.getPageSource();
-		Thread.sleep(3000);
 
 		String Expected = "This OU has users. Cannot delete it.";
 		boolean Expected_Result = true;
@@ -352,7 +347,7 @@ public class OUmanagementpage extends Keywords {
 
 		log.info("Trying to Click " + NewOu + "Assign user button..");
 
-		Thread.sleep(3000);
+		waitTillElementlocate(By.xpath("//a[contains(text(),'" + NewOu + "')]/../div/button[3]"));
 
 		driver.findElement(By.xpath("//a[contains(text(),'" + NewOu + "')]/../div/button[3]")).click();
 
@@ -364,8 +359,6 @@ public class OUmanagementpage extends Keywords {
 	public void ClickonAllusermovefromNonusertoexistinguserlist() throws Exception {
 
 		log.info("Try to Move All the user from Non user list to Existing User list...");
-
-		Thread.sleep(3000);
 
 		click(By.xpath(prop.getAppProperty("OuManagement_Assignuser_AllNtoE_btn_Xpath")));
 
@@ -380,8 +373,6 @@ public class OUmanagementpage extends Keywords {
 
 		click(By.xpath(prop.getAppProperty("OuManagement_Assignuser_1NtoE_btn_Xpath")));
 
-		Thread.sleep(3000);
-
 		log.info("We think we Moved ONE the user from Non user list to Existing User list...");
 
 		test.log(Status.INFO, "We think we Moved ONE the user from Non user list to Existing User list...");
@@ -392,8 +383,6 @@ public class OUmanagementpage extends Keywords {
 		log.info("Try to Move ONE the user from Existing user list to NON User list...");
 
 		click(By.xpath(prop.getAppProperty("OuManagement_Assignuser_1EtoN_btn_Xpath")));
-
-		Thread.sleep(3000);
 
 		log.info("Try to Move ONE the user from Existing user list to NON User list...");
 
@@ -407,8 +396,6 @@ public class OUmanagementpage extends Keywords {
 
 		click(By.xpath(prop.getAppProperty("OuManagement_Assignuser_AllEtoN_btn_Xpath")));
 
-		Thread.sleep(3000);
-
 		log.info("We think we Moved All the user from Existing user list to NON User list...");
 
 		test.log(Status.INFO, "Try to Move ONE the user from Existing user list to NON User list...");
@@ -418,12 +405,7 @@ public class OUmanagementpage extends Keywords {
 
 		log.info("Click On Assign User Save button...");
 
-		Thread.sleep(3000);
-
 		click(By.xpath(prop.getAppProperty("OuManagement_Assignuser_Save_btn_xpath")));
-
-		log.info("Clicked...");
-		Thread.sleep(3000);
 
 		log.info("We think We Clicked On Assign User Save button...");
 
@@ -434,7 +416,8 @@ public class OUmanagementpage extends Keywords {
 
 		log.info("Verify No changes in userlist Message...");
 
-		Thread.sleep(1000);
+		waitTillAssertElementPresent(By.xpath(prop.getAppProperty("OuManagement_Assignuser_NoChanges_Errormsg_Xpath")),
+				"No changes have been made");
 
 		String Actual = getText(By.xpath(prop.getAppProperty("OuManagement_Assignuser_NoChanges_Errormsg_Xpath")));
 
@@ -445,7 +428,6 @@ public class OUmanagementpage extends Keywords {
 		log.info("We think we Verified No changes in userlist Message...");
 		test.log(Status.INFO, "We think we Verified No changes in userlist Message...");
 
-		Thread.sleep(3000);
 		driver.navigate().refresh();
 
 	}
@@ -498,7 +480,8 @@ public class OUmanagementpage extends Keywords {
 
 		log.info("Trying to Verify Updated Successfully Message...");
 
-		Thread.sleep(1000);
+		waitTillAssertElementPresent(By.xpath(prop.getAppProperty("OuManagement_AddOu_success_msg_Xpath")),
+				"Users Successfully Updated");
 
 		String Actual = getText(By.xpath(prop.getAppProperty("OuManagement_AddOu_success_msg_Xpath")));
 
@@ -510,4 +493,144 @@ public class OUmanagementpage extends Keywords {
 		test.log(Status.INFO, "We think we Verified  Sucessfully updated message...");
 	}
 
+	public void clicksyncOUviagsuieBtn() throws Exception {
+
+		log.info("Trying to Click on Sync OU via G-suite button...");
+
+		moveMouse(By.xpath(prop.getAppProperty("OuManagement_Plus_btn_xpath")));
+		Thread.sleep(5000);
+	
+		click(By.cssSelector(prop.getAppProperty("OuManagement_AddOU_via_G_suite_css")));
+
+		test.log(Status.INFO, "We think we Click on Sync OU via G-suite button...");
+
+		log.info("We think we Click on Sync OU via G-suite button...");
+	}
+	
+	public void clickgsuitetooglebutton() throws Exception {
+
+		log.info("Trying to Click on G-suite Toogle button...");
+
+	
+		Thread.sleep(5000);
+	
+		click(By.cssSelector(prop.getAppProperty("OuManagement_Click_G_suite_Toogle_css")));
+
+		test.log(Status.INFO, "We think we Click on G-suite Toogle  button...");
+
+		log.info("We think we Click on G-suite Toogle  button...");
+	}
+	
+	
+	public void clickgsuitemorebutton() throws Exception {
+
+		log.info("Trying to Click on G-suite More button...");
+
+	
+		Thread.sleep(5000);
+	
+		click(By.cssSelector(prop.getAppProperty("OuManagement_Click_G_suite_More_css")));
+
+		test.log(Status.INFO, "We think we Click on G-suite More  button...");
+
+		log.info("We think we Click on G-suite more  button...");
+	}
+
+
+	
+	public void clickgsuiteAdminbutton() throws Exception {
+
+		log.info("Trying to Click on G-suite Admin button...");
+
+	
+		Thread.sleep(5000);
+	
+		click(By.xpath(prop.getAppProperty("OuManagement_Click_G_suite_Admin_xpath")));
+
+		test.log(Status.INFO, "We think we Click on G-suite Admin  button...");
+
+		log.info("We think we Click on G-suite Admin  button...");
+	}
+	
+	public void clickgsuiteuserbutton() throws Exception {
+
+		log.info("Trying to Click on G-suite user button...");
+
+	
+		ArrayList<String> tabs = new ArrayList<String> (driver.getWindowHandles());
+		driver.switchTo().window(tabs.get(1));
+		
+		wait.until(ExpectedConditions.elementToBeClickable(By.xpath(prop.getAppProperty("OuManagement_Click_G_suite_user_xpath"))));
+	
+		click(By.xpath(prop.getAppProperty("OuManagement_Click_G_suite_user_xpath")));
+
+		test.log(Status.INFO, "We think we Click on G-suite user  button...");
+
+		log.info("We think we Click on G-suite user  button...");
+	}
+	
+	
+
+	public void logoutfromgsuite() throws Exception {
+
+		log.info("Trying to logout from Gsuite...");
+
+		
+		driver.findElement(By.cssSelector(".gb_ab")).click();	
+		Thread.sleep(2000);
+		driver.findElement(By.cssSelector(".gb_Vf")).click();	
+	
+		
+		test.log(Status.INFO, "We think we logout from Gsuite");
+
+		log.info("We think we logout from Gsuite");
+	}
+	
+	public void validateAkkuoulistwithguiteoulist(String email,String password ) throws Exception {
+
+		log.info("Trying to Verify Akku Ou List with Gsuite OU List...");
+		
+		log.info("Trying to Read OU List...");
+
+		
+		Thread.sleep(5000);
+
+		wait.until(ExpectedConditions.elementToBeClickable(By.xpath(prop.getAppProperty("OuManagement_Click_G_suite_Oulist_xpath"))));
+		String Oulist = getText(By.xpath(prop.getAppProperty("OuManagement_Click_G_suite_Oulist_xpath")));
+		
+		test.log(Status.INFO, "We think we Got Ou List :" + Oulist);
+
+		log.info("We think we Got Ou List :" + Oulist);
+		
+		
+		logoutfromgsuite();
+
+		driver.navigate().to("http://pre-prod.akku.work/index.php");
+		
+		
+		
+		loginpage.typeUseremail(email);
+		loginpage.typepassword(password);
+		loginpage.clickLogin();
+		oumangement.clickOUmanagementBtn();
+		oumangement.ClickExpandORCollapsBtn();
+		
+		
+		String akkuoupagesource = driver.getPageSource();
+		boolean Actual = true;
+		boolean Excepted =  true;
+		
+		if(akkuoupagesource.contains(Oulist));
+		{
+			
+			Assert.assertEquals(Actual, Excepted);
+
+			
+		}
+	
+		
+		test.log(Status.INFO, "We think we Verified Akku Ou List with Gsuite OU List");
+
+		log.info("We think we Verified Akku Ou List with Gsuite OU List");
+	}
 }

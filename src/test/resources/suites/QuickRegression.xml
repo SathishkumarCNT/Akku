@@ -116,20 +116,7 @@
 		</classes>
 	</test>
 
-	<test name="Add User Via G-Suite" preserve-order="true">
-
-		<parameter name="browser" value="W_chrome" />
-		<parameter name="Environment" value="http://pre-prod.akku.work/" />
-
-		<classes>
-			<class name="com.app.akku.work.TestCases.AKKU_49_AdduserViaGSuite">
-				<methods>
-					<include name="AK_41_AddUserViaGSuite" />
-
-				</methods>
-			</class>
-		</classes>
-	</test>
+	
 
 	<test name="Edit User" preserve-order="true">
 
@@ -162,13 +149,26 @@
 					<include name="AK_59_AssignUsers" />
 					<include name="AK_60_DeleteParentOUwhichhaveSubOUinOUManagementpage" />
 					<include name="AK_61_DeleteOUwhichhaveuserinOUManagementpage" />
-					<include name="AK_58_DeleteOUinOUManagementpage" />
+					<!-- <include name="AK_58_DeleteOUinOUManagementpage" /> -->
 					<include name="DeleteCreatedOufromPage" />
 				</methods>
 			</class>
 		</classes>
 	</test>
+<test name="Add User Via G-Suite" preserve-order="true">
 
+		<parameter name="browser" value="W_chrome" />
+		<parameter name="Environment" value="http://pre-prod.akku.work/" />
+
+		<classes>
+			<class name="com.app.akku.work.TestCases.AKKU_49_AdduserViaGSuite">
+				<methods>
+					<include name="AK_41_AddUserViaGSuite" />
+
+				</methods>
+			</class>
+		</classes>
+	</test>
 
 
 </suite>

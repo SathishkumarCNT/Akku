@@ -4,6 +4,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
+import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
@@ -11,13 +12,15 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 
-
 import com.app.akku.work.common.ReadfromProperties;
 import com.app.akku.work.keywords.Keywords;
+import com.aventstack.extentreports.Status;
 
 public class EditUserfromUserManagement extends Keywords {
 
 	ReadfromProperties prop = new ReadfromProperties();
+	
+	Logger log = Logger.getLogger(EditUserfromUserManagement.class.getName());
 	public static String Logindatetime = null;
 
 	public EditUserfromUserManagement(WebDriver driver) {
@@ -31,7 +34,7 @@ public class EditUserfromUserManagement extends Keywords {
 
 		List<WebElement> radioButtons = driver.findElements(By.cssSelector(".userchkbox"));
 		int size = radioButtons.size();
-		System.out.println("Size of the list: " + size);
+		log.info("Size of the list: " + size);
 
 		for (int i = 0; i < size; i++) {
 
@@ -39,547 +42,582 @@ public class EditUserfromUserManagement extends Keywords {
 
 			if (!isChecked) {
 				radioButtons.get(i).click();
-				Thread.sleep(2000);
+				
 			}
 		}
 	}
 
-	public void clickonUpdatebtn() throws Exception{
-		
-			System.out.println("Trying to Click Edit Update button...");
+	public void clickonUpdatebtn() throws Exception {
 
-			click(By.xpath(prop.getAppProperty("Akku_UserManagement_Edit_clickonUpdatebtn_xpath")));
+		log.info("Trying to Click Edit Update button...");
 
-			System.out.println("We think we Clicked on Update button...");
+		click(By.xpath(prop.getAppProperty("Akku_UserManagement_Edit_clickonUpdatebtn_xpath")));
 
-	
-			
-		
+		log.info("We think we Clicked on Update button...");
 
-		
+		test.log(Status.INFO, "We think we Clicked on Update button");
+
 	}
 
-	public void clickonEditbtninusermanagement() throws Exception{
+	public void clickonEditbtninusermanagement() throws Exception {
 
-	
-			System.out.println("Trying to Click on Edit button...");
+		log.info("Trying to Click on Edit button...");
 
-			click(By.xpath(prop.getAppProperty("Akku_UserManagement_Edituser_btn_xpath")));
-		
-			System.out.println("We think we Clicked on Edit button...");
-			
+		click(By.xpath(prop.getAppProperty("Akku_UserManagement_Edituser_btn_xpath")));
 
-		
+		log.info("We think we Clicked on Edit button...");
+
+		test.log(Status.INFO, "We think we Clicked on Edit button");
+
 	}
 
 	public void EditEmailinusermanagement(String NewEmail) throws Exception {
 
-	
-			System.out.println("Typing Email ID in Edit User management...");
+		log.info("Trying to Typing Email ID in Edit User management...");
 
-			clear(By.xpath(prop.getAppProperty("Akku_UserManagement_EdituserEmail_xpath")));
-			type(By.xpath(prop.getAppProperty("Akku_UserManagement_EdituserEmail_xpath")), NewEmail);
-			System.out.println("We think we Typed Email ID in Edit User management...");
-		
+		clear(By.xpath(prop.getAppProperty("Akku_UserManagement_EdituserEmail_xpath")));
+		type(By.xpath(prop.getAppProperty("Akku_UserManagement_EdituserEmail_xpath")), NewEmail);
+		log.info("We think we Typed Email ID in Edit User management...");
+
+		test.log(Status.INFO, "We think we Typed Email ID in Edit User management :" + NewEmail);
+
 	}
 
 	public void EditFnameinusermanagement(String Fname) throws Exception {
 
-		
-			System.out.println("Typing First Name in Edit User management...");
+		log.info("Trying to Typing First Name in Edit User management...");
 
-			clear(By.xpath(prop.getAppProperty("Akku_UserManagement_EdituserFName_xpath")));
+		clear(By.xpath(prop.getAppProperty("Akku_UserManagement_EdituserFName_xpath")));
 
-			type(By.xpath(prop.getAppProperty("Akku_UserManagement_EdituserFName_xpath")), Fname);
-			System.out.println("We think we Typed First Name in Edit User management...");
-		
+		type(By.xpath(prop.getAppProperty("Akku_UserManagement_EdituserFName_xpath")), Fname);
+		log.info("We think we Typed First Name in Edit User management...");
+
+		test.log(Status.INFO, "We think we Typed First Name in Edit User management :" + Fname);
+
 	}
 
 	public void EditLnameinusermanagement(String Lname) throws Exception {
 
+		log.info("Trying to Typing Last Name in Edit User management...");
 
-			System.out.println("Typing Last Name in Edit User management...");
+		clear(By.xpath(prop.getAppProperty("Akku_UserManagement_EdituserLName_xpath")));
 
-			clear(By.xpath(prop.getAppProperty("Akku_UserManagement_EdituserLName_xpath")));
+		type(By.xpath(prop.getAppProperty("Akku_UserManagement_EdituserLName_xpath")), Lname);
 
-			type(By.xpath(prop.getAppProperty("Akku_UserManagement_EdituserLName_xpath")), Lname);
-		
+		test.log(Status.INFO, "We think we Typed Last Name in Edit User management :" + Lname);
+
 	}
 
 	public void Editusertypeinusermanagement() throws Exception {
 
-		
-			System.out.println("Select User Type in Edit User management...");
+		log.info("Trying to Select User Type in Edit User management...");
 
-			String Usertype_user = "User";
-			String readusertype = getText(By.xpath(prop.getAppProperty("Akku_UserManagement_Editusertype_xpath")));
+		String Usertype_user = "User";
+		String readusertype = getText(By.xpath(prop.getAppProperty("Akku_UserManagement_Editusertype_xpath")));
 
-			if (readusertype.equals(Usertype_user)) {
-				WebElement element = driver.findElement(By.xpath("//*[@id=\"editutype\"]"));
-				Select se = new Select(element);
-				se.selectByIndex(2);
-			} else {
-				WebElement element = driver.findElement(By.xpath("//*[@id=\"editutype\"]"));
-				Select se = new Select(element);
-				se.selectByIndex(1);
-			}
-		
+		if (readusertype.equals(Usertype_user)) {
+			WebElement element = driver.findElement(By.xpath("//*[@id=\"editutype\"]"));
+			Select se = new Select(element);
+			se.selectByIndex(2);
+		} else {
+			WebElement element = driver.findElement(By.xpath("//*[@id=\"editutype\"]"));
+			Select se = new Select(element);
+			se.selectByIndex(1);
+		}
+
+		log.info("We think we Selected User Type");
+		test.log(Status.INFO, "We think we Selected User Type");
 	}
-	public void EditusertypeinGSuite()  throws Exception{
 
-		
-			System.out.println("Select User Type in Edit User management...");
+	public void EditusertypeinGSuite() throws Exception {
 
-			String Usertype_user = "User";
-			String readusertype = driver.findElement(By.id("userrole")).getText();
-			System.out.println(readusertype);
+		log.info("Select User Type in Edit User management...");
+waitTillElementlocate(By.id("userrole"));
+		String Usertype_user = "User";
+		String readusertype = driver.findElement(By.id("userrole")).getText();
+		log.info(readusertype);
 
-			if (readusertype.equals(Usertype_user)) {
-				WebElement element = driver.findElement(By.id("userrole"));
-				Select se = new Select(element);
-				se.selectByIndex(2);
-				//se.selectByValue("admin");
-			} else {
-				WebElement element = driver.findElement(By.id("userrole"));
-				Select se = new Select(element);
-				se.selectByIndex(1);
-				//se.selectByValue("user");
-			}
-		
-			System.out.println("We think we Selected User type in Edit User management...");
-			
+		if (readusertype.equals(Usertype_user)) {
+			WebElement element = driver.findElement(By.id("userrole"));
+			Select se = new Select(element);
+			se.selectByIndex(2);
+			// se.selectByValue("admin");
+		} else {
+			WebElement element = driver.findElement(By.id("userrole"));
+			Select se = new Select(element);
+			se.selectByIndex(1);
+			// se.selectByValue("user");
+		}
+
+		log.info("We think we Selected User type in Edit User management...");
+
+		test.log(Status.INFO, "We think we Selected User type in Edit User management");
+
 	}
+
 	public void UpdateSucessfulValidate() throws Exception {
-	
 
-			System.out.println("Verify Updated Successfully Message...");
+		log.info("Trying to Verify Updated Successfully Message...");
 
-			Thread.sleep(1000);
+		checkPageIsReady();
 
-			boolean Actual = driver.getPageSource().contains("Successfully Updated");
+		boolean Actual = driver.getPageSource().contains("Successfully Updated");
 
-			boolean Expected = Actual;
-			System.out.println(Actual);
-			System.out.println(Expected);
+		boolean Expected = Actual;
+		log.info(Actual);
+		log.info(Expected);
 
-			Assert.assertEquals(Actual, Expected);
+		Assert.assertEquals(Actual, Expected);
 
-			System.out.println("We think we Clicked on Update button...");
+		log.info("We think we Clicked on Update button...");
 
-		
+		test.log(Status.INFO, "We think we Clicked on Update button");
 	}
 
 	public void updatefailValidation() throws Exception {
-		try {
-			System.out.println("Verfiy Update Fail message");
 
-			String errormsg = getvalidationMessage(
-					By.xpath(prop.getAppProperty("Akku_UserManagement_EdituserEmail_xpath")));
+		log.info(" Trying to Verfiy Update Fail message");
+waitTillElementlocate(By.xpath(prop.getAppProperty("Akku_UserManagement_EdituserEmail_xpath")));
+		String errormsg = getvalidationMessage(
+				By.xpath(prop.getAppProperty("Akku_UserManagement_EdituserEmail_xpath")));
 
-			String Expected = "Please";
+		String Expected = "Please";
 
-			System.out.println(errormsg);
-			System.out.println(Expected);
+		log.info(errormsg);
+		log.info(Expected);
 
-			if (errormsg.contains(Expected)) {
-				String Actual = "Please";
-				Assert.assertEquals(Actual, Expected);
+		if (errormsg.contains(Expected)) {
+			String Actual = "Please";
+			Assert.assertEquals(Actual, Expected);
 
-			}
-
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
 		}
-driver.navigate().refresh();
+
+		log.info("We think verified Update Failed message...");
+
+		test.log(Status.INFO, "We think verified Update Failed message");
+		driver.navigate().refresh();
 	}
 
-	public void CloseEditPopup() throws Exception{
-	
-			System.out.println("Closing Edit Screen ...");
+	public void CloseEditPopup() throws Exception {
 
-			click(By.xpath(prop.getAppProperty("Akku_UserManagement_Edit_Close_Pop_Xpath")));
+		log.info("Trying to Close Edit Screen ...");
 
-		
+		click(By.xpath(prop.getAppProperty("Akku_UserManagement_Edit_Close_Pop_Xpath")));
+		log.info("We think we Close Edit Screen..");
+
+		test.log(Status.INFO, "We think we Close Edit Screen.");
+
 	}
 
 	public void EditemptyEmailinusermanagement() throws Exception {
 
-		
-			System.out.println("Clearing Email ID in Edit User management...");
+		log.info(" Trying to Clearing Email ID in Edit User management...");
 
-			clear(By.xpath(prop.getAppProperty("Akku_UserManagement_EdituserEmail_xpath")));
+		clear(By.xpath(prop.getAppProperty("Akku_UserManagement_EdituserEmail_xpath")));
 
-			System.out.println("We think we Not Clearing Email ID in Edit User management...");
-		
+		log.info("We think we Cleared Email ID in Edit User management...");
+
+		test.log(Status.INFO, "We think we Cleared Email ID in Edit User management");
+
 	}
 
 	public void EditemptyFnameinusermanagement() throws Exception {
 
-	
-			System.out.println("Clearing First Name in Edit User management...");
+		log.info("Trying to Clearing First Name in Edit User management...");
 
-			clear(By.xpath(prop.getAppProperty("Akku_UserManagement_EdituserFName_xpath")));
-			
-			System.out.println("We think we  Cleared First Name in Edit User management...");
+		clear(By.xpath(prop.getAppProperty("Akku_UserManagement_EdituserFName_xpath")));
 
-		
+		log.info("We think we  Cleared First Name in Edit User management...");
+		test.log(Status.INFO, "We think we  Cleared First Name in Edit User management");
+
 	}
 
 	public void EditemptyLnameinusermanagement() throws Exception {
 
-		
-			System.out.println("Clearing Last Name in Edit User management...");
+		log.info("Trying toClearing Last Name in Edit User management...");
 
-			clear(By.xpath(prop.getAppProperty("Akku_UserManagement_EdituserLName_xpath")));
+		clear(By.xpath(prop.getAppProperty("Akku_UserManagement_EdituserLName_xpath")));
 
-		}
+		log.info("We think we  Cleared Last Name in Edit User management...");
+		test.log(Status.INFO, "We think we  Cleared Last Name in Edit User management");
+
+	}
 
 	public void validateEmptyemailidErrormsg() throws Exception {
-	
-			System.out.println("Verfiy Email ID Error message");
 
-			String Actual = getvalidationMessage(
-					By.xpath(prop.getAppProperty("Akku_UserManagement_EdituserEmail_xpath")));
+		log.info("Trying to Verfiy Email ID Error message");
 
-			String Expected = "Please fill out this field.";
-			Assert.assertEquals(Actual, Expected);
-			driver.navigate().refresh();
+		String Actual = getvalidationMessage(By.xpath(prop.getAppProperty("Akku_UserManagement_EdituserEmail_xpath")));
 
-		
+		String Expected = "Please fill out this field.";
+		Assert.assertEquals(Actual, Expected);
+
+		log.info("We think we Verified Email ID Error message...");
+		test.log(Status.INFO, "We think we Verified Email ID Error message: " + Actual);
+		driver.navigate().refresh();
+
 	}
 
 	public void validateEmptyFnameErrormsg() throws Exception {
-	
-			System.out.println("Verfiy First Name Error message");
 
-			String Actual = getvalidationMessage(
-					By.xpath(prop.getAppProperty("Akku_UserManagement_EdituserFName_xpath")));
+		log.info("Trying to Verfiy First Name Error message");
 
-			String Expected = "Please fill out this field.";
-			Assert.assertEquals(Actual, Expected);
-			driver.navigate().refresh();
+		String Actual = getvalidationMessage(By.xpath(prop.getAppProperty("Akku_UserManagement_EdituserFName_xpath")));
 
-		
+		String Expected = "Please fill out this field.";
+		Assert.assertEquals(Actual, Expected);
+		driver.navigate().refresh();
+		log.info("We think we Verified First Name Error message...");
+		test.log(Status.INFO, "We think we Verified First Name Error message: " + Actual);
+
 	}
 
 	public void validateEmptyLnameErrormsg() throws Exception {
-		
-			System.out.println("Verfiy Last Name Error message");
 
-			String Actual = getvalidationMessage(
-					By.xpath(prop.getAppProperty("Akku_UserManagement_EdituserLName_xpath")));
+		log.info("Trying to Verfiy Last Name Error message");
 
-			String Expected = "Please fill out this field.";
-			Assert.assertEquals(Actual, Expected);
-			driver.navigate().refresh();
+		String Actual = getvalidationMessage(By.xpath(prop.getAppProperty("Akku_UserManagement_EdituserLName_xpath")));
 
-		
+		String Expected = "Please fill out this field.";
+		Assert.assertEquals(Actual, Expected);
+
+		log.info("We think we Verified Last Name Error message...");
+		test.log(Status.INFO, "We think we Verified Last Name Error message: " + Actual);
+
+		driver.navigate().refresh();
+
 	}
 
-	public void clickonSuspendbtninusermanagement() throws Exception{
+	public void clickonSuspendbtninusermanagement() throws Exception {
 
-	
-			System.out.println("Trying to Click on Suspend User button...");
-			
-			moveMouse(By.xpath(prop.getAppProperty("Akku_UserManagement_Suspenduser_btn_xpath")));
+		log.info("Trying to Click on Suspend User button...");
 
-			Thread.sleep(3000);
+		moveMouse(By.xpath(prop.getAppProperty("Akku_UserManagement_Suspenduser_btn_xpath")));
 
-			click(By.xpath(prop.getAppProperty("Akku_UserManagement_Suspenduser_btn_xpath")));
-		
+		Thread.sleep(3000);
+
+		click(By.xpath(prop.getAppProperty("Akku_UserManagement_Suspenduser_btn_xpath")));
+
+		log.info("We think we Clicked on Suspend User button");
+		test.log(Status.INFO, "We think we Clicked on Suspend User button");
+
 	}
 
 	public void AcceptSuspendbtninusermanagement() throws Exception {
 
-		
-			System.out.println("Trying to Click on OK in Suspend User PopUp...");
+		log.info("Trying to Click on OK in Suspend User PopUp...");
 
-			click(By.xpath(prop.getAppProperty("Akku_EditInfo_Ok_btn_xpath")));
-		
+		click(By.xpath(prop.getAppProperty("Akku_EditInfo_Ok_btn_xpath")));
+
+		log.info("We think we Clicked OK in Suspend User PopUp");
+		test.log(Status.INFO, "We think we Clicked OK in Suspend User PopUp");
+
 	}
 
-	public void ValidateSuspendusermsg() throws Exception{
+	public void ValidateSuspendusermsg() throws Exception {
 
-		
-			System.out.println("Verify Suspend user Successfully Message...");
+		log.info("Trying to Verify Suspend user Successfully Message...");
 
-			Thread.sleep(1000);
+		waitTillAssertElementPresent(By.xpath(prop.getAppProperty("Akku_UserManagement_Suspenduser_Accept_xpath")), "User suspended Successfully");
 
-			String Actual = getText(By.xpath(prop.getAppProperty("Akku_UserManagement_Suspenduser_Accept_xpath")));
+		String Actual = getText(By.xpath(prop.getAppProperty("Akku_UserManagement_Suspenduser_Accept_xpath")));
 
-			String Expected = "User suspended Successfully";
-			System.out.println(Actual);
-			System.out.println(Expected);
+		String Expected = "User suspended Successfully";
+		log.info(Actual);
+		log.info(Expected);
 
-			Assert.assertEquals(Actual, Expected);
+		Assert.assertEquals(Actual, Expected);
 
-			System.out.println("We think we Verified Suspend user Successfully Message...");
-		
+		log.info("We think we Verified Suspend user Successfully Message...");
+		test.log(Status.INFO, "We think we Verified Suspend user Successfully Message");
+
 	}
 
 	public void clickonDeletebtninusermanagement() throws Exception {
 
-		
-			System.out.println("Trying to Click on Delete User button...");
-			
-			moveMouse(By.xpath(prop.getAppProperty("Akku_UserManagement_Deleteuser_btn_xpath")));
+		log.info("Trying to Click on Delete User button...");
 
-			Thread.sleep(3000);
+		moveMouse(By.xpath(prop.getAppProperty("Akku_UserManagement_Deleteuser_btn_xpath")));
 
-			click(By.xpath(prop.getAppProperty("Akku_UserManagement_Deleteuser_btn_xpath")));
-		
+		Thread.sleep(3000);
+
+		click(By.xpath(prop.getAppProperty("Akku_UserManagement_Deleteuser_btn_xpath")));
+
+		log.info("We think we Clicked on Delete User button...");
+		test.log(Status.INFO, "We think we Clicked on Delete User button");
+
 	}
 
-	public void AcceptDeletebtninusermanagement() throws Exception{
+	public void AcceptDeletebtninusermanagement() throws Exception {
 
-	
-			System.out.println("Trying to Click on OK in Delete User PopUp...");
+		log.info("Trying to Click on OK in Delete User PopUp...");
 
-			click(By.xpath(prop.getAppProperty("Akku_EditInfo_Ok_btn_xpath")));
-			System.out.println("We think we Clicked OK in Delete User PopUp...");
-		
+		click(By.xpath(prop.getAppProperty("Akku_EditInfo_Ok_btn_xpath")));
+		log.info("We think we Clicked OK in Delete User PopUp...");
+		test.log(Status.INFO, "We think we Clicked OK in Delete User PopUp");
+
 	}
 
 	public void ValidateDeleteusermsg() throws Exception {
 
-		
-			System.out.println("Verify Delete user Successfully Message...");
+		log.info("Verify Delete user Successfully Message...");
 
-			Thread.sleep(1000);
+		waitTillAssertElementPresent(By.xpath(prop.getAppProperty("Akku_UserManagement_Suspenduser_Accept_xpath")), "User deleteed Successfully");
 
-			String Actual = getText(By.xpath(prop.getAppProperty("Akku_UserManagement_Suspenduser_Accept_xpath")));
+		String Actual = getText(By.xpath(prop.getAppProperty("Akku_UserManagement_Suspenduser_Accept_xpath")));
 
-			String Expected = "User deleteed Successfully";
-			System.out.println(Actual);
-			System.out.println(Expected);
+		String Expected = "User deleteed Successfully";
+		log.info(Actual);
+		log.info(Expected);
 
-			Assert.assertEquals(Actual, Expected);
+		Assert.assertEquals(Actual, Expected);
 
-			System.out.println("We think we Verified Delete user Successfully Message...");
-		
+		log.info("We think we Verified Delete user Successfully Message...");
+
+		test.log(Status.INFO, "We think we Verified Delete user Successfully Message");
+
 	}
 
-	public void clickonResetpwdbtninusermanagement()throws Exception {
+	public void clickonResetpwdbtninusermanagement() throws Exception {
 
-	
-			System.out.println("Trying to Click on Reset User button...");
+		log.info("Trying to Click on Reset User button...");
 
-			click(By.xpath(prop.getAppProperty("Akku_UserManagement_Resetpwd_btn_xpath")));
-			
-			System.out.println("We think we Reset User button...");
-		
+		click(By.xpath(prop.getAppProperty("Akku_UserManagement_Resetpwd_btn_xpath")));
+
+		log.info("We think we Clicked Reset User button...");
+
+		test.log(Status.INFO, "We think we Clicked Reset User button");
+
 	}
 
 	public void typenewpassword(String Newpassword) throws Exception {
 
-		System.out.println("Trying to Enter Password in the New text field...");
+		log.info("Trying to Enter Password in the New text field...");
 
 		type(By.xpath(prop.getAppProperty("Akku_UserManagement_Resetpwd_Pwd_xpath")), Newpassword);
 
-		System.out.println("We think we Entered Password in New text field...");
+		log.info("We think we Entered Password in New text field...");
+
+		test.log(Status.INFO, "We think we Entered Password in New text field :" + Newpassword);
 	}
 
 	public void typeConfnewpassword(String Confnewpassword) throws Exception {
 
-		System.out.println("Trying to Enter Password in the Confirm text field...");
+		log.info("Trying to Enter Password in the Confirm text field...");
 
 		type(By.xpath(prop.getAppProperty("Akku_UserManagement_Resetpwd_CPwd_xpath")), Confnewpassword);
 
-		System.out.println("We think we Entered Password in the Confirm text field...");
+		log.info("We think we Entered Password in the Confirm text field...");
+
+		test.log(Status.INFO, "We think we Entered Password in the Confirm text field :" + Confnewpassword);
 	}
 
 	public void ResetbtnClick() throws Exception {
 
-		System.out.println("Trying to Click Reset Button...");
+		log.info("Trying to Click Reset Button...");
 
 		click(By.xpath(prop.getAppProperty("Akku_UserManagement_Resetpwd_Btn_xpath")));
 
-		System.out.println("We think we Trying to Click Reset Button...");
+		log.info("We think we Clicked Reset Button...");
+
+		test.log(Status.INFO, "We think we Clicked Reset Button");
 	}
 
 	public void Validateerormsg() throws Exception {
 
+		log.info("trying to verify Error Message...");
+
+		String Expected = "Password must be 8 character with minimum one lowercase, numeric";
+
+		waitTillAssertElementPresent(By.xpath(prop.getAppProperty("Akku_UserManagement_Resetpwd_ErrorMsg_xpath")), Expected);
+		String Actual = getText(By.xpath(prop.getAppProperty("Akku_UserManagement_Resetpwd_ErrorMsg_xpath")));
+
+		Assert.assertEquals(Actual, Expected);
+
+		log.info("We think we Verified verify Error Message...");
+		test.log(Status.INFO, "We think we Verified verify Error Message");
+
 	
+		driver.navigate().refresh();
 
-			System.out.println("trying to verify Error Message...");
-
-			String Expected = "Password must be 8 character with minimum one lowercase, numeric";
-
-			String Actual = getText(By.xpath(prop.getAppProperty("Akku_UserManagement_Resetpwd_ErrorMsg_xpath")));
-
-			Assert.assertEquals(Actual, Expected);
-
-			System.out.println("We think we Verified verify Error Message...");
-			Thread.sleep(1000);
-			driver.navigate().refresh();
-
-		
 	}
 
 	public void Validateerormsgforcompwdnotmatch() throws Exception {
 
-		
+		log.info("Trying to verify Error Message...");
 
-			System.out.println("Trying to verify Error Message...");
+		String Expected = "The password does not match. Please enter a correct password";
+waitTillAssertElementPresent(By.xpath(prop.getAppProperty("Akku_UserManagement_Resetpwd_ErrorMsg_xpath")), Expected);
+		String Actual = getText(By.xpath(prop.getAppProperty("Akku_UserManagement_Resetpwd_ErrorMsg_xpath")));
 
-			String Expected = "The password does not match. Please enter a correct password";
+		Assert.assertEquals(Actual, Expected);
 
-			String Actual = getText(By.xpath(prop.getAppProperty("Akku_UserManagement_Resetpwd_ErrorMsg_xpath")));
+		log.info("We think we Verified verified Confirm password Not matched Error Message...");
+		test.log(Status.INFO, "We think we Verified verified Confirm password Not matched Error Message");
 
-			Assert.assertEquals(Actual, Expected);
+		driver.navigate().refresh();
 
-			System.out.println("We think we Verified verify Error Message...");
-			Thread.sleep(1000);
-			driver.navigate().refresh();
-
-		
 	}
 
-	public void ValidateSuccessfullyresetmsg()  throws Exception {
+	public void ValidateSuccessfullyresetmsg() throws Exception {
 
-		
+		log.info("Trying to verify Successful Message...");
 
-			System.out.println("Trying to verify Successful Message...");
+		String Expected = "Successfully Password Reseted";
+waitTillAssertElementPresent(By.xpath(prop.getAppProperty("Akku_UserManagement_Resetpwd_Succesmsg_xpath")), Expected);
+		String Actual = getText(By.xpath(prop.getAppProperty("Akku_UserManagement_Resetpwd_Succesmsg_xpath")));
 
-			String Expected = "Successfully Password Reseted";
+		Assert.assertEquals(Actual, Expected);
 
-			String Actual = getText(By.xpath(prop.getAppProperty("Akku_UserManagement_Resetpwd_Succesmsg_xpath")));
+		log.info("We think we Verified verify Successful Message...");
 
-			Assert.assertEquals(Actual, Expected);
+		test.log(Status.INFO, "We think we Verified verify Successful Message");
 
-			System.out.println("We think we Verified verify Successful Message...");
-			Thread.sleep(1000);
-			driver.navigate().refresh();
+		driver.navigate().refresh();
 
-		
 	}
 
 	public void SearchEmailIdinGrid(String NewEmail) throws Exception {
 
-		System.out.println("Trying to enter Email Id In search");
+		log.info("Trying to enter Email Id In search");
 
 		clear(By.xpath(prop.getAppProperty("Akku_UserManagement_Search_fromlist_xpath")));
 
 		click(By.xpath(prop.getAppProperty("Akku_UserManagement_Search_fromlist_xpath")));
 		type(By.xpath(prop.getAppProperty("Akku_UserManagement_Search_fromlist_xpath")), NewEmail);
 
-		System.out.println("We have enter Email Id In search box");
+		log.info("We have entered Email Id In search box");
 
-		Thread.sleep(1000);
+		test.log(Status.INFO, "We have entered Email Id In search box");
 
-		System.out.println("Trying to Click Email Id In search");
+
+
+		log.info("Trying to Click Email Id In search");
 
 		click(By.xpath(prop.getAppProperty("Akku_UserManagement_Resetpwd_Nextlogin_xpath")));
 
-		System.out.println("We have Click Edit Button");
+		log.info("We have Click Edit Button");
+
+		test.log(Status.INFO, "We have Clicked Edit Button");
 	}
 
 	public void SelectChangePwd() throws Exception {
 
-		System.out.println("Trying to Select Change password on Next login");
+		log.info("Trying to Select Change password on Next login");
 
 		boolean Changpwdinnxtlogin = isSelected(
 				By.id(prop.getAppProperty("Akku_UserManagement_Resetpwd_ChngPwdCheckbox_ID")));
 
 		if (Changpwdinnxtlogin == true) {
 			click(By.id(prop.getAppProperty("Akku_UserManagement_Resetpwd_ChngPwdCheckbox_ID")));
-			Thread.sleep(1000);
+			
 			click(By.id(prop.getAppProperty("Akku_UserManagement_Resetpwd_ChngPwdCheckbox_ID")));
 		} else {
 			click(By.id(prop.getAppProperty("Akku_UserManagement_Resetpwd_ChngPwdCheckbox_ID")));
 		}
 
+		log.info("We think we have Select Change password on Next login");
+
+		test.log(Status.INFO, "We think we have Select Change password on Next login");
 	}
 
 	public void EnterpwdinChangePage(String Password) throws Exception {
 
-		System.out.println("Trying to Enter password");
+		log.info("Trying to Enter password");
 
 		type(By.xpath(prop.getAppProperty("Akku_Changepwd_Password_xpath")), Password);
-		Thread.sleep(1000);
+	
 
-		System.out.println("We Think We Enter password");
+		log.info("We Think We Entered password");
+		test.log(Status.INFO, "We Think We Entered password: " + Password);
 
 	}
 
 	public void EnterconpwdinChangePage(String conPassword) throws Exception {
 
-		System.out.println("Trying to Enter Confirm password");
+		log.info("Trying to Enter Confirm password");
 
 		type(By.xpath(prop.getAppProperty("Akku_Changepwd_ConfirmPwd_xpath")), conPassword);
-		Thread.sleep(1000);
+	
 
-		System.out.println("We Think We Enter Confirm password");
+		log.info("We Think We Enter Confirm password");
+
+		log.info("We Think We Entered Confirm password");
+		test.log(Status.INFO, "We Think We Entered password: " + conPassword);
 
 	}
 
 	public void ClickupdatepwdinChangePage() throws Exception {
 
-		System.out.println("Trying to Click Update Button");
+		log.info("Trying to Click Update Button");
 
 		click(By.xpath(prop.getAppProperty("Akku_Changepwd_Submit_btn_xpath")));
-		Thread.sleep(1000);
-
-		System.out.println("We Think We Click on Update Button");
-
-	}
-
-	public void validateChangepasswordmsg()  throws Exception{
-
-	
-
-			System.out.println("Trying to verify Successful Message...");
-
-			String Expected = "Your password has been updated successfully.";
-			Thread.sleep(1000);
-
-			String Actual = getText(By.xpath(prop.getAppProperty("Akku_Changepwd_Sucess_msg_xpath")));
-
-			Assert.assertEquals(Actual, Expected);
-
-			System.out.println("We think we Verified verify Successful Message...");
-			Thread.sleep(1000);
-
-	}
-
-	public void ClickDashboardbtn()  throws Exception{
-
-	
-			System.out.println("Trying to Click Dashboard Button...");
-
-			click(By.xpath(prop.getAppProperty("Akku_Changepwd_Dashboard_btn_xpath")));
-
-			Thread.sleep(500);
-			System.out.println("We think we Click Dashboard Button......");
 		
+
+		log.info("We Think We Clicked on Update Button");
+
+		test.log(Status.INFO, "We Think We Clicked on Update Button");
+
+	}
+
+	public void validateChangepasswordmsg() throws Exception {
+
+		log.info("Trying to verify Successful Message...");
+
+		String Expected = "Your password has been updated successfully.";
+		waitTillAssertElementPresent(By.xpath(prop.getAppProperty("Akku_Changepwd_Sucess_msg_xpath")), Expected);
+
+		String Actual = getText(By.xpath(prop.getAppProperty("Akku_Changepwd_Sucess_msg_xpath")));
+
+		Assert.assertEquals(Actual, Expected);
+
+		log.info("We think we Verified  Successful Message...");
+		test.log(Status.INFO, "We Think We Verified Successful Message: " + Actual);
+
+
+	}
+
+	public void ClickDashboardbtn() throws Exception {
+
+		log.info("Trying to Click Dashboard Button...");
+
+		click(By.xpath(prop.getAppProperty("Akku_Changepwd_Dashboard_btn_xpath")));
+
+		
+		log.info("We think we Click Dashboard Button......");
+
+		log.info("We think we  Clicked Dashboard Button...");
+		test.log(Status.INFO, "We Think We Clicked Dashboard Button");
+
 	}
 
 	public void EnterKeywordinsearchtxtbox(String SearchKey) throws Exception {
 
-		System.out.println("Trying to enter Email Id In search");
+		log.info("Trying to enter Email Id In search");
 
 		clear(By.xpath(prop.getAppProperty("Akku_UserManagement_Search_fromlist_xpath")));
 
 		click(By.xpath(prop.getAppProperty("Akku_UserManagement_Search_fromlist_xpath")));
 		type(By.xpath(prop.getAppProperty("Akku_UserManagement_Search_fromlist_xpath")), SearchKey);
 
-		System.out.println("We have enter Email Id In search box");
+		log.info("We think we entered Email Id In search box");
+		test.log(Status.INFO, "We think we entered Email Id In search box");
 
-		Thread.sleep(1000);
+;
 
 	}
 
 	public void ValidateSearchkeyword(String SearchKey) throws Exception {
 
-		System.out.println("Verify User Found in List");
+		log.info("Trying to Verify User Found in List");
 
 		String Filter = SearchKey;
+		waitTillElementlocate(By.xpath("//*[@id=\"user-list\"]/tbody/tr"));
 		int Row_count = driver.findElements(By.xpath("//*[@id=\"user-list\"]/tbody/tr")).size();
-		System.out.println("Number Of Rows = " + Row_count);
+		log.info("Number Of Rows = " + Row_count);
 
 		int Col_count = 5;
-		System.out.println("Number Of Columns = " + Col_count);
+		log.info("Number Of Columns = " + Col_count);
 
 		String first_part = "//*[@id=\"user-list\"]/tbody/tr[";
 		String second_part = "]/td[";
@@ -598,10 +636,11 @@ driver.navigate().refresh();
 
 					boolean Actual = true;
 
-					System.out.println(listelement);
-					System.out.println("We have Verified Enter Text Found in grid");
+					log.info(listelement);
+					log.info("We have Verified Enter Text Found in grid");
+					test.log(Status.INFO, "We have Verified Enter Text Found in grid");
 
-					Thread.sleep(2000);
+			
 					Assert.assertEquals(Actual, Excepted);
 					break;
 
@@ -614,19 +653,20 @@ driver.navigate().refresh();
 
 	public void Validaterecordnotfoundmsg() throws Exception {
 
-		System.out.println("Verify User Not Found Message In grid");
-
-		Thread.sleep(2000);
-
-		String Actual = getText(By.xpath(prop.getAppProperty("Akku_UserManagement_grid_Norecordfound_xpath")));
+		log.info("Verify User Not Found Message In grid");
 
 		String Except = "No matching records found";
 
-		System.out.println(Actual);
-		System.out.println(Except);
+waitTillAssertElementPresent(By.xpath(prop.getAppProperty("Akku_UserManagement_grid_Norecordfound_xpath")), Except);
+		String Actual = getText(By.xpath(prop.getAppProperty("Akku_UserManagement_grid_Norecordfound_xpath")));
+
+
+		log.info(Actual);
+		log.info(Except);
 		Assert.assertEquals(Actual, Except);
 
-		System.out.println("We have Verified User Not Found Message In grid");
+		log.info("We have Verified User Not Found Message In grid");
+		test.log(Status.INFO, "We have Verified User Not Found Message In grid");
 
 	}
 
@@ -640,24 +680,24 @@ driver.navigate().refresh();
 
 				int Excepted = 100;
 
-				System.out.println("Trying to select" + Excepted + "From Show dropdown.");
+				log.info("Trying to select" + Excepted + "From Show dropdown.");
 
 				click(By.xpath(prop.getAppProperty("Akku_UserManagement_Show_dropdown_xpath")));
 				selectByVisibleText(By.xpath(prop.getAppProperty("Akku_UserManagement_Show_dropdown_xpath")),
 						Showvalue);
 				click(By.xpath(prop.getAppProperty("Akku_UserManagement_Show_dropdown_xpath")));
-				Thread.sleep(1000);
+		
 
-				System.out.println("We have selected" + Excepted + "From Show dropdown.");
+				log.info("We have selected" + Excepted + "From Show dropdown.");
 
-				System.out.println("Trying to Validate record Count display in grid.");
+				log.info("Trying to Validate record Count display in grid.");
 
 				int Row_count = sizeOf(By.xpath(prop.getAppProperty("Akku_UserManagement_Grid_rowcount_xpath")));
-				System.out.println("Number Of Rows = " + Row_count);
+				log.info("Number Of Rows = " + Row_count);
 				JavascriptExecutor jse = (JavascriptExecutor) driver;
 				jse.executeScript("window.scrollBy(0,8000)", "");
-				System.out.println("Record Count display in grid = " + Row_count);
-				Thread.sleep(3000);
+				log.info("Record Count display in grid = " + Row_count);
+		
 				Assert.assertEquals(Row_count, Excepted);
 				driver.navigate().refresh();
 
@@ -666,70 +706,70 @@ driver.navigate().refresh();
 
 				int Excepted = 50;
 
-				System.out.println("Trying to select" + Excepted + "From Show dropdown.");
+				log.info("Trying to select" + Excepted + "From Show dropdown.");
 
 				click(By.xpath(prop.getAppProperty("Akku_UserManagement_Show_dropdown_xpath")));
 				selectByVisibleText(By.xpath(prop.getAppProperty("Akku_UserManagement_Show_dropdown_xpath")),
 						Showvalue);
 
-				Thread.sleep(3000);
+	
 
-				System.out.println("We have selected" + Excepted + "From Show dropdown.");
+				log.info("We have selected" + Excepted + "From Show dropdown.");
 
-				System.out.println("Trying to Validate record Count display in grid.");
+				log.info("Trying to Validate record Count display in grid.");
 
 				int Row_count = sizeOf(By.xpath(prop.getAppProperty("Akku_UserManagement_Grid_rowcount_xpath")));
-				System.out.println("Number Of Rows = " + Row_count);
+				log.info("Number Of Rows = " + Row_count);
 				JavascriptExecutor jse = (JavascriptExecutor) driver;
 				jse.executeScript("window.scrollBy(0,00)", "");
-				System.out.println("Record Count display in grid = " + Row_count);
-				Thread.sleep(5000);
+				log.info("Record Count display in grid = " + Row_count);
+
 				Assert.assertEquals(Row_count, Excepted);
 				driver.navigate().refresh();
 			} else if (i == 3) {
 				Showvalue = "25";
 				int Excepted = 25;
 
-				System.out.println("Trying to select" + Excepted + "From Show dropdown.");
+				log.info("Trying to select" + Excepted + "From Show dropdown.");
 
 				click(By.xpath(prop.getAppProperty("Akku_UserManagement_Show_dropdown_xpath")));
 				selectByVisibleText(By.xpath(prop.getAppProperty("Akku_UserManagement_Show_dropdown_xpath")),
 						Showvalue);
 
-				Thread.sleep(3000);
 
-				System.out.println("We have selected" + Excepted + "From Show dropdown.");
 
-				System.out.println("Trying to Validate record Count display in grid.");
+				log.info("We have selected" + Excepted + "From Show dropdown.");
+
+				log.info("Trying to Validate record Count display in grid.");
 
 				int Row_count = sizeOf(By.xpath(prop.getAppProperty("Akku_UserManagement_Grid_rowcount_xpath")));
-				System.out.println("Number Of Rows = " + Row_count);
+				log.info("Number Of Rows = " + Row_count);
 				JavascriptExecutor jse = (JavascriptExecutor) driver;
 				jse.executeScript("window.scrollBy(0,8000)", "");
-				System.out.println("Record Count display in grid = " + Row_count);
-				Thread.sleep(5000);
+				log.info("Record Count display in grid = " + Row_count);
+
 				Assert.assertEquals(Row_count, Excepted);
 				driver.navigate().refresh();
 			} else if (i == 4) {
 				Showvalue = "10";
 				int Excepted = 10;
 
-				System.out.println("Trying to select" + Excepted + "From Show dropdown.");
+				log.info("Trying to select" + Excepted + "From Show dropdown.");
 
 				click(By.xpath(prop.getAppProperty("Akku_UserManagement_Show_dropdown_xpath")));
 				selectByVisibleText(By.xpath(prop.getAppProperty("Akku_UserManagement_Show_dropdown_xpath")),
 						Showvalue);
-				Thread.sleep(3000);
 
-				System.out.println("We have selected" + Excepted + "From Show dropdown.");
 
-				System.out.println("Trying to Validate record Count display in grid.");
+				log.info("We have selected" + Excepted + "From Show dropdown.");
+
+				log.info("Trying to Validate record Count display in grid.");
 
 				int Row_count = sizeOf(By.xpath(prop.getAppProperty("Akku_UserManagement_Grid_rowcount_xpath")));
-				System.out.println("Number Of Rows = " + Row_count);
+				log.info("Number Of Rows = " + Row_count);
 				JavascriptExecutor jse = (JavascriptExecutor) driver;
 				jse.executeScript("window.scrollBy(0,8000)", "");
-				System.out.println("Record Count display in grid = " + Row_count);
+				log.info("Record Count display in grid = " + Row_count);
 
 				Assert.assertEquals(Row_count, Excepted);
 				driver.navigate().refresh();
@@ -740,24 +780,30 @@ driver.navigate().refresh();
 
 	{
 
-		System.out.println("Trying to Click on Full Name Link Text");
+		log.info("Trying to Click on Full Name Link Text");
 		click(By.xpath(prop.getAppProperty("Akku_UserManagement_Fname_Linktxt_xpath")));
 
-		System.out.println(" We Think We Clicked on Ful Name Link Text");
+		log.info(" We Think We Clicked on Full Name Link Text");
+
+		test.log(Status.INFO, "We Think We Clicked on Full Name Link Text");
 	}
 
 	public void ValidateEmailinlinktxtpopup(String SearchKey) throws Exception
 
 	{
 		String Expected = SearchKey;
-
-		System.out.println("Trying to Click on Ful Name Link Text");
+waitTillAssertElementPresent(By.xpath(prop.getAppProperty("Akku_UserManagement_EmailId_FName_POpup_xpath")), Expected);
+		log.info("Trying to verify on Ful Name Link Text");
 		String Actual = getText(By.xpath(prop.getAppProperty("Akku_UserManagement_EmailId_FName_POpup_xpath")));
 
-		System.out.println(" We Think We Clicked on Ful Name Link Text");
-		System.out.println(Actual);
-		System.out.println(Expected);
+		log.info(" We Think We Clicked on Ful Name Link Text");
+		log.info(Actual);
+		log.info(Expected);
 		Assert.assertEquals(Actual, Expected);
+
+		log.info("We Think We verified on Email ID in Pop Up: " + Actual);
+
+		test.log(Status.INFO, "We Think We verified on Email ID in Pop Up: " + Actual);
 
 	}
 
@@ -767,7 +813,7 @@ driver.navigate().refresh();
 
 		SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy hh:mm aa");
 		Logindatetime = dateFormat.format(new Date()).toString();
-		System.out.println(Logindatetime);
+		log.info(Logindatetime);
 
 	}
 
@@ -775,25 +821,29 @@ driver.navigate().refresh();
 
 	{
 		String Expected = Logindatetime;
-
-		System.out.println("Trying to Verify on Lastlogin Datetime");
+waitTillAssertElementPresent(By.xpath(prop.getAppProperty("Akku_UserManagement_LastloginDatetime_xpath")), Expected);
+		log.info("Trying to Verify on Last login Date time");
 		String Actual = getText(By.xpath(prop.getAppProperty("Akku_UserManagement_LastloginDatetime_xpath")));
 
-		System.out.println(" We Think We Verified  Lastlogin Datetime");
-		System.out.println(Actual);
-		System.out.println(Expected);
+		log.info(" We Think We Verified  Lastlogin Datetime");
+		log.info(Actual);
+		log.info(Expected);
 		Assert.assertEquals(Actual, Expected);
 
+		log.info("We Think We verified on Last login Date time : " + Actual);
+
+		test.log(Status.INFO, "We Think We verified Last login Date time: " + Actual);
 	}
 
 	public void Selectalluser() throws Exception
 
 	{
 
-		System.out.println("Trying to Select all the Active user  in the page");
+		log.info("Trying to Select all the Active user  in the page");
 		click(By.xpath(prop.getAppProperty("Akku_UserManagement_Alluser_Radio_btn_xpath")));
 
-		System.out.println(" We Think We Selected all the Active user from in the page");
+		log.info(" We Think We Selected all the Active user from in the page");
+		test.log(Status.INFO, " We Think We Selected all the Active user from in the page");
 
 	}
 
@@ -802,18 +852,18 @@ driver.navigate().refresh();
 	{
 		boolean excepted = true;
 
-		System.out.println("Trying to Verify Delete and Suspend Button displayed in page");
+		log.info("Trying to Verify Delete and Suspend Button displayed in page");
 		boolean Deletebtn = IsDisplayed(By.xpath(prop.getAppProperty("Akku_UserManagement_Delete_btn_xpath")));
 		boolean Suspend = IsDisplayed(By.xpath(prop.getAppProperty("Akku_UserManagement_Suspend_btn_xpath")));
 
-		System.out.println(Deletebtn);
-		System.out.println(Suspend);
+		log.info(Deletebtn);
+		log.info(Suspend);
 		Assert.assertEquals(Deletebtn, excepted);
-		Thread.sleep(1000);
-		Assert.assertEquals(Suspend, excepted);
-		System.out.println(" We Think We Verified  Delete and Suspend Button displayed in page");
 
-		Thread.sleep(1000);
+		Assert.assertEquals(Suspend, excepted);
+		log.info(" We Think We Verified  Delete and Suspend Button displayed in page");
+		test.log(Status.INFO, " We Think We Verified  Delete and Suspend Button displayed in page");
+
 		driver.navigate().refresh();
 
 	}
@@ -821,42 +871,44 @@ driver.navigate().refresh();
 	public void ValidateDeleteandActivebtndisplay() throws Exception
 
 	{
-		Thread.sleep(3000);
+
 		boolean excepted = true;
 
-		System.out.println("Trying to Verify Delete and Active Button displayed in page");
+		log.info("Trying to Verify Delete and Active Button displayed in page");
 		boolean Deletebtn = IsDisplayed(By.xpath(prop.getAppProperty("Akku_UserManagement_Delete_btn_xpath")));
 		boolean Active = IsDisplayed(By.xpath(prop.getAppProperty("Akku_UserManagement_Active_btn_xpath")));
-		System.out.println(Active);
+		log.info(Active);
 
-		System.out.println(Deletebtn);
-		System.out.println(Active);
+		log.info(Deletebtn);
+		log.info(Active);
 		Assert.assertEquals(Deletebtn, excepted);
-		Thread.sleep(1000);
+
 		Assert.assertEquals(Active, excepted);
-		System.out.println(" We Think We Verified  Delete and Active Button displayed in page");
-		Thread.sleep(1000);
+		log.info(" We Think We Verified  Delete and Active Button displayed in page");
+		test.log(Status.INFO, " We Think We Verified  Delete and Active Button displayed in page");
+
 
 	}
 
 	public void ValidateSuspendandActivebtndisplay() throws Exception
 
 	{
-		Thread.sleep(3000);
+
 		boolean excepted = true;
 
-		System.out.println("Trying to Verify Active and Suspend Button displayed in page");
+		log.info("Trying to Verify Active and Suspend Button displayed in page");
 		boolean Suspend = IsDisplayed(By.xpath(prop.getAppProperty("Akku_UserManagement_Suspend_btn_xpath")));
 		boolean Active = IsDisplayed(By.xpath(prop.getAppProperty("Akku_UserManagement_Active_btn_xpath")));
-		System.out.println(Active);
+		log.info(Active);
 
-		System.out.println(Suspend);
-		System.out.println(Active);
+		log.info(Suspend);
+		log.info(Active);
 		Assert.assertEquals(Suspend, excepted);
-		Thread.sleep(1000);
+
 		Assert.assertEquals(Active, excepted);
-		System.out.println(" We Think We Verified  Active and Suspend Button displayed in page");
-		Thread.sleep(1000);
+		log.info(" We Think We Verified  Active and Suspend Button displayed in page");
+		test.log(Status.INFO, "We Think We Verified  Active and Suspend Button displayed in page");
+
 
 	}
 
@@ -864,11 +916,12 @@ driver.navigate().refresh();
 
 	{
 
-		System.out.println("Trying to Select Suspended User From user Status ");
+		log.info("Trying to Select Suspended User From user Status ");
 		click(By.xpath(prop.getAppProperty("Akku_UserManagement_userstatus_dropdown_xpath")));
 		selectByVisibleText(By.xpath(prop.getAppProperty("Akku_UserManagement_userstatus_dropdown_xpath")), "Supended");
 		click(By.xpath(prop.getAppProperty("Akku_UserManagement_userstatus_dropdown_xpath")));
-		System.out.println(" We Think We Selected Suspended User From user Status");
+		log.info(" We Think We Selected Suspended User From user Status");
+		test.log(Status.INFO, "We Think We Selected Suspended User From user Status");
 
 	}
 
@@ -876,29 +929,24 @@ driver.navigate().refresh();
 
 	{
 
-		System.out.println("Trying to Select Deleted User From user Status ");
+		log.info("Trying to Select Deleted User From user Status ");
 		click(By.xpath(prop.getAppProperty("Akku_UserManagement_userstatus_dropdown_xpath")));
 		selectByVisibleText(By.xpath(prop.getAppProperty("Akku_UserManagement_userstatus_dropdown_xpath")), "Deleted");
 		click(By.xpath(prop.getAppProperty("Akku_UserManagement_userstatus_dropdown_xpath")));
-		System.out.println(" We Think We Selected Deleted User From user Status");
+		log.info(" We Think We Selected Deleted User From user Status");
+		test.log(Status.INFO, "We Think We Selected Deleted User From user Status");
+
 
 	}
 
 	public void Clicksearchbutton() throws Exception {
-		
 
-			System.out.println("Trying to Click Search button ");
-			click(By.xpath(prop.getAppProperty("Akku_UserManagement_Search_dropdown_xpath")));
+		log.info("Trying to Click Search button ");
+		click(By.xpath(prop.getAppProperty("Akku_UserManagement_Search_dropdown_xpath")));
 
-			//driver.findElement(By.xpath("//*[@id='search']")).click();
+		log.info(" We Think We Clicked Search button");
 
-			System.out.println(" We Think We Clicked Search button");
-
-	
-
+		test.log(Status.INFO, "We Think We Clicked Search button");
 	}
-	
-	
-	
 
 }

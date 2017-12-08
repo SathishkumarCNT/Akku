@@ -1,5 +1,7 @@
 package com.app.akku.work.TestCases;
 
+import org.apache.log4j.Logger;
+import org.testng.Assert;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterTest;
@@ -15,6 +17,8 @@ import com.app.akku.work.keywords.Keywords;
 import testlink.api.java.client.TestLinkAPIResults;
 
 public class AKKU_15_PasswordPolicy extends Browser_Setup {
+	
+	Logger log = Logger.getLogger(AKKU_15_PasswordPolicy.class.getName());
 
 	String testProject = "AkkuAppTC";
 	String testPlan = "AutomateManualTC";
@@ -31,7 +35,7 @@ public class AKKU_15_PasswordPolicy extends Browser_Setup {
 	String AK_66 = "Verify Password Help text display based on parent OU Password policy details";
 	String AK_67 = "Verify Password Help text display based on Sub OU Password policy details";
 
-	String build = "Build1";
+	String build = "Build 2";
 	String notes = null;
 	String result = null;
 
@@ -73,15 +77,16 @@ public class AKKU_15_PasswordPolicy extends Browser_Setup {
 
 	@Test(dataProvider = "SiteBlockingLogin_Details", retryAnalyzer = Retry.class)
 	public void AK_15_UpdatePwdpolicybyselectingonlyonePwdComplexity(String email, String password, String siteURl,
-			String siteDescription) throws Exception
+			String siteDescription) throws Exception{
 
-	{
+	test = report.createTest("AK_15", "Update Pwd policy by selecting only one Pwd Complexity");
+	
+
 		try {
 			loginpage.loginpageTitle();
 			loginpage.typeUseremail(email);
 			loginpage.typepassword(password);
 			loginpage.clickLogin();
-			Thread.sleep(2000);
 			loginpage.validatedloggedinUserDetailsEmailID(email);
 			loginpage.verifyloggedinUserFNameAndLName();
 			usermanagement.clickAppmanagementBtn();
@@ -90,7 +95,7 @@ public class AKKU_15_PasswordPolicy extends Browser_Setup {
 			Pwdpolicy.ValidateerrormsgforonepwdComplexity();
 			loginpage.clickLogout();
 
-			System.out.println("####################################################################");
+			log.info("####################################################################");
 			result = TestLinkAPIResults.TEST_PASSED;
 
 			// loginpage.clickLogout();
@@ -98,9 +103,19 @@ public class AKKU_15_PasswordPolicy extends Browser_Setup {
 			result = TestLinkAPIResults.TEST_FAILED;
 			notes = e.getMessage();
 			e.printStackTrace();
-		} finally {
+			Assert.fail();
+		} catch (AssertionError e) {
 
-			System.out.println("Updating TestCase Execution Status in TestLink");
+			String message = e.getMessage();
+			log.info(message);
+			result = TestLinkAPIResults.TEST_FAILED;
+			notes = e.getMessage();
+			e.printStackTrace();
+			Assert.fail();
+
+		}finally {
+
+			log.info("Updating TestCase Execution Status in TestLink");
 			TestLinkIntegration.reportResult(testProject, testPlan, AK_15, build, notes, result);
 
 		}
@@ -112,6 +127,8 @@ public class AKKU_15_PasswordPolicy extends Browser_Setup {
 			String siteDescription) throws Exception
 
 	{
+		test = report.createTest("AK_16", "Update Pwd policy by selecting more than one Pwd Complexity");
+		
 
 		try {
 			for (int i = 1; i <= 3; i++) {
@@ -121,10 +138,8 @@ public class AKKU_15_PasswordPolicy extends Browser_Setup {
 					loginpage.typeUseremail(email);
 					loginpage.typepassword(password);
 					loginpage.clickLogin();
-					Thread.sleep(2000);
 					loginpage.validatedloggedinUserDetailsEmailID(email);
 					loginpage.verifyloggedinUserFNameAndLName();
-					Thread.sleep(2000);
 					usermanagement.clickAppmanagementBtn();
 					Pwdpolicy.SelecttwopwdComplexity();
 					Pwdpolicy.Clickonsave();
@@ -137,11 +152,9 @@ public class AKKU_15_PasswordPolicy extends Browser_Setup {
 					loginpage.typeUseremail(email);
 					loginpage.typepassword(password);
 					loginpage.clickLogin();
-					Thread.sleep(2000);
 					loginpage.validatedloggedinUserDetailsEmailID(email);
 					loginpage.verifyloggedinUserFNameAndLName();
 					usermanagement.clickAppmanagementBtn();
-					Thread.sleep(2000);
 					Pwdpolicy.SelectthreepwdComplexity();
 					Pwdpolicy.Clickonsave();
 					Pwdpolicy.ValidateSucessfullyaddedmsg();
@@ -154,16 +167,12 @@ public class AKKU_15_PasswordPolicy extends Browser_Setup {
 					loginpage.typeUseremail(email);
 					loginpage.typepassword(password);
 					loginpage.clickLogin();
-					Thread.sleep(2000);
 					loginpage.validatedloggedinUserDetailsEmailID(email);
 					loginpage.verifyloggedinUserFNameAndLName();
 					usermanagement.clickAppmanagementBtn();
-					Thread.sleep(2000);
-
 					Pwdpolicy.SelectfourpwdComplexity();
 					Pwdpolicy.Clickonsave();
 					Pwdpolicy.ValidateSucessfullyaddedmsg();
-					Thread.sleep(2000);
 					loginpage.clickLogout();
 
 				}
@@ -171,41 +180,51 @@ public class AKKU_15_PasswordPolicy extends Browser_Setup {
 
 			// loginpage.clickLogout();
 
-			System.out.println("####################################################################");
+			log.info("####################################################################");
 			result = TestLinkAPIResults.TEST_PASSED;
 
 		} catch (Exception e) {
 			result = TestLinkAPIResults.TEST_FAILED;
 			notes = e.getMessage();
 			e.printStackTrace();
-		} finally {
+			Assert.fail();
+		} catch (AssertionError e) {
 
-			System.out.println("Updating TestCase Execution Status in TestLink");
+			String message = e.getMessage();
+			log.info(message);
+			result = TestLinkAPIResults.TEST_FAILED;
+			notes = e.getMessage();
+			e.printStackTrace();
+			Assert.fail();
+
+		}finally {
+
+			log.info("Updating TestCase Execution Status in TestLink");
 			TestLinkIntegration.reportResult(testProject, testPlan, AK_16, build, notes, result);
 
 		}
 
 	}
 
-	@Test(dataProvider = "SiteBlockingLogin_Details")
+	@Test(dataProvider = "SiteBlockingLogin_Details", retryAnalyzer = Retry.class)
 	public void AK_17_UpdatePasswordLengthwithinvaliddata(String email, String password, String siteURl,
 			String siteDescription) throws Exception
 
 	{
+		
+		test = report.createTest("AK_17", "Update Password Length with invalid data");
+		
 		try {
 			loginpage.loginpageTitle();
 			loginpage.typeUseremail(email);
 			loginpage.typepassword(password);
 			loginpage.clickLogin();
-			Thread.sleep(2000);
 			loginpage.validatedloggedinUserDetailsEmailID(email);
 			loginpage.verifyloggedinUserFNameAndLName();
 			usermanagement.clickAppmanagementBtn();
 
 			for (int i = 1; i <= 3; i++) {
 				if (i == 1) {
-
-					Thread.sleep(2000);
 					Pwdpolicy.Clearpwdlength();
 					Pwdpolicy.Clickonsave();
 					Pwdpolicy.Validateerrormsgforblankpwdlength();
@@ -213,21 +232,18 @@ public class AKKU_15_PasswordPolicy extends Browser_Setup {
 
 				}
 				if (i == 2) {
-					Thread.sleep(2000);
+
 					Pwdpolicy.Clearpwdlength();
 					Pwdpolicy.EnterCharinpwdlength();
 					Pwdpolicy.Clickonsave();
 					Pwdpolicy.ValidateerrormsgforCharinpwdlength();
-					Thread.sleep(2000);
 
 				}
 				if (i == 3) {
-					Thread.sleep(2000);
 					Pwdpolicy.Clearpwdlength();
 					Pwdpolicy.Enterpwdlengthof7char();
 					Pwdpolicy.Clickonsave();
 					Pwdpolicy.Validateerrormsgforpwdlength7char();
-					Thread.sleep(2000);
 
 				}
 
@@ -235,33 +251,45 @@ public class AKKU_15_PasswordPolicy extends Browser_Setup {
 
 			loginpage.clickLogout();
 
-			System.out.println("####################################################################");
+			log.info("####################################################################");
 			result = TestLinkAPIResults.TEST_PASSED;
 
 		} catch (Exception e) {
 			result = TestLinkAPIResults.TEST_FAILED;
 			notes = e.getMessage();
 			e.printStackTrace();
+			Assert.fail();
+		}catch (AssertionError e) {
+
+			String message = e.getMessage();
+			log.info(message);
+			result = TestLinkAPIResults.TEST_FAILED;
+			notes = e.getMessage();
+			e.printStackTrace();
+			Assert.fail();
+
 		} finally {
 
-			System.out.println("Updating TestCase Execution Status in TestLink");
+			log.info("Updating TestCase Execution Status in TestLink");
 			TestLinkIntegration.reportResult(testProject, testPlan, AK_17, build, notes, result);
 
 		}
 
 	}
 
-	@Test(dataProvider = "SiteBlockingLogin_Details")
+	@Test(dataProvider = "SiteBlockingLogin_Details", retryAnalyzer = Retry.class)
 	public void AK_18_UpdatePasswordLengthwithvaliddata(String email, String password, String siteURl,
 			String siteDescription) throws Exception
 
 	{
+		
+		test = report.createTest("AK_18", "Update Password Length with valid data");
+		
 		try {
 			loginpage.loginpageTitle();
 			loginpage.typeUseremail(email);
 			loginpage.typepassword(password);
 			loginpage.clickLogin();
-			Thread.sleep(2000);
 			loginpage.validatedloggedinUserDetailsEmailID(email);
 			loginpage.verifyloggedinUserFNameAndLName();
 			usermanagement.clickAppmanagementBtn();
@@ -270,99 +298,129 @@ public class AKKU_15_PasswordPolicy extends Browser_Setup {
 			Pwdpolicy.ValidateSucessfullyaddedmsg();
 			loginpage.clickLogout();
 
-			System.out.println("####################################################################");
+			log.info("####################################################################");
 			result = TestLinkAPIResults.TEST_PASSED;
 
 		} catch (Exception e) {
 			result = TestLinkAPIResults.TEST_FAILED;
 			notes = e.getMessage();
 			e.printStackTrace();
-		} finally {
+			Assert.fail();
+		} catch (AssertionError e) {
 
-			System.out.println("Updating TestCase Execution Status in TestLink");
+			String message = e.getMessage();
+			log.info(message);
+			result = TestLinkAPIResults.TEST_FAILED;
+			notes = e.getMessage();
+			e.printStackTrace();
+			Assert.fail();
+
+		}finally {
+
+			log.info("Updating TestCase Execution Status in TestLink");
 			TestLinkIntegration.reportResult(testProject, testPlan, AK_18, build, notes, result);
 
 		}
 
 	}
 
-	@Test(dataProvider = "SiteBlockingLogin_Details")
+	@Test(dataProvider = "SiteBlockingLogin_Details", retryAnalyzer = Retry.class)
 	public void AK_19_VerifyifExpirationofPwdisdisplayedwhenEnablePwdExpiryRadiobtnChecked(String email,
 			String password, String siteURl, String siteDescription) throws Exception
 
 	{
+		test = report.createTest("AK_19", "Verify if Expiration of Pwd is displayed when Enable Pwd Expiry Radio btn Checked");
+
+		
 		try {
 			loginpage.loginpageTitle();
 			loginpage.typeUseremail(email);
 			loginpage.typepassword(password);
 			loginpage.clickLogin();
-			Thread.sleep(2000);
 			loginpage.validatedloggedinUserDetailsEmailID(email);
 			loginpage.verifyloggedinUserFNameAndLName();
 			usermanagement.clickAppmanagementBtn();
-
-			Thread.sleep(1000);
 			Pwdpolicy.EnablePasswordExpiry();
 			Pwdpolicy.VerifyExpirationofPwddispaly();
 			Pwdpolicy.Clickonsave();
 			Pwdpolicy.ValidateSucessfullyaddedmsg();
 			loginpage.clickLogout();
 
-			System.out.println("####################################################################");
+			log.info("####################################################################");
 			result = TestLinkAPIResults.TEST_PASSED;
 
 		} catch (Exception e) {
 			result = TestLinkAPIResults.TEST_FAILED;
 			notes = e.getMessage();
 			e.printStackTrace();
+			Assert.fail();
+		}catch (AssertionError e) {
+
+			String message = e.getMessage();
+			log.info(message);
+			result = TestLinkAPIResults.TEST_FAILED;
+			notes = e.getMessage();
+			e.printStackTrace();
+			Assert.fail();
+
 		} finally {
 
-			System.out.println("Updating TestCase Execution Status in TestLink");
+			log.info("Updating TestCase Execution Status in TestLink");
 			TestLinkIntegration.reportResult(testProject, testPlan, AK_19, build, notes, result);
 
 		}
 
 	}
 
-	@Test(dataProvider = "SiteBlockingLogin_Details")
+	@Test(dataProvider = "SiteBlockingLogin_Details", retryAnalyzer = Retry.class)
 	public void AK_20_VerifyifExpirationofPwdishidehenEnablePwdExpiryRadioisunchecked(String email, String password,
 			String siteURl, String siteDescription) throws Exception
 
 	{
+		
+		test = report.createTest("AK_20", "Verify if Expiration of Pwd is hide, when Enable Pwd Expiry Radio is unchecked");
+	
 		try {
 			loginpage.loginpageTitle();
 			loginpage.typeUseremail(email);
 			loginpage.typepassword(password);
 			loginpage.clickLogin();
-			Thread.sleep(2000);
 			loginpage.validatedloggedinUserDetailsEmailID(email);
 			loginpage.verifyloggedinUserFNameAndLName();
 			usermanagement.clickAppmanagementBtn();
-
-			Thread.sleep(1000);
 			Pwdpolicy.EnablePasswordExpiry();
 			Pwdpolicy.DisablePasswordExpiry();
 			Pwdpolicy.Clickonsave();
 			Pwdpolicy.VerifyExpirationofPwddisable();
 			loginpage.clickLogout();
 
-			System.out.println("####################################################################");
+			log.info("####################################################################");
 			result = TestLinkAPIResults.TEST_PASSED;
 
 		} catch (Exception e) {
 			result = TestLinkAPIResults.TEST_FAILED;
 			notes = e.getMessage();
 			e.printStackTrace();
-		} finally {
+			Assert.fail();
+		} catch (AssertionError e) {
 
-			System.out.println("Updating TestCase Execution Status in TestLink");
+			String message = e.getMessage();
+			log.info(message);
+			result = TestLinkAPIResults.TEST_FAILED;
+			notes = e.getMessage();
+			e.printStackTrace();
+			Assert.fail();
+
+		}finally {
+
+			log.info("Updating TestCase Execution Status in TestLink");
 			TestLinkIntegration.reportResult(testProject, testPlan, AK_20, build, notes, result);
 
 		}
 
 	}
 
-	@Test(dataProvider = "SiteBlockingLogin_Details")
+	@Test(dataProvider = "SiteBlockingLogin_Details", retryAnalyzer = Retry.class)
 	public void Updateoldpasswordpolicy(String email, String password, String siteURl, String siteDescription)
 			throws Exception
 
@@ -373,7 +431,6 @@ public class AKKU_15_PasswordPolicy extends Browser_Setup {
 			loginpage.typeUseremail(email);
 			loginpage.typepassword(password);
 			loginpage.clickLogin();
-			Thread.sleep(2000);
 			loginpage.validatedloggedinUserDetailsEmailID(email);
 			loginpage.verifyloggedinUserFNameAndLName();
 			usermanagement.clickAppmanagementBtn();
@@ -385,24 +442,36 @@ public class AKKU_15_PasswordPolicy extends Browser_Setup {
 			Pwdpolicy.Clickonsave();
 			Pwdpolicy.ValidateSucessfullyaddedmsg();
 			loginpage.clickLogout();
+		}catch (AssertionError e) {
+
+			String message = e.getMessage();
+			log.info(message);
+			result = TestLinkAPIResults.TEST_FAILED;
+			notes = e.getMessage();
+			e.printStackTrace();
+			Assert.fail();
+
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			Assert.fail();
 		}
 
 	}
 
-	@Test(dataProvider = "Create_OU")
+	@Test(dataProvider = "Create_OU", retryAnalyzer = Retry.class)
 	public void AK_62_CreatenewparentOUandsetpasswordpolicy(String email, String password, String NewOu,
 			String ParentOU) throws Exception
 
 	{
+		
+		test = report.createTest("AK_62", "Create new parent OU and set password policy");
+		
 		try {
 			loginpage.loginpageTitle();
 			loginpage.typeUseremail(email);
 			loginpage.typepassword(password);
 			loginpage.clickLogin();
-			Thread.sleep(2000);
 			loginpage.validatedloggedinUserDetailsEmailID(email);
 			loginpage.verifyloggedinUserFNameAndLName();
 			oumangement.clickOUmanagementBtn();
@@ -412,7 +481,7 @@ public class AKKU_15_PasswordPolicy extends Browser_Setup {
 			oumangement.ValidateSuccessfullmsg();
 			editinfo.closeAlertpopup();
 			usermanagement.clickAppmanagementBtn();
-			oumangement.ClickExpandbtn();
+			oumangement.ClickExpandORCollapsBtn();
 			Pwdpolicy.ClickOnparentOU(NewOu);
 			Pwdpolicy.ChangeEntervalidpwdlength();
 			Pwdpolicy.SelecttwopwdComplexity();
@@ -422,32 +491,49 @@ public class AKKU_15_PasswordPolicy extends Browser_Setup {
 			Pwdpolicy.ValidateSucessfullyaddedmsg();
 			loginpage.clickLogout();
 
-			System.out.println("####################################################################");
+			log.info("####################################################################");
 			result = TestLinkAPIResults.TEST_PASSED;
 
-			// loginpage.clickLogout();
-		} catch (Exception e) {
+		} 
+		
+		catch (Exception e) {
 			result = TestLinkAPIResults.TEST_FAILED;
 			notes = e.getMessage();
 			e.printStackTrace();
+			Assert.fail();
+			//e.getMessage();
+		}
+		catch (AssertionError e) {
+
+			String message = e.getMessage();
+			log.info(message);
+			result = TestLinkAPIResults.TEST_FAILED;
+			notes = e.getMessage();
+			e.printStackTrace();
+			Assert.fail();
+			
+
 		} finally {
 
-			System.out.println("Updating TestCase Execution Status in TestLink");
+			log.info("Updating TestCase Execution Status in TestLink");
 			TestLinkIntegration.reportResult(testProject, testPlan, AK_62, build, notes, result);
 
 		}
 
 	}
 
-	@Test(dataProvider = "Create_OU_As_SUBOU")
+	@Test(dataProvider = "Create_OU_As_SUBOU", retryAnalyzer = Retry.class)
 	public void AK_63_CreatenewSubOUandsetpasswordpolicy(String email, String password, String NewOu, String ParentOU)
 			throws Exception {
+		
+		test = report.createTest("AK_63", "Create new Sub OU and set password policy");
+
+		
 		try {
 			loginpage.loginpageTitle();
 			loginpage.typeUseremail(email);
 			loginpage.typepassword(password);
 			loginpage.clickLogin();
-			Thread.sleep(2000);
 			loginpage.validatedloggedinUserDetailsEmailID(email);
 			loginpage.verifyloggedinUserFNameAndLName();
 			oumangement.clickOUmanagementBtn();
@@ -459,7 +545,7 @@ public class AKKU_15_PasswordPolicy extends Browser_Setup {
 			editinfo.closeAlertpopup();
 
 			usermanagement.clickAppmanagementBtn();
-			oumangement.ClickExpandbtn();
+			oumangement.ClickExpandORCollapsBtn();
 			oumangement.ClickexpandonParentOu(ParentOU);
 			Pwdpolicy.ClickOnparentOU(NewOu);
 			Pwdpolicy.ChangeEntervalidpwdlengthasten("10");
@@ -470,7 +556,7 @@ public class AKKU_15_PasswordPolicy extends Browser_Setup {
 			Pwdpolicy.ValidateSucessfullyaddedmsg();
 			loginpage.clickLogout();
 
-			System.out.println("####################################################################");
+			log.info("####################################################################");
 			result = TestLinkAPIResults.TEST_PASSED;
 			notes = getOSBrowserDetails();
 
@@ -479,29 +565,40 @@ public class AKKU_15_PasswordPolicy extends Browser_Setup {
 			result = TestLinkAPIResults.TEST_FAILED;
 			notes = e.getMessage();
 			e.printStackTrace();
+			Assert.fail();
+		} catch (AssertionError e) {
 
-		} finally {
+			String message = e.getMessage();
+			log.info(message);
+			result = TestLinkAPIResults.TEST_FAILED;
+			notes = e.getMessage();
+			e.printStackTrace();
+			Assert.fail();
 
-			System.out.println("Updating TestCase Execution Status in TestLink");
+		}finally {
+
+			log.info("Updating TestCase Execution Status in TestLink");
 			TestLinkIntegration.reportResult(testProject, testPlan, AK_63, build, notes, result);
 
 		}
 	}
 
-	@Test(dataProvider = "Create_OU_As_SUBOU")
+	@Test(dataProvider = "Create_OU_As_SUBOU", retryAnalyzer = Retry.class)
 	public void AK_64_UpdatepasswordpolicyforparentOU(String email, String password, String NewOu, String ParentOU)
 			throws Exception {
+		
+		test = report.createTest("AK_64", "Update password policy for  parent OU");
+		
 		try {
 			loginpage.loginpageTitle();
 			loginpage.typeUseremail(email);
 			loginpage.typepassword(password);
 			loginpage.clickLogin();
-			Thread.sleep(2000);
 			loginpage.validatedloggedinUserDetailsEmailID(email);
 			loginpage.verifyloggedinUserFNameAndLName();
 
 			usermanagement.clickAppmanagementBtn();
-			oumangement.ClickExpandbtn();
+			oumangement.ClickExpandORCollapsBtn();
 			Pwdpolicy.ClickOnparentOU(ParentOU);
 			Pwdpolicy.ChangeEntervalidpwdlengthasten("12");
 			Pwdpolicy.SelectfourpwdComplexity();
@@ -510,49 +607,57 @@ public class AKKU_15_PasswordPolicy extends Browser_Setup {
 			Pwdpolicy.Clickonsave();
 			Pwdpolicy.ValidateSucessfullyaddedmsg();
 			usermanagement.clickAppmanagementBtn();
-			oumangement.ClickExpandbtn();
+			oumangement.ClickExpandORCollapsBtn();
 			oumangement.ClickexpandonParentOu(ParentOU);
-			Thread.sleep(2000);
 			Pwdpolicy.ClickOnparentOU(NewOu);
-			Thread.sleep(2000);
 			Pwdpolicy.verifySubOupasswordlengthlsochange("12");
 			Pwdpolicy.VerifySubOUPasswordComplexity();
-			Thread.sleep(2000);
 
 			loginpage.clickLogout();
 
-			System.out.println("####################################################################");
+			log.info("####################################################################");
 			result = TestLinkAPIResults.TEST_PASSED;
 
 		} catch (Exception e) {
 			result = TestLinkAPIResults.TEST_FAILED;
 			notes = e.getMessage();
 			e.printStackTrace();
+			Assert.fail();
+		}catch (AssertionError e) {
+
+			String message = e.getMessage();
+			log.info(message);
+			result = TestLinkAPIResults.TEST_FAILED;
+			notes = e.getMessage();
+			e.printStackTrace();
+			Assert.fail();
+
 		} finally {
 
-			System.out.println("Updating TestCase Execution Status in TestLink");
+			log.info("Updating TestCase Execution Status in TestLink");
 			TestLinkIntegration.reportResult(testProject, testPlan, AK_64, build, notes, result);
 
 		}
 
 	}
 
-	@Test(dataProvider = "Create_OU_As_SUBOU")
+	@Test(dataProvider = "Create_OU_As_SUBOU", retryAnalyzer = Retry.class)
 	public void Ak_65_UpdatepasswordpolicyforChildOU(String email, String password, String NewOu, String ParentOU)
 			throws Exception
 
 	{
+		test = report.createTest("AK_65", "Update password policy for Child OU");
+		
 
 		try {
 			loginpage.loginpageTitle();
 			loginpage.typeUseremail(email);
 			loginpage.typepassword(password);
 			loginpage.clickLogin();
-			Thread.sleep(2000);
 			loginpage.validatedloggedinUserDetailsEmailID(email);
 			loginpage.verifyloggedinUserFNameAndLName();
 			usermanagement.clickAppmanagementBtn();
-			oumangement.ClickExpandbtn();
+			oumangement.ClickExpandORCollapsBtn();
 			oumangement.ClickexpandonParentOu(ParentOU);
 			Pwdpolicy.ClickOnparentOU(NewOu);
 			Pwdpolicy.ChangeEntervalidpwdlengthasten("08");
@@ -561,38 +666,47 @@ public class AKKU_15_PasswordPolicy extends Browser_Setup {
 			Pwdpolicy.Clickonsave();
 			Pwdpolicy.ValidateSucessfullyaddedmsg();
 			usermanagement.clickAppmanagementBtn();
-			oumangement.ClickExpandbtn();
+			oumangement.ClickExpandORCollapsBtn();
 			oumangement.ClickexpandonParentOu(ParentOU);
 			Pwdpolicy.ClickOnparentOU(ParentOU);
 			Pwdpolicy.verifySubOupasswordlengthlsochange("12");
 			Pwdpolicy.VerifySubOUPasswordComplexity();
-			Thread.sleep(2000);
 			Pwdpolicy.VerifySubOUPasswordComplexity();
 			loginpage.clickLogout();
 
-			System.out.println("####################################################################");
+			log.info("####################################################################");
 			result = TestLinkAPIResults.TEST_PASSED;
 
 		} catch (Exception e) {
 			result = TestLinkAPIResults.TEST_FAILED;
 			notes = e.getMessage();
 			e.printStackTrace();
+			Assert.fail();
+		}catch (AssertionError e) {
+
+			String message = e.getMessage();
+			log.info(message);
+			result = TestLinkAPIResults.TEST_FAILED;
+			notes = e.getMessage();
+			e.printStackTrace();
+			Assert.fail();
+
 		} finally {
 
-			System.out.println("Updating TestCase Execution Status in TestLink");
+			log.info("Updating TestCase Execution Status in TestLink");
 			TestLinkIntegration.reportResult(testProject, testPlan, AK_65, build, notes, result);
 
 		}
 
-<<<<<<< HEAD
-=======
 	}
 
-	@Test(dataProvider = "Verify_OU_As_Pwdpolicy")
+	@Test(dataProvider = "Verify_OU_As_Pwdpolicy", retryAnalyzer = Retry.class)
 	public void Ak_66_VerifyPasswordHelptextdisplaybasedonparentOUPasswordpolicydetails(String email, String password,
 			String NewOu, String ParentOU, String SearchEmail) throws Exception
 
 	{
+		test = report.createTest("AK_66", "Verify Password Help text display based on parent OU Password policy details");
+		
 
 		try {
 
@@ -600,7 +714,6 @@ public class AKKU_15_PasswordPolicy extends Browser_Setup {
 			loginpage.typeUseremail(email);
 			loginpage.typepassword(password);
 			loginpage.clickLogin();
-			Thread.sleep(2000);
 			loginpage.validatedloggedinUserDetailsEmailID(email);
 			loginpage.verifyloggedinUserFNameAndLName();
 
@@ -620,13 +733,9 @@ public class AKKU_15_PasswordPolicy extends Browser_Setup {
 			editUser.typeConfnewpassword("Password@2345");
 			editUser.ResetbtnClick();
 			editUser.ValidateSuccessfullyresetmsg();
-			Thread.sleep(3000);
 			loginpage.clickLogout();
-			Thread.sleep(3000);
-
 			loginpage.typeUseremail(SearchEmail);
 			loginpage.typepassword("Password@2345");
-			Thread.sleep(2000);
 			loginpage.clickLogin();
 			editUser.EnterpwdinChangePage("Password@1234");
 			editUser.EnterconpwdinChangePage("Password@1234");
@@ -636,54 +745,60 @@ public class AKKU_15_PasswordPolicy extends Browser_Setup {
 			editUser.validateChangepasswordmsg();
 			editUser.ClickDashboardbtn();
 			driver.navigate().to("http://pre-prod.akku.work/");
-			Thread.sleep(2000);
 			loginpage.typeUseremail(SearchEmail);
 			loginpage.typepassword("Password@1234");
 			loginpage.clickLogin();
-			Thread.sleep(3000);
 			editinfo.isEditInfobtn();
 			Pwdpolicy.clickEditbtn();
 			Pwdpolicy.typeOldpassword("Password@1234");
 			Pwdpolicy.verifychildhelptextmessage(
 					"Password must be 12 character with minimum one   lowercase,   uppercase,  numeric,  special character");
 			Pwdpolicy.typenewpassword("Password@12345");
-			Thread.sleep(3000);
 			Pwdpolicy.typeConfnewpassword("Password@12345");
 			Pwdpolicy.clickUpdatebtn();
 			editinfo.closeAlertpopup();
 			loginpage.clickLogout();
 
-			System.out.println("####################################################################");
+			log.info("####################################################################");
 			result = TestLinkAPIResults.TEST_PASSED;
 
 		} catch (Exception e) {
 			result = TestLinkAPIResults.TEST_FAILED;
 			notes = e.getMessage();
 			e.printStackTrace();
-		} finally {
+			Assert.fail();
+		} catch (AssertionError e) {
 
-			System.out.println("Updating TestCase Execution Status in TestLink");
+			String message = e.getMessage();
+			log.info(message);
+			result = TestLinkAPIResults.TEST_FAILED;
+			notes = e.getMessage();
+			e.printStackTrace();
+			Assert.fail();
+
+		}finally {
+
+			log.info("Updating TestCase Execution Status in TestLink");
 			TestLinkIntegration.reportResult(testProject, testPlan, AK_66, build, notes, result);
 
 		}
 
 	}
 
-	@Test(dataProvider = "Verify_OU_As_Pwdpolicy")
+	@Test(dataProvider = "Verify_OU_As_Pwdpolicy", retryAnalyzer = Retry.class)
 	public void Ak_67_VerifyPasswordHelptextdisplaybasedonSubOUPasswordpolicydetails(String email, String password,
 			String NewOu, String ParentOU, String SearchEmail) throws Exception
 
 	{
+		test = report.createTest("AK_67", "Verify Password Help text display based on Sub OU Password policy details");
 
 		try {
 			loginpage.loginpageTitle();
 			loginpage.typeUseremail(email);
 			loginpage.typepassword(password);
 			loginpage.clickLogin();
-			Thread.sleep(2000);
 			loginpage.validatedloggedinUserDetailsEmailID(email);
 			loginpage.verifyloggedinUserFNameAndLName();
-
 			usermanagement.clickUsermanagementBtn();
 			editUser.EnterKeywordinsearchtxtbox(SearchEmail);
 			editUser.ValidateSearchkeyword(SearchEmail);
@@ -692,7 +807,6 @@ public class AKKU_15_PasswordPolicy extends Browser_Setup {
 			editUser.clickonUpdatebtn();
 			editUser.UpdateSucessfulValidate();
 			editinfo.closeAlertpopup();
-
 			usermanagement.clickUsermanagementBtn();
 			editUser.EnterKeywordinsearchtxtbox(SearchEmail);
 			editUser.ValidateSearchkeyword(SearchEmail);
@@ -701,293 +815,87 @@ public class AKKU_15_PasswordPolicy extends Browser_Setup {
 			editUser.typeConfnewpassword("password2");
 			editUser.ResetbtnClick();
 			editUser.ValidateSuccessfullyresetmsg();
-			Thread.sleep(3000);
 			loginpage.clickLogout();
-			Thread.sleep(3000);
-
 			loginpage.typeUseremail(SearchEmail);
 			loginpage.typepassword("password2");
-			Thread.sleep(2000);
 			loginpage.clickLogin();
 			editUser.EnterpwdinChangePage("password3");
 			editUser.EnterconpwdinChangePage("password3");
-			Pwdpolicy
-					.verifychildhelptextmessage("Password must be 08 character with minimum one   lowercase,  numeric");
+			Pwdpolicy.verifychildhelptextmessage("Password must be 08 character with minimum one   lowercase,  numeric");
 			editUser.ClickupdatepwdinChangePage();
 			editUser.validateChangepasswordmsg();
 			editUser.ClickDashboardbtn();
 			driver.navigate().to("http://pre-prod.akku.work/");
-			Thread.sleep(2000);
 			loginpage.typeUseremail(SearchEmail);
 			loginpage.typepassword("password3");
 			loginpage.clickLogin();
-			Thread.sleep(3000);
 			editinfo.isEditInfobtn();
 			Pwdpolicy.clickEditbtn();
 			Pwdpolicy.typeOldpassword("password3");
-			Pwdpolicy
-					.verifychildhelptextmessage("Password must be 08 character with minimum one   lowercase,  numeric");
+			Pwdpolicy.verifychildhelptextmessage("Password must be 08 character with minimum one   lowercase,  numeric");
 			Pwdpolicy.typenewpassword(password);
-			Thread.sleep(3000);
 			Pwdpolicy.typeConfnewpassword(password);
 			Pwdpolicy.clickUpdatebtn();
 			editinfo.closeAlertpopup();
 			loginpage.clickLogout();
 
-			System.out.println("####################################################################");
+			log.info("####################################################################");
 			result = TestLinkAPIResults.TEST_PASSED;
 
 		} catch (Exception e) {
 			result = TestLinkAPIResults.TEST_FAILED;
 			notes = e.getMessage();
 			e.printStackTrace();
-		} finally {
+			Assert.fail();
+		}catch (AssertionError e) {
 
-			System.out.println("Updating TestCase Execution Status in TestLink");
-			TestLinkIntegration.reportResult(testProject, testPlan, AK_67, build, notes, result);
-
-		}
-
->>>>>>> 90d437f53722b12c2e941d2a5f361968b3e3fe52
-	}
-
-	@Test(dataProvider = "Verify_OU_As_Pwdpolicy")
-	public void Ak_66_VerifyPasswordHelptextdisplaybasedonparentOUPasswordpolicydetails(String email, String password,
-			String NewOu, String ParentOU, String SearchEmail) throws Exception
-
-	{
-
-		try {
-
-			loginpage.loginpageTitle();
-			loginpage.typeUseremail(email);
-			loginpage.typepassword(password);
-			loginpage.clickLogin();
-			Thread.sleep(2000);
-			loginpage.validatedloggedinUserDetailsEmailID(email);
-			loginpage.verifyloggedinUserFNameAndLName();
-
-			usermanagement.clickUsermanagementBtn();
-			editUser.EnterKeywordinsearchtxtbox(SearchEmail);
-			editUser.ValidateSearchkeyword(SearchEmail);
-			Pwdpolicy.clickonEditbtninusermanagement();
-			Pwdpolicy.SelectParentOU(ParentOU);
-			editUser.clickonUpdatebtn();
-			editUser.UpdateSucessfulValidate();
-			editinfo.closeAlertpopup();
-			usermanagement.clickUsermanagementBtn();
-			editUser.EnterKeywordinsearchtxtbox(SearchEmail);
-			editUser.ValidateSearchkeyword(SearchEmail);
-			Pwdpolicy.clickonResetpwdbtninusermanagement();
-			editUser.typenewpassword("Password@2345");
-			editUser.typeConfnewpassword("Password@2345");
-			editUser.ResetbtnClick();
-			editUser.ValidateSuccessfullyresetmsg();
-			Thread.sleep(3000);
-			loginpage.clickLogout();
-			Thread.sleep(3000);
-
-			loginpage.typeUseremail(SearchEmail);
-			loginpage.typepassword("Password@2345");
-			Thread.sleep(2000);
-			loginpage.clickLogin();
-			editUser.EnterpwdinChangePage("Password@1234");
-			editUser.EnterconpwdinChangePage("Password@1234");
-			Pwdpolicy.verifychildhelptextmessage(
-					"Password must be 12 character with minimum one   lowercase,   uppercase,  numeric,  special character");
-			editUser.ClickupdatepwdinChangePage();
-			editUser.validateChangepasswordmsg();
-			editUser.ClickDashboardbtn();
-			driver.navigate().to("http://pre-prod.akku.work/");
-			Thread.sleep(2000);
-			loginpage.typeUseremail(SearchEmail);
-			loginpage.typepassword("Password@1234");
-			loginpage.clickLogin();
-			Thread.sleep(3000);
-			editinfo.isEditInfobtn();
-			Pwdpolicy.clickEditbtn();
-			Pwdpolicy.typeOldpassword("Password@1234");
-			Pwdpolicy.verifychildhelptextmessage(
-					"Password must be 12 character with minimum one   lowercase,   uppercase,  numeric,  special character");
-			Pwdpolicy.typenewpassword("Password@12345");
-			Thread.sleep(3000);
-			Pwdpolicy.typeConfnewpassword("Password@12345");
-			Pwdpolicy.clickUpdatebtn();
-			editinfo.closeAlertpopup();
-			loginpage.clickLogout();
-
-			System.out.println("####################################################################");
-			result = TestLinkAPIResults.TEST_PASSED;
-
-		} catch (Exception e) {
+			String message = e.getMessage();
+			log.info(message);
 			result = TestLinkAPIResults.TEST_FAILED;
 			notes = e.getMessage();
 			e.printStackTrace();
+			Assert.fail();
+
 		} finally {
 
-			System.out.println("Updating TestCase Execution Status in TestLink");
-			TestLinkIntegration.reportResult(testProject, testPlan, AK_66, build, notes, result);
-
-		}
-
-	}
-
-	@Test(dataProvider = "Verify_OU_As_Pwdpolicy")
-	public void Ak_67_VerifyPasswordHelptextdisplaybasedonSubOUPasswordpolicydetails(String email, String password,
-			String NewOu, String ParentOU, String SearchEmail) throws Exception
-
-	{
-
-		try {
-			loginpage.loginpageTitle();
-			loginpage.typeUseremail(email);
-			loginpage.typepassword(password);
-			loginpage.clickLogin();
-			Thread.sleep(2000);
-			loginpage.validatedloggedinUserDetailsEmailID(email);
-			loginpage.verifyloggedinUserFNameAndLName();
-
-			usermanagement.clickUsermanagementBtn();
-			editUser.EnterKeywordinsearchtxtbox(SearchEmail);
-			editUser.ValidateSearchkeyword(SearchEmail);
-			Pwdpolicy.clickonEditbtninusermanagement();
-			Pwdpolicy.SelectchildOU(ParentOU, NewOu);
-			editUser.clickonUpdatebtn();
-			editUser.UpdateSucessfulValidate();
-			editinfo.closeAlertpopup();
-
-			usermanagement.clickUsermanagementBtn();
-			editUser.EnterKeywordinsearchtxtbox(SearchEmail);
-			editUser.ValidateSearchkeyword(SearchEmail);
-			Pwdpolicy.clickonResetpwdbtninusermanagement();
-			editUser.typenewpassword("password2");
-			editUser.typeConfnewpassword("password2");
-			editUser.ResetbtnClick();
-			editUser.ValidateSuccessfullyresetmsg();
-			Thread.sleep(3000);
-			loginpage.clickLogout();
-			Thread.sleep(3000);
-
-			loginpage.typeUseremail(SearchEmail);
-			loginpage.typepassword("password2");
-			Thread.sleep(2000);
-			loginpage.clickLogin();
-			editUser.EnterpwdinChangePage("password3");
-			editUser.EnterconpwdinChangePage("password3");
-			Pwdpolicy
-					.verifychildhelptextmessage("Password must be 08 character with minimum one   lowercase,  numeric");
-			editUser.ClickupdatepwdinChangePage();
-			editUser.validateChangepasswordmsg();
-			editUser.ClickDashboardbtn();
-			driver.navigate().to("http://pre-prod.akku.work/");
-			Thread.sleep(2000);
-			loginpage.typeUseremail(SearchEmail);
-			loginpage.typepassword("password3");
-			loginpage.clickLogin();
-			Thread.sleep(3000);
-			editinfo.isEditInfobtn();
-			Pwdpolicy.clickEditbtn();
-			Pwdpolicy.typeOldpassword("password3");
-			Pwdpolicy
-					.verifychildhelptextmessage("Password must be 08 character with minimum one   lowercase,  numeric");
-			Pwdpolicy.typenewpassword(password);
-			Thread.sleep(3000);
-			Pwdpolicy.typeConfnewpassword(password);
-			Pwdpolicy.clickUpdatebtn();
-			editinfo.closeAlertpopup();
-			loginpage.clickLogout();
-
-			System.out.println("####################################################################");
-			result = TestLinkAPIResults.TEST_PASSED;
-
-		} catch (Exception e) {
-			result = TestLinkAPIResults.TEST_FAILED;
-			notes = e.getMessage();
-			e.printStackTrace();
-		} finally {
-
-			System.out.println("Updating TestCase Execution Status in TestLink");
+			log.info("Updating TestCase Execution Status in TestLink");
 			TestLinkIntegration.reportResult(testProject, testPlan, AK_67, build, notes, result);
 
 		}
 
 	}
 	
-	@Test(dataProvider = "Create_OU_As_SUBOU")
+	@Test(dataProvider = "Create_OU_As_SUBOU", retryAnalyzer = Retry.class)
 	public void DeleteCreatedOufromPage(String email, String password, String NewOu, String ParentOU) throws Exception {
 		try {
 			loginpage.loginpageTitle();
 			loginpage.typeUseremail(email);
 			loginpage.typepassword(password);
 			loginpage.clickLogin();
-			Thread.sleep(2000);
 			loginpage.validatedloggedinUserDetailsEmailID(email);
 			loginpage.verifyloggedinUserFNameAndLName();
 			oumangement.clickOUmanagementBtn();
-			oumangement.ClickExpandbtn();
-
+			oumangement.ClickExpandORCollapsBtn();
 			oumangement.ClickexpandonParentOu(ParentOU);
-			Thread.sleep(2000);
 			oumangement.ClickdeleteonOu(NewOu);
-			Thread.sleep(2000);
 			editUser.AcceptDeletebtninusermanagement();
 			editinfo.closeAlertpopup();
 			driver.navigate().refresh();
-			Thread.sleep(2000);
 			oumangement.clickOUmanagementBtn();
-			oumangement.ClickExpandbtn();
-			Thread.sleep(2000);
+			oumangement.ClickExpandORCollapsBtn();
 			oumangement.ClickdeleteonOu(ParentOU);
-			Thread.sleep(2000);
 			editUser.AcceptDeletebtninusermanagement();
-			Thread.sleep(2000);
 			editinfo.closeAlertpopup();
-
-			Thread.sleep(10000);
 			loginpage.clickLogout();
 
 		} catch (Exception e) {
 
 			e.printStackTrace();
+			Assert.fail();
 
 		}
 	}
 	
 
-	@AfterMethod
-	public void tearDown(ITestResult result) {
-		try {
-			if (result.getStatus() == ITestResult.SUCCESS) {
-				System.out.println("Test case passed");
-				driver.quit();
-			} else if (result.getStatus() == ITestResult.FAILURE) {
-
-				Keywords.captureScreenShot(driver);
-
-				System.out.println("Screenshot taken in Tear Down method");
-				driver.quit();
-			} else if (result.getStatus() == ITestResult.SKIP) {
-
-				Keywords.captureScreenShot(driver);
-
-				System.out.println("Test case Skipped");
-				driver.quit();
-			}
-		} catch (Exception e) {
-
-			System.out.println("Exception while taking screenshot " + e.getMessage());
-		}
-
-	}
-
-	/**
-	 * 
-	 * @throws Exception
-	 */
-	@AfterTest
-	public void teardown() throws Exception {
-
-		// driver.quit();
-		System.out.println("Test Execution Finished");
-	}
+	
 }

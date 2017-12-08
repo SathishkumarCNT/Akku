@@ -25,10 +25,10 @@ public class SiteBlockingpage extends Keywords {
 
 	ReadfromProperties prop = new ReadfromProperties();
 
-	public void issiteblockingscreen() {
+	public void issiteblockingscreen() throws Exception {
 
 		log.info("Trying to Validating Site Blocking page displayed or not... ");
-
+waitTillAssertElementPresent(By.xpath("//a[contains(.,'Site Blocking')]"), "Site Blocking");
 		String actual_msg = driver.findElement(By.xpath("//a[contains(.,'Site Blocking')]")).getText();
 
 		String expect = "Site Blocking";
@@ -43,7 +43,7 @@ public class SiteBlockingpage extends Keywords {
 	public void ErrorPopup_NotAvalidURLMessage() throws Exception {
 
 		log.info("Trying to Validate Site Blocking error popup message--> Not a Valid Url !! message... ");
-
+		waitTillAssertElementPresent(By.xpath(prop.getAppProperty("AppManagement_siteblocking_Error_Popup_xpath")), "Not a valid URL !!");
 		String actual_msg = getText(By.xpath(prop.getAppProperty("AppManagement_siteblocking_Error_Popup_xpath")));
 
 		log.info(actual_msg);
@@ -56,9 +56,10 @@ public class SiteBlockingpage extends Keywords {
 		test.log(Status.INFO, "We think Site Blocking error popup message--> " + actual_msg + " message displayed");
 	}
 
-	public void ErrorPopup_PleaseEnterDescription() {
+	public void ErrorPopup_PleaseEnterDescription() throws Exception{
 
 		log.info("Trying to Validate Site Blocking error popup message--> Please Enter Description message... ");
+		waitTillAssertElementPresent(By.xpath("//div[contains(@class,'swal-title')]"), "Please Enter Description");
 
 		String actual_msg = driver.findElement(By.xpath("//div[contains(@class,'swal-title')]")).getText();
 		String expect = "Please Enter Description";
@@ -74,9 +75,10 @@ public class SiteBlockingpage extends Keywords {
 
 	}
 
-	public void SuccessPopup_AddUrlSuccessfullyMessage() {
+	public void SuccessPopup_AddUrlSuccessfullyMessage() throws Exception {
 
 		log.info("Trying to Validate Url Successfully Added message...");
+		waitTillAssertElementPresent(By.xpath("//div[@class='swal-title']"), "Success!");
 
 		String actual_msg = driver.findElement(By.xpath("//div[@class='swal-title']")).getText();
 		String expect = "Success!";
@@ -187,7 +189,7 @@ public class SiteBlockingpage extends Keywords {
 
 		log.info("Trying to Click on Update button...");
 
-		Thread.sleep(2000);
+	
 		click(By.xpath(prop.getAppProperty("SiteBlocking_update_btn_editsiteurl_ID_xpath")));
 
 		test.log(Status.INFO, "We think we Click on Update button");
@@ -198,7 +200,7 @@ public class SiteBlockingpage extends Keywords {
 	public void Validateurl(String siteURl) throws Exception {
 
 		log.info("Trying to Validate Url Successfully Added message...");
-
+waitTillAssertElementPresent(By.xpath(prop.getAppProperty("SiteBlocking_Edit_Sucessfull_Pop_Xpath")), siteURl);
 		String Actual = getText(By.xpath(prop.getAppProperty("SiteBlocking_Edit_Sucessfull_Pop_Xpath")));
 
 		log.info(Actual);
@@ -232,6 +234,7 @@ public class SiteBlockingpage extends Keywords {
 	}
 
 	public void InputSiteDescriptionErrorMsgValidation() throws Exception {
+
 
 		String actual_msg = getvalidationMessage(
 				By.xpath(prop.getAppProperty("SiteBlocking_EditSiteUrlDescription_xpath")));
@@ -304,7 +307,7 @@ public class SiteBlockingpage extends Keywords {
 
 			List<WebElement> elements = driver.findElements(By.xpath("//*[@id=\"siteBlockTable\"]/tbody/tr/td[1]"));
 
-			Thread.sleep(2000);
+
 
 			for (int j = 0; j <= toatlSitecount; j++) {
 
@@ -322,7 +325,7 @@ public class SiteBlockingpage extends Keywords {
 
 					driver.findElement(By.xpath("" + path + "")).click();
 
-					Thread.sleep(2000);
+
 					break;
 				}
 
@@ -345,7 +348,7 @@ public class SiteBlockingpage extends Keywords {
 	public void clickondeltconfirmation() throws Exception {
 
 		log.info("Confirm to Delete Url");
-
+		checkPageIsReady();
 		String Confirmationmessage =driver.getPageSource();
 		String actual_msg = Confirmationmessage;
 		String expect = "Are you sure want to delete?";
@@ -372,12 +375,12 @@ public class SiteBlockingpage extends Keywords {
 	public void ValidateDeletemessage() throws Exception {
 
 		log.info("Verify to Deleted Confirmation message");
-
+		checkPageIsReady();
 		String Deletedmessage = driver.getPageSource();
 		String actual_msg = Deletedmessage;
 
 		String expect = "Deleted successfully";
-		Thread.sleep(5000);
+
 		if(Deletedmessage.contains(expect))
 		{
 		
@@ -411,7 +414,7 @@ public class SiteBlockingpage extends Keywords {
 
 		List<WebElement> elements = driver.findElements(By.xpath("//*[@id=\"siteBlockTable\"]/tbody/tr/td[1]"));
 
-		Thread.sleep(2000);
+
 
 		for (int j = 0; j <= toatlSitecount; j++) {
 
@@ -424,7 +427,6 @@ public class SiteBlockingpage extends Keywords {
 
 				log.info(" Duplicate Found");
 
-				Thread.sleep(2000);
 				break;
 			}
 
@@ -454,7 +456,7 @@ public class SiteBlockingpage extends Keywords {
 	public void AddValidateDuplicateerrormessage() throws Exception {
 		
 		log.info("Trying to Verifiy Duplicate Url message");
-
+waitTillAssertElementPresent(By.xpath(prop.getAppProperty("SiteBlocking_AddDuplandinvalid_Error_message_Xpath")), "URL already exists");
 		String Actual = getText(By.xpath(prop.getAppProperty("SiteBlocking_AddDuplandinvalid_Error_message_Xpath")));
 		String expect = "URL already exists";
 		Assert.assertEquals(Actual, expect);
@@ -469,6 +471,7 @@ public class SiteBlockingpage extends Keywords {
 	public void ValidateinvalidUrlerrormessage() throws Exception {
 
 		log.info("Trying to Verifiy Invalid Url message");
+		waitTillAssertElementPresent(By.xpath(prop.getAppProperty("SiteBlocking_Duplandinvalid_Error_message_Xpath")), "Not a valid URL !!");
 
 		String Actual = getText(By.xpath(prop.getAppProperty("SiteBlocking_Duplandinvalid_Error_message_Xpath")));
 		String expect = "Not a valid URL !!";

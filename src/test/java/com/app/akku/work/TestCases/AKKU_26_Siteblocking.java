@@ -36,7 +36,7 @@ public class AKKU_26_Siteblocking extends Browser_Setup {
 	String AK_29 = "Edit Site Details and save it by valid site url & valid site Description";
 	String AK_30 = "Edit Site Details and save it by Invalid site url & valid site Description";
 	String AK_31 = "Delete One Site URL from site Blocked list";
-	String build = "Build1";
+	String build = "Build 2";
 	String notes = null;
 	String result = null;
 	
@@ -92,22 +92,15 @@ public class AKKU_26_Siteblocking extends Browser_Setup {
 			loginpage.typeUseremail(email);
 			loginpage.typepassword(password);
 			loginpage.clickLogin();
-			Thread.sleep(3000);
 			loginpage.validatedloggedinUserDetailsEmailID(email);
-			Thread.sleep(3000);
 			loginpage.verifyloggedinUserFNameAndLName();
 			usermanagement.clickAppmanagementBtn();
-			Thread.sleep(3000);
-			
 			siteblocking.clickonSiteBlockingBtn();
 			siteblocking.issiteblockingscreen();
 			siteblocking.typesiteurl(siteURl);
 			siteblocking.typesiteDescription(siteDescription);
-
-		
-			siteblocking.clickonAddbtn();
+        	siteblocking.clickonAddbtn();
 			siteblocking.AddValidateDuplicateerrormessage();
-			
 			loginpage.clickLogout();
 			
 			log.info("####################################################################");
@@ -121,7 +114,7 @@ public class AKKU_26_Siteblocking extends Browser_Setup {
 			result = TestLinkAPIResults.TEST_FAILED;
 			notes = e.getMessage();
 			e.printStackTrace();
-			
+			Assert.fail();
 			
 			
 		}catch (AssertionError e) {
@@ -156,17 +149,13 @@ public class AKKU_26_Siteblocking extends Browser_Setup {
 			loginpage.typeUseremail(email);
 			loginpage.typepassword(password);
 			loginpage.clickLogin();
-			Thread.sleep(2000);
 			loginpage.validatedloggedinUserDetailsEmailID(email);
 			loginpage.verifyloggedinUserFNameAndLName();
 			usermanagement.clickAppmanagementBtn();
-			Thread.sleep(3000);
-			
 			siteblocking.clickonSiteBlockingBtn();
 			siteblocking.issiteblockingscreen();
 			siteblocking.clickonAddbtn();
 			siteblocking.InputSiteUrlErrorMsgValidation();
-			//siteblocking.ErrorPopup_NotAvalidURLMessage();
 			editinfo.closeAlertpopup();
 			loginpage.clickLogout();
 			
@@ -179,6 +168,7 @@ public class AKKU_26_Siteblocking extends Browser_Setup {
 			result = TestLinkAPIResults.TEST_FAILED;
 			notes = e.getMessage();
 			e.printStackTrace();
+			Assert.fail();
 			
 		}catch (AssertionError e) {
 
@@ -206,20 +196,12 @@ public class AKKU_26_Siteblocking extends Browser_Setup {
 
 		try {
 			loginpage.loginpageTitle();
-
 			loginpage.typeUseremail(email);
-
 			loginpage.typepassword(password);
-
 			loginpage.clickLogin();
-
-			Thread.sleep(2000);
 			loginpage.validatedloggedinUserDetailsEmailID(email);
-
 			loginpage.verifyloggedinUserFNameAndLName();
-
 			usermanagement.clickAppmanagementBtn();
-
 			siteblocking.clickonSiteBlockingBtn();
 			siteblocking.issiteblockingscreen();
 			siteblocking.typesiteurl(siteURl);
@@ -237,6 +219,7 @@ public class AKKU_26_Siteblocking extends Browser_Setup {
 			result = TestLinkAPIResults.TEST_FAILED;
 			notes = e.getMessage();
 			e.printStackTrace();
+			Assert.fail();
 			
 		}catch (AssertionError e) {
 
@@ -264,19 +247,12 @@ public class AKKU_26_Siteblocking extends Browser_Setup {
 
 		try {
 			loginpage.loginpageTitle();
-
 			loginpage.typeUseremail(email);
-
 			loginpage.typepassword(password);
-
 			loginpage.clickLogin();
-
-			Thread.sleep(2000);
 			loginpage.validatedloggedinUserDetailsEmailID(email);
-
 			loginpage.verifyloggedinUserFNameAndLName();
 			usermanagement.clickAppmanagementBtn();
-
 			siteblocking.clickonSiteBlockingBtn();
 			siteblocking.issiteblockingscreen();
 			siteblocking.typesiteurl(siteURl);
@@ -293,6 +269,7 @@ public class AKKU_26_Siteblocking extends Browser_Setup {
 			result = TestLinkAPIResults.TEST_FAILED;
 			notes = e.getMessage();
 			e.printStackTrace();
+			Assert.fail();
 		}catch (AssertionError e) {
 
 			String message = e.getMessage();
@@ -320,26 +297,17 @@ public class AKKU_26_Siteblocking extends Browser_Setup {
 
 		try {
 			loginpage.loginpageTitle();
-
 			loginpage.loginpageTitle();
-
 			loginpage.typeUseremail(email);
-
 			loginpage.typepassword(password);
-
 			loginpage.clickLogin();
-
-			Thread.sleep(2000);
-						
 			usermanagement.clickAppmanagementBtn();
-			
 			siteblocking.clickonSiteBlockingBtn();
 			siteblocking.issiteblockingscreen();
 			siteblocking.typesiteurl(siteURl);
 			siteblocking.typesiteDescription(siteDescription);
 			siteblocking.clickonAddbtn();
 			siteblocking.SuccessPopup_AddUrlSuccessfullyMessage();
-			Thread.sleep(3000);
 			editinfo.closeAlertpopup();
 			loginpage.clickLogout();
 			
@@ -350,6 +318,7 @@ public class AKKU_26_Siteblocking extends Browser_Setup {
 			result = TestLinkAPIResults.TEST_FAILED;
 			notes = e.getMessage();
 			e.printStackTrace();
+			Assert.fail();
 		}catch (AssertionError e) {
 
 			String message = e.getMessage();
@@ -379,10 +348,7 @@ public class AKKU_26_Siteblocking extends Browser_Setup {
 			loginpage.typeUseremail(email);
 			loginpage.typepassword(password);
 			loginpage.clickLogin();
-			Thread.sleep(2000);
-			
 			usermanagement.clickAppmanagementBtn();
-			
 			siteblocking.clickonSiteBlockingBtn();
 			siteblocking.issiteblockingscreen();
 			siteblocking.clickonEditbtn();
@@ -390,7 +356,6 @@ public class AKKU_26_Siteblocking extends Browser_Setup {
 			siteblocking.ClearurlDescription();
 			siteblocking.InputSiteUrlErrorMsgValidation();
 			siteblocking.CloseEditPopup();
-			Thread.sleep(1000);
 			loginpage.clickLogout();
 			
 			log.info("####################################################################");
@@ -401,6 +366,7 @@ public class AKKU_26_Siteblocking extends Browser_Setup {
 			result = TestLinkAPIResults.TEST_FAILED;
 			notes = e.getMessage();
 			e.printStackTrace();
+			Assert.fail();
 		}catch (AssertionError e) {
 
 			String message = e.getMessage();
@@ -433,17 +399,14 @@ public class AKKU_26_Siteblocking extends Browser_Setup {
 			loginpage.typeUseremail(email);
 			loginpage.typepassword(password);
 			loginpage.clickLogin();
-			Thread.sleep(2000);
 			loginpage.validatedloggedinUserDetailsEmailID(email);
 			loginpage.verifyloggedinUserFNameAndLName();
 			usermanagement.clickAppmanagementBtn();
-
 			siteblocking.clickonSiteBlockingBtn();
 			siteblocking.issiteblockingscreen();
 			siteblocking.clickonEditbtn();
 			siteblocking.EditUrl(siteURl);
 			siteblocking.EditUrlDescription(siteDescription);
-			//siteblocking.readduplicate(siteURl);
 			siteblocking.clickonUpdatebtn();
 			siteblocking.EditValidateDuplicateerrormessage();
 			
@@ -455,6 +418,7 @@ public class AKKU_26_Siteblocking extends Browser_Setup {
 			result = TestLinkAPIResults.TEST_FAILED;
 			notes = e.getMessage();
 			e.printStackTrace();
+			Assert.fail();
 		}catch (AssertionError e) {
 
 			String message = e.getMessage();
@@ -484,11 +448,9 @@ public class AKKU_26_Siteblocking extends Browser_Setup {
 			loginpage.typeUseremail(email);
 			loginpage.typepassword(password);
 			loginpage.clickLogin();
-			Thread.sleep(2000);
 			loginpage.validatedloggedinUserDetailsEmailID(email);
 			loginpage.verifyloggedinUserFNameAndLName();
 			usermanagement.clickAppmanagementBtn();
-
 			siteblocking.clickonSiteBlockingBtn();
 			siteblocking.issiteblockingscreen();
 			siteblocking.clickonEditbtn();
@@ -496,7 +458,6 @@ public class AKKU_26_Siteblocking extends Browser_Setup {
 			siteblocking.ClearurlDescription();
 			siteblocking.InputSiteDescriptionErrorMsgValidation();
 			siteblocking.CloseEditPopup();
-			Thread.sleep(1000);
 			loginpage.clickLogout();
 			
 			log.info("####################################################################");
@@ -507,6 +468,7 @@ public class AKKU_26_Siteblocking extends Browser_Setup {
 			result = TestLinkAPIResults.TEST_FAILED;
 			notes = e.getMessage();
 			e.printStackTrace();
+			Assert.fail();
 		}catch (AssertionError e) {
 
 			String message = e.getMessage();
@@ -533,32 +495,20 @@ public class AKKU_26_Siteblocking extends Browser_Setup {
 		
 		try {
 			loginpage.loginpageTitle();
-
 			loginpage.typeUseremail(email);
-
 			loginpage.typepassword(password);
-
 			loginpage.clickLogin();
-
-			Thread.sleep(2000);
 			loginpage.validatedloggedinUserDetailsEmailID(email);
-
 			loginpage.verifyloggedinUserFNameAndLName();
-
 			usermanagement.clickAppmanagementBtn();
-
-
 			siteblocking.clickonSiteBlockingBtn();
 			siteblocking.issiteblockingscreen();
 			siteblocking.clickonEditbtn();
 			siteblocking.EditUrl(siteURl);
 			siteblocking.EditUrlDescription(siteDescription);
 			siteblocking.clickonUpdatebtn();
-			Thread.sleep(2000);
 			siteblocking.Validateurl(siteURl);
-			Thread.sleep(2000);
 			editinfo.closeAlertpopup();
-			Thread.sleep(2000);
 			loginpage.clickLogout();
 			
 			log.info("####################################################################");
@@ -569,6 +519,7 @@ public class AKKU_26_Siteblocking extends Browser_Setup {
 			result = TestLinkAPIResults.TEST_FAILED;
 			notes = e.getMessage();
 			e.printStackTrace();
+			Assert.fail();
 		}catch (AssertionError e) {
 
 			String message = e.getMessage();
@@ -600,11 +551,9 @@ public class AKKU_26_Siteblocking extends Browser_Setup {
 			loginpage.typeUseremail(email);
 			loginpage.typepassword(password);
 			loginpage.clickLogin();
-			Thread.sleep(2000);
 			loginpage.validatedloggedinUserDetailsEmailID(email);
 			loginpage.verifyloggedinUserFNameAndLName();
 			usermanagement.clickAppmanagementBtn();
-			
 			siteblocking.clickonSiteBlockingBtn();
 			siteblocking.issiteblockingscreen();
 			siteblocking.clickonEditbtn();
@@ -621,6 +570,7 @@ public class AKKU_26_Siteblocking extends Browser_Setup {
 			result = TestLinkAPIResults.TEST_FAILED;
 			notes = e.getMessage();
 			e.printStackTrace();
+			Assert.fail();
 		}catch (AssertionError e) {
 
 			String message = e.getMessage();
@@ -650,20 +600,15 @@ public class AKKU_26_Siteblocking extends Browser_Setup {
 	
 		try {
 			loginpage.loginpageTitle();
-			Thread.sleep(2000);
 			loginpage.typeUseremail(email);
 			loginpage.typepassword(password);
 			loginpage.clickLogin();
-			Thread.sleep(5000);
 			usermanagement.clickAppmanagementBtn();
-			
 			siteblocking.clickonSiteBlockingBtn();
 			siteblocking.issiteblockingscreen();
-			
 			siteblocking.clickondeltbtnforaddedurl(siteURl);
 			siteblocking.clickondeltconfirmation();
 			siteblocking.ValidateDeletemessage();
-			Thread.sleep(1000);
 			loginpage.clickLogout();
 			
 			log.info("####################################################################");
@@ -676,7 +621,7 @@ public class AKKU_26_Siteblocking extends Browser_Setup {
 			result = TestLinkAPIResults.TEST_FAILED;
 			notes = e.getMessage();
 			e.printStackTrace();
-			log.info("Test Case Pass");
+			Assert.fail();
 			
 		
 			
