@@ -1,4 +1,10 @@
-/.target/
-/.test-output/
+/.target
+.target/
+/.test-output
+.test-output/
+/.metadata
+.metadata/
+/.settings
+.settings/
 
 
