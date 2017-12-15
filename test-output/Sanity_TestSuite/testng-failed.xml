@@ -9,8 +9,8 @@
         <methods>
           <include name="endsuite"/>
           <include name="setup"/>
+          <include name="DeleteCreatedOufromPage" invocation-numbers="0 0"/>
           <include name="ExtentReportSetUp"/>
-          <include name="AK_68_SynchronizationOUviaGSuite" invocation-numbers="0"/>
           <include name="tearDown"/>
           <include name="teardown"/>
         </methods>

@@ -150,6 +150,7 @@ public class AK_52_Create_Edit_Delete_Assign_OU extends Browser_Setup {
 
 			String message = e.getMessage();
 			log.info(message);
+			
 			result = TestLinkAPIResults.TEST_FAILED;
 			notes = e.getMessage();
 			e.printStackTrace();
@@ -231,7 +232,6 @@ public class AK_52_Create_Edit_Delete_Assign_OU extends Browser_Setup {
 			oumangement.SelectparentOU(ParentOU);
 			oumangement.ClickCreate();
 			oumangement.ValidateDulicateoumsg();
-			editinfo.closeAlertpopup();
 			loginpage.clickLogout();
 
 			log.info("####################################################################");
@@ -363,6 +363,7 @@ public class AK_52_Create_Edit_Delete_Assign_OU extends Browser_Setup {
 	public void RevertbackEditedOUNamewithValidNameformat(String email, String password, String NewOu, String ParentOU)
 			throws Exception {
 		try {
+			test = report.createTest("AK_53_1", "Revert back Edited OU");
 			loginpage.loginpageTitle();
 			loginpage.typeUseremail(email);
 			loginpage.typepassword(password);
@@ -462,7 +463,7 @@ public class AK_52_Create_Edit_Delete_Assign_OU extends Browser_Setup {
 					oumangement.ClickOUAssginuserbtn(NewOu);
 					oumangement.ClickonAssignusersavebtn();
 					oumangement.ValidateNousermovederrormsg();
-					editinfo.closeAlertpopup();
+					
 				}
 				if (i == 2) {
 					oumangement.clickOUmanagementBtn();
@@ -479,7 +480,6 @@ public class AK_52_Create_Edit_Delete_Assign_OU extends Browser_Setup {
 					oumangement.clickOUmanagementBtn();
 					oumangement.ClickExpandORCollapsBtn();
 					oumangement.ClickOUAssginuserbtn(NewOu);
-					oumangement.Selectallusereinnonoulist();
 					oumangement.ClickonAllusermovefromNonusertoexistinguserlist();
 					oumangement.ClickonAssignusersavebtn();
 					oumangement.ValidateAssignuserSuccessfullmsg();
@@ -500,7 +500,6 @@ public class AK_52_Create_Edit_Delete_Assign_OU extends Browser_Setup {
 					oumangement.clickOUmanagementBtn();
 					oumangement.ClickExpandORCollapsBtn();
 					oumangement.ClickOUAssginuserbtn(NewOu);
-					oumangement.Selectallusereinexistinguserlist();
 					oumangement.ClickonallusermovefromexistinguserlisttoNonuser();
 					oumangement.ClickonAssignusersavebtn();
 					oumangement.ValidateAssignuserSuccessfullmsg();
@@ -553,7 +552,7 @@ public class AK_52_Create_Edit_Delete_Assign_OU extends Browser_Setup {
 			oumangement.clickOUmanagementBtn();
 			oumangement.ClickExpandORCollapsBtn();
 			oumangement.ClickexpandonParentOu(ParentOU);
-			oumangement.ClickdeleteonOu(NewOu);
+			oumangement.ClickDeleteOnChildOU(ParentOU);
 			editUser.AcceptDeletebtninusermanagement();
 			oumangement.ValidateDeleteOUmsg(NewOu);
 			editinfo.closeAlertpopup();
@@ -587,7 +586,7 @@ public class AK_52_Create_Edit_Delete_Assign_OU extends Browser_Setup {
 	}
 
 	@Test(dataProvider = "Create_OU_As_SUBOU", retryAnalyzer = Retry.class)
-	public void AK_60_DeleteParentOUwhichhaveSubOUinOUManagementpage(String email, String password, String NewOu,
+		public void AK_60_DeleteParentOUwhichhaveSubOUinOUManagementpage(String email, String password, String NewOu,
 			String ParentOU) throws Exception {
 
 		test = report.createTest("AK_60", "Delete Parent OU which have SubOU in OU Management page");
@@ -602,9 +601,10 @@ public class AK_52_Create_Edit_Delete_Assign_OU extends Browser_Setup {
 			oumangement.clickOUmanagementBtn();
 			oumangement.ClickExpandORCollapsBtn();
 			oumangement.ClickexpandonParentOu(ParentOU);
-			oumangement.ClickdeleteonOu(ParentOU);
-			oumangement.ValidatDeleteFailOUhavesuboumsg();
+			oumangement.ClickDeleteOnParentOU(ParentOU);
 			editinfo.closeAlertpopup();
+			oumangement.ValidatDeleteFailOUhavesuboumsg();
+			//editinfo.closeAlertpopup();
 			loginpage.clickLogout();
 
 			log.info("####################################################################");
@@ -649,20 +649,19 @@ public class AK_52_Create_Edit_Delete_Assign_OU extends Browser_Setup {
 			oumangement.clickOUmanagementBtn();
 			oumangement.ClickExpandORCollapsBtn();
 			oumangement.ClickexpandonParentOu(ParentOU);
-			oumangement.clickOUmanagementBtn();
-			oumangement.ClickExpandORCollapsBtn();
-			oumangement.ClickOUAssginuserbtn(NewOu);
+			oumangement.ClickchlidOUAssginuserbtn(ParentOU);
+			oumangement.ClickonAllusermovefromNonusertoexistinguserlist();
 			oumangement.ClickonAssignusersavebtn();
-			oumangement.ValidateNousermovederrormsg();
+		
 			editinfo.closeAlertpopup();
-			oumangement.ClickdeleteonOu(NewOu);
+			oumangement.ClickDeleteOnChildOU(ParentOU);
 			editUser.AcceptDeletebtninusermanagement();
 			oumangement.ValidatDeleteFailOUhaveusermsg();
-			editinfo.closeAlertpopup();
 			oumangement.clickOUmanagementBtn();
 			oumangement.ClickExpandORCollapsBtn();
-			oumangement.ClickOUAssginuserbtn(NewOu);
-			oumangement.Selectallusereinexistinguserlist();
+			oumangement.ClickexpandonParentOu(ParentOU);
+			oumangement.ClickchlidOUAssginuserbtn(ParentOU);
+			
 			oumangement.ClickonallusermovefromexistinguserlisttoNonuser();
 			oumangement.ClickonAssignusersavebtn();
 			oumangement.ValidateAssignuserSuccessfullmsg();
@@ -698,6 +697,7 @@ public class AK_52_Create_Edit_Delete_Assign_OU extends Browser_Setup {
 	@Test(dataProvider = "Create_OU_As_SUBOU", retryAnalyzer = Retry.class)
 	public void DeleteCreatedOufromPage(String email, String password, String NewOu, String ParentOU) throws Exception {
 		try {
+			test = report.createTest("AK_61_1", "Delete Created OU in OU Management page");
 			loginpage.loginpageTitle();
 			loginpage.typeUseremail(email);
 			loginpage.typepassword(password);
@@ -707,13 +707,13 @@ public class AK_52_Create_Edit_Delete_Assign_OU extends Browser_Setup {
 			oumangement.clickOUmanagementBtn();
 			oumangement.ClickExpandORCollapsBtn();
 			oumangement.ClickexpandonParentOu(ParentOU);
-			oumangement.ClickdeleteonOu(NewOu);
+			oumangement.ClickDeleteOnChildOU(ParentOU);
 			editUser.AcceptDeletebtninusermanagement();
 			editinfo.closeAlertpopup();
 			driver.navigate().refresh();
 			oumangement.clickOUmanagementBtn();
 			oumangement.ClickExpandORCollapsBtn();
-			oumangement.ClickdeleteonOu(ParentOU);
+			oumangement.ClickDeleteOnParentOU(ParentOU);
 			editUser.AcceptDeletebtninusermanagement();
 			editinfo.closeAlertpopup();
 			loginpage.clickLogout();

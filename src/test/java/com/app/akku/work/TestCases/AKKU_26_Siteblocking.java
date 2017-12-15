@@ -1,7 +1,18 @@
 package com.app.akku.work.TestCases;
 
+import java.awt.Robot;
+import java.awt.Toolkit;
+import java.awt.datatransfer.StringSelection;
+import java.awt.event.KeyEvent;
+import java.util.ArrayList;
 
 import org.apache.log4j.Logger;
+import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.remote.CapabilityType;
+import org.openqa.selenium.remote.DesiredCapabilities;
 import org.testng.Assert;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
@@ -20,8 +31,6 @@ import com.app.akku.work.keywords.Keywords;
 import testlink.api.java.client.TestLinkAPIResults;
 
 public class AKKU_26_Siteblocking extends Browser_Setup {
-	
-	
 
 	String testProject = "AkkuAppTC";
 	String testPlan = "AutomateManualTC";
@@ -36,10 +45,12 @@ public class AKKU_26_Siteblocking extends Browser_Setup {
 	String AK_29 = "Edit Site Details and save it by valid site url & valid site Description";
 	String AK_30 = "Edit Site Details and save it by Invalid site url & valid site Description";
 	String AK_31 = "Delete One Site URL from site Blocked list";
+	String AK_69 = "Add Site URL for parent OU in Site Blocking";
+	String AK_70 = "Add Site URL for Child OU in Site Blocking";
 	String build = "Build 2";
 	String notes = null;
 	String result = null;
-	
+
 	Logger log = Logger.getLogger(AKKU_26_Siteblocking.class.getName());
 
 	@DataProvider(name = "SiteBlockingLogin_Details")
@@ -78,15 +89,43 @@ public class AKKU_26_Siteblocking extends Browser_Setup {
 		return testData;
 	}
 
+	@DataProvider(name = "Create_OU_As_SUBOU")
+	public Object[][] dataProvider_ClientName_CreateOuasSubOu() {
+
+		Object[][] testData = poi_Reader_e.readExcelData("..//App_Akku_Work//src//test//resources//input//Login.xlsx",
+				"Create_Edit_Delete_Assign_OU", "AddOUASSubOU");
+
+		return testData;
+	}
+	
+
+	@DataProvider(name = "Site_Blocking_For_ParentOU")
+	public Object[][] dataProvider_ClientName_SiteBlockingForParentOU() {
+
+		Object[][] testData = poi_Reader_e.readExcelData("..//App_Akku_Work//src//test//resources//input//Login.xlsx",
+				"siteBlocking", "SiteUrlForParentOU");
+
+		return testData;
+	}
+	
+
+	@DataProvider(name = "Site_Blocking_For_ChildOU")
+	public Object[][] dataProvider_ClientName_SiteBlockingForChildOU() {
+
+		Object[][] testData = poi_Reader_e.readExcelData("..//App_Akku_Work//src//test//resources//input//Login.xlsx",
+				"siteBlocking", "SiteUrlForChildOU");
+
+		return testData;
+	}
+
 	@Test(dataProvider = "DuplicateUrl", retryAnalyzer = Retry.class)
 	public void AK_21_AddDuplicateSiteUrlwithvalidSiteDescription(String email, String password, String siteURl,
 			String siteDescription) throws Exception
 
 	{
-		
+
 		test = report.createTest("AK_21", "Add Duplicate Site Url with valid Site Description");
-		
-	
+
 		try {
 			loginpage.loginpageTitle();
 			loginpage.typeUseremail(email);
@@ -99,25 +138,22 @@ public class AKKU_26_Siteblocking extends Browser_Setup {
 			siteblocking.issiteblockingscreen();
 			siteblocking.typesiteurl(siteURl);
 			siteblocking.typesiteDescription(siteDescription);
-        	siteblocking.clickonAddbtn();
+			siteblocking.clickonAddbtn();
 			siteblocking.AddValidateDuplicateerrormessage();
 			loginpage.clickLogout();
-			
+
 			log.info("####################################################################");
 			result = TestLinkAPIResults.TEST_PASSED;
 			notes = "Test Case Pass Successfully";
-			
-			
+
 		} catch (Exception e) {
-			
-			
+
 			result = TestLinkAPIResults.TEST_FAILED;
 			notes = e.getMessage();
 			e.printStackTrace();
 			Assert.fail();
-			
-			
-		}catch (AssertionError e) {
+
+		} catch (AssertionError e) {
 
 			String message = e.getMessage();
 			log.info(message);
@@ -126,23 +162,19 @@ public class AKKU_26_Siteblocking extends Browser_Setup {
 			e.printStackTrace();
 			Assert.fail();
 
-		}
-		finally {
+		} finally {
 
 			log.info("Updating TestCase Execution Status in TestLink");
 			TestLinkIntegration.reportResult(testProject, testPlan, AK_21, build, notes, result);
 
 		}
 	}
-	
 
 	@Test(dataProvider = "SiteBlockingLogin_Details", retryAnalyzer = Retry.class)
-	public void AK_22_ClickonAddSitewithoutEnteringanyDatainUrlDesctextfield(String email, String password, String siteURl,
-			String siteDescription) throws Exception {
-		
-		test = report.createTest("AK_22", "Click on Add Site without Entering any Data in Url & Desc text field");
-		
+	public void AK_22_ClickonAddSitewithoutEnteringanyDatainUrlDesctextfield(String email, String password,
+			String siteURl, String siteDescription) throws Exception {
 
+		test = report.createTest("AK_22", "Click on Add Site without Entering any Data in Url & Desc text field");
 
 		try {
 			loginpage.loginpageTitle();
@@ -158,19 +190,18 @@ public class AKKU_26_Siteblocking extends Browser_Setup {
 			siteblocking.InputSiteUrlErrorMsgValidation();
 			editinfo.closeAlertpopup();
 			loginpage.clickLogout();
-			
+
 			log.info("####################################################################");
 			result = TestLinkAPIResults.TEST_PASSED;
-			
-			
+
 		} catch (Exception e) {
-			
+
 			result = TestLinkAPIResults.TEST_FAILED;
 			notes = e.getMessage();
 			e.printStackTrace();
 			Assert.fail();
-			
-		}catch (AssertionError e) {
+
+		} catch (AssertionError e) {
 
 			String message = e.getMessage();
 			log.info(message);
@@ -179,7 +210,7 @@ public class AKKU_26_Siteblocking extends Browser_Setup {
 			e.printStackTrace();
 			Assert.fail();
 
-		}finally {
+		} finally {
 
 			log.info("Updating TestCase Execution Status in TestLink");
 			TestLinkIntegration.reportResult(testProject, testPlan, AK_22, build, notes, result);
@@ -188,11 +219,10 @@ public class AKKU_26_Siteblocking extends Browser_Setup {
 	}
 
 	@Test(dataProvider = "InvalidUrlFormat", retryAnalyzer = Retry.class)
-	public void AK_23_AddInvalidSiteUrlandvalidSiteDescriptioninSiteBlocking(String email, String password, String siteURl,
-			String siteDescription) throws Exception {
-		
+	public void AK_23_AddInvalidSiteUrlandvalidSiteDescriptioninSiteBlocking(String email, String password,
+			String siteURl, String siteDescription) throws Exception {
+
 		test = report.createTest("AK_23", "Add Invalid Site Url and valid Site Description in Site Blocking");
-		
 
 		try {
 			loginpage.loginpageTitle();
@@ -210,18 +240,18 @@ public class AKKU_26_Siteblocking extends Browser_Setup {
 			siteblocking.ErrorPopup_NotAvalidURLMessage();
 			editinfo.closeAlertpopup();
 			loginpage.clickLogout();
-			
+
 			log.info("####################################################################");
 			result = TestLinkAPIResults.TEST_PASSED;
-			
+
 		} catch (Exception e) {
-			
+
 			result = TestLinkAPIResults.TEST_FAILED;
 			notes = e.getMessage();
 			e.printStackTrace();
 			Assert.fail();
-			
-		}catch (AssertionError e) {
+
+		} catch (AssertionError e) {
 
 			String message = e.getMessage();
 			log.info(message);
@@ -230,7 +260,7 @@ public class AKKU_26_Siteblocking extends Browser_Setup {
 			e.printStackTrace();
 			Assert.fail();
 
-		}finally {
+		} finally {
 
 			log.info("Updating TestCase Execution Status in TestLink");
 			TestLinkIntegration.reportResult(testProject, testPlan, AK_23, build, notes, result);
@@ -239,11 +269,10 @@ public class AKKU_26_Siteblocking extends Browser_Setup {
 	}
 
 	@Test(dataProvider = "SiteBlockingLogin_Details", retryAnalyzer = Retry.class)
-	public void AK_24_AddValidSiteUrlandInvalidSiteDescriptioninSiteBlocking(String email, String password, String siteURl,
-			String siteDescription) throws Exception {
-		
+	public void AK_24_AddValidSiteUrlandInvalidSiteDescriptioninSiteBlocking(String email, String password,
+			String siteURl, String siteDescription) throws Exception {
+
 		test = report.createTest("AK_24", "Add Valid Site Url and Invalid Site Description in Site Blocking");
-		
 
 		try {
 			loginpage.loginpageTitle();
@@ -260,17 +289,16 @@ public class AKKU_26_Siteblocking extends Browser_Setup {
 			siteblocking.ErrorPopup_PleaseEnterDescription();
 			editinfo.closeAlertpopup();
 			loginpage.clickLogout();
-			
+
 			log.info("####################################################################");
 			result = TestLinkAPIResults.TEST_PASSED;
-			
-			
+
 		} catch (Exception e) {
 			result = TestLinkAPIResults.TEST_FAILED;
 			notes = e.getMessage();
 			e.printStackTrace();
 			Assert.fail();
-		}catch (AssertionError e) {
+		} catch (AssertionError e) {
 
 			String message = e.getMessage();
 			log.info(message);
@@ -279,7 +307,7 @@ public class AKKU_26_Siteblocking extends Browser_Setup {
 			e.printStackTrace();
 			Assert.fail();
 
-		}finally {
+		} finally {
 
 			log.info("Updating TestCase Execution Status in TestLink");
 			TestLinkIntegration.reportResult(testProject, testPlan, AK_24, build, notes, result);
@@ -288,12 +316,10 @@ public class AKKU_26_Siteblocking extends Browser_Setup {
 	}
 
 	@Test(dataProvider = "SiteBlockingLogin_Details", retryAnalyzer = Retry.class)
-	public void AK_25_BlockingaSitewithValidSitedetails(String email, String password, String siteURl, String siteDescription)
-			throws Exception {
-		
-		test = report.createTest("AK_25", "Blocking a Site with Valid Site details");
+	public void AK_25_BlockingaSitewithValidSitedetails(String email, String password, String siteURl,
+			String siteDescription) throws Exception {
 
-		
+		test = report.createTest("AK_25", "Blocking a Site with Valid Site details");
 
 		try {
 			loginpage.loginpageTitle();
@@ -310,16 +336,16 @@ public class AKKU_26_Siteblocking extends Browser_Setup {
 			siteblocking.SuccessPopup_AddUrlSuccessfullyMessage();
 			editinfo.closeAlertpopup();
 			loginpage.clickLogout();
-			
+
 			log.info("####################################################################");
 			result = TestLinkAPIResults.TEST_PASSED;
-			
+
 		} catch (Exception e) {
 			result = TestLinkAPIResults.TEST_FAILED;
 			notes = e.getMessage();
 			e.printStackTrace();
 			Assert.fail();
-		}catch (AssertionError e) {
+		} catch (AssertionError e) {
 
 			String message = e.getMessage();
 			log.info(message);
@@ -328,7 +354,7 @@ public class AKKU_26_Siteblocking extends Browser_Setup {
 			e.printStackTrace();
 			Assert.fail();
 
-		}finally {
+		} finally {
 
 			log.info("Updating TestCase Execution Status in TestLink");
 			TestLinkIntegration.reportResult(testProject, testPlan, AK_25, build, notes, result);
@@ -336,13 +362,12 @@ public class AKKU_26_Siteblocking extends Browser_Setup {
 		}
 	}
 
-
 	@Test(dataProvider = "Edit_SiteBlockingLogin_Details", retryAnalyzer = Retry.class)
-	public void AK_26_EditSiteDetailsandsaveitbyRemovingurlDescriptiondetails(String email, String password, String siteURl,
-			String siteDescription) throws Exception {
-		
+	public void AK_26_EditSiteDetailsandsaveitbyRemovingurlDescriptiondetails(String email, String password,
+			String siteURl, String siteDescription) throws Exception {
+
 		test = report.createTest("AK_26", "Edit Site Details and save it by Removing url & Description details");
-		
+
 		try {
 			loginpage.loginpageTitle();
 			loginpage.typeUseremail(email);
@@ -357,17 +382,16 @@ public class AKKU_26_Siteblocking extends Browser_Setup {
 			siteblocking.InputSiteUrlErrorMsgValidation();
 			siteblocking.CloseEditPopup();
 			loginpage.clickLogout();
-			
+
 			log.info("####################################################################");
 			result = TestLinkAPIResults.TEST_PASSED;
-			
-			
+
 		} catch (Exception e) {
 			result = TestLinkAPIResults.TEST_FAILED;
 			notes = e.getMessage();
 			e.printStackTrace();
 			Assert.fail();
-		}catch (AssertionError e) {
+		} catch (AssertionError e) {
 
 			String message = e.getMessage();
 			log.info(message);
@@ -376,7 +400,7 @@ public class AKKU_26_Siteblocking extends Browser_Setup {
 			e.printStackTrace();
 			Assert.fail();
 
-		}finally {
+		} finally {
 
 			log.info("Updating TestCase Execution Status in TestLink");
 			TestLinkIntegration.reportResult(testProject, testPlan, AK_26, build, notes, result);
@@ -386,13 +410,12 @@ public class AKKU_26_Siteblocking extends Browser_Setup {
 	}
 
 	@Test(dataProvider = "DuplicateUrl", retryAnalyzer = Retry.class)
-	public void AK_27_EditSiteDetailsandsaveitbyDuplicateurlValidDescriptiondetails(String email, String password, String siteURl,
-			String siteDescription) throws Exception
+	public void AK_27_EditSiteDetailsandsaveitbyDuplicateurlValidDescriptiondetails(String email, String password,
+			String siteURl, String siteDescription) throws Exception
 
 	{
-		
+
 		test = report.createTest("AK_27", "Edit Site Details and save it by Duplicate url & Valid Description details");
-		
 
 		try {
 			loginpage.loginpageTitle();
@@ -409,17 +432,16 @@ public class AKKU_26_Siteblocking extends Browser_Setup {
 			siteblocking.EditUrlDescription(siteDescription);
 			siteblocking.clickonUpdatebtn();
 			siteblocking.EditValidateDuplicateerrormessage();
-			
+
 			log.info("####################################################################");
 			result = TestLinkAPIResults.TEST_PASSED;
-			
-			
+
 		} catch (Exception e) {
 			result = TestLinkAPIResults.TEST_FAILED;
 			notes = e.getMessage();
 			e.printStackTrace();
 			Assert.fail();
-		}catch (AssertionError e) {
+		} catch (AssertionError e) {
 
 			String message = e.getMessage();
 			log.info(message);
@@ -428,7 +450,7 @@ public class AKKU_26_Siteblocking extends Browser_Setup {
 			e.printStackTrace();
 			Assert.fail();
 
-		}finally {
+		} finally {
 
 			log.info("Updating TestCase Execution Status in TestLink");
 			TestLinkIntegration.reportResult(testProject, testPlan, AK_27, build, notes, result);
@@ -438,11 +460,11 @@ public class AKKU_26_Siteblocking extends Browser_Setup {
 	}
 
 	@Test(dataProvider = "SiteBlockingLogin_Details", retryAnalyzer = Retry.class)
-	public void AK_28_EditSiteDetailsandsaveitbyvalidsiteurlemptysiteDescription(String email, String password, String siteURl, String siteDescription)
-			throws Exception {
-		
+	public void AK_28_EditSiteDetailsandsaveitbyvalidsiteurlemptysiteDescription(String email, String password,
+			String siteURl, String siteDescription) throws Exception {
+
 		test = report.createTest("AK_28", "Edit Site Details and save it by valid site url & empty site Description");
-	
+
 		try {
 			loginpage.loginpageTitle();
 			loginpage.typeUseremail(email);
@@ -459,17 +481,16 @@ public class AKKU_26_Siteblocking extends Browser_Setup {
 			siteblocking.InputSiteDescriptionErrorMsgValidation();
 			siteblocking.CloseEditPopup();
 			loginpage.clickLogout();
-			
+
 			log.info("####################################################################");
 			result = TestLinkAPIResults.TEST_PASSED;
-			
-			
+
 		} catch (Exception e) {
 			result = TestLinkAPIResults.TEST_FAILED;
 			notes = e.getMessage();
 			e.printStackTrace();
 			Assert.fail();
-		}catch (AssertionError e) {
+		} catch (AssertionError e) {
 
 			String message = e.getMessage();
 			log.info(message);
@@ -478,7 +499,7 @@ public class AKKU_26_Siteblocking extends Browser_Setup {
 			e.printStackTrace();
 			Assert.fail();
 
-		}finally {
+		} finally {
 
 			log.info("Updating TestCase Execution Status in TestLink");
 			TestLinkIntegration.reportResult(testProject, testPlan, AK_28, build, notes, result);
@@ -488,11 +509,11 @@ public class AKKU_26_Siteblocking extends Browser_Setup {
 	}
 
 	@Test(dataProvider = "Edit_SiteBlockingLogin_Details", retryAnalyzer = Retry.class)
-	public void AK_29_EditSiteDetailsandsaveitbyvalidsiteurlvalidsiteDescription(String email, String password, String siteURl,
-			String siteDescription) throws Exception {
+	public void AK_29_EditSiteDetailsandsaveitbyvalidsiteurlvalidsiteDescription(String email, String password,
+			String siteURl, String siteDescription) throws Exception {
 
 		test = report.createTest("AK_29", "Edit Site Details and save it by valid site url & valid site Description");
-		
+
 		try {
 			loginpage.loginpageTitle();
 			loginpage.typeUseremail(email);
@@ -510,17 +531,16 @@ public class AKKU_26_Siteblocking extends Browser_Setup {
 			siteblocking.Validateurl(siteURl);
 			editinfo.closeAlertpopup();
 			loginpage.clickLogout();
-			
+
 			log.info("####################################################################");
 			result = TestLinkAPIResults.TEST_PASSED;
-			
-			
+
 		} catch (Exception e) {
 			result = TestLinkAPIResults.TEST_FAILED;
 			notes = e.getMessage();
 			e.printStackTrace();
 			Assert.fail();
-		}catch (AssertionError e) {
+		} catch (AssertionError e) {
 
 			String message = e.getMessage();
 			log.info(message);
@@ -529,7 +549,7 @@ public class AKKU_26_Siteblocking extends Browser_Setup {
 			e.printStackTrace();
 			Assert.fail();
 
-		}finally {
+		} finally {
 
 			log.info("Updating TestCase Execution Status in TestLink");
 			TestLinkIntegration.reportResult(testProject, testPlan, AK_29, build, notes, result);
@@ -539,13 +559,13 @@ public class AKKU_26_Siteblocking extends Browser_Setup {
 	}
 
 	@Test(dataProvider = "InvalidUrlFormat", retryAnalyzer = Retry.class)
-	public void AK_30_EditSiteDetailsandsaveitbyInvalidsiteurlvalidsiteDescription(String email, String password, String siteURl,
-			String siteDescription) throws Exception
+	public void AK_30_EditSiteDetailsandsaveitbyInvalidsiteurlvalidsiteDescription(String email, String password,
+			String siteURl, String siteDescription) throws Exception
 
 	{
-		
+
 		test = report.createTest("AK_30", "Edit Site Details and save it by Invalid site url & valid site Description");
-	
+
 		try {
 			loginpage.loginpageTitle();
 			loginpage.typeUseremail(email);
@@ -561,17 +581,16 @@ public class AKKU_26_Siteblocking extends Browser_Setup {
 			siteblocking.EditUrlDescription(siteDescription);
 			siteblocking.clickonUpdatebtn();
 			siteblocking.ValidateinvalidUrlerrormessage();
-			
+			loginpage.clickLogout();
 			log.info("####################################################################");
 			result = TestLinkAPIResults.TEST_PASSED;
-			
-			
+
 		} catch (Exception e) {
 			result = TestLinkAPIResults.TEST_FAILED;
 			notes = e.getMessage();
 			e.printStackTrace();
 			Assert.fail();
-		}catch (AssertionError e) {
+		} catch (AssertionError e) {
 
 			String message = e.getMessage();
 			log.info(message);
@@ -580,7 +599,7 @@ public class AKKU_26_Siteblocking extends Browser_Setup {
 			e.printStackTrace();
 			Assert.fail();
 
-		}finally {
+		} finally {
 
 			log.info("Updating TestCase Execution Status in TestLink");
 			TestLinkIntegration.reportResult(testProject, testPlan, AK_30, build, notes, result);
@@ -594,10 +613,9 @@ public class AKKU_26_Siteblocking extends Browser_Setup {
 			String siteDescription) throws Exception
 
 	{
-		
+
 		test = report.createTest("AK_31", "Delete One Site URL from site Blocked list");
-		
-	
+
 		try {
 			loginpage.loginpageTitle();
 			loginpage.typeUseremail(email);
@@ -610,22 +628,19 @@ public class AKKU_26_Siteblocking extends Browser_Setup {
 			siteblocking.clickondeltconfirmation();
 			siteblocking.ValidateDeletemessage();
 			loginpage.clickLogout();
-			
+
 			log.info("####################################################################");
 			log.info("Test Case Pass");
 			result = TestLinkAPIResults.TEST_PASSED;
-			
-			
+
 		} catch (Exception e) {
-	
+
 			result = TestLinkAPIResults.TEST_FAILED;
 			notes = e.getMessage();
 			e.printStackTrace();
 			Assert.fail();
-			
-		
-			
-		}catch (AssertionError e) {
+
+		} catch (AssertionError e) {
 
 			String message = e.getMessage();
 			log.info(message);
@@ -634,7 +649,7 @@ public class AKKU_26_Siteblocking extends Browser_Setup {
 			e.printStackTrace();
 			Assert.fail();
 
-		}finally {
+		} finally {
 
 			log.info("Updating TestCase Execution Status in TestLink");
 			TestLinkIntegration.reportResult(testProject, testPlan, AK_31, build, notes, result);
@@ -643,5 +658,139 @@ public class AKKU_26_Siteblocking extends Browser_Setup {
 
 	}
 
-	
+	@Test(dataProvider = "Site_Blocking_For_ParentOU", retryAnalyzer = Retry.class)
+	public void AK_69_AddSiteURLforparentOUinSiteBlocking(String email, String password, String proxyemail,  String proxypassword, String siteURl, String siteDescription, String ParentOU)
+			throws Exception
+
+	{
+		test = report.createTest("AK_69", "Add Site URL for parent OU in SiteBlocking");
+		try {
+
+			siteblocking.enterProxyCredentials(proxyemail, proxypassword);
+			loginpage.loginpageTitle();
+			loginpage.typeUseremail(email);
+			loginpage.typepassword(password);
+			loginpage.clickLogin();
+			loginpage.validatedloggedinUserDetailsEmailID(email);
+			loginpage.verifyloggedinUserFNameAndLName();
+			usermanagement.clickAppmanagementBtn();
+			siteblocking.clickonSiteBlockingBtn();
+			siteblocking.ClickExpandORCollapsBtnInSiteBlocking();
+			siteblocking.clickExpandParentOUInSiteBlocking(ParentOU);
+			Thread.sleep(5000);
+			siteblocking.clickOnparentOUInSiteBlocking(ParentOU);
+			Thread.sleep(5000);
+			siteblocking.typesiteurl(siteURl);
+			siteblocking.typesiteDescription(siteDescription);
+			siteblocking.clickonAddbtn();
+			siteblocking.SuccessPopup_AddUrlSuccessfullyMessage();
+			editinfo.closeAlertpopup();
+			usermanagement.clickUsermanagementBtn();
+			editUser.validatemailfoundingrid(proxyemail);
+			editUser.clickonEditDeleteSuspendHamburgermenuinusermanagement();
+			editUser.clickonEditbtninusermanagement();
+		    siteblocking.selectParentOU(ParentOU);
+			editUser.clickonUpdatebtn();
+			editinfo.closeAlertpopup();
+			Thread.sleep(5000);
+			loginpage.clickLogout();
+			siteblocking.openUrlInNewTab("https://"+siteURl+"/");
+
+			Thread.sleep(10000);
+			siteblocking.verfirySiteBlockedmessage();
+			Thread.sleep(5000);
+			log.info("####################################################################");
+			log.info("Test Case Pass");
+			result = TestLinkAPIResults.TEST_PASSED;
+
+		} catch (Exception e) {
+
+			result = TestLinkAPIResults.TEST_FAILED;
+			notes = e.getMessage();
+			e.printStackTrace();
+			Assert.fail();
+
+		} catch (AssertionError e) {
+
+			String message = e.getMessage();
+			log.info(message);
+			result = TestLinkAPIResults.TEST_FAILED;
+			notes = e.getMessage();
+			e.printStackTrace();
+			Assert.fail();
+
+		} finally {
+
+			log.info("Updating TestCase Execution Status in TestLink");
+			TestLinkIntegration.reportResult(testProject, testPlan, AK_69, build, notes, result);
+
+		}
+
+	}
+
+	@Test(dataProvider = "Site_Blocking_For_ChildOU", retryAnalyzer = Retry.class)
+	public void AK_70_AddSiteURLforChildOUinSiteBlocking(String email, String password, String proxyemail,  String proxypassword, String siteURl, String siteDescription, String ParentOU)
+			throws Exception
+
+	{
+		test = report.createTest("AK_70", "Add Site URL for Child OU in SiteBlocking");
+		try {
+			siteblocking.enterProxyCredentials(proxyemail, proxypassword);
+			loginpage.loginpageTitle();
+			loginpage.typeUseremail(email);
+			loginpage.typepassword(password);
+			loginpage.clickLogin();
+			loginpage.validatedloggedinUserDetailsEmailID(email);
+			loginpage.verifyloggedinUserFNameAndLName();
+			usermanagement.clickAppmanagementBtn();
+			siteblocking.clickonSiteBlockingBtn();
+			siteblocking.ClickExpandORCollapsBtnInSiteBlocking();
+			siteblocking.clickExpandParentOUInSiteBlocking(ParentOU);
+			Thread.sleep(5000);
+			siteblocking.clickOnChildOUInSiteBlocking(ParentOU);
+			Thread.sleep(5000);
+			siteblocking.typesiteurl(siteURl);
+			siteblocking.typesiteDescription(siteDescription);
+			siteblocking.clickonAddbtn();
+			siteblocking.SuccessPopup_AddUrlSuccessfullyMessage();
+			editinfo.closeAlertpopup();
+			usermanagement.clickUsermanagementBtn();
+			editUser.validatemailfoundingrid(proxyemail);
+			editUser.clickonEditDeleteSuspendHamburgermenuinusermanagement();
+			editUser.clickonEditbtninusermanagement();
+			siteblocking.selectChildOU(ParentOU);
+			editUser.clickonUpdatebtn();
+			editinfo.closeAlertpopup();
+			siteblocking.openUrlInNewTab("https://"+siteURl+"/");
+			Thread.sleep(5000);
+			siteblocking.verfirySiteBlockedmessage();
+
+			log.info("####################################################################");
+			log.info("Test Case Pass");
+			result = TestLinkAPIResults.TEST_PASSED;
+
+		} catch (Exception e) {
+
+			result = TestLinkAPIResults.TEST_FAILED;
+			notes = e.getMessage();
+			e.printStackTrace();
+			Assert.fail();
+
+		} catch (AssertionError e) {
+
+			String message = e.getMessage();
+			log.info(message);
+			result = TestLinkAPIResults.TEST_FAILED;
+			notes = e.getMessage();
+			e.printStackTrace();
+			Assert.fail();
+
+		} finally {
+
+			log.info("Updating TestCase Execution Status in TestLink");
+			TestLinkIntegration.reportResult(testProject, testPlan, AK_70, build, notes, result);
+
+		}
+
+	}
 }

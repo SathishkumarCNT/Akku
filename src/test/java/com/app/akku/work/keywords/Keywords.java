@@ -197,7 +197,7 @@ public class Keywords extends Browser_Setup{
 	}
 
 	public boolean IsDisplayed(By object) throws Exception {
-		wait.until(ExpectedConditions.visibilityOfElementLocated(object));
+		
 
 		boolean select = driver.findElement(object).isDisplayed();
 

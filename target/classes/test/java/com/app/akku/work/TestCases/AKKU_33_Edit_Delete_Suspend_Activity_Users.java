@@ -123,6 +123,8 @@ public class AKKU_33_Edit_Delete_Suspend_Activity_Users extends Browser_Setup {
 			loginpage.verifyloggedinUserFNameAndLName();
 			usermanagement.clickUsermanagementBtn();
 			usermanagement.isUsermanagementpage();
+			editUser.validatemailfoundingrid(NewEmail);
+			editUser.clickonEditDeleteSuspendHamburgermenuinusermanagement();
 			editUser.clickonEditbtninusermanagement();
 			editUser.EditFnameinusermanagement(Fname);
 			editUser.EditLnameinusermanagement(Lname);
@@ -153,7 +155,7 @@ public class AKKU_33_Edit_Delete_Suspend_Activity_Users extends Browser_Setup {
 		}finally {
 
 			log.info("Updating TestCase Execution Status in TestLink");
-			TestLinkIntegration.reportResult(testProject, testPlan, AK_33, build, notes, result);
+			//TestLinkIntegration.reportResult(testProject, testPlan, AK_33, build, notes, result);
 
 		}
 	}
@@ -175,7 +177,7 @@ public class AKKU_33_Edit_Delete_Suspend_Activity_Users extends Browser_Setup {
 			for (int i = 1; i <= 3; i++) {
 				if (i == 1) {
 
-				
+					editUser.clickonEditDeleteSuspendHamburgermenuinusermanagement();
 					editUser.clickonEditbtninusermanagement();
 					editUser.EditemptyEmailinusermanagement();
 					editUser.EditFnameinusermanagement(Fname);
@@ -185,7 +187,7 @@ public class AKKU_33_Edit_Delete_Suspend_Activity_Users extends Browser_Setup {
 
 				}
 				if (i == 2) {
-					
+					editUser.clickonEditDeleteSuspendHamburgermenuinusermanagement();
 					editUser.clickonEditbtninusermanagement();
 					editUser.EditEmailinusermanagement(NewEmail);
 					editUser.EditemptyFnameinusermanagement();
@@ -195,7 +197,7 @@ public class AKKU_33_Edit_Delete_Suspend_Activity_Users extends Browser_Setup {
 
 				}
 				if (i == 3) {
-			
+					editUser.clickonEditDeleteSuspendHamburgermenuinusermanagement();
 					editUser.clickonEditbtninusermanagement();
 					editUser.EditEmailinusermanagement(NewEmail);
 					editUser.EditFnameinusermanagement(Fname);
@@ -234,7 +236,7 @@ public class AKKU_33_Edit_Delete_Suspend_Activity_Users extends Browser_Setup {
 
 	}
 
-	@Test(dataProvider = "Edit_with_Valid_Data", retryAnalyzer = Retry.class)
+	@Test(dataProvider = "Edit_with_Invalid_Data", retryAnalyzer = Retry.class)
 	public void AK_36_EditUserDetailswithinvalidEmailIDformat(String email, String password, String Fname, String Lname,
 			String NewEmail) throws Exception {
 
@@ -253,6 +255,7 @@ public class AKKU_33_Edit_Delete_Suspend_Activity_Users extends Browser_Setup {
 			loginpage.verifyloggedinUserFNameAndLName();
 
 			usermanagement.clickUsermanagementBtn();
+			editUser.clickonEditDeleteSuspendHamburgermenuinusermanagement();
 			editUser.clickonEditbtninusermanagement();
 			editUser.EditEmailinusermanagement(NewEmail);
 			editUser.EditFnameinusermanagement(Fname);
@@ -299,6 +302,8 @@ public class AKKU_33_Edit_Delete_Suspend_Activity_Users extends Browser_Setup {
 			loginpage.validatedloggedinUserDetailsEmailID(email);
 			loginpage.verifyloggedinUserFNameAndLName();
 			usermanagement.clickUsermanagementBtn();
+			editUser.validatemailfoundingrid(NewEmail);
+			editUser.clickonEditDeleteSuspendHamburgermenuinusermanagement();
 			editUser.clickonSuspendbtninusermanagement();
 			editUser.AcceptSuspendbtninusermanagement();
 			editUser.ValidateSuspendusermsg();
@@ -343,6 +348,8 @@ public class AKKU_33_Edit_Delete_Suspend_Activity_Users extends Browser_Setup {
 			loginpage.validatedloggedinUserDetailsEmailID(email);
 			loginpage.verifyloggedinUserFNameAndLName();
 			usermanagement.clickUsermanagementBtn();
+			editUser.validatemailfoundingrid(NewEmail);
+			editUser.clickonEditDeleteSuspendHamburgermenuinusermanagement();
 			editUser.clickonDeletebtninusermanagement();
 			editUser.AcceptDeletebtninusermanagement();
 			editUser.ValidateDeleteusermsg();
@@ -387,6 +394,7 @@ public class AKKU_33_Edit_Delete_Suspend_Activity_Users extends Browser_Setup {
 			loginpage.validatedloggedinUserDetailsEmailID(email);
 			loginpage.verifyloggedinUserFNameAndLName();
 			usermanagement.clickUsermanagementBtn();
+		    editUser.clickonEditDeleteSuspendHamburgermenuinusermanagement();
 			editUser.clickonResetpwdbtninusermanagement();
 			editUser.typenewpassword(Confnewpassword);
 			editUser.typeConfnewpassword(Confnewpassword);
@@ -433,6 +441,7 @@ public class AKKU_33_Edit_Delete_Suspend_Activity_Users extends Browser_Setup {
 			loginpage.validatedloggedinUserDetailsEmailID(email);
 			loginpage.verifyloggedinUserFNameAndLName();
 			usermanagement.clickUsermanagementBtn();
+		    editUser.clickonEditDeleteSuspendHamburgermenuinusermanagement();
 			editUser.clickonResetpwdbtninusermanagement();
 			editUser.typenewpassword(Newpassword);
 			editUser.typeConfnewpassword(Confnewpassword);
@@ -469,7 +478,7 @@ public class AKKU_33_Edit_Delete_Suspend_Activity_Users extends Browser_Setup {
 	}
 
 	@Test(dataProvider = "EditPwd_validpassword_Details", retryAnalyzer = Retry.class)
-	public void AK_43_ResetPasswordfromUserListwithvalidpassword(String email, String password, String Oldpassword, String Newpassword,
+	public void AK_43_ResetPasswordfromUserListwithvalidpassword(String email, String password, String Oldpassword, String newemail,String Newpassword,
 			String Confnewpassword) throws Exception {
 
 		test = report.createTest("AK_43", "Reset Password from User List with valid password");
@@ -481,6 +490,8 @@ public class AKKU_33_Edit_Delete_Suspend_Activity_Users extends Browser_Setup {
 			loginpage.validatedloggedinUserDetailsEmailID(email);
 			loginpage.verifyloggedinUserFNameAndLName();
 			usermanagement.clickUsermanagementBtn();
+			editUser.validatemailfoundingrid(newemail);
+			   editUser.clickonEditDeleteSuspendHamburgermenuinusermanagement();
 			editUser.clickonResetpwdbtninusermanagement();
 			editUser.typenewpassword(Newpassword);
 			editUser.typeConfnewpassword(Confnewpassword);
@@ -531,7 +542,7 @@ public class AKKU_33_Edit_Delete_Suspend_Activity_Users extends Browser_Setup {
 			usermanagement.clickUsermanagementBtn();
 			editUser.Selectalluser();
 			editUser.ValidateDeleteandsuspendbtndisplay();
-			editUser.SelectSuspenduserfromstatusdropdown();
+			editUser.SelectSuspenduserfromuserstatusdropdown();
 			editUser.Clicksearchbutton();
 			editUser.Selectalluser();
 			editUser.ValidateDeleteandActivebtndisplay();
@@ -580,7 +591,10 @@ public class AKKU_33_Edit_Delete_Suspend_Activity_Users extends Browser_Setup {
 			loginpage.validatedloggedinUserDetailsEmailID(email);
 			loginpage.verifyloggedinUserFNameAndLName();
 			usermanagement.clickUsermanagementBtn();
+						
 			editUser.SearchEmailIdinGrid(NewEmail);
+			editUser.clickonEditDeleteSuspendHamburgermenuinusermanagement();
+			editUser.clickonResetpwdbtninusermanagement();
 			editUser.typenewpassword(Newpassword);
 			editUser.typeConfnewpassword(Confnewpassword);
 			editUser.SelectChangePwd();

@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite guice-stage="DEVELOPMENT" name="Failed suite [Sanity_TestSuite]">
-  <test name="OU Management(failed)">
+<suite guice-stage="DEVELOPMENT" name="Failed suite [AKKU_TestSuite]">
+  <test name="Site Blocking(failed)">
     <parameter name="browser" value="W_chrome"/>
     <parameter name="Environment" value="http://pre-prod.akku.work/"/>
     <classes>
-      <class name="com.app.akku.work.TestCases.AK_52_Create_Edit_Delete_Assign_OU">
+      <class name="com.app.akku.work.TestCases.AKKU_26_Siteblocking">
         <methods>
+          <include name="AK_31_DeleteOneSiteURLfromsiteBlockedlist" invocation-numbers="0 0"/>
           <include name="endsuite"/>
           <include name="setup"/>
           <include name="ExtentReportSetUp"/>
-          <include name="AK_68_SynchronizationOUviaGSuite" invocation-numbers="0"/>
           <include name="tearDown"/>
           <include name="teardown"/>
         </methods>
-      </class> <!-- com.app.akku.work.TestCases.AK_52_Create_Edit_Delete_Assign_OU -->
+      </class> <!-- com.app.akku.work.TestCases.AKKU_26_Siteblocking -->
     </classes>
-  </test> <!-- OU Management(failed) -->
-</suite> <!-- Failed suite [Sanity_TestSuite] -->
+  </test> <!-- Site Blocking(failed) -->
+</suite> <!-- Failed suite [AKKU_TestSuite] -->

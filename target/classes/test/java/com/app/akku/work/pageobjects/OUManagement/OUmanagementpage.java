@@ -135,14 +135,23 @@ public class OUmanagementpage extends Keywords {
 
 		log.info("Trying to Click Edit OU Name...");
 
-		wait.until(ExpectedConditions
-				.visibilityOfElementLocated(By.xpath("//a[contains(text(),'" + NewOu + "')]/../div/button[1]")));
-
-		driver.findElement(By.xpath("//a[contains(text(),'" + NewOu + "')]/../div/button[1]")).click();
-
+		//wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[contains(text(),'" + NewOu + "')]/../div/button[1]")));
+		int totalcount= driver.findElements(By.xpath("//*[@id='ouList']/ul/li/ul/li")).size();
+		
+		for(int i=1;i<=totalcount;i++)
+		{
+		
+		String rowvalue = driver.findElement(By.xpath("//*[@id='ouList']/ul/li/ul/li["+i+"]")).getText();
+		
+		if (rowvalue.contains(NewOu))
+		{	
+		
+			driver.findElement(By.xpath("//nav[@id='ouList']/ul/li/ul/li["+i+"]/div[@class='ou-action-btn']/button[1]/i[@class='fa fa-pencil-square-o']")).click();
+		}
 		log.info("We think we Clicked On Edit OU Name...");
 		test.log(Status.INFO, "We think we clicked on Edit OU Name...");
 
+	}
 	}
 
 	public void EditeOUName(String ParentOU, String NewOu) throws Exception {
@@ -185,8 +194,8 @@ public class OUmanagementpage extends Keywords {
 
 		log.info("Verifying Updated Successfully Message...");
 
-		waitTillAssertElementPresent(By.xpath(prop.getAppProperty("OuManagement_AddOu_success_msg_Xpath")),
-				"OU Successfully Created");
+		waitTillElementlocate(By.xpath(prop.getAppProperty("OuManagement_AddOu_success_msg_Xpath")));
+				
 
 		String Actual = getText(By.xpath(prop.getAppProperty("OuManagement_AddOu_success_msg_Xpath")));
 
@@ -242,42 +251,89 @@ public class OUmanagementpage extends Keywords {
 	public void ClickexpandonParentOu(String ParentOu) throws Exception {
 
 		log.info("Trying to Expand " + ParentOu + " OU ...");
-
-		wait.until(ExpectedConditions
-				.visibilityOfElementLocated(By.xpath("//a[contains(text(),'" + ParentOu + "')]/../span/span[1]")));
-
-		WebElement ele = driver.findElement(By.xpath("//a[contains(text(),'" + ParentOu + "')]/../span/span[1]"));
+		int totalcount= driver.findElements(By.xpath("//*[@id='ouList']/ul/li/ul/li")).size();
+		for(int i=1;i<=totalcount;i++)
+		{
+		
+		String rowvalue = driver.findElement(By.xpath("//*[@id='ouList']/ul/li/ul/li["+i+"]")).getText();
+		
+		if (rowvalue.contains(ParentOu))
+		{	
+		WebElement ele = driver.findElement(By.xpath(" //nav[@id='ouList']/ul/li/ul/li["+i+"]/span[@class='accordion-btn-wrap']/span[@class='accordion-btn accordion-collapsed']"));
 		Actions action = new Actions(driver);
 		action.moveToElement(ele).build().perform();
 
-		driver.findElement(By.xpath("//a[contains(text(),'" + ParentOu + "')]/../span/span[1]")).click();
+		driver.findElement(By.xpath(" //nav[@id='ouList']/ul/li/ul/li["+i+"]/span[@class='accordion-btn-wrap']/span[@class='accordion-btn accordion-collapsed']")).click();
 
+		
+	}
+		}
 		log.info("We think Expanded " + ParentOu + " OU ......");
 
 		test.log(Status.INFO, "We think Expanded " + ParentOu + "OU");
 	}
 
-	public void ClickdeleteonOu(String NewOu) throws Exception {
+	public void ClickDeleteOnParentOU(String ParentOu) throws Exception {
 
-		log.info("Trying to Delete " + NewOu + " OU...");
+		log.info("Trying to Delete " + ParentOu + " OU...");
 
-		wait.until(ExpectedConditions
-				.visibilityOfElementLocated(By.xpath("//a[contains(text(),'" + NewOu + "')]/../div/button[2]")));
 
-		driver.findElement(By.xpath("//a[contains(text(),'" + NewOu + "')]/../div/button[2]")).click();
+		log.info("Trying to Delete " + ParentOu + " OU ...");
+		int totalcount= driver.findElements(By.xpath("//*[@id='ouList']/ul/li/ul/li")).size();
+		log.info(totalcount);
+		for(int i=1;i<=totalcount;i++)
+		{
+				
+		String rowvalue = driver.findElement(By.xpath("//*[@id='ouList']/ul/li/ul/li["+i+"]/a/span")).getText(); 
+		log.info(rowvalue);
+		if (rowvalue.contains(ParentOu))
+		{	
 
-		log.info("We think we not Deleted " + NewOu + " OU.....");
+	
+		driver.findElement(By.xpath("//*[@id='ouList']/ul/li/ul/li["+i+"]/div/button[2]/i")).click();
 
-		test.log(Status.INFO, "We think we Deleted" + NewOu + " OU");
+		log.info(rowvalue);
 
 	}
+		}
+		log.info("We think we  Deleted " + ParentOu + " OU.....");
+
+		test.log(Status.INFO, "We think we Deleted" + ParentOu + " OU");
+		}
+	
+	public void ClickDeleteOnChildOU(String ParentOu) throws Exception {
+
+		log.info("Trying to Delete " + ParentOu + " OU...");
+
+
+		log.info("Trying to Delete " + ParentOu + " OU ...");
+		int totalcount= driver.findElements(By.xpath("//*[@id='ouList']/ul/li/ul/li")).size();
+		log.info(totalcount);
+		for(int i=1;i<=totalcount;i++)
+		{
+				
+		String rowvalue = driver.findElement(By.xpath("//*[@id='ouList']/ul/li/ul/li["+i+"]/a/span")).getText(); 
+		log.info(rowvalue);
+		if (rowvalue.contains(ParentOu))
+		{	
+
+	
+		driver.findElement(By.xpath("//*[@id='ouList']/ul/li/ul/li["+i+"]/ul/li/div/button[2]/i")).click();
+
+		log.info(rowvalue);
+
+	}
+		}
+		log.info("We think we  Deleted " + ParentOu + " OU.....");
+
+		test.log(Status.INFO, "We think we Deleted" + ParentOu + " OU");
+		}
 
 	public void ValidateDeleteOUmsg(String NewOu) throws Exception {
 
 		log.info("Verify Delete OU Successfully Message...");
 
-		waitTillAssertElementPresent(By.xpath(prop.getAppProperty("OuManagement_Delete_Sucess_Msg_Xpath")),
-				"" + NewOu + " ou successfully deleted");
+		
 
 		String Actual = getText(By.xpath(prop.getAppProperty("OuManagement_Delete_Sucess_Msg_Xpath")));
 
@@ -346,12 +402,56 @@ public class OUmanagementpage extends Keywords {
 	public void ClickOUAssginuserbtn(String NewOu) throws Exception {
 
 		log.info("Trying to Click " + NewOu + "Assign user button..");
+		
+		
+int totalcount= driver.findElements(By.xpath("//*[@id='ouList']/ul/li/ul/li")).size();
+log.info(totalcount);
+		for(int i=1;i<=totalcount;i++)
+		{
+		
+		String rowvalue = driver.findElement(By.xpath("//*[@id='ouList']/ul/li/ul/li["+i+"]")).getText();
+		log.info(rowvalue);
+		log.info("Trying to Click " + NewOu + "Assign user button..");
+		if (rowvalue.contains(NewOu))
+		{	
+			log.info("clicking");
+			driver.findElement(By.xpath("//*[@id='ouList']/ul/li/ul/li["+i+"]/ul/li/div/button[3]")).click();
+			log.info("clicked");
+		}
 
-		waitTillElementlocate(By.xpath("//a[contains(text(),'" + NewOu + "')]/../div/button[3]"));
+		
 
-		driver.findElement(By.xpath("//a[contains(text(),'" + NewOu + "')]/../div/button[3]")).click();
-
+		
+	}
 		log.info("We think to Clicked " + NewOu + "Assign user button..");
+
+		test.log(Status.INFO, "We think to Clicked " + NewOu + "Assign user button..");
+	}
+	
+	
+	public void ClickchlidOUAssginuserbtn(String NewOu) throws Exception {
+
+		log.info("Trying to Click " + NewOu + "Assign user button..");
+		
+		
+int totalcount= driver.findElements(By.xpath("//*[@id='ouList']/ul/li/ul/li")).size();
+log.info(totalcount);
+		for(int i=1;i<=totalcount;i++)
+		{
+		
+		String rowvalue = driver.findElement(By.xpath("//*[@id='ouList']/ul/li/ul/li["+i+"]/a/span")).getText();
+		log.info(rowvalue);
+		if (rowvalue.contains(NewOu))
+		{	
+			
+			driver.findElement(By.xpath("//*[@id='ouList']/ul/li/ul/li["+i+"]/ul/li/div/button[3]")).click();
+		}
+
+		
+
+		
+	}
+		log.info("We think we Clicked " + NewOu +  "Assign user button..");
 
 		test.log(Status.INFO, "We think to Clicked " + NewOu + "Assign user button..");
 	}
@@ -416,15 +516,20 @@ public class OUmanagementpage extends Keywords {
 
 		log.info("Verify No changes in userlist Message...");
 
-		waitTillAssertElementPresent(By.xpath(prop.getAppProperty("OuManagement_Assignuser_NoChanges_Errormsg_Xpath")),
-				"No changes have been made");
+					
 
-		String Actual = getText(By.xpath(prop.getAppProperty("OuManagement_Assignuser_NoChanges_Errormsg_Xpath")));
+		String Actual = driver.getPageSource();
 
 		String Expected = "No changes have been made";
-
-		Assert.assertEquals(Actual, Expected);
-
+		
+		if (Actual.contains(Expected))
+		{
+		Assert.assertEquals(true, true);
+		}
+		else
+		{
+			Assert.assertEquals(true, false);
+		}
 		log.info("We think we Verified No changes in userlist Message...");
 		test.log(Status.INFO, "We think we Verified No changes in userlist Message...");
 
@@ -436,7 +541,7 @@ public class OUmanagementpage extends Keywords {
 
 		log.info("trying to select one user from non user list...");
 
-		selectByindexvalue((By.xpath(prop.getAppProperty("OuManagement_select_nonuserlist_xpath"))), 1);
+		click(By.cssSelector(prop.getAppProperty("OuManagement_select_nonuserlist_css")));
 
 		log.info("we think we selected one user  from Non user list...");
 
@@ -447,7 +552,7 @@ public class OUmanagementpage extends Keywords {
 
 		log.info("trying to select one user from existing user list...");
 
-		selectByindexvalue((By.xpath(prop.getAppProperty("OuManagement_select_Existuserlist_xpath"))), 1);
+		click(By.cssSelector(prop.getAppProperty("OuManagement_select_Existuserlist_css")));
 
 		log.info("we think we selected one user...");
 
@@ -456,7 +561,7 @@ public class OUmanagementpage extends Keywords {
 
 	public void Selectallusereinnonoulist() throws Exception {
 
-		log.info("trying to select one user.from non user list..");
+		log.info("trying to select all user from non user list..");
 
 		selectall(By.xpath(prop.getAppProperty("OuManagement_select_nonuserlist_xpath")));
 
@@ -480,8 +585,8 @@ public class OUmanagementpage extends Keywords {
 
 		log.info("Trying to Verify Updated Successfully Message...");
 
-		waitTillAssertElementPresent(By.xpath(prop.getAppProperty("OuManagement_AddOu_success_msg_Xpath")),
-				"Users Successfully Updated");
+		waitTillElementlocate(By.xpath(prop.getAppProperty("OuManagement_AddOu_success_msg_Xpath")));
+				
 
 		String Actual = getText(By.xpath(prop.getAppProperty("OuManagement_AddOu_success_msg_Xpath")));
 

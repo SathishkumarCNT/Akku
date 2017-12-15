@@ -62,7 +62,7 @@ public class PasswordPolicy extends Keywords {
 	public void Validateerrormsgforblankpwdlength() throws Exception {
 
 		log.info("Trying to verify Password Policy Error Message..");
-		waitTillAssertElementPresent(By.xpath(prop.getAppProperty("ishome_home_update_error_popup_xpath")), "Updation failed. Please try after some time.");
+		waitTillElementlocate(By.xpath(prop.getAppProperty("ishome_home_update_error_popup_xpath")));
 		String Expected = "Updation failed. Please try after some time.";
 		String Actual = getText(By.xpath(prop.getAppProperty("ishome_home_update_error_popup_xpath")));
 		log.info(Actual);
@@ -96,7 +96,7 @@ public class PasswordPolicy extends Keywords {
 	public void ValidateerrormsgforCharinpwdlength() throws Exception {
 
 		log.info("Trying to verify Password Policy Error Message..");
-		waitTillAssertElementPresent(By.xpath(prop.getAppProperty("AppManagement_pwdpolicy_MinpwdLen_xpath")), "Please enter a number.");
+		waitTillElementlocate(By.xpath(prop.getAppProperty("AppManagement_pwdpolicy_MinpwdLen_xpath")));
 
 		String Expected = "Please enter a number.";
 		String Actual = getvalidationMessage(By.xpath(prop.getAppProperty("AppManagement_pwdpolicy_MinpwdLen_xpath")));
@@ -124,7 +124,7 @@ public class PasswordPolicy extends Keywords {
 	public void Validateerrormsgforpwdlength7char() throws Exception {
 
 		log.info("Trying to verify Password Policy Error Message..");
-		waitTillAssertElementPresent(By.xpath(prop.getAppProperty("AppManagement_pwdpolicy_MinpwdLen_xpath")), "Value must be greater than or equal to 8.");
+		waitTillElementlocate(By.xpath(prop.getAppProperty("AppManagement_pwdpolicy_MinpwdLen_xpath")));
 
 		String Expected = "Value must be greater than or equal to 8.";
 		String Actual = getvalidationMessage(By.xpath(prop.getAppProperty("AppManagement_pwdpolicy_MinpwdLen_xpath")));
@@ -365,10 +365,10 @@ public class PasswordPolicy extends Keywords {
 	public void ValidateerrormsgforonepwdComplexity() throws Exception {
 
 		log.info("Trying to verify Password Complixty Error Message..");
-		waitTillAssertElementPresent(By.xpath(prop.getAppProperty("ishome_home_update_error_popup_xpath")), "Check at least two checkboxs in Password Complexity.");
+		waitTillElementlocate(By.xpath(prop.getAppProperty("AppManagement_passwordpolicy_error_popup_xpath")));
 
 		String Expected = "Check at least two checkboxs in Password Complexity.";
-		String Actual = getText(By.xpath(prop.getAppProperty("ishome_home_update_error_popup_xpath")));
+		String Actual = getText(By.xpath(prop.getAppProperty("AppManagement_passwordpolicy_error_popup_xpath")));
 		log.info(Actual);
 		log.info(Expected);
 		Assert.assertEquals(Actual, Expected);
@@ -428,7 +428,7 @@ public class PasswordPolicy extends Keywords {
 
 		log.info("Trying to verify Password policy Updated Message..");
 
-		waitTillAssertElementPresent(By.xpath(prop.getAppProperty("SiteBlocking_DeleteBtn_Confirm_Message_Xpath")), "Successfully Updated");
+		waitTillElementlocate(By.xpath(prop.getAppProperty("SiteBlocking_DeleteBtn_Confirm_Message_Xpath")));
 
 		String Expected = "Successfully Updated";
 		String Actual = getText(By.xpath(prop.getAppProperty("SiteBlocking_DeleteBtn_Confirm_Message_Xpath")));
@@ -471,7 +471,7 @@ public class PasswordPolicy extends Keywords {
 
 	{
 		log.info("Trying to Disable Password Expiry");
-		waitTillElementlocate(By.xpath(prop.getAppProperty("AppManagement_pwdpolicy_EnablePwdExpiry_xpath")));
+		//waitTillElementlocate(By.xpath(prop.getAppProperty("AppManagement_pwdpolicy_EnablePwdExpiry_xpath")));
 
 		boolean Enablepwdexpriy = isSelected(
 				By.xpath(prop.getAppProperty("AppManagement_pwdpolicy_EnablePwdExpiry_xpath")));
@@ -499,17 +499,16 @@ public class PasswordPolicy extends Keywords {
 
 	{
 
-		log.info("Trying to Verify Expiration of Password Option Disabale");
-		waitTillElementlocate(By.xpath(prop.getAppProperty("AppManagement_pwdpolicy_ExpofPwd_xpath")));
-
-		boolean Actual = IsDisplayed(By.xpath(prop.getAppProperty("AppManagement_pwdpolicy_ExpofPwd_xpath")));
+		log.info("Trying to Verify Expiration of Password Option Disable");
+	
+		boolean Actual = isSelected(By.xpath(prop.getAppProperty("AppManagement_pwdpolicy_EnablePwdExpiry_xpath")));
 
 		Assert.assertEquals(Actual, false);
 
 		log.info("We think we Verify Expiration of Password Option Disabale");
 		driver.navigate().refresh();
 		
-		test.log(Status.INFO,"We think we Verify Expiration of Password Option Disabale");
+		test.log(Status.INFO,"We think we Verify Expiration of Password Option Disable");
 
 	}
 
@@ -538,16 +537,57 @@ public class PasswordPolicy extends Keywords {
 	public void ClickOnparentOU(String NewOu) throws Exception {
 
 		log.info("Trying to Click OU Name...");
-		waitTillElementlocate(By.xpath("//a[contains(text()," + NewOu + ")]"));
+		
+		int totalcount= driver.findElements(By.xpath("//*[@id='ouList']/ul/li/ul/li")).size();
+		log.info(totalcount);
+		for(int i=1;i<=totalcount;i++)
+		{
+				
+		String rowvalue = driver.findElement(By.xpath("//*[@id='ouList']/ul/li/ul/li["+i+"]/a/span")).getText(); 
+		log.info(rowvalue);
+		if (rowvalue.contains(NewOu))
+		{	
 
 	
-		boolean A = driver.findElement(By.xpath("//a[contains(text()," + NewOu + ")]")).isDisplayed();
-		log.info(A);
+			driver.findElement(By.xpath("//*[@id='ouList']/ul/li/ul/li["+i+"]/a/span")).click();
+
+		log.info(rowvalue);
 
 	
 
-		driver.findElement(By.xpath("//a[contains(text(),'" + NewOu + "')]")).click();
+		}
+		}
+		
+		test.log(Status.INFO,"We think Click OU Name");
+		log.info("We think Click OU Name...");
 
+	}
+	
+	public void ClickOnChildOU(String NewOu) throws Exception {
+
+		log.info("Trying to Click OU Name...");
+		
+		int totalcount= driver.findElements(By.xpath("//*[@id='ouList']/ul/li/ul/li")).size();
+		log.info(totalcount);
+		for(int i=1;i<=totalcount;i++)
+		{
+				
+		String rowvalue = driver.findElement(By.xpath("//*[@id='ouList']/ul/li/ul/li["+i+"]/a/span")).getText(); 
+		log.info(rowvalue);
+		if (rowvalue.contains(NewOu))
+		{	
+
+	
+			driver.findElement(By.xpath("//*[@id='ouList']/ul/li/ul/li["+i+"]/ul/li/a/span")).click();
+			
+			//*[@id="ouList"]/ul/li/ul/li[4]/ul/li/a/span
+			
+		log.info(rowvalue);
+
+	
+
+		}
+		}
 		
 		test.log(Status.INFO,"We think Click OU Name");
 		log.info("We think Click OU Name...");
@@ -585,9 +625,9 @@ public class PasswordPolicy extends Keywords {
 		Assert.assertEquals(Uppercase, true);
 		Assert.assertEquals(lowercase, true);
 		Assert.assertEquals(numeric, true);
-		Assert.assertEquals(special, true);
+		//Assert.assertEquals(special, true);
 
-		test.log(Status.INFO,"\"We think we Validate Password Complexity");
+		test.log(Status.INFO,"We think we Validate Password Complexity");
 		log.info("We think we Validate Password Complexity");
 	}
 

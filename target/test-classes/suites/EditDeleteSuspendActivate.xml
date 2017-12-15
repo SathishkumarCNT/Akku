@@ -14,17 +14,11 @@
 				name="com.app.akku.work.TestCases.AKKU_33_Edit_Delete_Suspend_Activity_Users">
 				<methods>
 				
-				<include name="AK_37_SuspendUserfromUserManagementpage" />
-					<include name="AK_38_DeleteUserfromUserManagementpage" />
-					<include name="AK_43_ResetPasswordfromUserListwithvalidpassword" />
-					<include name="AK_45_ResetPasswordandChangePasswordinNextLogin" />
-					<include name="AK_47_Searchuserfromuserlistusingvalidkeyword" />
-					<include name="AK_49_VerifyLastLogindatetimeinuserList" />
+				
+			<include name="AK_49_VerifyLastLogindatetimeinuserList" />
 					<include name="AK_44_SelectmultipleuserfromuserlistandVerifyActionbuttons" />
 
-<!-- 
-					<include
-						name="AK_33_EditUserinformationinuserManagementpagewithvaliddata" />
+				<!-- 	<include name="AK_33_EditUserinformationinuserManagementpagewithvaliddata" />
 					<include name="AK_35_EditUserDetailsinUserManagementpagewithInvaliddata" />
 					<include name="AK_36_EditUserDetailswithinvalidEmailIDformat" />
 					<include name="AK_37_SuspendUserfromUserManagementpage" />
@@ -38,9 +32,9 @@
 					<include name="AK_51_UserlistcountinapagebasedonShowCountselected" />
 					<include name="AK_50_ViewUserdetailsbyselectingFullNameLinkText" />
 					<include name="AK_49_VerifyLastLogindatetimeinuserList" />
-					<include
-						name="AK_44_SelectmultipleuserfromuserlistandVerifyActionbuttons" />
- -->
+					<include name="AK_44_SelectmultipleuserfromuserlistandVerifyActionbuttons" />-->
+						
+
 				</methods>
 			</class>
 		</classes>

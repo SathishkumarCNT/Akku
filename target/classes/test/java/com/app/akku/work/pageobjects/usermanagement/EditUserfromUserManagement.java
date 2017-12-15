@@ -19,7 +19,7 @@ import com.aventstack.extentreports.Status;
 public class EditUserfromUserManagement extends Keywords {
 
 	ReadfromProperties prop = new ReadfromProperties();
-	
+
 	Logger log = Logger.getLogger(EditUserfromUserManagement.class.getName());
 	public static String Logindatetime = null;
 
@@ -42,7 +42,7 @@ public class EditUserfromUserManagement extends Keywords {
 
 			if (!isChecked) {
 				radioButtons.get(i).click();
-				
+
 			}
 		}
 	}
@@ -59,11 +59,27 @@ public class EditUserfromUserManagement extends Keywords {
 
 	}
 
+	public void clickonEditDeleteSuspendHamburgermenuinusermanagement() throws Exception {
+
+		log.info("Trying to Click on Hamburger menu...");
+
+		click(By.cssSelector(prop.getAppProperty("Akku_UserManagement_select_Hamburgermenu_btn_css")));
+
+		log.info("We think we Clicked on Hamburger menu...");
+
+		test.log(Status.INFO, "We think we Clicked on Hamburger menu");
+
+	}
+
 	public void clickonEditbtninusermanagement() throws Exception {
 
 		log.info("Trying to Click on Edit button...");
 
-		click(By.xpath(prop.getAppProperty("Akku_UserManagement_Edituser_btn_xpath")));
+		moveMouse(By.linkText(prop.getAppProperty("Akku_UserManagement_Edituser_btn_linktext")));
+
+		Thread.sleep(3000);
+		
+		click(By.linkText(prop.getAppProperty("Akku_UserManagement_Edituser_btn_linktext")));
 
 		log.info("We think we Clicked on Edit button...");
 
@@ -132,7 +148,7 @@ public class EditUserfromUserManagement extends Keywords {
 	public void EditusertypeinGSuite() throws Exception {
 
 		log.info("Select User Type in Edit User management...");
-waitTillElementlocate(By.id("userrole"));
+		waitTillElementlocate(By.id("userrole"));
 		String Usertype_user = "User";
 		String readusertype = driver.findElement(By.id("userrole")).getText();
 		log.info(readusertype);
@@ -177,7 +193,7 @@ waitTillElementlocate(By.id("userrole"));
 	public void updatefailValidation() throws Exception {
 
 		log.info(" Trying to Verfiy Update Fail message");
-waitTillElementlocate(By.xpath(prop.getAppProperty("Akku_UserManagement_EdituserEmail_xpath")));
+		waitTillElementlocate(By.xpath(prop.getAppProperty("Akku_UserManagement_EdituserEmail_xpath")));
 		String errormsg = getvalidationMessage(
 				By.xpath(prop.getAppProperty("Akku_UserManagement_EdituserEmail_xpath")));
 
@@ -292,11 +308,11 @@ waitTillElementlocate(By.xpath(prop.getAppProperty("Akku_UserManagement_Edituser
 
 		log.info("Trying to Click on Suspend User button...");
 
-		moveMouse(By.xpath(prop.getAppProperty("Akku_UserManagement_Suspenduser_btn_xpath")));
+		moveMouse(By.linkText(prop.getAppProperty("Akku_UserManagement_suspend_InHamburger_linktext")));
 
 		Thread.sleep(3000);
 
-		click(By.xpath(prop.getAppProperty("Akku_UserManagement_Suspenduser_btn_xpath")));
+		click(By.linkText(prop.getAppProperty("Akku_UserManagement_suspend_InHamburger_linktext")));
 
 		log.info("We think we Clicked on Suspend User button");
 		test.log(Status.INFO, "We think we Clicked on Suspend User button");
@@ -318,7 +334,7 @@ waitTillElementlocate(By.xpath(prop.getAppProperty("Akku_UserManagement_Edituser
 
 		log.info("Trying to Verify Suspend user Successfully Message...");
 
-		waitTillAssertElementPresent(By.xpath(prop.getAppProperty("Akku_UserManagement_Suspenduser_Accept_xpath")), "User suspended Successfully");
+	
 
 		String Actual = getText(By.xpath(prop.getAppProperty("Akku_UserManagement_Suspenduser_Accept_xpath")));
 
@@ -337,11 +353,11 @@ waitTillElementlocate(By.xpath(prop.getAppProperty("Akku_UserManagement_Edituser
 
 		log.info("Trying to Click on Delete User button...");
 
-		moveMouse(By.xpath(prop.getAppProperty("Akku_UserManagement_Deleteuser_btn_xpath")));
+		moveMouse(By.cssSelector(prop.getAppProperty("Akku_UserManagement_Delete_InHamburger_css")));
 
 		Thread.sleep(3000);
 
-		click(By.xpath(prop.getAppProperty("Akku_UserManagement_Deleteuser_btn_xpath")));
+		click(By.cssSelector(prop.getAppProperty("Akku_UserManagement_Delete_InHamburger_css")));
 
 		log.info("We think we Clicked on Delete User button...");
 		test.log(Status.INFO, "We think we Clicked on Delete User button");
@@ -362,7 +378,8 @@ waitTillElementlocate(By.xpath(prop.getAppProperty("Akku_UserManagement_Edituser
 
 		log.info("Verify Delete user Successfully Message...");
 
-		waitTillAssertElementPresent(By.xpath(prop.getAppProperty("Akku_UserManagement_Suspenduser_Accept_xpath")), "User deleteed Successfully");
+		waitTillAssertElementPresent(By.xpath(prop.getAppProperty("Akku_UserManagement_Suspenduser_Accept_xpath")),
+				"User deleteed Successfully");
 
 		String Actual = getText(By.xpath(prop.getAppProperty("Akku_UserManagement_Suspenduser_Accept_xpath")));
 
@@ -382,7 +399,7 @@ waitTillElementlocate(By.xpath(prop.getAppProperty("Akku_UserManagement_Edituser
 
 		log.info("Trying to Click on Reset User button...");
 
-		click(By.xpath(prop.getAppProperty("Akku_UserManagement_Resetpwd_btn_xpath")));
+		click(By.cssSelector(prop.getAppProperty("Akku_UserManagement_Resetpwd_btn_css")));
 
 		log.info("We think we Clicked Reset User button...");
 
@@ -416,7 +433,7 @@ waitTillElementlocate(By.xpath(prop.getAppProperty("Akku_UserManagement_Edituser
 
 		log.info("Trying to Click Reset Button...");
 
-		click(By.xpath(prop.getAppProperty("Akku_UserManagement_Resetpwd_Btn_xpath")));
+		click(By.cssSelector(prop.getAppProperty("Akku_UserManagement_Reset_Btn_btn")));
 
 		log.info("We think we Clicked Reset Button...");
 
@@ -429,7 +446,8 @@ waitTillElementlocate(By.xpath(prop.getAppProperty("Akku_UserManagement_Edituser
 
 		String Expected = "Password must be 8 character with minimum one lowercase, numeric";
 
-		waitTillAssertElementPresent(By.xpath(prop.getAppProperty("Akku_UserManagement_Resetpwd_ErrorMsg_xpath")), Expected);
+		waitTillAssertElementPresent(By.xpath(prop.getAppProperty("Akku_UserManagement_Resetpwd_ErrorMsg_xpath")),
+				Expected);
 		String Actual = getText(By.xpath(prop.getAppProperty("Akku_UserManagement_Resetpwd_ErrorMsg_xpath")));
 
 		Assert.assertEquals(Actual, Expected);
@@ -437,7 +455,6 @@ waitTillElementlocate(By.xpath(prop.getAppProperty("Akku_UserManagement_Edituser
 		log.info("We think we Verified verify Error Message...");
 		test.log(Status.INFO, "We think we Verified verify Error Message");
 
-	
 		driver.navigate().refresh();
 
 	}
@@ -447,7 +464,8 @@ waitTillElementlocate(By.xpath(prop.getAppProperty("Akku_UserManagement_Edituser
 		log.info("Trying to verify Error Message...");
 
 		String Expected = "The password does not match. Please enter a correct password";
-waitTillAssertElementPresent(By.xpath(prop.getAppProperty("Akku_UserManagement_Resetpwd_ErrorMsg_xpath")), Expected);
+		waitTillAssertElementPresent(By.xpath(prop.getAppProperty("Akku_UserManagement_Resetpwd_ErrorMsg_xpath")),
+				Expected);
 		String Actual = getText(By.xpath(prop.getAppProperty("Akku_UserManagement_Resetpwd_ErrorMsg_xpath")));
 
 		Assert.assertEquals(Actual, Expected);
@@ -464,7 +482,7 @@ waitTillAssertElementPresent(By.xpath(prop.getAppProperty("Akku_UserManagement_R
 		log.info("Trying to verify Successful Message...");
 
 		String Expected = "Successfully Password Reseted";
-waitTillAssertElementPresent(By.xpath(prop.getAppProperty("Akku_UserManagement_Resetpwd_Succesmsg_xpath")), Expected);
+		waitTillElementlocate(By.xpath(prop.getAppProperty("Akku_UserManagement_Resetpwd_Succesmsg_xpath")));
 		String Actual = getText(By.xpath(prop.getAppProperty("Akku_UserManagement_Resetpwd_Succesmsg_xpath")));
 
 		Assert.assertEquals(Actual, Expected);
@@ -490,15 +508,7 @@ waitTillAssertElementPresent(By.xpath(prop.getAppProperty("Akku_UserManagement_R
 
 		test.log(Status.INFO, "We have entered Email Id In search box");
 
-
-
-		log.info("Trying to Click Email Id In search");
-
-		click(By.xpath(prop.getAppProperty("Akku_UserManagement_Resetpwd_Nextlogin_xpath")));
-
-		log.info("We have Click Edit Button");
-
-		test.log(Status.INFO, "We have Clicked Edit Button");
+	
 	}
 
 	public void SelectChangePwd() throws Exception {
@@ -510,7 +520,7 @@ waitTillAssertElementPresent(By.xpath(prop.getAppProperty("Akku_UserManagement_R
 
 		if (Changpwdinnxtlogin == true) {
 			click(By.id(prop.getAppProperty("Akku_UserManagement_Resetpwd_ChngPwdCheckbox_ID")));
-			
+
 			click(By.id(prop.getAppProperty("Akku_UserManagement_Resetpwd_ChngPwdCheckbox_ID")));
 		} else {
 			click(By.id(prop.getAppProperty("Akku_UserManagement_Resetpwd_ChngPwdCheckbox_ID")));
@@ -526,7 +536,6 @@ waitTillAssertElementPresent(By.xpath(prop.getAppProperty("Akku_UserManagement_R
 		log.info("Trying to Enter password");
 
 		type(By.xpath(prop.getAppProperty("Akku_Changepwd_Password_xpath")), Password);
-	
 
 		log.info("We Think We Entered password");
 		test.log(Status.INFO, "We Think We Entered password: " + Password);
@@ -538,7 +547,6 @@ waitTillAssertElementPresent(By.xpath(prop.getAppProperty("Akku_UserManagement_R
 		log.info("Trying to Enter Confirm password");
 
 		type(By.xpath(prop.getAppProperty("Akku_Changepwd_ConfirmPwd_xpath")), conPassword);
-	
 
 		log.info("We Think We Enter Confirm password");
 
@@ -552,7 +560,6 @@ waitTillAssertElementPresent(By.xpath(prop.getAppProperty("Akku_UserManagement_R
 		log.info("Trying to Click Update Button");
 
 		click(By.xpath(prop.getAppProperty("Akku_Changepwd_Submit_btn_xpath")));
-		
 
 		log.info("We Think We Clicked on Update Button");
 
@@ -574,7 +581,6 @@ waitTillAssertElementPresent(By.xpath(prop.getAppProperty("Akku_UserManagement_R
 		log.info("We think we Verified  Successful Message...");
 		test.log(Status.INFO, "We Think We Verified Successful Message: " + Actual);
 
-
 	}
 
 	public void ClickDashboardbtn() throws Exception {
@@ -583,7 +589,6 @@ waitTillAssertElementPresent(By.xpath(prop.getAppProperty("Akku_UserManagement_R
 
 		click(By.xpath(prop.getAppProperty("Akku_Changepwd_Dashboard_btn_xpath")));
 
-		
 		log.info("We think we Click Dashboard Button......");
 
 		log.info("We think we  Clicked Dashboard Button...");
@@ -603,7 +608,7 @@ waitTillAssertElementPresent(By.xpath(prop.getAppProperty("Akku_UserManagement_R
 		log.info("We think we entered Email Id In search box");
 		test.log(Status.INFO, "We think we entered Email Id In search box");
 
-;
+		;
 
 	}
 
@@ -640,7 +645,6 @@ waitTillAssertElementPresent(By.xpath(prop.getAppProperty("Akku_UserManagement_R
 					log.info("We have Verified Enter Text Found in grid");
 					test.log(Status.INFO, "We have Verified Enter Text Found in grid");
 
-			
 					Assert.assertEquals(Actual, Excepted);
 					break;
 
@@ -657,9 +661,9 @@ waitTillAssertElementPresent(By.xpath(prop.getAppProperty("Akku_UserManagement_R
 
 		String Except = "No matching records found";
 
-waitTillAssertElementPresent(By.xpath(prop.getAppProperty("Akku_UserManagement_grid_Norecordfound_xpath")), Except);
-		String Actual = getText(By.xpath(prop.getAppProperty("Akku_UserManagement_grid_Norecordfound_xpath")));
-
+		waitTillAssertElementPresent(By.cssSelector(prop.getAppProperty("Akku_UserManagement_grid_Norecordfound_css")),
+				Except);
+		String Actual = getText(By.cssSelector(prop.getAppProperty("Akku_UserManagement_grid_Norecordfound_css")));
 
 		log.info(Actual);
 		log.info(Except);
@@ -686,7 +690,6 @@ waitTillAssertElementPresent(By.xpath(prop.getAppProperty("Akku_UserManagement_g
 				selectByVisibleText(By.xpath(prop.getAppProperty("Akku_UserManagement_Show_dropdown_xpath")),
 						Showvalue);
 				click(By.xpath(prop.getAppProperty("Akku_UserManagement_Show_dropdown_xpath")));
-		
 
 				log.info("We have selected" + Excepted + "From Show dropdown.");
 
@@ -697,7 +700,7 @@ waitTillAssertElementPresent(By.xpath(prop.getAppProperty("Akku_UserManagement_g
 				JavascriptExecutor jse = (JavascriptExecutor) driver;
 				jse.executeScript("window.scrollBy(0,8000)", "");
 				log.info("Record Count display in grid = " + Row_count);
-		
+
 				Assert.assertEquals(Row_count, Excepted);
 				driver.navigate().refresh();
 
@@ -711,8 +714,6 @@ waitTillAssertElementPresent(By.xpath(prop.getAppProperty("Akku_UserManagement_g
 				click(By.xpath(prop.getAppProperty("Akku_UserManagement_Show_dropdown_xpath")));
 				selectByVisibleText(By.xpath(prop.getAppProperty("Akku_UserManagement_Show_dropdown_xpath")),
 						Showvalue);
-
-	
 
 				log.info("We have selected" + Excepted + "From Show dropdown.");
 
@@ -736,8 +737,6 @@ waitTillAssertElementPresent(By.xpath(prop.getAppProperty("Akku_UserManagement_g
 				selectByVisibleText(By.xpath(prop.getAppProperty("Akku_UserManagement_Show_dropdown_xpath")),
 						Showvalue);
 
-
-
 				log.info("We have selected" + Excepted + "From Show dropdown.");
 
 				log.info("Trying to Validate record Count display in grid.");
@@ -759,7 +758,6 @@ waitTillAssertElementPresent(By.xpath(prop.getAppProperty("Akku_UserManagement_g
 				click(By.xpath(prop.getAppProperty("Akku_UserManagement_Show_dropdown_xpath")));
 				selectByVisibleText(By.xpath(prop.getAppProperty("Akku_UserManagement_Show_dropdown_xpath")),
 						Showvalue);
-
 
 				log.info("We have selected" + Excepted + "From Show dropdown.");
 
@@ -792,7 +790,8 @@ waitTillAssertElementPresent(By.xpath(prop.getAppProperty("Akku_UserManagement_g
 
 	{
 		String Expected = SearchKey;
-waitTillAssertElementPresent(By.xpath(prop.getAppProperty("Akku_UserManagement_EmailId_FName_POpup_xpath")), Expected);
+		waitTillAssertElementPresent(By.xpath(prop.getAppProperty("Akku_UserManagement_EmailId_FName_POpup_xpath")),
+				Expected);
 		log.info("Trying to verify on Ful Name Link Text");
 		String Actual = getText(By.xpath(prop.getAppProperty("Akku_UserManagement_EmailId_FName_POpup_xpath")));
 
@@ -821,7 +820,8 @@ waitTillAssertElementPresent(By.xpath(prop.getAppProperty("Akku_UserManagement_E
 
 	{
 		String Expected = Logindatetime;
-waitTillAssertElementPresent(By.xpath(prop.getAppProperty("Akku_UserManagement_LastloginDatetime_xpath")), Expected);
+		waitTillAssertElementPresent(By.xpath(prop.getAppProperty("Akku_UserManagement_LastloginDatetime_xpath")),
+				Expected);
 		log.info("Trying to Verify on Last login Date time");
 		String Actual = getText(By.xpath(prop.getAppProperty("Akku_UserManagement_LastloginDatetime_xpath")));
 
@@ -839,8 +839,11 @@ waitTillAssertElementPresent(By.xpath(prop.getAppProperty("Akku_UserManagement_L
 
 	{
 
-		log.info("Trying to Select all the Active user  in the page");
-		click(By.xpath(prop.getAppProperty("Akku_UserManagement_Alluser_Radio_btn_xpath")));
+		log.info("Trying to Select all the Active user in the page");
+
+		// click(By.xpath(prop.getAppProperty("Akku_UserManagement_Alluser_Radio_btn_css")));
+
+		driver.findElement(By.cssSelector(".selAll-container [type]")).click();
 
 		log.info(" We Think We Selected all the Active user from in the page");
 		test.log(Status.INFO, " We Think We Selected all the Active user from in the page");
@@ -887,7 +890,6 @@ waitTillAssertElementPresent(By.xpath(prop.getAppProperty("Akku_UserManagement_L
 		log.info(" We Think We Verified  Delete and Active Button displayed in page");
 		test.log(Status.INFO, " We Think We Verified  Delete and Active Button displayed in page");
 
-
 	}
 
 	public void ValidateSuspendandActivebtndisplay() throws Exception
@@ -909,10 +911,9 @@ waitTillAssertElementPresent(By.xpath(prop.getAppProperty("Akku_UserManagement_L
 		log.info(" We Think We Verified  Active and Suspend Button displayed in page");
 		test.log(Status.INFO, "We Think We Verified  Active and Suspend Button displayed in page");
 
-
 	}
 
-	public void SelectSuspenduserfromstatusdropdown() throws Exception
+	public void SelectSuspenduserfromuserstatusdropdown() throws Exception
 
 	{
 
@@ -922,6 +923,19 @@ waitTillAssertElementPresent(By.xpath(prop.getAppProperty("Akku_UserManagement_L
 		click(By.xpath(prop.getAppProperty("Akku_UserManagement_userstatus_dropdown_xpath")));
 		log.info(" We Think We Selected Suspended User From user Status");
 		test.log(Status.INFO, "We Think We Selected Suspended User From user Status");
+
+	}
+
+	public void SelectActiveuserfromstatusdropdown() throws Exception
+
+	{
+
+		log.info("Trying to Select Active User From user Status ");
+		click(By.xpath(prop.getAppProperty("Akku_UserManagement_userstatus_dropdown_xpath")));
+		selectByVisibleText(By.xpath(prop.getAppProperty("Akku_UserManagement_userstatus_dropdown_xpath")), "Active");
+		click(By.xpath(prop.getAppProperty("Akku_UserManagement_userstatus_dropdown_xpath")));
+		log.info(" We Think We Selected Active User From user Status");
+		test.log(Status.INFO, "We Think We Selected Active User From user Status");
 
 	}
 
@@ -936,7 +950,6 @@ waitTillAssertElementPresent(By.xpath(prop.getAppProperty("Akku_UserManagement_L
 		log.info(" We Think We Selected Deleted User From user Status");
 		test.log(Status.INFO, "We Think We Selected Deleted User From user Status");
 
-
 	}
 
 	public void Clicksearchbutton() throws Exception {
@@ -947,6 +960,87 @@ waitTillAssertElementPresent(By.xpath(prop.getAppProperty("Akku_UserManagement_L
 		log.info(" We Think We Clicked Search button");
 
 		test.log(Status.INFO, "We Think We Clicked Search button");
+	}
+
+	public void validatemailfoundingrid(String SearchKey) throws Exception {
+
+		log.info("Trying to Verify User Found in List");
+
+		clear(By.xpath(prop.getAppProperty("Akku_UserManagement_Search_fromlist_xpath")));
+
+		click(By.xpath(prop.getAppProperty("Akku_UserManagement_Search_fromlist_xpath")));
+		type(By.xpath(prop.getAppProperty("Akku_UserManagement_Search_fromlist_xpath")), SearchKey);
+
+		String Except = "No matching records found";
+
+		String gridmsginActive = driver.getPageSource();
+
+		log.info(" User Found in Active List" + gridmsginActive);
+
+		if (gridmsginActive.contains(Except)) {
+
+			Searchremailid(SearchKey);
+
+		} else {
+			log.info(" User Found in Active List");
+
+		}
+
+	}
+
+	public void Searchremailid(String SearchKey) throws Exception {
+
+		log.info("Trying to Verify User List in Suspend");
+
+		SelectSuspenduserfromuserstatusdropdown();
+		Clicksearchbutton();
+		clear(By.xpath(prop.getAppProperty("Akku_UserManagement_Search_fromlist_xpath")));
+
+		click(By.xpath(prop.getAppProperty("Akku_UserManagement_Search_fromlist_xpath")));
+		type(By.xpath(prop.getAppProperty("Akku_UserManagement_Search_fromlist_xpath")), SearchKey);
+
+		String Except = "No matching records found";
+
+		String gridmsginsuspended = driver.getPageSource();
+
+		if (gridmsginsuspended.contains(Except))
+
+		{
+
+			log.info("We have not found Enter Text in Suspend list" + gridmsginsuspended);
+			SelectDeleteduserfromstatusdropdown();
+			Clicksearchbutton();
+			clear(By.xpath(prop.getAppProperty("Akku_UserManagement_Search_fromlist_xpath")));
+
+			click(By.xpath(prop.getAppProperty("Akku_UserManagement_Search_fromlist_xpath")));
+			type(By.xpath(prop.getAppProperty("Akku_UserManagement_Search_fromlist_xpath")), SearchKey);
+			clickonEditDeleteSuspendHamburgermenuinusermanagement();
+			click(By.linkText(prop.getAppProperty("Akku_UserManagement_Active_InHamburger_linktext")));
+			AcceptDeletebtninusermanagement();
+			AcceptDeletebtninusermanagement();
+			SelectActiveuserfromstatusdropdown();
+			Clicksearchbutton();
+			clear(By.xpath(prop.getAppProperty("Akku_UserManagement_Search_fromlist_xpath")));
+
+			click(By.xpath(prop.getAppProperty("Akku_UserManagement_Search_fromlist_xpath")));
+			type(By.xpath(prop.getAppProperty("Akku_UserManagement_Search_fromlist_xpath")), SearchKey);
+			clickonEditDeleteSuspendHamburgermenuinusermanagement();
+			
+
+		} else {
+
+			clickonEditDeleteSuspendHamburgermenuinusermanagement();
+			click(By.linkText(prop.getAppProperty("Akku_UserManagement_Active_InHamburger_linktext")));
+			AcceptSuspendbtninusermanagement();
+			AcceptSuspendbtninusermanagement();
+			SelectActiveuserfromstatusdropdown();
+			Clicksearchbutton();
+			clear(By.xpath(prop.getAppProperty("Akku_UserManagement_Search_fromlist_xpath")));
+			click(By.xpath(prop.getAppProperty("Akku_UserManagement_Search_fromlist_xpath")));
+			type(By.xpath(prop.getAppProperty("Akku_UserManagement_Search_fromlist_xpath")), SearchKey);
+			clickonEditDeleteSuspendHamburgermenuinusermanagement();
+		
+		}
 	}
 
 }

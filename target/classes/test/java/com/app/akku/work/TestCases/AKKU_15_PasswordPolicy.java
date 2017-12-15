@@ -547,7 +547,9 @@ public class AKKU_15_PasswordPolicy extends Browser_Setup {
 			usermanagement.clickAppmanagementBtn();
 			oumangement.ClickExpandORCollapsBtn();
 			oumangement.ClickexpandonParentOu(ParentOU);
-			Pwdpolicy.ClickOnparentOU(NewOu);
+			Pwdpolicy.ClickOnChildOU(ParentOU);
+			
+			Thread.sleep(3000);
 			Pwdpolicy.ChangeEntervalidpwdlengthasten("10");
 			Pwdpolicy.SelectthreepwdComplexity();
 			Pwdpolicy.EnablePasswordExpiry();
@@ -609,7 +611,7 @@ public class AKKU_15_PasswordPolicy extends Browser_Setup {
 			usermanagement.clickAppmanagementBtn();
 			oumangement.ClickExpandORCollapsBtn();
 			oumangement.ClickexpandonParentOu(ParentOU);
-			Pwdpolicy.ClickOnparentOU(NewOu);
+			Pwdpolicy.ClickOnparentOU(ParentOU);
 			Pwdpolicy.verifySubOupasswordlengthlsochange("12");
 			Pwdpolicy.VerifySubOUPasswordComplexity();
 
@@ -659,7 +661,7 @@ public class AKKU_15_PasswordPolicy extends Browser_Setup {
 			usermanagement.clickAppmanagementBtn();
 			oumangement.ClickExpandORCollapsBtn();
 			oumangement.ClickexpandonParentOu(ParentOU);
-			Pwdpolicy.ClickOnparentOU(NewOu);
+			Pwdpolicy.ClickOnChildOU(ParentOU);
 			Pwdpolicy.ChangeEntervalidpwdlengthasten("08");
 			Pwdpolicy.SelecttwopwdComplexity();
 			Pwdpolicy.EnablePasswordExpiry();
@@ -668,7 +670,7 @@ public class AKKU_15_PasswordPolicy extends Browser_Setup {
 			usermanagement.clickAppmanagementBtn();
 			oumangement.ClickExpandORCollapsBtn();
 			oumangement.ClickexpandonParentOu(ParentOU);
-			Pwdpolicy.ClickOnparentOU(ParentOU);
+			Pwdpolicy.ClickOnChildOU(ParentOU);
 			Pwdpolicy.verifySubOupasswordlengthlsochange("12");
 			Pwdpolicy.VerifySubOUPasswordComplexity();
 			Pwdpolicy.VerifySubOUPasswordComplexity();
@@ -720,7 +722,8 @@ public class AKKU_15_PasswordPolicy extends Browser_Setup {
 			usermanagement.clickUsermanagementBtn();
 			editUser.EnterKeywordinsearchtxtbox(SearchEmail);
 			editUser.ValidateSearchkeyword(SearchEmail);
-			Pwdpolicy.clickonEditbtninusermanagement();
+			editUser.clickonEditDeleteSuspendHamburgermenuinusermanagement();
+			editUser.clickonEditbtninusermanagement();
 			Pwdpolicy.SelectParentOU(ParentOU);
 			editUser.clickonUpdatebtn();
 			editUser.UpdateSucessfulValidate();
@@ -728,7 +731,8 @@ public class AKKU_15_PasswordPolicy extends Browser_Setup {
 			usermanagement.clickUsermanagementBtn();
 			editUser.EnterKeywordinsearchtxtbox(SearchEmail);
 			editUser.ValidateSearchkeyword(SearchEmail);
-			Pwdpolicy.clickonResetpwdbtninusermanagement();
+			editUser.clickonEditDeleteSuspendHamburgermenuinusermanagement();
+			editUser.clickonResetpwdbtninusermanagement();
 			editUser.typenewpassword("Password@2345");
 			editUser.typeConfnewpassword("Password@2345");
 			editUser.ResetbtnClick();
@@ -802,7 +806,8 @@ public class AKKU_15_PasswordPolicy extends Browser_Setup {
 			usermanagement.clickUsermanagementBtn();
 			editUser.EnterKeywordinsearchtxtbox(SearchEmail);
 			editUser.ValidateSearchkeyword(SearchEmail);
-			Pwdpolicy.clickonEditbtninusermanagement();
+			editUser.clickonEditDeleteSuspendHamburgermenuinusermanagement();
+			editUser.clickonEditbtninusermanagement();
 			Pwdpolicy.SelectchildOU(ParentOU, NewOu);
 			editUser.clickonUpdatebtn();
 			editUser.UpdateSucessfulValidate();
@@ -810,7 +815,8 @@ public class AKKU_15_PasswordPolicy extends Browser_Setup {
 			usermanagement.clickUsermanagementBtn();
 			editUser.EnterKeywordinsearchtxtbox(SearchEmail);
 			editUser.ValidateSearchkeyword(SearchEmail);
-			Pwdpolicy.clickonResetpwdbtninusermanagement();
+			editUser.clickonEditDeleteSuspendHamburgermenuinusermanagement();
+			editUser.clickonResetpwdbtninusermanagement();
 			editUser.typenewpassword("password2");
 			editUser.typeConfnewpassword("password2");
 			editUser.ResetbtnClick();
@@ -877,13 +883,13 @@ public class AKKU_15_PasswordPolicy extends Browser_Setup {
 			oumangement.clickOUmanagementBtn();
 			oumangement.ClickExpandORCollapsBtn();
 			oumangement.ClickexpandonParentOu(ParentOU);
-			oumangement.ClickdeleteonOu(NewOu);
+			oumangement.ClickDeleteOnChildOU(ParentOU);
 			editUser.AcceptDeletebtninusermanagement();
 			editinfo.closeAlertpopup();
 			driver.navigate().refresh();
 			oumangement.clickOUmanagementBtn();
 			oumangement.ClickExpandORCollapsBtn();
-			oumangement.ClickdeleteonOu(ParentOU);
+			oumangement.ClickDeleteOnParentOU(ParentOU);
 			editUser.AcceptDeletebtninusermanagement();
 			editinfo.closeAlertpopup();
 			loginpage.clickLogout();
